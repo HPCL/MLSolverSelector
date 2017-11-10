@@ -1,0 +1,4 @@
+doxygen dox_config_file
+cd html
+firefox index.html
+

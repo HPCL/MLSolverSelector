@@ -1,0 +1,8 @@
+Some additional tools that come in handy for petsc
+
+1. petsc_mm_too_bin -- convert a Matrix market matrix to the petsc binary format.
+
+2. petsc_solver_options -- scans the petsc source code and extracts all the solvers and 
+the solver options that can be used. 
+
+

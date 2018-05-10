@@ -1,0 +1,9 @@
+Run the python script to extract all the solver options from 
+petsc. This will create two files, one that contains all the solver
+options in Petsc and the parameters, and one for the preconditioners
+and the parameters. 
+
+
+Remember to set the PETSC_DIR environment variable or modify the makefile. 
+
+

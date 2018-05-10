@@ -1,8 +1,0 @@
-Utilities directory for using petsc with the solver selecter. MM2Petsc will
-convert a matrix market matrix to petsc binary form. This is a slightly 
-modified version of one of the petsc examples. The python script petsc_options_scan
-scans petsc and pulls out all the solver options. These are then written to the 
-files PetscSolversOptions and PetscPrecondOptions. These can then be used to 
-populate an input list for building a database. 
-
-

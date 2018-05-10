@@ -1,0 +1,15 @@
+TODO
+
+Write instructions for these example
+
+ex1 -- solves a matrix using petsc binary file as input 
+--- Set ksp_type KSPSS to use the solver selector. 
+
+ex2 -- solves a matrix using a tridaiagonal matrix i think
+
+bfm -- example of how to use an input file to build a database of features 
+and run times. 
+
+
+
+

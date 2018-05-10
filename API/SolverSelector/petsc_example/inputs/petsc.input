@@ -1,0 +1,46 @@
+##### Anything not starting with a @ is ignored
+
+
+### Add the matrix files
+@MATRIX ../data/1138_bus.pbin
+@MATRIX ../data/spd-real-int32-float32
+
+### Add a cg solver
+@SOLVER cg 
+
+### add a gmress solver with a parameter space. In this case, each call to a gmres solver will
+# init 5 tests, one for each restart value.  
+@SOLVER gmres 
+@PARAMETER ksp_gmres_restart 30 40 50 60 70
+@PARAMETER ksp_gmres_haptol 1e-30
+@PARAMETER ksp_gmres_preallocate FALSE
+@PARAMETER ksp_gmres_classicalgramschmidt TRUE
+@PARAMETER ksp_gmres_cgs_refinement_type REFINE_NEVER
+@PARAMETER ksp_gmres_krylov_monitor FALSE
+
+###minres solver with default parameters
+@SOLVER minres 
+
+### pipfcg with only one set of parameters  
+
+#### add a hypre boomeramg preconditioner with default parameters
+@PRECON hypre 
+@PARAMETER pc_hypre_type boomeramg
+
+#### block jacobi preconditioner with default parameters
+@PRECON bjacobi
+
+
+#####These are the solver-preconditioner pairs that will be tested. These follow all the
+#####rules used by petsc for setting solvers and preconditioners. 
+
+### The first one is cg preconditioned with boomeramg and block jacobi. This constitutes two tests,
+#cg with boomer and cg with jacobi 
+@PAIR cg hypre bjacobi
+
+#### this one is 10 tests overall. 5 tests over the GMres parameter space with boomer and 5 with bjacobi
+@PAIR gmres hypre bjacobi
+
+@PAIR minres hypre bjacobi
+
+

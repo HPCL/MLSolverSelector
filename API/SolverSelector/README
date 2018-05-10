@@ -1,0 +1,40 @@
+
+
+The package is set up to be kind of modular. Its split
+into several subdirectories
+
+doxygen: see readme in doxygen dir. Work in progress. 
+
+base: base contains some base code, as well as the main solver selecter interface.  
+      the solver selecter (SS) is a template class based on a "Matrix" and a "Vector". To wrap 
+      a linear solver package, we need to define what a Matrix is and what a Vector is. Usually,
+      defining the solver selecter is as simple as a typedef. i.e., " typedef _SS_SolverSelecter<Mat,Vec> PetscSS ". The 
+      difficult part is writing the _SS_UserInterface for the new SolverSelcter. 
+
+interfaces: The interface ( _SS_UserInterface< Matrix, Vector> ) is an abstract template class. It contains
+            a bunch of functions that need to be implimented so that we can use the solver selecter with a 
+            new code. In the interfaces dir, there is a interface for Petsc. 
+
+database: This dir contains the code relating to the actual ML database. I have only implimented a SQlite3
+          based database so far, but should probably add support for a binary data type as well. For now, to 
+          run examples you need sqlite3. This can be installed by calling make download.sqlite3 and 
+          make install.sqlite3 
+
+machine_learning: This dir contains the machine learning code. At this point, I use "waffles" to do the machine
+                  learner. I think it is set up to use a KNN by default, but that can be changed. The waffles ML
+                  code is implimented in the MLWaff.* files. To install waffles run make download.waffles
+                  and make install.waffles
+
+measurements: This dir contains all the measurements, which is just CPUTime for now. But we could add any others
+              like power in here as well if we get that far.
+
+features:     The features directory contains implimentations of feature extraction. It is a really slow way
+              of going about feature extraction. Basically, it collected the data from the matrix (through some
+              functions defined in the interface ) and then loops through each element. This is a work in progress,
+              I imagine it will work out a lot faster to simply ask the user to calculate the features through the
+              interface rather than attempting to calculate them seperatly in our code. 
+
+Note: Matrix-free. Currently we can simulate matrix free feature extraction using the Zoltan graph coloring 
+                   algorithm. There is no easy way to do this yet though, so its not really quite there yet. 
+
+

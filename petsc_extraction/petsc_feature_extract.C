@@ -9,7 +9,7 @@ int main(int argc,char **args)
   PetscInitialize(&argc,&args,(char*)0,help);
  
   // Matrix file name   
-  std::string filename("./data/662_bus.pbin");
+  std::string filename("./data/shyy41.pbin");
  
   // Load the Matrix 
   Mat A;

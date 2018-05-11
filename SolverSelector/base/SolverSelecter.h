@@ -83,7 +83,6 @@ public:
         }
 
         ClassifySolvers();
-        database->WriteToFile();
         return _SS_error_flag;
     }
 

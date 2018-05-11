@@ -339,14 +339,6 @@ public:
     }
 
 
-    /**
-     * Sqite3 keeps an up to date database, so no write to file is neccesary (override)
-     */
-    virtual _SS_ErrorFlag WriteToFile() override {
-        return _SS_error_flag;
-    }
-
-
     virtual _SS_ErrorFlag GetFeatureNames( std::vector< std::string > &feature_names ) override {
         GetColumnNames();
         for ( auto it : column_names )

@@ -5,7 +5,7 @@
 #include "MLWaff.h"
 #include "MLBinary.h"
 #include "Sqlite3.h"
-
+#include "Arff.h"
 template<typename Matrix,typename Vector>
 class _SS_UserInterface
 {

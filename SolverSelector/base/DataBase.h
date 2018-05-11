@@ -46,15 +46,9 @@ public:
     virtual _SS_ErrorFlag Initialize() = 0 ;
 
     /**
-     * Finalize the database.
+     * Finalize the database. Including things like writing to file
      **/
     virtual _SS_ErrorFlag Finalize() = 0 ;
-
-
-    virtual _SS_ErrorFlag WriteToFile()
-    { 
-      return _SS_error_flag;
-    } 
 
     /**
      *  Add a row to the database based on a solver, matrix and set of features and measurements

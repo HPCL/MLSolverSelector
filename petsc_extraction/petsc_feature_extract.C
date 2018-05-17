@@ -20,7 +20,6 @@ int main(int argc,char **argv)
   std::string output_file = argv[2];
    
   // Load the Matrix 
-  std::cout << " Loading the matrix " << matrix_file << std::endl;
   Mat A;
   PetscViewer fd;
   MatCreate(PETSC_COMM_WORLD, &A);
@@ -29,51 +28,48 @@ int main(int argc,char **argv)
   MatLoad(A,fd);
   PetscViewerDestroy(&fd);
 
-  std::cout << " Loaded the matrix " << matrix_file << std::endl;
-  
-  std::cout << " Starting feature extraction " << matrix_file << std::endl;
   //Extract the features
   std::vector< std::pair<std::string, double> > feature_set;
   ExtractJacobianFeatures( A, feature_set );
   
-
-  std::cout << " Finished Feature extraction " << matrix_file << std::endl;
-
   //Destroy the matrix
   MatDestroy(&A);
 
   // THis is just data output junk   
-  int size;
+  int size, rank;
   MPI_Comm_size(PETSC_COMM_WORLD, &size);
+  MPI_Comm_rank(PETSC_COMM_WORLD, &rank);
 
-  std::ostringstream feature_labels;
-  feature_labels << "Matrix, Comm Size "; 
+  if (rank == 0 ) {
 
-  std::ostringstream feature_values;
-  feature_values << matrix_file;
-  feature_values << "," << size; 
-    
-  for ( auto it : feature_set ) {
-      feature_labels << "," + it.first;
-      feature_values << "," << it.second; 
+    std::ostringstream feature_labels;
+    feature_labels << "Matrix, Comm Size "; 
+
+    std::ostringstream feature_values;
+    feature_values << matrix_file;
+    feature_values << "," << size; 
+      
+    for ( auto it : feature_set ) {
+        feature_labels << "," + it.first;
+        feature_values << "," << it.second; 
+    }
+    feature_labels << "\n";
+    feature_values << "\n";
+
+    bool exists = false;
+    if ( ( access( output_file.c_str(), F_OK ) != -1 ) ) 
+    {
+        exists = true; 
+    }
+   
+    std::fstream fs;
+    fs.open(output_file, std::fstream::out | std::fstream::app ) ;
+    if ( ! exists ) {
+      fs << feature_labels.str(); 
+    }
+    fs << feature_values.str() ; 
+    fs.close();
   }
-  feature_labels << "\n";
-  feature_values << "\n";
-
-  bool exists = false;
-  if ( ( access( output_file.c_str(), F_OK ) != -1 ) ) 
-  {
-      exists = true; 
-  }
- 
-  std::fstream fs;
-  fs.open(output_file, std::fstream::out | std::fstream::app ) ;
-  if ( ! exists ) {
-    fs << feature_labels.str(); 
-  }
-  fs << feature_values.str() ; 
-  fs.close();
-
 
   PetscFinalize() ;
   return 0;

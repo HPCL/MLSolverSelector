@@ -46,7 +46,7 @@
 //going make that a preprocessor decision. In the future, this might change to a run-time detection type process. 
 #define HAVE_DIAGONAL 0 
 
-#define DEBUG_ALLROWS 1 // Turning this one will sample the entire matrix. Good for debugging but expensive for large matrices. 
+#define DEBUG_ALLROWS 0 // Turning this one will sample the entire matrix. Good for debugging but expensive for large matrices. 
 
 // Define the points for the samples. 
 #define POINTS_LOW 2
@@ -169,7 +169,7 @@ int GetJacobianSamples_MF( Mat J, std::vector< std::pair< int, int >> &points, V
     MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. 
    
     VecDuplicateVecs( basis, npoints, s ) ; // make vectors for each result
-    
+
     PetscInt high, low;  
     VecGetOwnershipRange(basis, &low, &high );
     
@@ -203,9 +203,12 @@ int GetJacobianSamples_MM( Mat J , std::vector< std::pair< int, int >> &points, 
     VecDuplicateVecs( basis, npoints, s ) ; // make vectors for each result
     Vec *vec = *s;  
     
+
     for ( int i = 0 ; i < npoints; i ++ ) 
+    {
         MatGetColumnVector( J, vec[i], points[i].first );
-    
+    }
+
     VecDestroy(&basis);
     VecDestroy(&extra);
     return 0;
@@ -261,7 +264,7 @@ void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *dat
     for ( int i = shift ; i < *len; i++)   inout[i] += in[i] ; 
 }
 
-int ExtractJacobianFeatures( Mat J ) 
+int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double > > &fnames ) 
 {
   std::vector< std::pair< int, int >  >points ; 
   std::map< std::string, double > feature_set; 
@@ -270,6 +273,7 @@ int ExtractJacobianFeatures( Mat J )
   MatGetSize(J, &n, &m ) ; 
   Vec *s ; 
   const PetscScalar *array; 
+  
   GetJacobianSamples( J, points, &s );  
   int npoints = points.size();
   double nsamples_mid = 0;
@@ -702,7 +706,7 @@ int ExtractJacobianFeatures( Mat J )
    if ( rank == ROOTPROC )
    { 
      //Write the feature set. 
-     std::vector< std::pair< std::string, double > > fnames;
+     fnames.clear();
      fnames.reserve(30); //TODO get number of features somehow. 
 
      fnames.push_back( std::make_pair( "Dimension",             n  ) );
@@ -893,12 +897,6 @@ int ExtractJacobianFeatures( Mat J )
      #endif
 
      #endif  // SYMMETRY  
-    
-     for ( auto &it : fnames ) 
-     {
-        std::cout << it.first << " " << it.second << std::endl; 
-     }
-
    }  
 
    free(features);

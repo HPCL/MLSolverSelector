@@ -232,8 +232,13 @@ int main(int argc,char **args)
   SetCurrentState(Jaco, about );
   
   //Extract the features.  
-  ExtractJacobianFeatures(Jaco);
-  
+  std::vector< std::pair< std::string, double> > feature_set;
+  ExtractJacobianFeatures(Jaco, feature_set);
+ 
+
+  for ( auto it : feature_set ) 
+    printf("%s : %f \n " , it.first.c_str(), it.second );
+
   destroy_shell_matrix( &appctx, &dm, &Jaco, &about );
   destroy_mf_matrix(&appctx);
 

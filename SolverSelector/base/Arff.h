@@ -52,15 +52,19 @@ public:
         while (!file.eof())
         {
             std::getline(file,line); /* get the next line in the file */
+            result.clear();
             _SS_Utils::StringSplit( line, " ", result );
+            
 
-            if ( result.size() == 0 ) continue;
+            std::cout << result[0] << " sdfsdf" << std::endl; 
+
+            if ( result.size() == 0 ) continue;           
             else if ( (result[0].substr(0,1)) == "%" ) continue;
             else if ( result[0] == "@RELATION" )
             {
                 if ( status != 0 )
                 {
-                   std::cout << "MISFORMED FILE __ TODO ABORT \n";
+                   std::cout << "1MISFORMED FILE __ TODO ABORT \n";
                    return 0;
                 }
                 else 
@@ -73,7 +77,7 @@ public:
             {
                 if ( status != 1 || result.size() != 3 )
                 {
-                   std::cout << "MISFORMED FILE __ TODO ABORT \n";
+                   std::cout << "2MISFORMED FILE __ TODO ABORT \n";
                    return 0;
                 }
                 else 
@@ -86,7 +90,7 @@ public:
            {
                 if ( status != 1 || result.size() != 1 )
                 {
-                   std::cout << "MISFORMED FILE __ TODO ABORT \n";
+                   std::cout << "3MISFORMED FILE __ TODO ABORT \n";
                    return 0;
                 }
                 else 
@@ -101,7 +105,7 @@ public:
              _SS_Utils::StringSplit( line, ",", cresult );
              if ( cresult.size() != attributes.size() )
              { 
-                  std::cout << "MISFORMED FILE __ TODO ABORT \n";
+                  std::cout << "4MISFORMED FILE __ TODO ABORT \n";
                   return 0;
              }
              else
@@ -117,6 +121,10 @@ public:
              }
           }
         }
+
+        for (auto it : attributes ) std::cout << it.first << " " << it.second << std::endl; 
+
+        return _SS_error_flag;
     }        
                 
     /**
@@ -162,10 +170,10 @@ public:
         if ( ! write_to_file ) return 0 ;
       
         std::ofstream ofs(database_name.c_str(), std::ofstream::out); 
-        
+        ofs.setf(std::ios_base::scientific);
         ofs << "%" << title << "\n";
         ofs << "%" << sources << "\n";
-        ofs << "@REALATION " << relation << "\n";
+        ofs << "@RELATION " << relation << "\n";
 
         for ( auto &it : attributes )
         {
@@ -186,7 +194,7 @@ public:
                 if ( ittt == it.second.end() ) 
                   ofs << ",?"; 
                 else if ( itt.second == "STRING" )
-                  ofs << ",'" << ittt->second << "'" ; 
+                  ofs << "," << Stringify(ittt->second); 
                 else 
                   ofs << "," << ittt->second ;
             }
@@ -201,9 +209,9 @@ public:
      * Classify the solvers
      **/
     virtual _SS_ErrorFlag ClassifySolvers( const std::map<std::string, double> &mvalues ) override {
-        //This is very slow -- FIXME -- Figure out a faster way to do this.  
+      //This is very slow -- FIXME -- Figure out a faster way to do this.  
         write_to_file = true;
-         
+        
         //Get the minimum of the measurement for each of the matricies in the database. 
         std::map< std::string , std::map < std::string, double > > minimums ; 
         for ( auto &row : data ) 
@@ -220,8 +228,9 @@ public:
              for ( auto &m : mvalues ) 
              {
                  auto rowm = row.second.find(m.first); 
-                 if ( rowm != row.second.end() && std::stof(rowm->second) < minimums[matrix][m.first] ) 
-                    minimums[matrix][m.first] = std::stof(rowm->second); 
+                 if ( rowm != row.second.end() ) std::cout << "a" <<  rowm->second << "b" << std::endl; 
+                 if ( rowm != row.second.end() && std::stod(rowm->second) < minimums[matrix][m.first] ) 
+                    minimums[matrix][m.first] = std::stod(rowm->second); 
              }        
         }
 
@@ -257,7 +266,7 @@ public:
                 if ( measured != row.second.end() )
                 {  
                     std::string cname = "C_" + m.first;
-                    row.second[cname] = ( std::stof(measured->second) < (1.0 + m.second )*matrix_min[m.first] ) ? "1" : "0" ; 
+                    row.second[cname] = ( std::stod(measured->second) < (1.0 + m.second )*matrix_min[m.first] ) ? "1" : "0" ; 
                 }
             }
         }
@@ -265,18 +274,20 @@ public:
         return _SS_error_flag;
     }
 
+    
 
     /**
      *  Import the data (override) sset doesn't work > 
      **/
-    virtual _SS_ErrorFlag ImportData( std::vector< std::pair< std::string , std::string > > & sset,
-                                      std::vector< std::vector < std::string > > &ddata ,
+    virtual _SS_ErrorFlag ImportData( std::vector< std::vector < std::string > > &ddata ,
                                       std::vector<std::string> &ret_column_names,
                                       std::vector<int> &feature_or_label ) override 
     {
           //TODO -- This is a bit silly. The Machine learning file takes this info and builds a arff files
           //from it to get the features. 
           //data is a vector of vectors containing the data -- This is the rows 
+          std::vector< bool > destring; 
+          ret_column_names.clear();
           ret_column_names.push_back("SHASH"); 
           feature_or_label.push_back(0);
 
@@ -286,14 +297,19 @@ public:
               { 
                   feature_or_label.push_back(0);
                   ret_column_names.push_back(it.first);
+                  std::cout << " Adding feature " << it.first << std::endl;
               }
               else if ( it.second != "STRING" )
               { 
                   feature_or_label.push_back(1);
+                  std::cout << " Adding label " << it.first << std::endl;
                   ret_column_names.push_back(it.first);
               }
+              else
+                  std::cout << " Adding Nothing " << it.first << std::endl;
           }
 
+          int idx = 0;
           for ( auto &it : data )
           {
             std::vector< std::string > row_data ;
@@ -303,10 +319,14 @@ public:
                 if ( f == it.second.end() ) 
                     row_data.push_back("?");
                 else
-                    row_data.push_back(f->second);
+                {
+                  row_data.push_back( DeStringify(f->second));
+                }
             }
             ddata.push_back(row_data);
           } 
+
+        return _SS_error_flag;
     }
 
 
@@ -319,6 +339,8 @@ public:
                                   const _SS_measurements_map &mparams ) override {
         
 
+        // Add a row, so we need to write to file. 
+        write_to_file = true;
 
         // At the moment we just overwrite a row if it already exists. 
 
@@ -341,18 +363,21 @@ public:
         std::vector< std::string > cnames = GetColumnNames();
         for ( auto &it : fparams )
         {
-            if ( std::find(cnames.begin(), cnames.end(), it.first) != cnames.end() )
+            if ( std::find(cnames.begin(), cnames.end(), it.first) == cnames.end() )
                 attributes.push_back(std::make_pair(it.first, "NUMERIC")); 
             row_data[it.first] = std::to_string( it.second );
         }
         for ( auto &it : mparams )
         {
             //Classify measurements as STRING because they are technically extra data not needed.  
-            if ( std::find(cnames.begin(), cnames.end(), it.first) != cnames.end() )
+            if ( std::find(cnames.begin(), cnames.end(), it.first) == cnames.end() )
                 attributes.push_back(std::make_pair(it.first, "STRING")); 
-            row_data[it.first] = std::to_string( it.second );
+            
+            std::stringstream out; 
+            out << std::scientific << it.second;
+            row_data[it.first] = out.str();
         }
-        
+
         data[uhash] = row_data;
 
         return _SS_error_flag;
@@ -406,6 +431,17 @@ public:
         return _SS_error_flag;
     }
 
+    std::string Stringify(std::string s) { 
+      return "'" + s + "'" ;
+    }
+    std::string DeStringify(std::string s ) {
+      if ( s.substr(0, 1) == "'" )
+          return s.substr(1, s.size()-2);
+      else
+          return s;
+      }
+
+
     /**
      * Return the column names
      **/
@@ -417,8 +453,6 @@ public:
         return n;
     }
       
-
-
 };
 
 #endif

@@ -1,0 +1,43 @@
+\section{Impact}
+%V.	IMPACT: Optional (but strongly encouraged)
+%What is the impact of the project? How has it contributed?
+%Over the years, this base of knowledge, techniques, people, and infrastructure is drawn upon again and again for application to commercial technology and the economy, to health and safety, to cost-efficient environmental protection, to the solution of social problems, to numerous other aspects of the public welfare, and to other fields of endeavor. 
+%The taxpaying public and its representatives deserve a periodic assessment to show them how the investments they make benefit the nation. Through this reporting format, and especially this section, recipients provide that assessment and make the case for Federal funding of research and education.
+%Agencies use this information to assess how their research programs: increase the body of knowledge and techniques; enlarge the pool of people trained to develop that knowledge and techniques or put it to use; and improve the physical, institutional, and information resources that enable those people to get their training and perform their functions. 
+%This component will be used to describe ways in which the work, findings, and specific products of the project have had an impact during this reporting period. Describe distinctive contributions, major accomplishments, innovations, successes, or any change in practice or behavior that has come about as a result of the project relative to: the development of the principal discipline(s) of the project; other disciplines; the development of human resources; physical, institutional, and information resources that form infrastructure; technology transfer (include transfer of results to entities in government or industry, adoption of new practices, or instances where research has led to the initiation of a startup company); or society beyond science and technology.
+
+\subsection{Impact on Principal Discipline}
+%1.	What is the impact on the development of the principal discipline(s) of the project?
+%Describe how findings, results, and techniques that were developed or extended, or other products from the project made an impact or are likely to make an impact on the base of knowledge, theory, and research and/or pedagogical methods in the principal disciplinary field(s) of the project. Summarize using language that an intelligent lay audience can understand (Scientific American style). How the field or discipline is defined is not as important as covering the impact the work has had on knowledge and technique. Make the best distinction possible, for example, by using a ?field? or ?discipline?, if appropriate, that corresponds with a single academic department (i.e., physics rather than nuclear physics).
+The SolverSelector will significantly impact the speed and reliability of NEAMS simulations. The product will facilitate easy adoption of the NEAMS tools by the non-experts in the academia and industry on a variety of compute platforms ranging from high-end workstations to large computing clusters. 
+The NEAMS tools play a significant role in enabling “pellet-to-plant” simulation capability of high performance nuclear engineering simulations. It is often necessary to leverage domain expertise to get the most out of these tools, like, say, choosing the right solvers to obtain the best performance. The impact of our work would be to let the underlying code choose the appropriate solver, based on the input matrix structure. Such a feature would be very convenient for novice users and hence drive adoption rates and perpetuate beneficial practices.
+Potentially, we can also extend the work to optimize other characteristics such as energy and examine the resiliency of the numerical code to soft errors. This can allow power constrained devices to react accordingly when it is necessary to solve such linear systems, with minimal power consumption
+
+\subsection{Impact on other Disciplines}
+%2.	What is the impact on other disciplines? 
+%Describe how the findings, results, or techniques that were developed or improved, or other products from the project made an impact or are likely to make an impact on other disciplines.
+An automatic solver selector can be applied in a range of applications, outside the scope of the NEAMS tools. In general, any steady-state or time-dependent numerical simulations can benefit from our SolverSelector. The computational scientists, numerical software developers, and electrical engineers will be able to let the software decide the best performing method without the need for labor-intensive experimentation, and thus focus on more scientific aspects of their applications.
+\subsection{Impact on Human Resources}
+None
+%3.	What is the impact on the development of human resources? 
+%Describe how the project made an impact or is likely to make an impact on human resource development in science, engineering, and technology. For example, how has the project: provided opportunities for research and teaching in the relevant fields; improved the performance, skills, or attitudes of members of underrepresented groups that will improve their access to or retention in research, teaching, or other related professions; developed and disseminated new educational materials or provided scholarships; or provided exposure to science and technology for practitioners, teachers, young people, or other members of the public?
+
+\subsection{Impact on Infrastrucure}
+None
+%4.	What is the impact on physical, institutional, and information resources that form infrastructure? 
+%Describe ways, if any, in which the project made an impact, or is likely to make an impact, on physical, institutional, and information resources that form infrastructure, including: physical resources such as facilities, laboratories, or instruments; institutional resources (such as establishment or sustenance of societies or organizations); or information resources, electronic means for accessing such resources or for scientific communication, or the like.
+
+\subsection{Impact on Technology Transfer}
+This project will transfer basic research in developing machine learning models that automatically select linear solvers and preconditioners into an easy to use API that can be integrated with state-of-the-art simulation tools in academia, national labs, and industry.
+%5.	What is the impact on technology transfer? 
+%Describe ways in which the project made an impact, or is likely to make an impact, on commercial technology or public use, including: transfer of results to entities in government or industry; instances where the research has led to the initiation of a start-up company; or adoption of new practices.
+
+\subsection{Impact on Society}
+Improving the performance and accuracy of the linear solvers, will allow for faster and more accurate simulation of many products that are crucial to the United States Government and its Citizens, including airplanes, nuclear reactors, medical devices, and many, many other products.
+%6.	What is the impact on society beyond science and technology? 
+%Describe how results from the project made an impact, or are likely to make an impact, beyond the bounds of science, engineering, and the academic world on areas such as: improving public knowledge, attitudes, skills, and abilities; changing behavior, practices, decision making, policies (including regulatory policies), or social actions; or improving social, economic, civic, or environmental conditions.
+
+%\subsection{Impact on Foreign Spending}
+%7.	Foreign Spending:  What dollar amount of the award?s budget is being spent in foreign country(ies)? 
+%Describe what percentage of the award?s budget is being spent in foreign country(ies). If more than one foreign country is involved, identify the distribution between the foreign countries.
+

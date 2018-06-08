@@ -100,6 +100,7 @@ public:
             sub_features.pop_back();
             fnames.pop_back();
         }
+        return _SS_error_flag;
     }
     /**
      * Train the system based on a list. If sset is empty, all solvers in the database are fair game. If

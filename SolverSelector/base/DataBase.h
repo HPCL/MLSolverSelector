@@ -86,8 +86,7 @@ public:
      *  Import the data from the database into matrix format for solving with the ML package.
      **/
     virtual _SS_ErrorFlag
-    ImportData( std::vector< std::pair< std::string , std::string > > & sset /**< TODO */,
-                std::vector< std::vector < std::string > > &data /**< list of each rows data */,
+    ImportData( std::vector< std::vector < std::string > > &data /**< list of each rows data */,
                 std::vector<std::string> &column_names /**< list of the column names */,
                 std::vector<int> &feature_or_label  /**< boolean list stating if this index represents a feature (1) or a label (0)*/ ) =0;
 

@@ -22,3 +22,20 @@ Hi,
     c) Running ./batch_extract will run feature extract on all matrices in that directory with the given
        extension. 
 
+
+4. For different feature extraction scripts are provided. These are included at the top of the
+petsc_feature_extraction.C code to choose the feature set. To change the feature set just comment out
+the correct include. 
+
+   a) *_full.h is the full feature set
+   b) *_reduced_1.h is reduced feature set 1
+   c) *_reduced_2.h is reduced feature set 2
+
+   d) *_batch.h is the full feature set where all mat-vecs are performed at one time. This is memory heavy
+      so no good for testing. For standard matrices, a matrix-matrix is usually faster than multiple matrix
+      vector multiplications. For matrix-free, it probably isn't any different because matrix-matrix is implemented
+      as $n$ matrix-vectors anyway. 
+  
+   e) TODO -- Need to put in flags for symmetry. 
+   f) TODO -- Need to put in flags for bandwidth so we can reduce the number of mat-vecs. 
+

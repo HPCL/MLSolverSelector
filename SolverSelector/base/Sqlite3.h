@@ -56,7 +56,7 @@ public:
     {
         rc = sqlite3_open( database_name.c_str(), &db );
         if( rc )
-            fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+            fprintf(stderr, "Can't open database at %s : %s\n", database_name.c_str(), sqlite3_errmsg(db));
 
         /* Create SQL table if it doesn't exist  */
         std::ostringstream ss;
@@ -156,8 +156,7 @@ public:
     /**
      *  Import the data (override)
      **/
-    virtual _SS_ErrorFlag ImportData( std::vector< std::pair< std::string , std::string > > & sset,
-                                      std::vector< std::vector < std::string > > &data ,
+    virtual _SS_ErrorFlag ImportData( std::vector< std::vector < std::string > > &data ,
                                       std::vector<std::string> &ret_column_names,
                                       std::vector<int> &feature_or_label ) override {
 
@@ -218,9 +217,7 @@ public:
         CheckRowExists( uhash, exists );
         if ( exists )
         {
-            printf("sdfsdf\n");
             ModifyRow( uhash, mparams, fparams);
-
         }
         else
         {
@@ -233,7 +230,7 @@ public:
             std::ostringstream ss_pre, ss_names, ss_values, ss_post;
             ss_pre << "INSERT INTO " << data_table << " ";
 
-            ss_names  << lb << "_S_UID"            << cm
+            ss_names  << lb << "_S_UID"      << cm
                       << "_S_HASH"           << cm
                       << "_S_NAME"           << cm
                       << "_S_PRECONDITIONER" << cm
@@ -273,25 +270,12 @@ public:
                 }
             }
 
-            CheckColumnExists( "_R_restriction", exists1);
-            if (exists1)
-            {
-                ss_names << "_R_restriction" << " ) ";
-                ss_values << 0 << " ) " ;
-            }
-            else
-            {
-                /* Delete the last comma */
-                long pos = ss_values.tellp();
-                ss_values.seekp(pos-3);
-                long pos1 = ss_names.tellp();
-                ss_names.seekp(pos1-3);
-                ss_values << "  )   ";
-                ss_names << "  )   ";
-            }
-            std::string sql = ss_pre.str() + ss_names.str() + ss_values.str() + ";" ;
-            
-            printf("%s\n", sql.c_str());
+            /* Delete the last comma */
+            ss_values.seekp( (long) ss_values.tellp() - 3);
+            ss_names.seekp( (long) ss_names.tellp() - 3);
+            ss_values << "  )   ";
+            ss_names << "  )   ";           
+            std::string sql = ss_pre.str() + ss_names.str() + ss_values.str() + ";" ; 
             SQLExecute( sql );
 
         }

@@ -1,0 +1,81 @@
+\documentclass[times,12pt,portrait]{article} %no smaller then 10pt, DOD SBIR/STTR
+
+\input{margins.tex}
+\input{packages.tex}
+
+\input{header.tex}
+
+%%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcommand{\red}[1]{\textcolor{red}{#1}}
+%\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+%\newcommand{\textitbf}[1]{\textit{\textbf{#1}}}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\chead{\bf{Two Year Report}}
+
+
+%uncommenting below helps to squeeze some more space
+\renewcommand\floatpagefraction{.99}
+\renewcommand\topfraction{.99}
+\renewcommand\bottomfraction{.99}
+\renewcommand\textfraction{.02} 
+\setcounter{totalnumber}{95}
+\setcounter{topnumber}{95}
+\setcounter{bottomnumber}{95}
+%\renewcommand{\abovecaptionskip}{-3pt}
+%\renewcommand{\belowcaptionskip}{-6pt}
+%\renewcommand{\baselinestretch}{0.93} 
+
+%\renewcommand{\itemhook}{\setlength{\topsep}{-3pt}%
+%  \setlength{\itemsep}{-5pt}}
+%\renewcommand{\enumhook}{\setlength{\topsep}{-3pt}%
+%  \setlength{\itemsep}{-5pt}}
+
+%\setlength{\bibsep}{0.5pt}
+%\titlespacing{\section}{0pt}{*1}{0pt} 
+%\titlespacing{\subsection}{0pt}{*1}{0pt} 
+%\titlespacing{\subsubsection}{0pt}{*1}{0pt} 
+
+%\providecommand{\bibfont}{\small}
+\newcommand{\rnetcomment}[1]{
+    {\color{red} \Large \bf \em #1}
+}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+%\newcommand{\fullreport}[2]{
+%\ifthenelse{\boolean{isfullreport}} {\textcolor{blue}{#1}}{#2}
+%\ifthenelse{\boolean{isfullreport}} {#1}{#2}
+%\ifthenelse{\boolean{isfullreport}} {{\color{Gray}#1}}{#2}
+%}
+
+
+\input{title.tex}
+
+\date{}
+
+\hfuzz 7pt
+
+%Use pagebreak and pdfselect to break into multiple files for submission
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+\bibliographystyle{plain}
+\pagebreak
+\setcounter{page}{1} 
+\input{introduction.tex}
+\input{accomplish.tex}
+\input{products.tex}
+\input{participants.tex}
+\input{impact.tex}
+\input{changes.tex}
+\input{demo.tex}
+
+\bibliography{report}
+\end{document}

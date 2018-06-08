@@ -4,6 +4,7 @@
 #include "typedefs.h"
 #include "MachineLearning.h"
 #include "UserInterface.h"
+#include "DatabaseInterface.h" 
 
 /** \file SolverSelecter.h
  * \brief Header file for the solver selecter class
@@ -89,6 +90,7 @@ public:
     _SS_ErrorFlag CrossValidate( std::vector< std::string >  algorithm , bool all)
     {
         machinemodel->CrossValidateAll( algorithm, all );
+        return _SS_error_flag;
     }
 
     /** Print the parameter set for the chosen solver */

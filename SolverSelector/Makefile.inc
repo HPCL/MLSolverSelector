@@ -12,7 +12,7 @@ SQLITE3_DIR=$(EXT_BUILD)/sqlite/
 SQLITE3_DOWNLOAD=https://sqlite.org/2017/sqlite-autoconf-3210000.tar.gz
 ifeq ($(WITH_SQLITE3),1)
 SS_FLAGS += -DWITH_SQLITE3=1 -I $(SQLITE3_DIR)/include 
-SS_LFLAGS += -L $(SQLITE3_DIR)/lib -lsqlite3
+SS_LFLAGS += -L$(SQLITE3_DIR)/lib -lsqlite3
 endif
 
 # Do we want to install the waffles ML implimentation 
@@ -21,7 +21,7 @@ WAFFLES_DIR=$(EXT_BUILD)/waffles/
 WAFFLES_DOWNLOAD=https://github.com/mikegashler/waffles/archive/1.0.0.tar.gz
 ifeq ($(WITH_WAFFLES),1)
 SS_FLAGS += -DWITH_WAFFLES=1 -I $(WAFFLES_DIR)/include 
-SS_LFLAGS += -L $(WAFFLES_DIR)/lib -lGClasses -lpthread
+SS_LFLAGS += -L$(WAFFLES_DIR)/lib -lGClasses -lpthread
 endif
 
 # Do we want to build the Petsc Interface for the solver

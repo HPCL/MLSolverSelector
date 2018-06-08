@@ -68,7 +68,7 @@ public:
     /**
      * Classify a matrix based on its _SS_Features and return chosen solver
      **/
-    _SS_ErrorFlag Classify( _SS_features_map &features /**< the feature set of the matrix */,
+    _SS_ErrorFlag Classify( _SS_features_map &afeatures /**< the feature set of the matrix */,
                             _SS_Solver &solver /**< output, a (hopefully) "good" solver for the problem */) override
     {
 
@@ -79,10 +79,13 @@ public:
         bool found_one = false;
         std::vector< int > hash_list;
         database->GetSolverHashList(hash_list);
-
+        
+        int i = 0;
+        
         for ( auto hash : hash_list )
         {
-            Predict( features, hash, good );
+
+            Predict( afeatures, hash, good );
             auto it = good.begin();
             while ( it != good.end() )
             {
@@ -101,7 +104,9 @@ public:
         {
             std::cout<<"No Good Solvers -- Using the default \n";
         }
-
+        else {
+          solver.Print();
+        }
         return _SS_error_flag;
 
     }
@@ -118,9 +123,18 @@ public:
         GClasses::GVec pattern(features_c);
         const GClasses::GRelation &x = features->relation();
 
-
+        
         int i = 0;
-        while ( i < x.size() && x.attrNameStr(i) != "HASH" ) i++;
+
+        printf("sdfsdfsdfsdfsdfsdf\n");
+        printf(" ddddd %d \n" , x.size() );
+        printf("dsdfsdfsdf\n");
+
+        while ( i < x.size() && x.attrNameStr(i) != "HASH" ){
+         
+          std::cout << x.attrNameStr(i) << std::endl;;
+          i++;
+        }
         pattern[i] = solver_hash ;
 
         for ( auto it : afeatures )
@@ -162,17 +176,18 @@ public:
     _SS_ErrorFlag ImportData(
         std::vector < std::string > &feature_list,
         std::shared_ptr<GClasses::GMatrix> &matrix,
-        int &num_labels,
-        std::vector< std::pair< std::string, std::string > > &sset ) {
+        int &num_labels ) {
 
         std::vector< std::vector < std::string >> data;
         std::vector < std::string > column_names;
         std::vector< int > feature_or_label;
-        database->ImportData( sset  , data , column_names, feature_or_label);
+        database->ImportData( data , column_names, feature_or_label);
 
         GClasses::GArffRelation *pRelation = new GClasses::GArffRelation();
         pRelation->setName("SolverSelecter");
 
+
+        num_labels = 0;
         std::vector< int > add_features, add_labels;
         for (unsigned int i = 0; i < column_names.size(); i++)
         {
@@ -206,9 +221,11 @@ public:
             int col_count = 0;
             for ( auto it : add_features )
             {
-                if ( it == 0 )
-                    (*matrix)[row_count][col_count] = std::stoi( row[it].c_str() );
-                else
+                if ( it == 0 ) {
+                    std::cout << row[it] << std::endl; 
+                    (*matrix)[row_count][col_count] = std::stol( row[it].c_str() );
+                }
+                    else
                     (*matrix)[row_count][col_count] = std::atof(row[it].c_str());
                 col_count++;
             }
@@ -275,18 +292,17 @@ public:
 
         std::cout << " ------------ Finished Cross Validation with " << algorithm << " ------------------- \n\n" ;
 
+      return _SS_error_flag;
     }
 
 
 
 
     _SS_ErrorFlag BuildModel(  std::string method, std::vector< std::string > &features_list) {
-        /* This is a place holder to support restricting the solver set. */
-        std::vector< std::pair< std::string, std::string > > sset;
 
         std::shared_ptr< GClasses::GMatrix > matrix(nullptr) ;
         int labelsdim;
-        ImportData( features_list, matrix, labelsdim, sset ) ;
+        ImportData( features_list, matrix, labelsdim ) ;
 
         const GClasses::GRelation &x = matrix->relation();
 
@@ -331,6 +347,17 @@ public:
         }
         fmodel = new GClasses::GAutoFilter( model, false );
 
+
+        printf(" The model has been built \n " ) ;
+        
+        const GClasses::GRelation &xx = features->relation();
+        int i = 0;
+        while ( i < xx.size() && xx.attrNameStr(i) != "HASH" ){
+         
+          std::cout << xx.attrNameStr(i) << std::endl;;
+          i++;
+        }
+        fflush(stdout);
         return _SS_error_flag;
     }
 

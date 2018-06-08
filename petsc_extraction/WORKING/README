@@ -1,0 +1,26 @@
+This is all the data extracted using Petsc. 
+
+- The matrices are all from the florida sparse matrix collection. 
+- The matrices used where from a list I found on the repo. 
+- All times are in microseconds. 
+
+FILES:
+
+exact_mat_features.csv. I downloaded this from the repository. The matrices used in these tests are the same as those listed in this file. 
+- features_all_interior: This file holds the exact features as calculated by the petsc_extraction code. There are a few features where we get slightly different values. 
+
+- features_all_interior_timing: This file gives the time to load the matrix, setup the ksp and extract the features on my system. 
+
+- solver_timing : This file can be ignored.
+
+- solver_timing_timing : Gives the solve times for each matrix with GMRES/Jacobi ( the header says ILU, but that is incorrect). I chose GMRES with Jacboi because it is robust (i.e., works for pretty much anything); however, Jacobi is pretty slow, and not used in practice very often. 
+
+ full/features_X_Y : contains features for sample set with 10 edge points and Y interior points.
+ full/features_x_y_timing gives the extraction timing 
+
+RS1/features_X_Y : same for Reduced feature set 1 
+RS2/features_X_Y : same for Reduced feature set 2
+
+
+Figures/*.jpg are all the figures generated from this data. These are auto-generated using the python script in the previous directory, so, if you need to change the figures, let me know, and I can explain that script.
+

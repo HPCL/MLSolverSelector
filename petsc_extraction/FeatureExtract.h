@@ -7,12 +7,15 @@
 #include <map>
 #include <vector>
 #include <numeric>
+#include <set>
 #include <memory>
 #include <mpi.h> // MPI Support
 #include <algorithm>
 #include "petscdmda.h"
 #include "petscksp.h"
-
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
 // This will extract features from any PETSC matrix using mat-vecs and the sampling system. All features 
 // are seperated out using MACROS, so to change the feature set, we only need to change the macro definition
 // and recompile. This gets rid of a tonne of run-time if statements. 
@@ -36,7 +39,7 @@
 
 
 // Define a tolerance for a value being non-zero
-#define NONZEROTOLERANCE 1e-14
+#define NONZEROTOLERANCE 1e-125
 
 // Define a processor to do the final calcuations on 
 #define ROOTPROC 0
@@ -45,8 +48,6 @@
 //matrix; however, it is an optional operation. So, sometimes we have it and some-times we dont. For now, I am
 //going make that a preprocessor decision. In the future, this might change to a run-time detection type process. 
 #define HAVE_DIAGONAL 0 
-
-#define DEBUG_ALLROWS 0 // Turning this one will sample the entire matrix. Good for debugging but expensive for large matrices. 
 
 // Define the points for the samples. 
 #define POINTS_LOW 2
@@ -57,6 +58,9 @@
 
 //Features -- the number indicates the number of space allocated in the vector -- so be careful
 //turning on features. i.e, forgeting to set DIAGONALSIGN to 3 will blow the whole algorithm  ( <-- not good TODO ) 
+
+#ifdef FULL
+
 #define DIMENSION 1  
 #define NNZ 1 
 #define AVGNONZEROSPERROW 1
@@ -85,6 +89,70 @@
 #define SYMMETRICFROBENIUSNORM 1
 #define ANTISYMMETRICINFINITYNORM 1
 #define ANTISYMMETRICFROBENIUSNORM 1
+
+#endif
+
+#ifdef RS1
+#define DIMENSION 1  
+#define NNZ 1 
+#define AVGNONZEROSPERROW 0
+#define ABSOLUTENONZEROSUM 0
+#define FROBENIUSNORM 0 
+#define AVERAGEDIAGONALDISTANCE 0                // Need the avg value and a count of non diagonal non zeros. 
+#define ROWVARIANCE 0
+#define TRACE 0
+#define ABSOLUTETRACE 1
+#define DIAGONALMEAN 0         
+#define DIAGONALAVERAGE ( 1 )   
+#define DIAGONALNONZEROS ( 1 || DIAGONALAVERAGE )  
+#define INFINITYNORM 1
+#define MAXNONZEROSPERROW 0
+#define DIAGONALSIGN 0           
+#define LOWERBANDWIDTH 1 
+#define UPPERBANDWIDTH 0 
+#define ROWDIAGONALDOMINANCE 0
+#define MINNONZEROSPERROW 1
+#define ONENORM 0
+#define COLDIAGONALDOMINANCE 0
+#define COLUMNVARIANCE 2 
+#define SYMMETRICITY 0
+#define NONZEROPATTERNSYMMETRY 1
+#define SYMMETRICINFINITYNORM 0
+#define SYMMETRICFROBENIUSNORM 0
+#define ANTISYMMETRICINFINITYNORM 0
+#define ANTISYMMETRICFROBENIUSNORM 0
+#endif
+
+#ifdef RS2
+#define DIMENSION 1  
+#define NNZ 1 
+#define AVGNONZEROSPERROW 0
+#define ABSOLUTENONZEROSUM 0
+#define FROBENIUSNORM 0 
+#define AVERAGEDIAGONALDISTANCE 0                
+#define ROWVARIANCE 0
+#define TRACE 0
+#define ABSOLUTETRACE 1 
+#define DIAGONALMEAN 0         
+#define DIAGONALAVERAGE ( 1 )   
+#define DIAGONALNONZEROS ( 1 || DIAGONALAVERAGE )  
+#define INFINITYNORM 0 
+#define MAXNONZEROSPERROW 0
+#define DIAGONALSIGN 0           
+#define LOWERBANDWIDTH 1 
+#define UPPERBANDWIDTH 0 
+#define ROWDIAGONALDOMINANCE 0
+#define MINNONZEROSPERROW 1
+#define ONENORM 0
+#define COLDIAGONALDOMINANCE 0
+#define COLUMNVARIANCE 2 
+#define SYMMETRICITY 0
+#define NONZEROPATTERNSYMMETRY 0
+#define SYMMETRICINFINITYNORM 0
+#define SYMMETRICFROBENIUSNORM 0
+#define ANTISYMMETRICINFINITYNORM 0
+#define ANTISYMMETRICFROBENIUSNORM 0
+#endif
 
 // Some additional macros used to classify the features. 
 
@@ -115,30 +183,39 @@ int MapDMNumberingToNaturalNumbering( std::vector< std::pair< int , int > > &poi
     
 }
 
-int GetSamplePoints( int n, std::vector<std::pair<int,int>> &points )
+int GetSamplePoints( int n, int edge, int interior , std::vector<std::pair<int,int>> &points )
 {
+    srand(time(NULL));
     points.clear();
-    int mid = ( n + 1 ) / 2;
-    int low = std::max( mid - POINTS_LOW , 1 ) ;
-    int high = std::min( n - 2 , mid + POINTS_HIGH );
-    for ( int i = low; i <= high; i++ ) 
-          points.push_back( std::make_pair( i, 1 ) );
-
-    int elow = POINTS_LOW1;
-    int ehigh = POINTS_HIGH1;
-    for ( int i = elow; i <= ehigh; i+=2 )
-    {
-         points.push_back( std::make_pair( std::max( 1, mid + 1 - ( n / i ) ),1   ) ) ;
-         points.push_back( std::make_pair( std::min( n-2, n/2 + n/i ), 1 ) ) ;
+    if ( edge < 0 && interior < 0 ) {
+       // Do all interior points 
+       for ( int i = 0; i < n ; i++ ) {
+         points.push_back( std::make_pair( i, 1 ) );
+      } 
+  
     }
-    // Shift to make then the same as Kanikas ( cause matlab is one indexed )
-    for ( auto &it : points ) it.first--;
-    
-    int offset = std::min( POINTS_OFFSET, n/2 ) ; 
-    for ( int i = 0; i < offset ; i ++ ) 
+    else if ( edge + interior >= n ) 
     {
-         points.push_back( std::make_pair( i , -1 ) );
-         points.push_back( std::make_pair( n-i-1 , -1 ) );
+      // Do all rows with some edges
+      for ( int i = 0; i < n ; i ++ ) 
+       points.push_back( std::make_pair(i, ( i > n - 3 || i < 3 ) ? -1 : 1 ) ) ;
+    }
+    else 
+    {   
+        std::set<int> interior_points; 
+        while ( interior_points.size() < interior ) {
+            int index = rand() % n ;
+            if (! ( index < edge/2.0 || index > n - edge/2  ) ) {
+              interior_points.insert(index);  
+            } 
+        }
+        for ( auto it : interior_points ) {
+          points.push_back( std::make_pair( it, 1 ) ) ;
+        }
+        for ( int i = 0; i < edge; i++ ) {
+           points.push_back( std::make_pair( i, -1 ) );
+           points.push_back( std::make_pair( n-i-1, -1 ) );
+      }
     }
     
     //Sort the edges in order of rows. 
@@ -160,87 +237,41 @@ int GetSamplePoints( int n, std::vector<std::pair<int,int>> &points )
     points.resize(last+1);   
     MapDMNumberingToNaturalNumbering(points);
     return 0;
+
 }
 
-int GetJacobianSamples_MF( Mat J, std::vector< std::pair< int, int >> &points, Vec **s )
+int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s )
 {
-    int npoints = points.size() ; 
     Vec basis, extra; // The basis vector we will multiply by
     MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. 
-   
-    VecDuplicateVecs( basis, npoints, s ) ; // make vectors for each result
+    VecDuplicate(basis, s);
 
     PetscInt high, low;  
     VecGetOwnershipRange(basis, &low, &high );
     
-    Vec *vec = *s;  
-    for ( int i = 0 ; i < npoints; i ++ ) 
-    {
-        //Set the last value to zero ( might be faster to use VecSet(basis,0);
-        if ( i > 0  && points[i-1].first >= low && points[i-1].first < high )
-          VecSetValue( basis, points[i-1].first, (PetscScalar) 0.0, INSERT_VALUES );
-        if ( points[i].first >= low && points[i].first < high );
-        VecSetValue( basis, points[i].first, (PetscScalar) 1.0 , INSERT_VALUES ); 
+    //Set the last value to zero ( might be faster to use VecSet(basis,0);
+    if ( point.first >= low && point.first < high );
+        VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
         
-        VecAssemblyBegin(basis);
-        VecAssemblyEnd(basis);
-        MatMult( J, basis, vec[i] );
-    }
-    
+    VecAssemblyBegin(basis);
+    VecAssemblyEnd(basis);
+    MatMult( J, basis, *s );  
     VecDestroy(&basis);
     VecDestroy(&extra);
     return 0;
 }
 
-int GetJacobianSamples_MM( Mat J , std::vector< std::pair< int, int >> &points, Vec **s )
+int GetJacobianSamplePoints( Mat J , int edge, int interior, std::vector< std::pair< int, int > >&points )
 {
-   
-    int npoints = points.size() ; 
-    Vec basis, extra; // The basis vector we will multiply by
-    MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. TODO There has to be a Petsc function that 
-    //creates only one vector. 
-    
-    VecDuplicateVecs( basis, npoints, s ) ; // make vectors for each result
-    Vec *vec = *s;  
-    
-
-    for ( int i = 0 ; i < npoints; i ++ ) 
-    {
-        MatGetColumnVector( J, vec[i], points[i].first );
-    }
-
-    VecDestroy(&basis);
-    VecDestroy(&extra);
-    return 0;
-    
-}
-int GetJacobianSamples( Mat J , std::vector< std::pair< int, int > >&points,  Vec **s )
-{
-    
     PetscInt n,m;
     MatGetSize(J, &m, &n ) ;
-#if DEBUG_ALLROWS
-    for ( int i = 0; i < 2 ; i ++ ) 
-       points.push_back( std::make_pair(i,-1) ) ;
-    for ( int i = 2; i < n - 3 ; i ++ ) 
-       points.push_back( std::make_pair(i,1) ) ;
-    for ( int i = n-3 ; i < n ; i ++ ) 
-       points.push_back( std::make_pair(i,-1) ) ;
-#else 
-    GetSamplePoints( n, points ) ; 
-#endif
-
-    MatType type;
-    MatGetType( J, &type );
-    // TODO Detect the Petsc Matrix type 
-    //if ( type == "shell" ) 
-        GetJacobianSamples_MF( J , points, s ) ;
-    //else
-    //    GetJacobianSamples_MM( J, points, s ) ;
-    
-    return 0 ;
+    if ( edge < 0 && interior < 0 )
+      GetSamplePoints( n , edge, interior, points );
+    else if ( edge < 0 || interior < 0 )
+      GetSamplePoints( n, n, n, points ) ; 
+    else  
+      GetSamplePoints( n, edge, interior,points ) ; 
 }
-
 
 void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *datatype)
 {
@@ -264,7 +295,7 @@ void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *dat
     for ( int i = shift ; i < *len; i++)   inout[i] += in[i] ; 
 }
 
-int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double > > &fnames ) 
+int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::pair< std::string, double > > &fnames ) 
 {
   std::vector< std::pair< int, int >  >points ; 
   std::map< std::string, double > feature_set; 
@@ -274,10 +305,15 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
   Vec *s ; 
   const PetscScalar *array; 
   
-  GetJacobianSamples( J, points, &s );  
-  int npoints = points.size();
   double nsamples_mid = 0;
 
+  bool sample;
+  double val, aval, t,v;
+  int type, k;
+   
+  std::vector< std::pair< int, int > > sample_points;
+  GetJacobianSamplePoints( J, edge, interior, points ); 
+  int npoints = points.size();
 
 
   #if NNZ 
@@ -383,41 +419,45 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
   #if SYMMETRY    
   std::vector<double> sample_data(npoints * npoints);  // all zeros, set row*npoints + column 
   #endif 
-
-   bool sample;
-   double val, aval, t,v;
-   int type, k;
+ 
+   int num_t1 = 0;
+   int num_samples = 0;
    for ( int i = 0; i < npoints; i++ ) 
    {
-       VecGetArrayRead( s[i], &array );
-       VecGetOwnershipRange( s[i], &low, &high ) ;  
+       Vec vec;
+       GetJacobianColumn( J, points[i], &vec );
+
+
+       VecGetArrayRead( vec, &array );
+       VecGetOwnershipRange( vec, &low, &high ) ;  
        type = points[i].second;
        if ( type == 1 ) nsamples_mid++;
-
 
        k = 0;
        while ( points[k].first < low && k < points.size() ) k++;   // Find the first sample point. 
        for ( int j = low; j < high; j++ ) 
        { 
              val = array[j-low];
+             
              aval = abs(val);
              PetscInt rank;
-               MPI_Comm_rank(PETSC_COMM_WORLD, &rank );
-             //printf (" %d %d %d \n " , rank, low, high );
-             
-             // Petsc might have blocked the vector. 
+             MPI_Comm_rank(PETSC_COMM_WORLD, &rank );
+                     
 
-             // Is this a Sample point ? 
+              // Is this a Sample point ? 
              if ( k < points.size() && j == points[k].first ) 
              {   
                sample=true; k++;
                #if MINNONZEROSPERROW 
-               min_nnz_row[k-1] = 0; 
+               if (min_nnz_row[k-1] == n+1) {
+                  min_nnz_row[k-1] = 0; 
+               }
                #endif
 
                #if ROWDIAGONALDOMINANCE
                row_diag_dom[k-1] = 0.0;
                #endif
+               num_samples++; 
              }
              else 
                sample = false ; 
@@ -426,8 +466,11 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
              // If this is a middle point 
              if ( type == 1 ) 
              {
+
+                 num_t1 ++; 
                  if ( aval > NONZEROTOLERANCE ) 
                  {
+                      
                       #if NNZ     
                       nnz++;
                       #endif
@@ -441,8 +484,11 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
                       #endif   
 
                       #if AVERAGEDIAGONALDISTANCE
-                      ave_diag_dist += abs( points[i].first - j ) ; 
-                      if ( points[i].first != j ) ave_diag_dist_denom ++; 
+                      if ( points[i].first != j )
+                      {
+                         ave_diag_dist += abs( points[i].first - j ) ; 
+                         ave_diag_dist_denom ++; 
+                      }
                       #endif
 
                       #if COLUMNVARIANCE 
@@ -462,13 +508,12 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
                         #endif
                       }
                  }
-             }
-             else // This is a edge point ( Jcols_edge ) 
-             {
-               #if MINNONZEROSPERROW
-               if (aval > NONZEROTOLERANCE && sample) min_nnz_row[k-1]++;
-               #endif
-             } 
+            }
+               
+            #if MINNONZEROSPERROW // Count non-zeros in the sample rows. 
+            if (aval > NONZEROTOLERANCE && sample ) min_nnz_row[k-1]++;
+            #endif
+             
              // These are features that use both mid and edge points 
              #if ONENORM
              one_norm[i] += aval;
@@ -531,9 +576,9 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
              }
              #endif // LOWERBANDWIDTH || UPPERBANDWIDTH
        }          
-       VecRestoreArrayRead( s[i] , &array ) ;
+       VecRestoreArrayRead( vec , &array ) ;
+       VecDestroy(&vec);
    }
-   VecDestroyVecs(npoints, &s );
 
    #if ( DIAGONAL && HAVE_DIAGONAL )  
    Vec diag, extra;
@@ -670,7 +715,7 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
    #endif
 
    /* Start the MPI MIN Features ********************************************/ 
-   #if MINNONZEROSPERROW 
+   #if MINNONZEROSPERROW  
    features[c++] = *min_element(min_nnz_row.begin(), min_nnz_row.end());   
    #endif 
 
@@ -700,7 +745,7 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
    MPI_Op custom_mpi_operation;
    MPI_Op_create( MPI_FeatureReduce, true, &custom_mpi_operation );
    MPI_Reduce( features, rfeatures, feature_count, MPI_DOUBLE, custom_mpi_operation, ROOTPROC, PETSC_COMM_WORLD );
- 
+
    int rank;
    MPI_Comm_rank(PETSC_COMM_WORLD, &rank );
    if ( rank == ROOTPROC )
@@ -772,7 +817,7 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
      neg = rfeatures[c++]; pos = rfeatures[c++]; zero = rfeatures[c++];   
      if ( neg && pos ) diag_sign = -3;
      else if ( neg && zero ) diag_sign = -1; 
-     else if ( pos && zero ) diag_sign = 1;
+     else if ( pos && zero ) diag_sign = -1;
      else if ( neg ) diag_sign = -2; 
      else if ( pos ) diag_sign = 2;
      else if ( zero) diag_sign = 0;  
@@ -879,11 +924,12 @@ int ExtractJacobianFeatures( Mat J , std::vector< std::pair< std::string, double
      #endif 
     
      #if SYMMETRICINFINITYNORM   
-     fnames.push_back( std::make_pair( "SymmerticInfinityNorm", *std::max_element(sinfnorm.begin(), sinfnorm.end()) ));
+     fnames.push_back( std::make_pair( "SymmeticInfinityNorm", *std::max_element(sinfnorm.begin(), sinfnorm.end()) ));
      #endif
     
      #if ANTISYMMETRICINFINITYNORM
-     fnames.push_back( std::make_pair( "AntiSymmetricFrobeniusNorm", asfronorm  ) );
+     asfronorm = n * sqrt(asfronorm) / (double) nsamples_mid ;
+     fnames.push_back( std::make_pair( "AntiSymmetricFrobeniusNorm" , asfronorm ) );
      #endif
     
      #if SYMMETRICFROBENIUSNORM   

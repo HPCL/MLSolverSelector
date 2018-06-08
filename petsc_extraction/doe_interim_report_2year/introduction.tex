@@ -1,0 +1,31 @@
+\section{ Executive Summary } 
+This report provides a report on DOE SBIR/STTR Phase II project: 
+“Automated Solver Selection for Nuclear Engineering Simulations” with award 
+number DE-SC0013869. The original project period was August 1st 2016 - 31st July 2018.
+The project was granted a 12 month no cost time extension for the period August 1 2018 - July 31st
+2019. As such, this document serves as a semi-annual interim report for the six month period of December 
+1st 2017 - May 31st 2018. 
+
+The project aims to address various challenges in increasing the adoption of NEAMS tools by 
+novice users by enabling automatic selection of appropriate solvers for the 
+given problem. Although this requires the analysis of the matrix A in the linear 
+system Ax=b, there are many matrix-free methods and preconditioners which could 
+benefit from this approach as well, which the framework will also support. Of 
+further interest are optimizations in quantities such as the energy consumed by 
+the operations and the resiliency of the solver to soft errors.
+
+The Nuclear Energy Advanced Modeling and Simulation (NEAMS) program by DOE is
+developing predictive models for the advanced nuclear reactor and fuel cycle 
+systems using leading edge computational methods and high performance computing 
+technologies. The SolverSelector will enable automatic selection of the optimal 
+solver for the characteristics of the linear system being solved as well as 
+considering the compute hardware present. 
+
+The major accomplishment of this reporting period has been on the development of feature
+extraction techniques for matrix-free methods. Feature extraction for Matrix-free methods is difficult because one does not have direct access to the matrix elements. The methods developed 
+in this reporting period produce low-cost estimates of the matrix features that can be used to 
+train machine learning algorithms and predict the optimal linear solver with a high level of accuracy. 
+
+In addition to this, the project team has also continued its efforts towards developing the SolverSelector API
+and in obtaining robust real-world training data sets from Proteus line of tools. 
+

@@ -4,7 +4,8 @@
 #include "petscksp.h"
 #include "petsc/private/kspimpl.h"
 #include "MLWaff.h"
-
+#include "PetscFeatureExtraction.h"
+#include "Sqlite3Interface.h"
 class DummyTestingSpace : public PetscTestingSpace 
 {
 public:
@@ -16,15 +17,24 @@ public:
       // machine.reset( new _ML_Binary( filename ) ; // not implemented yet. 
    } 
 
+   void set_data_base_impl( std::string filename, std::shared_ptr< _SS_DataBaseBase > &database ) 
+   {
+      // database.reset( new _SS_DataBaseSql("testfile.sql") );          
+       database.reset( new _SS_DataBaseArff("testfile.arff") );
+   }
+
    void extract_features( KSP &ksp, std::map<std::string, double> &fmap ) override
   {      
       /* This is a dummy feature set. Basically sets some random junk */
       /* This is where we would insert the Petsc Matrix-free extraction algorithm. 
        */
-       
-      fmap["happy"] = (double) rand();
-      fmap["sad"] = (double) -1.0*rand();
-      fmap["mad"] = (double) rand() / RAND_MAX ; 
+      Mat AA,PP;
+      KSPGetOperators(ksp, &AA, &PP ); 
+      ExtractJacobianFeatures(AA,fmap); 
+      
+      int comm_size;
+      MPI_Comm_size(PETSC_COMM_WORLD, &comm_size) ;
+      fmap["comm_size"] = (double) comm_size;
   }
  
   void start_measurements( KSP &ksp, Vec &x, Vec &b ) override

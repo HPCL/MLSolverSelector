@@ -99,7 +99,7 @@ test_feature_accuracy() {
 #   
 plot_feature_accuracy() {
   echo $WORKING_DIR
-  python ./process_data.py Error $EXACTFEATURES $RESDIR/features\_ 3 10 10 10 100 10 500 nnz AvgNonzerosPerRow AbsoluteNonZeroSum Trace AbsoluteTrace DiagonalMean 
+  python ./process_data.py Error $WORKING_DIR/features_all_interior $RESDIR/features\_ 3 10 10 10 100 10 500 nnz AvgNonzerosPerRow AbsoluteNonZeroSum Trace AbsoluteTrace DiagonalMean 
 }
 
 
@@ -111,7 +111,7 @@ plot_feature_accuracy() {
 #   run_all_rows_fixed 10 100
 #   run_all_rows_fixed 10 500
 plot_feature_extraction_time () { 
-  python process_data.py Extraction $EXACTFEATURES $WORKING_DIR/solver_timing_timing $RESDIR/features_ 3 10 10 10 100 10 500 
+  python process_data.py Extraction $WORKING_DIR/features_all_interior $WORKING_DIR/solver_timing_timing $RESDIR/features_ 3 10 10 10 100 10 500 
 }
 
 # Compare the extraction times for the different features sets :
@@ -124,7 +124,7 @@ plot_feature_extraction_time () {
 #
 #   for each of the three feature sets. ( call setup <FSET> to switch feature set for testing ) 
 compare_extraction_fset () {
-  python process_data.py Compare $EXACTFEATURES $WORKING_DIR 3 full/results/features_ RS1/results/features_ RS2/results/features_ 3 10 10 10 100 10 500 
+  python process_data.py Compare $WORKING_DIR/features_all_interior $WORKING_DIR 3 full/results/features_ RS1/results/features_ RS2/results/features_ 3 10 10 10 100 10 500 
 }
 
 

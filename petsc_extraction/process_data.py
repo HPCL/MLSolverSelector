@@ -59,6 +59,9 @@ def calculate_error( filename, filename1, error_tol, plot=[] ) :
     exact_map = extract_features(filename)
     exact_map1 = extract_features(filename1);
     
+    print sorted(exact_map.keys())
+    print sorted(exact_map1.keys())
+    
     ret = {}
 
     count  = 0
@@ -76,7 +79,8 @@ def calculate_error( filename, filename1, error_tol, plot=[] ) :
                 ret[i]['error'].append( e ) 
                 ret[i]['exact'] = exact_map[i][j] 
                 ret[i]['calc'] = exact_map1[i][j] 
-        ret[i]['matrices'] = c
+        else:
+            print " Feature " , i , 'not in post maps ' 
     return ret
 
 def plot_error_samples( exact, d, samples, plots, bestfit=True , save=False) :
@@ -93,6 +97,8 @@ def plot_error_samples( exact, d, samples, plots, bestfit=True , save=False) :
     for i in range(0,len(edges)):        
         ret = calculate_error( exact, d + edges[i] + "_" + inter[i] , -1, plots );
         for j in plots:
+            
+            print "Plotting " , j , " " , len(ret[j]['error'] ) 
             label = "S(" + edges[i] + "," + inter[i] + ")"
             ax[j].plot(ret[j]["nnz"] , ret[j]["error"], 'o', alpha=0.25, markeredgecolor='none', color=colors[n], label=label)
             if bestfit : 
@@ -106,7 +112,7 @@ def plot_error_samples( exact, d, samples, plots, bestfit=True , save=False) :
             ax[j].legend()
         n += 1 
     if save:
-        save_all_figures('Figures/error')
+        save_all_figures('WORKING/Figures/error')
     plt.show()
     
 def plot_extraction_time( solvefile, exactfile, samples , d, bestfit=True, save=False ) :
@@ -157,7 +163,7 @@ def plot_extraction_time( solvefile, exactfile, samples , d, bestfit=True, save=
     ax["extract"].set_ylabel('Extract time ( micro seconds ) ' )
     
     if save:
-        save_all_figures('Figures/extraction')
+        save_all_figures('WORKING/Figures/extraction')
     plt.show()
     return ax
 
@@ -193,7 +199,7 @@ def compare_feature_sets( exactfile, samples, feature_sets, bestfit=True, labels
         ax[i].set_yscale('log')
         ax[i].legend()
     if save:
-        save_all_figures("Figures/comparrison_")
+        save_all_figures("WORKING/Figures/comparrison_")
     plt.show()
 
 def save_all_figures(d ):
@@ -267,14 +273,4 @@ else:
         num_samples = int(sys.argv[5+nsets]) 
         samples = sys.argv[6+nsets:]
         compare_feature_sets( exact, samples, dircs, labels = [ "Full", "RS1", "RS2" ], save=True  ) 
-    elif sys.argv[1] == "All"
-        # This is a hardcoded example plotting everything
-        #
-        exact = "WORKING/features_all_interior"
-        samples = [ 10 10 10 20 10 100 10 500 ]
-        fsets = ["full", 'RS1', 'RS2' ] 
-        fset_dircs = [ "WORKING/full/results/features_", "WORKING/RS1/results/features_", "WORKING/RS2/results/features_" ]
-        compare_feature_sets( exact, samples, fset_dircs, labels =['Full','RS1','RS2'], save=True )
-
-
 

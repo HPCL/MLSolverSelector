@@ -6,9 +6,19 @@ import csv
 import hashlib
 import matplotlib.pyplot as plt
 
+BESTFITPOLYNOMIALDEGREE = 2
+
+
 # Best fit should really be "worst-best" fit. 
 # Determine the linear line of best fit for the data. Should prob go cubic. 
 def best_fit(X, Y):
+    
+    
+    z = np.polyfit(X, Y, BESTFITPOLYNOMIALDEGREE) 
+    p = np.poly1d(z)
+    return np.unique(X) , [ p(x) for x in np.unique(X) ]  
+
+
     xbar = np.nansum(X)/len(X)
     ybar = np.nansum(Y)/len(Y)
     n = len(X) # or len(Y)
@@ -31,37 +41,46 @@ def extract_column_names(filename):
 
 ### Extract the solver information from a file. Basically this gets a 
 ## map from the matrix to the row that is labelled index. 
-def extract_solve_map(filename, index):
+def extract_solve_map(filename, index, matrix_row="Matrix Name"):
     fmap = {}
     ind = 0
+    mrow = 0
+
+    if index == matrix_row : return None
+
     with open(filename, 'rb') as csvfile:
         reader = csv.reader(csvfile, delimiter=',') 
         for n,row in enumerate(reader):
-            if n == 0 : 
+            if n == 0 :  
                 for nn,i in enumerate(row): 
                     if i.strip() == index: 
                         ind = nn
-            
-            if n > 0 :
-              matrix_name = os.path.splitext(os.path.basename(row[0]))[0]
-              fmap[matrix_name] = float(row[ind])
+                    if i.strip() == matrix_row.strip() :
+                       mrow = nn 
+            if n > 0  :
+              
+              matrix_name = os.path.splitext(os.path.basename(row[mrow]))[0]
+              fmap[matrix_name.strip()] = float(row[ind])
     return fmap
 
 def extract_features( filename ) :
     columns = extract_column_names(filename)
     f = {}
-    for i in columns[1:]:
-        f[i] = extract_solve_map(filename,i) 
+    for i in columns[0:]:
+        ff  = extract_solve_map(filename,i) 
+        if ff is not None:
+            f[i] = ff 
     return f 
 
 
 def calculate_error( filename, filename1, error_tol, plot=[] ) :
     exact_map = extract_features(filename)
     exact_map1 = extract_features(filename1);
-    
-    print sorted(exact_map.keys())
-    print sorted(exact_map1.keys())
-    
+    print 'asdasdasd'   
+    print exact_map['nnz'].keys()
+    #print exact_map['nnz']['direct_order4_test_16_7_1'] 
+    #print exact_map1['nnz']['direct_order4_test_16_7_1'] 
+
     ret = {}
 
     count  = 0

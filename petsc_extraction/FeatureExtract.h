@@ -424,9 +424,10 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
    int num_samples = 0;
    for ( int i = 0; i < npoints; i++ ) 
    {
+       if ( i % 100 == 0 ) std::cout << " Starting row " << i << " of " << npoints <<std::endl;
+       
        Vec vec;
        GetJacobianColumn( J, points[i], &vec );
-
 
        VecGetArrayRead( vec, &array );
        VecGetOwnershipRange( vec, &low, &high ) ;  

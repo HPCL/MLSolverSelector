@@ -10,8 +10,8 @@ setup () {
 export FSET=$1
 export PROCS=1
 export EXACTFEATURES="./exact_mat_features.csv" 
-export WORKING_DIR="./WORKING/"
-export MATDIR=$WORKING_DIR/matrices/
+export WORKING_DIR="./WORKING_MOOSE100/"
+export MATDIR='./moose100'
 export RESDIR=$WORKING_DIR/$FSET/results/
 
 mkdir -p $WORKING_DIR
@@ -34,7 +34,7 @@ single_run () {
 
 # Run all matrices with extension .pbin in MatDIR with <output> <edges> <interior> <solve>
 loop_de_loop() { 
-for i in $MATDIR/*.pbin; do
+for i in $MATDIR/*.mat; do
   echo RUNNING Matrix $i 
   single_run $i $1 $2 $3 $4 
 done

@@ -30,7 +30,7 @@ class PetscTestingSpace {
 // Here we include the testing space that we are using. This defines the feature extraction algorithm,
 // the feature set, the measurement set, the machine learning model and the database type. Defaults are
 // waffles with Random forest and a Arff database. A sql database is also available. 
-#include "testing_spaces/DummyTestingSpace.h"
+#include "testing_spaces/MFTestingSpace.h"
 
 void PetscCopyFunction( KSP nksp, KSP oksp ) {
 

@@ -2,6 +2,9 @@ include ../../Makefile.inc
 
 LOCINCS = -I ../ 
 
+
+
+
 all: petscex2 bfm petscex1
 
 .PHONY: petscf 

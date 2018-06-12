@@ -3,8 +3,12 @@
 
 #include "petscksp.h"
 #include "petsc/private/kspimpl.h"
+
+
+#define FULL 
+#include "FeatureExtraction.h"
+
 #include "MLWaff.h"
-#include "PetscFeatureExtraction.h"
 #include "Sqlite3Interface.h"
 
 
@@ -16,14 +20,11 @@ public:
    void set_machine_learning_model( std::shared_ptr<_SS_MachineLearning> &machine ) {
     
       machine.reset( new _ML_Waffles() ) ; 
-      // machine.reset( new _ML_Binary( filename ) ; // not implemented yet. 
    } 
 
    void set_data_base_impl( std::string filename, std::shared_ptr< _SS_DatabaseInterface > &database ) 
    {
       database.reset( new _SS_SqlDatabase("testfile.sql") );
-      // database.reset( new _SS_DataBaseSql("testfile.sql") );          
-      // database.reset( new _SS_DataBaseArff("testfile.arff") );
    }
 
    void extract_features( KSP &ksp, std::map<std::string, double> &fmap ) override
@@ -33,7 +34,7 @@ public:
        */
       Mat AA,PP;
       KSPGetOperators(ksp, &AA, &PP ); 
-      ExtractJacobianFeatures(AA,fmap); 
+      ExtractJacobianFeatures(AA,10,10,fmap); 
       
       int comm_size;
       MPI_Comm_size(PETSC_COMM_WORLD, &comm_size) ;
@@ -59,8 +60,6 @@ public:
   }
     
 };
-
-
 
 #endif
 

@@ -7,7 +7,7 @@ import hashlib
 import matplotlib.pyplot as plt
 
 BESTFITPOLYNOMIALDEGREE = 2
-save_dirc = "./Figures/"
+save_dirc = "./WORKING_MOOSE100/Figures/"
 
 # Best fit should really be "worst-best" fit. 
 # Determine the linear line of best fit for the data. Should prob go cubic. 

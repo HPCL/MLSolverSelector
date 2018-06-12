@@ -59,6 +59,10 @@ int main(int argc,char **argv)
   if (solve) {
      KSPSolve(ksp,b,x);
   }
+  PetscInt  iter ; 
+  KSPConvergedReason converged_reason; 
+  KSPGetConvergedReason(ksp,&converged_reason);
+  KSPGetTotalIterations(ksp,&iter);  
   auto stop3 = std::chrono::high_resolution_clock::now();
 
   //Extract the features
@@ -113,12 +117,12 @@ int main(int argc,char **argv)
     
     if ( ! exists ) {
       fs << feature_labels.str(); 
-      fss << " Matrix , Load , Setup , Solve with GMRES+ILU , Extract \n " ;
+      fss << " Matrix , Load , Setup , Solve with GMRES+ILU , Extract , Converged , Iterations \n " ;
     }
     fs << feature_values.str() ; 
     
   std::ostringstream tim; 
-    tim << matrix_file << "," << mload << "," << kspsetup << "," << kspsolve << "," << extract << "\n";
+    tim << matrix_file << "," << mload << "," << kspsetup << "," << kspsolve << "," << extract << "," << converged_reason << "," << iter << "\n";
     fss << tim.str();
     fss.close(); 
     fs.close();

@@ -253,10 +253,6 @@ int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s )
     if ( point.first >= low && point.first < high );
         VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
     
-    int j = 0;    
-    for ( int i = 0; i < 1e10; i++ ) 
-      j++;
-
     VecAssemblyBegin(basis);
     VecAssemblyEnd(basis);
     MatMult( J, basis, *s );  

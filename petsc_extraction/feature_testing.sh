@@ -42,7 +42,7 @@ done
 
 # Solves all the matrices in the matrix dir, uses a cheap 10,10 sample set to save time. 
 solve_all_matrices() {
-  loop_de_loop $WORKING_DIR/solver_timing 10 10 1 
+  loop_de_loop $WORKING_DIR/test_timing 10 10 1 
 }
 
 # Debug features for 1 matrix. Basically, this runs a test for a single matrix, calculates 
@@ -99,7 +99,7 @@ test_feature_accuracy() {
 #   
 plot_feature_accuracy() {
   echo $WORKING_DIR
-  python ./process_data.py Error $WORKING_DIR/features_all_interior $RESDIR/features\_ 3 10 10 10 100 10 500 nnz AvgNonzerosPerRow AbsoluteNonZeroSum Trace AbsoluteTrace DiagonalMean 
+  python ./process_data.py Error $WORKING_DIR/features_all_interior $RESDIR/features\_ 3 10 10 10 100 10 500 nnz AvgNonzerosPerRow Trace AbsoluteTrace 
 }
 
 

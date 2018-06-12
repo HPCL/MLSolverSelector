@@ -252,7 +252,11 @@ int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s )
     //Set the last value to zero ( might be faster to use VecSet(basis,0);
     if ( point.first >= low && point.first < high );
         VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
-        
+    
+    int j = 0;    
+    for ( int i = 0; i < 1e10; i++ ) 
+      j++;
+
     VecAssemblyBegin(basis);
     VecAssemblyEnd(basis);
     MatMult( J, basis, *s );  
@@ -441,8 +445,6 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
              val = array[j-low];
              
              aval = abs(val);
-             PetscInt rank;
-             MPI_Comm_rank(PETSC_COMM_WORLD, &rank );
                      
 
               // Is this a Sample point ? 

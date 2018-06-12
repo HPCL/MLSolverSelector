@@ -59,7 +59,7 @@ public:
     _SS_ErrorFlag TrainSystem(  ) override {
         
         std::vector< std::string > fnames ;
-        database->GetFeatureNames(fnames);
+        database->GetFeatureLabels(fnames);
         BuildModel( method, fnames );
         fmodel->train( *features , *labels );
         return _SS_error_flag;
@@ -78,7 +78,7 @@ public:
 
         bool found_one = false;
         std::vector< int > hash_list;
-        database->GetSolverHashList(hash_list);
+        database->GetUniqueHashList(hash_list);
         
         int i = 0;
         
@@ -95,7 +95,7 @@ public:
             if ( it == good.end() )
             {
                 found_one = true;
-                database->GetSolver( hash, solver );
+                database->GetUniqueSolver( hash, solver );
 
                 break;
             }
@@ -125,10 +125,6 @@ public:
 
         
         int i = 0;
-
-        printf("sdfsdfsdfsdfsdfsdf\n");
-        printf(" ddddd %d \n" , x.size() );
-        printf("dsdfsdfsdf\n");
 
         while ( i < x.size() && x.attrNameStr(i) != "HASH" ){
          
@@ -177,62 +173,66 @@ public:
         std::vector < std::string > &feature_list,
         std::shared_ptr<GClasses::GMatrix> &matrix,
         int &num_labels ) {
+       
+       std::vector<int> row_ids;
+       std::vector<std::string> feature_labels, classification_labels;
+       std::vector<std::vector< double >> feature_data;
+       std::vector<std::vector< bool >> classification_data;  
 
-        std::vector< std::vector < std::string >> data;
-        std::vector < std::string > column_names;
-        std::vector< int > feature_or_label;
-        database->ImportData( data , column_names, feature_or_label);
+       database->GetMachineLearningData(row_ids, 
+                                        feature_labels ,
+                                        classification_labels,
+                                        feature_data,
+                                        classification_data ); 
+  
 
         GClasses::GArffRelation *pRelation = new GClasses::GArffRelation();
         pRelation->setName("SolverSelecter");
 
 
-        num_labels = 0;
-        std::vector< int > add_features, add_labels;
-        for (unsigned int i = 0; i < column_names.size(); i++)
-        {
-            if ( feature_or_label[i] == 0 )
-            {
-                if ( i == 0 || std::find(feature_list.begin(),feature_list.end(), column_names[i] ) != feature_list.end() )
-                {
-                    pRelation->addAttribute( column_names[i].c_str(), 0, NULL );
-                    add_features.push_back(i);
-                }
-            }
+        num_labels = classification_labels.size();
+     
+        int n = 0;
+        std::vector< int > add_features, add_classis ; // features that are actually added. 
+        for ( auto it : feature_labels ) {
+           if ( n == 0 || std::find(feature_list.begin(),feature_list.end(), it.c_str() ) != feature_list.end() )
+           {
+                    pRelation->addAttribute( it.c_str(), 0, NULL );
+                    add_features.push_back(n);
+           }
+           n++;
+           
         }
-        for (unsigned int i = 0; i < column_names.size(); i++)
-        {
-            if ( feature_or_label[i] != 0 )
-            {
-                add_labels.push_back(i);
-                num_labels++;
-                std::vector< const char *> pValues = {"0","1"};
-                pRelation->addAttribute( column_names[i].c_str(), 2, &pValues);
-            }
+        
+        n = 0;
+        std::vector< const char *> pValues = {"0","1"};
+        for ( auto it : classification_labels ) { 
+            pRelation->addAttribute( it.c_str(), 2, &pValues);
+            add_classis.push_back(n);
+            n++;
         }
+            
         /* I believe GMatrix takes control of pRelation, and deletes it */
         matrix = std::make_shared<GClasses::GMatrix>(pRelation);
 
-        matrix->newRows( data.size() );
+        matrix->newRows( row_ids.size() );
         int row_count = 0;
-        for ( auto row : data )
+        int size = matrix->cols();
+        for (auto it : row_ids   )
         {
-            int size = matrix->cols();
-            int col_count = 0;
+            n = 0 ; 
             for ( auto it : add_features )
             {
-                if ( it == 0 ) {
-                    std::cout << row[it] << std::endl; 
-                    (*matrix)[row_count][col_count] = std::stol( row[it].c_str() );
-                }
-                    else
-                    (*matrix)[row_count][col_count] = std::atof(row[it].c_str());
-                col_count++;
+                if ( n == 0 ) {
+                    (*matrix)[row_count][n] = feature_data[row_count][it];
+                } else
+                    (*matrix)[row_count][n] = feature_data[row_count][it];
+                n++;
             }
-            for ( auto it : add_labels )
+            for ( auto it : add_classis )
             {
-                (*matrix)[row_count][col_count] = (double) pRelation->findEnumeratedValue(col_count,row[it].c_str());
-                col_count++;
+                (*matrix)[row_count][n] = (double) pRelation->findEnumeratedValue(n,std::to_string(classification_data[row_count][it]).c_str());
+                n++;
             }
             row_count++;
         }

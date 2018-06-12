@@ -7,29 +7,15 @@ import hashlib
 import matplotlib.pyplot as plt
 
 BESTFITPOLYNOMIALDEGREE = 2
-
+save_dirc = "./Figures/"
 
 # Best fit should really be "worst-best" fit. 
 # Determine the linear line of best fit for the data. Should prob go cubic. 
 def best_fit(X, Y):
-    
-    
+        
     z = np.polyfit(X, Y, BESTFITPOLYNOMIALDEGREE) 
     p = np.poly1d(z)
     return np.unique(X) , [ p(x) for x in np.unique(X) ]  
-
-
-    xbar = np.nansum(X)/len(X)
-    ybar = np.nansum(Y)/len(Y)
-    n = len(X) # or len(Y)
-
-    numer = np.nansum([xi*yi for xi,yi in zip(X, Y)]) - n * xbar * ybar
-    denum = np.nansum([xi**2 for xi in X]) - n * xbar**2
-    b = numer / denum
-    a = ybar - b * xbar
-
-    return np.unique(X) , [ a + b * xi for xi in np.unique(X) ] 
-
 
 ### Extract column names :
 def extract_column_names(filename):
@@ -131,7 +117,7 @@ def plot_error_samples( exact, d, samples, plots, bestfit=True , save=False) :
             ax[j].legend()
         n += 1 
     if save:
-        save_all_figures('WORKING/Figures/error')
+        save_all_figures(save_dirc + 'error')
     plt.show()
     
 def plot_extraction_time( solvefile, exactfile, samples , d, bestfit=True, save=False ) :
@@ -168,21 +154,27 @@ def plot_extraction_time( solvefile, exactfile, samples , d, bestfit=True, save=
         label = "S(" + edges[i] + "," + inter[i] + ")"
         ax["extract"].plot( nnz, extract_time,  'o', alpha=0.25, markeredgecolor='none', color=colors[i], label=label )
         ax["ratio"].plot( nnz, ratio,  'o', alpha=0.25, markeredgecolor='none', color=colors[i], label=label )
+        ax["solve"].plot( nnz, solve_time,  'o', alpha=0.25, markeredgecolor='none', color=colors[i], label=label )
+        
         if bestfit:
             ae,be = best_fit( nnz, extract_time )
             ar,br = best_fit( nnz, ratio ) 
+            sas, bs = best_fit( nnz, solve_time )
             ax["ratio"].plot( ar,br, color = colors[i] ) 
             ax["extract"].plot( ae, be, color = colors[i] )
-    for j in ["ratio","extract"] :
+            ax['solve'].plot(sas,bs,color=colors[i] )
+
+    for j in ["ratio","extract",'solve'] :
         ax[j].set_yscale('log')
         ax[j].set_xscale('log')
         ax[j].set_xlabel('Number of non-zeros')
         ax[j].legend()
     ax["ratio"].set_ylabel('Extract time / Solve time' )
     ax["extract"].set_ylabel('Extract time ( micro seconds ) ' )
+    ax["solve"].set_ylabel('Solve time ( micro seconds ) ' )
     
     if save:
-        save_all_figures('WORKING/Figures/extraction')
+        save_all_figures(save_dirc + 'extraction')
     plt.show()
     return ax
 
@@ -218,7 +210,7 @@ def compare_feature_sets( exactfile, samples, feature_sets, bestfit=True, labels
         ax[i].set_yscale('log')
         ax[i].legend()
     if save:
-        save_all_figures("WORKING/Figures/comparrison_")
+        save_all_figures( save_dirc + "comparrison_")
     plt.show()
 
 def save_all_figures(d ):

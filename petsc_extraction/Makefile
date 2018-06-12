@@ -1,6 +1,6 @@
 
 
-SS=mpicxx -g -O3 -fPIC -std=c++11 
+SS=mpicxx -g -O3 -std=c++11 
 
 PETSC_DIR ?= /home/boneill/Documents/ML_NEAMS/petsc/petsc_local/petsc
 include ${PETSC_DIR}/lib/petsc/conf/variables

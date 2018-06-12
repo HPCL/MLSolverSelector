@@ -27,7 +27,7 @@ class _SS_SolverSelecter {
 
 public:
     std::shared_ptr<_SS_MachineLearning> machinemodel;                         /**< pointer the the machine learning class */
-    std::shared_ptr< _SS_DataBaseBase >  database;                             /**< pointer to the database */
+    std::shared_ptr< _SS_DatabaseInterface >  database;                             /**< pointer to the database */
     
     _SS_Solver solver; /** This is the selected solver. Allows user to call back and get the last selected solver */
 

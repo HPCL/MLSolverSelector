@@ -6,6 +6,8 @@
 #include "MLWaff.h"
 #include "PetscFeatureExtraction.h"
 #include "Sqlite3Interface.h"
+
+
 class DummyTestingSpace : public PetscTestingSpace 
 {
 public:
@@ -17,10 +19,11 @@ public:
       // machine.reset( new _ML_Binary( filename ) ; // not implemented yet. 
    } 
 
-   void set_data_base_impl( std::string filename, std::shared_ptr< _SS_DataBaseBase > &database ) 
+   void set_data_base_impl( std::string filename, std::shared_ptr< _SS_DatabaseInterface > &database ) 
    {
+      database.reset( new _SS_SqlDatabase("testfile.sql") );
       // database.reset( new _SS_DataBaseSql("testfile.sql") );          
-       database.reset( new _SS_DataBaseArff("testfile.arff") );
+      // database.reset( new _SS_DataBaseArff("testfile.arff") );
    }
 
    void extract_features( KSP &ksp, std::map<std::string, double> &fmap ) override
@@ -48,7 +51,7 @@ public:
         auto durr = std::chrono::duration_cast<std::chrono::nanoseconds>(now-time_start).count();
         KSPConvergedReason reason;
         KSPGetConvergedReason(ksp, &reason);
-        mmap["CPUTime"] =  ( reason > 0 ) ? (double) durr : 1e300 ;
+        mmap["CPUTime"] =  ( reason > 0 ) ? (double) durr : -1.0 ;
   }
   void classify_measurements( std::map<std::string, double> &cmap ) override
   {

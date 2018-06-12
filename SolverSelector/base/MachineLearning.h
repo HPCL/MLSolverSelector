@@ -1,7 +1,7 @@
 #ifndef SS_MACHINELEARNING_H
 #define SS_MACHINELEARNING_H
 
-#include "DataBase.h"
+#include "DatabaseInterface.h"
 
 /**
  * \file MachineLearning.h
@@ -21,7 +21,7 @@ class _SS_MachineLearning
 public:
 
     bool trained;  /**< has the system been trained already? */
-    std::shared_ptr<_SS_DataBaseBase> database; /**< pointer to the database */
+    std::shared_ptr<_SS_DatabaseInterface> database; /**< pointer to the database */
 
 public:
 
@@ -39,7 +39,7 @@ public:
     {
     }
 
-    _SS_ErrorFlag Initialize( std::shared_ptr< _SS_DataBaseBase > _database )
+    _SS_ErrorFlag Initialize( std::shared_ptr< _SS_DatabaseInterface > _database )
     {
         database = _database;
         return _SS_error_flag;
@@ -74,7 +74,7 @@ public:
             {
                 /* just use the main feature set */
                 std::vector< std::string > fnames ;
-                database->GetFeatureNames(fnames);
+                database->GetFeatureLabels(fnames);
                 CrossValidate( it, fnames );
             }
         }
@@ -85,7 +85,7 @@ public:
     virtual _SS_ErrorFlag CVFeaturesSpace ( std::string alg, int level , std::vector<std::string> &fnames,  std::vector<std::string> &sub_features)
     {
         if (level == 0)
-            database->GetFeatureNames(fnames);
+            database->GetFeatureLabels(fnames);
 
         while ( fnames.size() > 0 )
         {

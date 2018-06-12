@@ -24,7 +24,7 @@ class PetscTestingSpace {
   virtual void stop_measurements(KSP &ksp, Vec &x, Vec &b , std::map<std::string, double > &mmap) = 0;
   virtual void classify_measurements( std::map<std::string, double> &cmap ) = 0;
   virtual void set_machine_learning_model ( std::shared_ptr<_SS_MachineLearning> &machine ) = 0;
-  virtual void set_data_base_impl( std::string filename, std::shared_ptr<_SS_DataBaseBase> &database ) = 0;
+  virtual void set_data_base_impl( std::string filename, std::shared_ptr<_SS_DatabaseInterface> &database ) = 0;
 };
 
 // Here we include the testing space that we are using. This defines the feature extraction algorithm,
@@ -224,7 +224,7 @@ public:
         return _SS_error_flag;
     }    
 
-    _SS_ErrorFlag GetDataBaseImplimentation(std::shared_ptr< _SS_DataBaseBase > &database) override 
+    _SS_ErrorFlag GetDataBaseImplimentation(std::shared_ptr< _SS_DatabaseInterface > &database) override 
     {
         testing_space->set_data_base_impl( database_name, database );
         return _SS_error_flag;

@@ -4,7 +4,7 @@
 #include "Solvers.h"
 #include "MLWaff.h"
 #include "MLBinary.h"
-#include "Sqlite3.h"
+#include "Sqlite3Interface.h"
 #include "Arff.h"
 template<typename Matrix,typename Vector>
 class _SS_UserInterface
@@ -43,9 +43,9 @@ public:
         return _SS_error_flag; 
     }
 
-    virtual _SS_ErrorFlag GetDataBaseImplimentation(std::shared_ptr< _SS_DataBaseBase > &database)
+    virtual _SS_ErrorFlag GetDataBaseImplimentation(std::shared_ptr< _SS_DatabaseInterface > &database)
     {
-        database.reset( new _SS_DataBaseSql(database_name) );     
+        database.reset( new _SS_SqlDatabase(database_name) );     
         return _SS_error_flag;
     } 
     

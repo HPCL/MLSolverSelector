@@ -1,0 +1,397 @@
+#if WITH_WAFFLES 
+
+#include "WafflesInterface.h"
+
+namespace SolverSelecter
+{
+
+
+WafflesInterface::WafflesInterface()
+{
+    features = NULL;
+    labels = NULL;
+    model = NULL;
+
+    AddParameter("algorithm","RandomForest","Choose a machine learning model");
+    AddParameter("serialized","","Filename for serialized model (empty for build at runtime");
+}
+
+WafflesInterface::~WafflesInterface()
+{
+    if ( model ) delete model;
+    if ( features) delete features;
+    if ( labels ) delete labels;
+}
+
+ErrorFlag WafflesInterface::BuildModel()
+{
+    std::string serial = GetParameter("serialized"); 
+    if ( serial.empty() ) 
+    {
+      std::vector< std::string > fnames;
+      database->GetFeatureLabels(fnames);
+      BuildModelAtRuntime( GetParameter("algorithm"), fnames ) ;
+      database->GetUniqueSolverList(solver_hash_list);   
+    }
+    else
+      BuildModelFromSerial(serial);
+    
+    return error_flag;
+}
+
+ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vector<std::string> &fnames )
+{
+    if ( model == NULL ) 
+    {
+      std::shared_ptr< GClasses::GMatrix > matrix(nullptr) ;
+      int labelsdim;
+      ImportData( fnames, matrix, labelsdim ) ;
+
+      const GClasses::GRelation &x = matrix->relation();
+
+      /* Split by features and labels */
+      GClasses::GDataColSplitter splitter(*matrix, (std::size_t) labelsdim );
+      if ( features )
+      {
+          delete features;
+      }
+      features = new GClasses::GMatrix();
+      if ( labels )
+      {
+          delete labels ;
+      }
+      labels   = new GClasses::GMatrix();
+
+      *features = splitter.features();
+      *labels   = splitter.labels();
+   
+      std::string method = GetParameter("algorithm"); 
+       if ( method == "DescisionTree" )
+        model = new GClasses::GDecisionTree();
+      else if ( method == "RandomForest" )
+        model = new GClasses::GRandomForest(50,2);
+      else if ( method == "KNN")
+      {
+          model = new GClasses::GKNN();
+          GClasses::GKNN *m = ( GClasses::GKNN*) model;
+      }
+      else if ( method == "Basyian" )
+          model = new GClasses::GNaiveBayes();
+      else
+          model = new GClasses::GBaselineLearner();
+
+      model->train( *features , *labels );
+
+      const GClasses::GRelation &xx = features->relation();
+      for ( int i = 0; i < xx.size(); i++ ) features_order.push_back( xx.attrNameStr(i)) ;
+      const GClasses::GRelation &xy = labels->relation();
+      for ( int i = 0; i < xy.size(); i++ ) labels_order.push_back( xy.attrNameStr(i)) ;
+  
+    }
+    return error_flag;
+}
+
+ErrorFlag WafflesInterface::Serialize(std::string output)
+{
+    std::string method = GetParameter("algorithm");
+    std::vector< std::string > fnames;
+    database->GetFeatureLabels(fnames);
+    BuildModelAtRuntime( method, fnames ) ;
+
+    GClasses::GDom gdom;
+    GClasses::GDomNode *gnode = model->serialize(&gdom);
+    gnode->addField(&gdom, "method", gdom.newString(method.c_str()));
+    
+    GClasses::GDomNode *ggnode = gdom.newObj(); 
+    
+    Solver solver;
+    std::string solverstring;
+    GClasses::GDomNode *slist = gdom.newList();
+    GClasses::GDomNode *flist = gdom.newList();
+    GClasses::GDomNode *llist = gdom.newList();
+     
+    for ( auto it: solver_hash_list ) 
+    {
+        database->GetUniqueSolver( it, solver );
+        solver.GetSolverString(solverstring);
+        ggnode->addField(&gdom, std::to_string(it).c_str(), gdom.newString(solverstring.c_str()) ); 
+        slist->addItem(&gdom, gdom.newInt( it ));
+    }
+    for ( auto it : features_order ) 
+      flist->addItem(&gdom, gdom.newString(it.c_str()) );
+    for ( auto it : labels_order ) 
+      llist->addItem(&gdom, gdom.newString(it.c_str()) );
+
+    ggnode->addField(&gdom, "slist", slist );
+    ggnode->addField(&gdom, "flist", flist );
+    ggnode->addField(&gdom, "llist", llist );
+    gnode->addField(&gdom, "solvers", ggnode );
+
+    gdom.setRoot(gnode);
+    gdom.saveJson(output.c_str());
+    return error_flag;
+}
+
+ErrorFlag WafflesInterface::BuildModelFromSerial(std::string serialized)
+{
+    GClasses::GDom gdom;
+    gdom.loadJson(serialized.c_str());
+    const GClasses::GDomNode *gnode = gdom.root();
+    std::string meth = gnode->field("method")->asString();
+    std::string method = GetParameter("algorithm");
+    
+    if ( method == "DescisionTree" )
+      model = new GClasses::GDecisionTree(gnode);
+    else if ( method == "RandomForest" ) {
+      GClasses::GLearnerLoader ll; 
+      model = new GClasses::GRandomForest(gnode, ll);
+    }
+    else if ( method == "KNN")
+        model = new GClasses::GKNN(gnode);
+    else if ( method == "Basyian" )
+        model = new GClasses::GNaiveBayes(gnode);
+    else
+        model = new GClasses::GBaselineLearner(gnode);
+    
+    const GClasses::GDomNode *gg = gnode->field("solvers");
+	  for(GClasses::GDomListIterator li(gg->field("slist")); li.current(); li.advance())
+    {
+        int hash = li.current()->asInt() ; 
+        solver_hash_list.push_back( hash );
+        solver_hash_map[hash] = gg->field(std::to_string(hash).c_str())->asString(); 
+    }
+	  for(GClasses::GDomListIterator li(gg->field("flist")); li.current(); li.advance())
+    {
+        std::string hash = li.current()->asString() ; 
+        features_order.push_back( hash );
+    }
+	  for(GClasses::GDomListIterator li(gg->field("llist")); li.current(); li.advance())
+    {
+        std::string hash = li.current()->asString() ; 
+        labels_order.push_back( hash );
+    }
+
+  return error_flag;
+} 
+  
+
+ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the feature set of the matrix */,
+                                          Solver &solver /**< output, a (hopefully) "good" solver for the problem */)
+{
+
+    std::vector< bool > good;
+
+    bool found_one = false;
+    
+    std::string serial = GetParameter("serialized"); 
+    
+    for ( auto hash : solver_hash_list )
+    {
+      std::cout << "HASH " << hash << std::endl; 
+        Predict( afeatures, hash, good );
+        auto it = good.begin();
+        while ( it != good.end() )
+        {
+            if (*it) it++;
+            else break;
+        }
+        if ( it == good.end() )
+        {
+            found_one = true;
+            if (serial.empty()) {
+              database->GetUniqueSolver( hash, solver );
+            } else {
+              solver.ParseSolverString( solver_hash_map[hash] );  
+            }
+            break;
+        }
+    }
+    if ( !found_one )
+    {
+        std::cout<<"No Good Solvers -- Using the default \n";
+    }
+    return error_flag;
+}
+
+ErrorFlag WafflesInterface::Predict( features_map &afeatures, /**< feature set to test */
+                                     const int &solver_hash,    /**< hash of the solver to test */
+                                     std::vector<bool> &good /**< bool staing if solver is good in each category */
+                                   )
+{
+    GClasses::GVec pattern(features_order.size());
+    //TODO Currently we treat the solver hash as a REAL feature. This means the machine learning
+    //algorithm treats it as a continuous parameter. Ideally it should be a catagorical value, but
+    //that seems to cause bugs. This actually isn't a problem though. Basically, every "pattern" 
+    //that we test will have the solver hash of a solver in the database. So basically, the machine
+    //learning algorithm will ALWAYS find a direct match for that value. I would think a decent
+    //algorithm would sort that out for us. 
+    //
+    int i = 0;
+    afeatures["HASH"] = solver_hash;
+    for ( auto it : afeatures )
+    {
+        auto found = std::find(features_order.begin(), features_order.end(), it.first );
+        if ( found != features_order.end() )
+        {
+            pattern[i] = it.second;  
+        }
+    }
+        
+    GClasses::GVec prediction(labels_order.size());
+
+    /* Get the prediction */
+    model->predict( pattern ,prediction );
+
+    good.clear();
+    for ( int i = 0; i < labels_order.size(); i++ )
+    {
+        good.push_back( (bool) prediction[i] );
+    }
+
+    return error_flag;
+}
+
+
+ErrorFlag WafflesInterface::ImportData(
+    std::vector < std::string > &feature_list,
+    std::shared_ptr<GClasses::GMatrix> &matrix,
+    int &num_labels )
+{
+
+    std::vector<int> row_ids;
+    std::vector<std::string> feature_labels, classification_labels;
+    std::vector<std::vector< double >> feature_data;
+    std::vector<std::vector< bool >> classification_data;
+    std::vector<int> solvers_labels, solvers_data;
+    
+    GetMachineLearningData(row_ids,
+                           solvers_labels,
+                           feature_labels ,
+                           classification_labels,
+                           solvers_data,
+                           feature_data,
+                           classification_data );
+      
+
+    GClasses::GArffRelation *pRelation = new GClasses::GArffRelation();
+    pRelation->setName("SolverSelecter");
+
+
+    num_labels = classification_labels.size();
+
+    int n = 0;
+    std::vector< int > add_features, add_classis ; // features that are actually added.
+
+
+
+    //pRelation->addAttribute("HASH", svalues.size(), &ssvalues);
+    pRelation->addAttribute("HASH", 0, NULL);
+
+    for ( auto it : feature_labels )
+    {
+        if ( std::find(feature_list.begin(),feature_list.end(), it.c_str() ) != feature_list.end() )
+        {
+            pRelation->addAttribute( it.c_str(), 0, NULL );
+            add_features.push_back(n);
+        }
+        n++;
+
+    }
+
+    n = 0;
+    std::vector< const char *> pValues = {"0","1"};
+    for ( auto it : classification_labels )
+    {
+        pRelation->addAttribute( it.c_str(), 2, &pValues);
+        add_classis.push_back(n);
+        n++;
+    }
+
+    /* I believe GMatrix takes control of pRelation, and deletes it */
+    matrix = std::make_shared<GClasses::GMatrix>(pRelation);
+
+    matrix->newRows( row_ids.size() );
+    int row_count = 0;
+    int size = matrix->cols();
+    for (auto it : row_ids   )
+    {
+        (*matrix)[row_count][0] = solvers_data[row_count] ;
+        n=1;
+        for ( auto it : add_features )
+            (*matrix)[row_count][n++] = feature_data[row_count][it];
+        for ( auto it : add_classis )
+        {
+            (*matrix)[row_count][n] = (double) pRelation->findEnumeratedValue(n,std::to_string(classification_data[row_count][it]).c_str());
+            n++;
+        }
+        row_count++;
+    }
+
+
+    return error_flag ;
+}
+
+ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< std::string > &features_list )
+{
+
+
+    std::cout << " ----------   Performing Cross Validation -------------- \n";
+    std::cout << " --- Features -- " ;
+    for ( auto it : features_list ) std::cout << it << " -- ";
+    std::cout << "\n\n";
+
+    // Parse options
+    unsigned int seed = (unsigned int)time(NULL);
+    int reps = 5;
+    int folds = 5;
+    bool succinct = true;
+
+    if(reps < 1)
+        throw GClasses::Ex("There must be at least 1 rep.");
+    if(folds < 2)
+        throw GClasses::Ex("There must be at least 2 folds.");
+    algorithm = "KNN";
+    BuildModelAtRuntime( algorithm , features_list );
+    model->rand().setSeed(seed);
+
+
+    // Test
+    std::cout.precision(8);
+    double sae;
+    double sse = model->repValidate(*features, *labels, reps, folds, &sae, succinct ? NULL : CrossValidateCallback, model);
+    if(succinct)
+    {
+        std::cout << "Misclassification : " << GClasses::to_str(sse / features->rows()) << std::endl ;
+        std::cout << "Predictive Acc : " << GClasses::to_str(1.0 - (sse / features->rows())) << std::endl;;
+    }
+    else
+    {
+        if(labels->cols() == 1 && labels->relation().valueCount(0) > 0)
+        {
+            std::cout << "Misclassification rate: " << GClasses::to_str(sse / features->rows()) << "\n";
+            std::cout << "Predictive accuracy: " << GClasses::to_str(1.0 - (sse / features->rows())) << "\n";
+        }
+        else
+        {
+            std::cout << "Sum absolute error: " << GClasses::to_str(sae) << "\n";
+            std::cout << "Mean absolute error: " << GClasses::to_str(sae / features->rows()) << "\n";
+            std::cout << "Sum squared error: " << GClasses::to_str(sse) << "\n";
+            std::cout << "Mean squared error: " << GClasses::to_str(sse / features->rows()) << "\n";
+            std::cout << "Root mean squared error: " << GClasses::to_str(sqrt(sse / features->rows())) << "\n";
+        }
+    }
+
+    std::cout << " ------------ Finished Cross Validation with " << algorithm << " ------------------- \n\n" ;
+
+    return error_flag;
+}
+
+void WafflesInterface::CrossValidateCallback(void* pSupLearner, size_t nRep, size_t nFold, double foldSSE, size_t rows)
+{
+    std::cout << "Rep: " << nRep << ", Fold: " << nFold <<", Mean squared error: " << GClasses::to_str(foldSSE / rows) << "\n";
+}
+
+}
+
+#endif 
+

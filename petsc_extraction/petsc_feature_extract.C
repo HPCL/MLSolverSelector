@@ -61,7 +61,6 @@ int main(int argc,char **argv)
   }
   PetscInt  iter ; 
   KSPConvergedReason converged_reason; 
-  KSPGetConvergedReason(ksp,&converged_reason);
   KSPGetTotalIterations(ksp,&iter);  
   auto stop3 = std::chrono::high_resolution_clock::now();
 

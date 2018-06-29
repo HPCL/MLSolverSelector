@@ -1,0 +1,328 @@
+# List of options for each preconditioner 
+
+@PRECON asm 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_asm_dm_subdomains FALSE   # : <FALSE> Use DMCreateDomainDecomposition() to define subdomains (PCASMSetDMSubdomains) 
+@PARAMETER -pc_asm_blocks -1   #  <-1>: Number of subdomains (PCASMSetTotalSubdomains) 
+@PARAMETER -pc_asm_overlap 1   #  <1>: Number of grid points overlap (PCASMSetOverlap) 
+@PARAMETER -pc_asm_type RESTRICT   #  <RESTRICT> (choose one of) NONE RESTRICT INTERPOLATE BASIC (PCASMSetType) 
+@PARAMETER -pc_asm_local_type ADDITIVE   #  <ADDITIVE> (choose one of) ADDITIVE MULTIPLICATIVE SYMMETRIC_MULTIPLICATIVE SPECIAL SCHUR (PCASMSetLocalType) 
+
+@PRECON bddc 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_bddc_check_level 0   #  <0>: Verbose output for PCBDDC (intended for debug) (none) 
+@PARAMETER -pc_bddc_use_local_mat_graph TRUE   # : <TRUE> Use or not adjacency graph of local mat for interface analysis (none) 
+@PARAMETER -pc_bddc_use_vertices TRUE   # : <TRUE> Use or not corner dofs in coarse space (none) 
+@PARAMETER -pc_bddc_use_edges TRUE   # : <TRUE> Use or not edge constraints in coarse space (none) 
+@PARAMETER -pc_bddc_use_faces FALSE   # : <FALSE> Use or not face constraints in coarse space (none) 
+@PARAMETER -pc_bddc_use_true_nnsp FALSE   # : <FALSE> Use near null space attached to the matrix without modifications (none) 
+@PARAMETER -pc_bddc_use_qr_single FALSE   # : <FALSE> Use QR factorization for single constraints on cc (QR is used when multiple constraints are present) (none) 
+@PARAMETER -pc_bddc_use_change_of_basis FALSE   # : <FALSE> Use or not internal change of basis on local edge nodes (none) 
+@PARAMETER -pc_bddc_use_change_on_faces FALSE   # : <FALSE> Use or not internal change of basis on local face nodes (none) 
+@PARAMETER -pc_bddc_switch_static FALSE   # : <FALSE> Switch on static condensation ops around the interface preconditioner (none) 
+@PARAMETER -pc_bddc_coarse_redistribute 0   #  <0>: Number of procs where to redistribute coarse problem (none) 
+@PARAMETER -pc_bddc_coarsening_ratio 8   #  <8>: Set coarsening ratio used in multilevel coarsening (none) 
+@PARAMETER -pc_bddc_levels 0   #  <0>: Set maximum number of levels for multilevel (none) 
+@PARAMETER -pc_bddc_use_coarse_estimates FALSE   # : <FALSE> Use estimated eigenvalues for coarse problem (none) 
+@PARAMETER -pc_bddc_use_deluxe_scaling FALSE   # : <FALSE> Use deluxe scaling for BDDC (none) 
+@PARAMETER -pc_bddc_schur_rebuild FALSE   # : <FALSE> Whether or not the interface graph for Schur principal minors has to be rebuilt (i.e. define the interface without any adjacency) (none) 
+@PARAMETER -pc_bddc_schur_layers -1   #  <-1>: Number of dofs' layers for the computation of principal minors (i.e. -1 uses all dofs) (none) 
+@PARAMETER -pc_bddc_schur_use_useradj FALSE   # : <FALSE> Whether or not the CSR graph specified by the user should be used for computing successive layers (default is to use adj of local mat) (none) 
+@PARAMETER -pc_bddc_deluxe_faster FALSE   # : <FALSE> Faster application of deluxe scaling (requires extra work during setup) (none) 
+@PARAMETER -pc_bddc_adaptive_threshold 0.   #  <0.>: Threshold to be used for adaptive selection of constraints (none) 
+@PARAMETER -pc_bddc_adaptive_nmin 0   #  <0>: Minimum number of constraints per connected components (none) 
+@PARAMETER -pc_bddc_adaptive_nmax 0   #  <0>: Maximum number of constraints per connected components (none) 
+@PARAMETER -pc_bddc_symmetric TRUE   # : <TRUE> Symmetric computation of primal basis functions (none) 
+@PARAMETER -pc_bddc_coarse_adj 0   #  <0>: Number of processors where to map the coarse adjacency list (none) 
+
+@PRECON bjacobi 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_bjacobi_blocks -1   #  <-1>: Total number of blocks (PCBJacobiSetTotalBlocks) 
+
+@PRECON cholesky 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_factor_in_place FALSE   # : <FALSE> Form factored matrix in the same memory as the matrix (PCFactorSetUseInPlace) 
+@PARAMETER -pc_factor_fill 5.   #  <5.>: Expected non-zeros in factored matrix (PCFactorSetFill) 
+@PARAMETER -pc_factor_shift_type NONE   #  <NONE> (choose one of) NONE NONZERO POSITIVE_DEFINITE INBLOCKS (PCFactorSetShiftType) 
+@PARAMETER -pc_factor_shift_amount 0.   #  <0.>: Shift added to diagonal (PCFactorSetShiftAmount) 
+@PARAMETER -pc_factor_zeropivot 2.22045e-14   #  <2.22045e-14>: Pivot is considered zero if less than (PCFactorSetZeroPivot) 
+@PARAMETER -pc_factor_column_pivot 0.   #  <0.>: Column pivot tolerance (used only for some factorization) (PCFactorSetColumnPivot) 
+@PARAMETER -pc_factor_pivot_in_blocks TRUE   # : <TRUE> Pivot inside matrix dense blocks for BAIJ and SBAIJ (PCFactorSetPivotInBlocks) 
+@PARAMETER -pc_factor_reuse_fill FALSE   # : <FALSE> Use fill from previous factorization (PCFactorSetReuseFill) 
+@PARAMETER -pc_factor_reuse_ordering FALSE   # : <FALSE> Reuse ordering from previous factorization (PCFactorSetReuseOrdering) 
+@PARAMETER -pc_factor_mat_ordering_type natural   #  <natural>: Reordering to reduce nonzeros in factored matrix (one of) (PCFactorSetMatOrderingType) 
+@PARAMETER -pc_factor_mat_solver_package (null)   #  <(null)>: Specific direct solver to use (MatGetFactor) 
+
+@PRECON composite 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_composite_type ADDITIVE   #  <ADDITIVE> (choose one of) ADDITIVE MULTIPLICATIVE SYMMETRIC_MULTIPLICATIVE SPECIAL SCHUR (PCCompositeSetType) 
+@PARAMETER -pc_composite_pcs string1,string2,...   #  <string1,string2,...>: List of composite solvers (PCCompositeAddPC) 
+
+@PRECON cp 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON eisenstat 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_eisenstat_omega 1.   #  <1.>: Relaxation factor 0 < omega < 2 (PCEisenstatSetOmega) 
+@PARAMETER -pc_eisenstat_no_diagonal_scaling FALSE   # : <FALSE> Do not use standard diagonal scaling (PCEisenstatSetNoDiagonalScaling) 
+
+@PRECON exotic 
+@PARAMETER -pc_use_amat TRUE   # : <TRUE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_exotic_type face   #  <face> (choose one of) face wirebasket (PCExoticSetType) 
+@PARAMETER -pc_exotic_direct_solver FALSE   # : <FALSE> use direct solver to construct interpolation (None) 
+
+@PRECON fieldsplit 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_fieldsplit_dm_splits TRUE   # : <TRUE> Whether to use DMCreateFieldDecomposition() for splits (PCFieldSplitSetDMSplits) 
+@PARAMETER -pc_fieldsplit_block_size -1   #  <-1>: Blocksize that defines number of fields (PCFieldSplitSetBlockSize) 
+@PARAMETER -pc_fieldsplit_diag_use_amat FALSE   # : <FALSE> Use Amat (not Pmat) to extract diagonal fieldsplit blocks (PCFieldSplitSetDiagUseAmat) 
+@PARAMETER -pc_fieldsplit_off_diag_use_amat FALSE   # : <FALSE> Use Amat (not Pmat) to extract off-diagonal fieldsplit blocks (PCFieldSplitSetOffDiagUseAmat) 
+@PARAMETER -pc_fieldsplit_type MULTIPLICATIVE   #  <MULTIPLICATIVE> (choose one of) ADDITIVE MULTIPLICATIVE SYMMETRIC_MULTIPLICATIVE SPECIAL SCHUR (PCFieldSplitSetType) 
+
+@PRECON galerkin 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON gamg 
+@PARAMETER -pc_use_amat TRUE   # : <TRUE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_gamg_type agg   #  <agg>: Type of AMG method (one of) geo agg classical (PCGAMGSetType) 
+@PARAMETER -pc_gamg_repartition FALSE   # : <FALSE> Repartion coarse grids (PCGAMGRepartitioning) 
+@PARAMETER -pc_gamg_reuse_interpolation FALSE   # : <FALSE> Reuse prolongation operator (PCGAMGReuseInterpolation) 
+@PARAMETER -pc_gamg_use_agg_gasm FALSE   # : <FALSE> Use aggregation agragates for GASM smoother (PCGAMGUseASMAggs) 
+@PARAMETER -pc_gamg_process_eq_limit 50   #  <50>: Limit (goal) on number of equations per process on coarse grids (PCGAMGSetProcEqLim) 
+@PARAMETER -pc_gamg_coarse_eq_limit 50   #  <50>: Limit on number of equations for the coarse grid (PCGAMGSetCoarseEqLim) 
+@PARAMETER -pc_gamg_threshold 0.   #  <0.>: Relative threshold to use for dropping edges in aggregation graph (PCGAMGSetThreshold) 
+@PARAMETER -pc_mg_levels 30   #  <30>: Set number of MG levels (PCGAMGSetNlevels) 
+@PARAMETER -pc_gamg_agg_nsmooths 1   #  <1>: smoothing steps for smoothed aggregation, usually 1 (PCGAMGSetNSmooths) 
+@PARAMETER -pc_gamg_sym_graph FALSE   # : <FALSE> Set for asymmetric matrices (PCGAMGSetSymGraph) 
+@PARAMETER -pc_gamg_square_graph 1   #  <1>: Number of levels to square graph for faster coarsening and lower coarse grid complexity (PCGAMGSetSquareGraph) 
+@PARAMETER -pc_gamg_random_type rander48   #  <rander48>: PetscRandom type (one of) rand rand48 rander48 (PetscRandomSetType) 
+@PARAMETER -pc_gamg_random_seed 0   #  <0>: Seed to use to generate random numbers (PetscRandomSetSeed) 
+@PARAMETER -pc_gamg_random_no_imaginary_part FALSE   # : <FALSE> The imaginary part of the random number will be zero (PetscRandomSetInterval) 
+@PARAMETER -pc_gamg_random_view none   #  ascii[:[filename][:[format][:append]]]: Prints object to stdout or ASCII file (PetscOptionsGetViewer) 
+@PARAMETER -pc_gamg_random_view none   #  binary[:[filename][:[format][:append]]]: Saves object to a binary file (PetscOptionsGetViewer) 
+@PARAMETER -pc_gamg_random_view none   #  draw[:drawtype]: Draws object (PetscOptionsGetViewer) 
+@PARAMETER -pc_gamg_random_view none   #  socket[:port]: Pushes object to a Unix socket (PetscOptionsGetViewer) 
+@PARAMETER -pc_gamg_random_view none   #  saws[:communicatorname]: Publishes object to SAWs (PetscOptionsGetViewer) 
+
+@PRECON gasm 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_gasm_use_dm_subdomains FALSE   # : <FALSE> If subdomains aren't set, use DMCreateDomainDecomposition() to define subdomains. (PCGASMSetUseDMSubdomains) 
+@PARAMETER -pc_gasm_total_subdomains -1   #  <-1>: Total number of subdomains across communicator (PCGASMSetTotalSubdomains) 
+@PARAMETER -pc_gasm_overlap 0   #  <0>: Number of overlapping degrees of freedom (PCGASMSetOverlap) 
+@PARAMETER -pc_gasm_type RESTRICT   #  <RESTRICT> (choose one of) NONE RESTRICT INTERPOLATE BASIC (PCGASMSetType) 
+@PARAMETER -pc_gasm_use_hierachical_partitioning FALSE   # : <FALSE> use hierarchical partitioning (None) 
+
+@PRECON icc 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_factor_in_place FALSE   # : <FALSE> Form factored matrix in the same memory as the matrix (PCFactorSetUseInPlace) 
+@PARAMETER -pc_factor_fill 1.   #  <1.>: Expected non-zeros in factored matrix (PCFactorSetFill) 
+@PARAMETER -pc_factor_shift_type POSITIVE_DEFINITE   #  <POSITIVE_DEFINITE> (choose one of) NONE NONZERO POSITIVE_DEFINITE INBLOCKS (PCFactorSetShiftType) 
+@PARAMETER -pc_factor_shift_amount 2.22045e-14   #  <2.22045e-14>: Shift added to diagonal (PCFactorSetShiftAmount) 
+@PARAMETER -pc_factor_zeropivot 2.22045e-14   #  <2.22045e-14>: Pivot is considered zero if less than (PCFactorSetZeroPivot) 
+@PARAMETER -pc_factor_column_pivot -2.   #  <-2.>: Column pivot tolerance (used only for some factorization) (PCFactorSetColumnPivot) 
+@PARAMETER -pc_factor_pivot_in_blocks FALSE   # : <FALSE> Pivot inside matrix dense blocks for BAIJ and SBAIJ (PCFactorSetPivotInBlocks) 
+@PARAMETER -pc_factor_reuse_fill FALSE   # : <FALSE> Use fill from previous factorization (PCFactorSetReuseFill) 
+@PARAMETER -pc_factor_reuse_ordering FALSE   # : <FALSE> Reuse ordering from previous factorization (PCFactorSetReuseOrdering) 
+@PARAMETER -pc_factor_mat_ordering_type natural   #  <natural>: Reordering to reduce nonzeros in factored matrix (one of) (PCFactorSetMatOrderingType) 
+@PARAMETER -pc_factor_mat_solver_package (null)   #  <(null)>: Specific direct solver to use (MatGetFactor) 
+@PARAMETER -pc_factor_levels 0.   #  <0.>: levels of fill (PCFactorSetLevels) 
+
+@PRECON ilu 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_factor_in_place FALSE   # : <FALSE> Form factored matrix in the same memory as the matrix (PCFactorSetUseInPlace) 
+@PARAMETER -pc_factor_fill 1.   #  <1.>: Expected non-zeros in factored matrix (PCFactorSetFill) 
+@PARAMETER -pc_factor_shift_type NONE   #  <NONE> (choose one of) NONE NONZERO POSITIVE_DEFINITE INBLOCKS (PCFactorSetShiftType) 
+@PARAMETER -pc_factor_shift_amount 2.22045e-14   #  <2.22045e-14>: Shift added to diagonal (PCFactorSetShiftAmount) 
+@PARAMETER -pc_factor_zeropivot 2.22045e-14   #  <2.22045e-14>: Pivot is considered zero if less than (PCFactorSetZeroPivot) 
+@PARAMETER -pc_factor_column_pivot -2.   #  <-2.>: Column pivot tolerance (used only for some factorization) (PCFactorSetColumnPivot) 
+@PARAMETER -pc_factor_pivot_in_blocks TRUE   # : <TRUE> Pivot inside matrix dense blocks for BAIJ and SBAIJ (PCFactorSetPivotInBlocks) 
+@PARAMETER -pc_factor_reuse_fill FALSE   # : <FALSE> Use fill from previous factorization (PCFactorSetReuseFill) 
+@PARAMETER -pc_factor_reuse_ordering FALSE   # : <FALSE> Reuse ordering from previous factorization (PCFactorSetReuseOrdering) 
+@PARAMETER -pc_factor_mat_ordering_type natural   #  <natural>: Reordering to reduce nonzeros in factored matrix (one of) (PCFactorSetMatOrderingType) 
+@PARAMETER -pc_factor_mat_solver_package (null)   #  <(null)>: Specific direct solver to use (MatGetFactor) 
+@PARAMETER -pc_factor_levels 0   #  <0>: levels of fill (PCFactorSetLevels) 
+@PARAMETER -pc_factor_diagonal_fill FALSE   # : <FALSE> Allow fill into empty diagonal entry (PCFactorSetAllowDiagonalFill) 
+@PARAMETER -pc_factor_nonzeros_along_diagonal none   # : Reorder to remove zeros from diagonal (PCFactorReorderForNonzeroDiagonal) 
+
+@PRECON jacobi 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_jacobi_type DIAGONAL   #  <DIAGONAL> (choose one of) DIAGONAL ROWMAX ROWSUM (PCJacobiSetType) 
+@PARAMETER -pc_jacobi_abs FALSE   # : <FALSE> Use absolute values of diagaonal entries (PCJacobiSetUseAbs) 
+
+@PRECON kaczmarz 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_kaczmarz_lambda 1.   #  <1.>: relaxation factor (0 < lambda) () 
+@PARAMETER -pc_kaczmarz_symmetric FALSE   # : <FALSE> apply row projections symmetrically () 
+
+@PRECON ksp 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON lsc 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_lsc_scale_diag FALSE   # : <FALSE> Use diagonal of velocity block (A) for scaling (None) 
+
+@PRECON lu 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_factor_in_place FALSE   # : <FALSE> Form factored matrix in the same memory as the matrix (PCFactorSetUseInPlace) 
+@PARAMETER -pc_factor_fill 5.   #  <5.>: Expected non-zeros in factored matrix (PCFactorSetFill) 
+@PARAMETER -pc_factor_shift_type NONE   #  <NONE> (choose one of) NONE NONZERO POSITIVE_DEFINITE INBLOCKS (PCFactorSetShiftType) 
+@PARAMETER -pc_factor_shift_amount 0.   #  <0.>: Shift added to diagonal (PCFactorSetShiftAmount) 
+@PARAMETER -pc_factor_zeropivot 2.22045e-14   #  <2.22045e-14>: Pivot is considered zero if less than (PCFactorSetZeroPivot) 
+@PARAMETER -pc_factor_column_pivot 1e-06   #  <1e-06>: Column pivot tolerance (used only for some factorization) (PCFactorSetColumnPivot) 
+@PARAMETER -pc_factor_pivot_in_blocks TRUE   # : <TRUE> Pivot inside matrix dense blocks for BAIJ and SBAIJ (PCFactorSetPivotInBlocks) 
+@PARAMETER -pc_factor_reuse_fill FALSE   # : <FALSE> Use fill from previous factorization (PCFactorSetReuseFill) 
+@PARAMETER -pc_factor_reuse_ordering FALSE   # : <FALSE> Reuse ordering from previous factorization (PCFactorSetReuseOrdering) 
+@PARAMETER -pc_factor_mat_ordering_type nd   #  <nd>: Reordering to reduce nonzeros in factored matrix (one of) (PCFactorSetMatOrderingType) 
+@PARAMETER -pc_factor_mat_solver_package (null)   #  <(null)>: Specific direct solver to use (MatGetFactor) 
+@PARAMETER -pc_factor_nonzeros_along_diagonal none   # : Reorder to remove zeros from diagonal (PCFactorReorderForNonzeroDiagonal) 
+
+@PRECON mat 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON mg 
+@PARAMETER -pc_use_amat TRUE   # : <TRUE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_mg_levels 1   #  <1>: Number of Levels (PCMGSetLevels) 
+@PARAMETER -pc_mg_cycle_type v   #  <v> (choose one of) invalid v w (PCMGSetCycleType) 
+@PARAMETER -pc_mg_galerkin FALSE   # : <FALSE> Use Galerkin process to compute coarser operators (PCMGSetGalerkin) 
+@PARAMETER -pc_mg_smoothup 2   #  <2>: Number of post-smoothing steps (PCMGSetNumberSmoothUp) 
+@PARAMETER -pc_mg_smoothdown 2   #  <2>: Number of pre-smoothing steps (PCMGSetNumberSmoothDown) 
+@PARAMETER -pc_mg_type MULTIPLICATIVE   #  <MULTIPLICATIVE> (choose one of) MULTIPLICATIVE ADDITIVE FULL KASKADE (PCMGSetType) 
+@PARAMETER -pc_mg_multiplicative_cycles 1   #  <1>: Number of cycles for each preconditioner step (PCMGMultiplicativeSetCycles) 
+@PARAMETER -pc_mg_log FALSE   # : <FALSE> Log times for each multigrid level (None) 
+
+@PRECON nn 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON none 
+
+@PRECON pbjacobi 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON pfmg 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_pfmg_print_statistics FALSE   # : <FALSE> Print statistics (HYPRE_StructPFMGSetPrintLevel) 
+@PARAMETER -pc_pfmg_its 1   #  <1>: Number of iterations of PFMG to use as preconditioner (HYPRE_StructPFMGSetMaxIter) 
+@PARAMETER -pc_pfmg_num_pre_relax 1   #  <1>: Number of smoothing steps before coarse grid (HYPRE_StructPFMGSetNumPreRelax) 
+@PARAMETER -pc_pfmg_num_post_relax 1   #  <1>: Number of smoothing steps after coarse grid (HYPRE_StructPFMGSetNumPostRelax) 
+@PARAMETER -pc_pfmg_max_levels 0   #  <0>: Max Levels for MG hierarchy (HYPRE_StructPFMGSetMaxLevels) 
+@PARAMETER -pc_pfmg_tol 1e-08   #  <1e-08>: Tolerance of PFMG (HYPRE_StructPFMGSetTol) 
+@PARAMETER -pc_pfmg_relax_type Weighted-Jacobi   #  <Weighted-Jacobi> (choose one of) Jacobi Weighted-Jacobi symmetric-Red/Black-Gauss-Seidel Red/Black-Gauss-Seidel (HYPRE_StructPFMGSetRelaxType) 
+@PARAMETER -pc_pfmg_rap_type Galerkin   #  <Galerkin> (choose one of) Galerkin non-Galerkin (HYPRE_StructPFMGSetRAPType) 
+
+@PRECON redistribute 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON redundant 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_redundant_number 1   #  <1>: Number of redundant pc (PCRedundantSetNumber) 
+
+@PRECON shell 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON sor 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_sor_omega 1.   #  <1.>: relaxation factor (0 < omega < 2) (PCSORSetOmega) 
+@PARAMETER -pc_sor_diagonal_shift 0.   #  <0.>: Add to the diagonal entries () 
+@PARAMETER -pc_sor_its 1   #  <1>: number of inner SOR iterations (PCSORSetIterations) 
+@PARAMETER -pc_sor_lits 1   #  <1>: number of local inner SOR iterations (PCSORSetIterations) 
+@PARAMETER -pc_sor_symmetric none   # : SSOR, not SOR (PCSORSetSymmetric) 
+@PARAMETER -pc_sor_backward none   # : use backward sweep instead of forward (PCSORSetSymmetric) 
+@PARAMETER -pc_sor_forward none   # : use forward sweep (PCSORSetSymmetric) 
+@PARAMETER -pc_sor_local_symmetric none   # : use SSOR separately on each processor (PCSORSetSymmetric) 
+@PARAMETER -pc_sor_local_backward none   # : use backward sweep locally (PCSORSetSymmetric) 
+@PARAMETER -pc_sor_local_forward none   # : use forward sweep locally (PCSORSetSymmetric) 
+
+@PRECON svd 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_svd_zero_sing 1e-12   #  <1e-12>: Singular values smaller than this treated as zero (None) 
+@PARAMETER -pc_svd_ess_rank 0   #  <0>: Essential rank of operator (0 to use entire operator) (None) 
+@PARAMETER -pc_svd_monitor FALSE   # : <FALSE> Monitor the conditioning, and extremal singular values (None) 
+
+@PRECON syspfmg 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_syspfmg_print_statistics FALSE   # : <FALSE> Print statistics (HYPRE_SStructSysPFMGSetPrintLevel) 
+@PARAMETER -pc_syspfmg_its 1   #  <1>: Number of iterations of SysPFMG to use as preconditioner (HYPRE_SStructSysPFMGSetMaxIter) 
+@PARAMETER -pc_syspfmg_num_pre_relax 1   #  <1>: Number of smoothing steps before coarse grid (HYPRE_SStructSysPFMGSetNumPreRelax) 
+@PARAMETER -pc_syspfmg_num_post_relax 1   #  <1>: Number of smoothing steps after coarse grid (HYPRE_SStructSysPFMGSetNumPostRelax) 
+@PARAMETER -pc_syspfmg_tol 1e-08   #  <1e-08>: Tolerance of SysPFMG (HYPRE_SStructSysPFMGSetTol) 
+@PARAMETER -pc_syspfmg_relax_type Red/Black-Gauss-Seidel   #  <Red/Black-Gauss-Seidel> (choose one of) Weighted-Jacobi Red/Black-Gauss-Seidel Galerkin non-Galerkin (HYPRE_SStructSysPFMGSetRelaxType) 
+
+@PRECON telescope 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_telescope_reduction_factor 1   #  <1>: Factor to reduce comm size by (PCTelescopeSetReductionFactor) 
+@PARAMETER -pc_telescope_ignore_dm FALSE   # : <FALSE> Ignore any DM attached to the PC (PCTelescopeSetIgnoreDM) 
+@PARAMETER -pc_telescope_ignore_kspcomputeoperators FALSE   # : <FALSE> Ignore method used to compute A (PCTelescopeSetIgnoreKSPComputeOperators) 
+
+@PRECON tfs 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+
+@PRECON hypre ams 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_hypre_ams_print_level 0   #  <0>: Debugging output level for AMS (None) 
+@PARAMETER -pc_hypre_ams_max_iter 1   #  <1>: Maximum number of AMS multigrid iterations within PCApply (None) 
+@PARAMETER -pc_hypre_ams_cycle_type 13   #  <13>: Cycle type for AMS multigrid (None) 
+@PARAMETER -pc_hypre_ams_tol 0.   #  <0.>: Error tolerance for AMS multigrid (None) 
+@PARAMETER -pc_hypre_ams_relax_type 2   #  <2>: Relaxation type for AMS smoother (None) 
+@PARAMETER -pc_hypre_ams_relax_times 1   #  <1>: Number of relaxation steps for AMS smoother (None) 
+@PARAMETER -pc_hypre_ams_relax_weight 1.   #  <1.>: Relaxation weight for AMS smoother (None) 
+@PARAMETER -pc_hypre_ams_omega 1.   #  <1.>: SSOR coefficient for AMS smoother (None) 
+@PARAMETER -pc_hypre_ams_amg_alpha_theta 0.25   #  <0.25>: Threshold for strong coupling of vector Poisson AMG solver (None) 
+@PARAMETER -pc_hypre_ams_amg_alpha_options 10   #  <10>: AMG options for vector Poisson (None) 
+@PARAMETER -pc_hypre_ams_amg_beta_theta 0.25   #  <0.25>: Threshold for strong coupling of scalar Poisson AMG solver (None) 
+@PARAMETER -pc_hypre_ams_amg_beta_options 10   #  <10>: AMG options for scalar Poisson solver (None) 
+
+@PRECON hypre boomeramg 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_hypre_boomeramg_cycle_type V   #  <V> (choose one of) V W (None) 
+@PARAMETER -pc_hypre_boomeramg_max_levels 25   #  <25>: Number of levels (of grids) allowed (None) 
+@PARAMETER -pc_hypre_boomeramg_max_iter 1   #  <1>: Maximum iterations used PER hypre call (None) 
+@PARAMETER -pc_hypre_boomeramg_tol 0.   #  <0.>: Convergence tolerance PER hypre call (0.0 = use a fixed number of iterations) (None) 
+@PARAMETER -pc_hypre_boomeramg_truncfactor 0.   #  <0.>: Truncation factor for interpolation (0=no truncation) (None) 
+@PARAMETER -pc_hypre_boomeramg_P_max 0   #  <0>: Max elements per row for interpolation operator (0=unlimited) (None) 
+@PARAMETER -pc_hypre_boomeramg_agg_nl 0   #  <0>: Number of levels of aggressive coarsening (None) 
+@PARAMETER -pc_hypre_boomeramg_agg_num_paths 1   #  <1>: Number of paths for aggressive coarsening (None) 
+@PARAMETER -pc_hypre_boomeramg_strong_threshold 0.25   #  <0.25>: Threshold for being strongly connected (None) 
+@PARAMETER -pc_hypre_boomeramg_max_row_sum 0.9   #  <0.9>: Maximum row sum (None) 
+@PARAMETER -pc_hypre_boomeramg_grid_sweeps_all 1   #  <1>: Number of sweeps for the up and down grid levels (None) 
+@PARAMETER -pc_hypre_boomeramg_nodal_coarsen 0   #  <0>: Use a nodal based coarsening 1-6 (HYPRE_BoomerAMGSetNodal) 
+@PARAMETER -pc_hypre_boomeramg_vec_interp_variant 0   #  <0>: Variant of algorithm 1-3 (HYPRE_BoomerAMGSetInterpVecVariant) 
+@PARAMETER -pc_hypre_boomeramg_grid_sweeps_down 1   #  <1>: Number of sweeps for the down cycles (None) 
+@PARAMETER -pc_hypre_boomeramg_grid_sweeps_up 1   #  <1>: Number of sweeps for the up cycles (None) 
+@PARAMETER -pc_hypre_boomeramg_grid_sweeps_coarse 1   #  <1>: Number of sweeps for the coarse level (None) 
+@PARAMETER -pc_hypre_boomeramg_smooth_type Schwarz-smoothers   #  <Schwarz-smoothers> (choose one of) Schwarz-smoothers Pilut ParaSails Euclid (None) 
+@PARAMETER -pc_hypre_boomeramg_smooth_num_levels 25   #  <25>: Number of levels on which more complex smoothers are used (None) 
+@PARAMETER -pc_hypre_boomeramg_eu_level 0   #  <0>: Number of levels for ILU(k) in Euclid smoother (None) 
+@PARAMETER -pc_hypre_boomeramg_eu_droptolerance 0.   #  <0.>: Drop tolerance for ILU(k) in Euclid smoother (None) 
+@PARAMETER -pc_hypre_boomeramg_eu_bj FALSE   # : <FALSE> Use Block Jacobi for ILU in Euclid smoother? (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_type_all symmetric-SOR/Jacobi   #  <symmetric-SOR/Jacobi> (choose one of) Jacobi sequential-Gauss-Seidel seqboundary-Gauss-Seidel SOR/Jacobi backward-SOR/Jacobi  symmetric-SOR/Jacobi  l1scaled-SOR/Jacobi Gaussian-elimination      CG Chebyshev FCF-Jacobi l1scaled-Jacobi (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_type_down symmetric-SOR/Jacobi   #  <symmetric-SOR/Jacobi> (choose one of) Jacobi sequential-Gauss-Seidel seqboundary-Gauss-Seidel SOR/Jacobi backward-SOR/Jacobi  symmetric-SOR/Jacobi  l1scaled-SOR/Jacobi Gaussian-elimination      CG Chebyshev FCF-Jacobi l1scaled-Jacobi (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_type_up symmetric-SOR/Jacobi   #  <symmetric-SOR/Jacobi> (choose one of) Jacobi sequential-Gauss-Seidel seqboundary-Gauss-Seidel SOR/Jacobi backward-SOR/Jacobi  symmetric-SOR/Jacobi  l1scaled-SOR/Jacobi Gaussian-elimination      CG Chebyshev FCF-Jacobi l1scaled-Jacobi (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_type_coarse Gaussian-elimination   #  <Gaussian-elimination> (choose one of) Jacobi sequential-Gauss-Seidel seqboundary-Gauss-Seidel SOR/Jacobi backward-SOR/Jacobi  symmetric-SOR/Jacobi  l1scaled-SOR/Jacobi Gaussian-elimination      CG Chebyshev FCF-Jacobi l1scaled-Jacobi (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_weight_all 1.   #  <1.>: Relaxation weight for all levels (0 = hypre estimates, -k = determined with k CG steps) (None) 
+@PARAMETER -pc_hypre_boomeramg_relax_weight_level 1.   #  <1.>: Set the relaxation weight for a particular level (weight,level) (None) 
+@PARAMETER -pc_hypre_boomeramg_outer_relax_weight_all 1.   #  <1.>: Outer relaxation weight for all levels (-k = determined with k CG steps) (None) 
+@PARAMETER -pc_hypre_boomeramg_outer_relax_weight_level 1.   #  <1.>: Set the outer relaxation weight for a particular level (weight,level) (None) 
+@PARAMETER -pc_hypre_boomeramg_no_CF FALSE   # : <FALSE> Do not use CF-relaxation (None) 
+@PARAMETER -pc_hypre_boomeramg_measure_type local   #  <local> (choose one of) local global (None) 
+@PARAMETER -pc_hypre_boomeramg_coarsen_type Falgout   #  <Falgout> (choose one of) CLJP Ruge-Stueben  modifiedRuge-Stueben   Falgout  PMIS  HMIS (None) 
+@PARAMETER -pc_hypre_boomeramg_interp_type classical   #  <classical> (choose one of) classical   direct multipass multipass-wts ext+i ext+i-cc standard standard-wts   FF FF1 (None) 
+@PARAMETER -pc_hypre_boomeramg_print_statistics none   # : Print statistics (None) 
+@PARAMETER -pc_hypre_boomeramg_print_debug none   # : Print debug information (None) 
+@PARAMETER -pc_hypre_boomeramg_nodal_relaxation FALSE   # : <FALSE> Nodal relaxation via Schwarz (None) 
+
+@PRECON hypre parasails 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_hypre_parasails_nlevels 1   #  <1>: Number of number of levels (None) 
+@PARAMETER -pc_hypre_parasails_thresh 0.1   #  <0.1>: Threshold (None) 
+@PARAMETER -pc_hypre_parasails_filter 0.1   #  <0.1>: filter (None) 
+@PARAMETER -pc_hypre_parasails_loadbal 0.   #  <0.>: Load balance (None) 
+@PARAMETER -pc_hypre_parasails_logging FALSE   # : <FALSE> Print info to screen (None) 
+@PARAMETER -pc_hypre_parasails_reuse FALSE   # : <FALSE> Reuse nonzero pattern in preconditioner (None) 
+@PARAMETER -pc_hypre_parasails_sym nonsymmetric   #  <nonsymmetric> (choose one of) nonsymmetric SPD nonsymmetric,SPD (None) 
+
+@PRECON hypre pilut 
+@PARAMETER -pc_use_amat FALSE   # : <FALSE> use Amat (instead of Pmat) to define preconditioner in nested inner solves (PCSetUseAmat) 
+@PARAMETER -pc_hypre_pilut_maxiter -2   #  <-2>: Number of iterations (None) 
+@PARAMETER -pc_hypre_pilut_tol -2.   #  <-2.>: Drop tolerance (None) 
+@PARAMETER -pc_hypre_pilut_factorrowsize -2   #  <-2>: FactorRowSize (None) 
+

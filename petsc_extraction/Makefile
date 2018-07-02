@@ -9,6 +9,8 @@ include ${PETSC_DIR}/lib/petsc/conf/variables
 SS_FLAGS = $(PETSC_CCPPFLAGS)  
 SS_LFLAGS =$(PETSC_LIB)
 
+all: full RS1 RS2 matrix_free_full matrix_free_RS1 matrix_free_RS2
+
 .PHONY: full, RS1, RS2
 full: petsc_feature_extract.C
 	$(SS) -DFULL=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
@@ -19,10 +21,12 @@ RS2: petsc_feature_extract.C
 
 
 .PHONY: matrix_free
-matrix_free: petsc_feature_extract_mf.C 
+matrix_free_RS1: petsc_feature_extract_mf.C 
+	$(SS) -DRS1=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
+matrix_free_RS2: petsc_feature_extract_mf.C 
+	$(SS) -DRS2=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
+matrix_free_full: petsc_feature_extract_mf.C 
 	$(SS) -DFULL=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
-
 clean: 
-	rm -f matrix_free.a matrix_binary.a
-	
+	rm -f full.a RS1.a RS2.a matrix_free_RS1.a matrix_free_RS2.a matrix_free_full.a	
 

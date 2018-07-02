@@ -1,4 +1,4 @@
-#include "PetscFeatureExtraction_full.h"
+#include "FeatureExtract.h"
 
 //Currently, we get different results for the cases where the matrix
 //is blocked vs striped. This 
@@ -201,8 +201,8 @@ int main(int argc,char **argv)
 
   PetscInitialize(&argc,&argv,(char*)0,help);
    
-  if ( argc < 7 ) {
-    std::cout << " Useage " << argv[0] << " <path-to-matrix> <output_file> <edgepoints> <interiorpoints> <rand (0|1)> <solve (0|1) " << std::endl;
+  if ( argc < 6 ) {
+    std::cout << " Useage " << argv[0] << " <path-to-matrix> <output_file> <edgepoints> <interiorpoints> <matvecs (0|1) > " << std::endl;
     return 1;
   }
 
@@ -210,9 +210,8 @@ int main(int argc,char **argv)
   std::string output_file = argv[2];
   int edge = std::atoi(argv[3]);
   int interior = std::atoi(argv[4]);
-  int ran = std::atoi(argv[5]);
-  int solve = std::atoi(argv[6]);
- 
+  int matvecs = std::atoi(argv[5]);
+
   //do we want to add the bratu source term  
   bool bratu = true;
   
@@ -246,7 +245,7 @@ int main(int argc,char **argv)
     
   //Extract the features
   std::vector< std::pair<std::string, double> > feature_set;
-  ExtractJacobianFeatures( Jaco, edge, interior, ran, feature_set );
+  ExtractJacobianFeatures( Jaco, edge, interior, feature_set, matvecs );
   
   for ( auto it : feature_set ) 
     printf("%s : %f \n " , it.first.c_str(), it.second );

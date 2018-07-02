@@ -27,22 +27,22 @@ download_matrices() {
   python ../petsc_mm_converter/petsc_mm_convert.py $EXACTFEATURES $MATDIR
 }
 
-# Run a single matrix with <matrix> <output> <edges> <interior> <solve> 
+# Run a single matrix with <matrix> <output> <edges> <interior> <solve> <matvecs>
 single_run () {
-  mpirun -n $PROCS ./$FSET.a $1 $2 $3 $4 $5 
+  mpirun -n $PROCS ./$FSET.a $1 $2 $3 $4 $5 $6 
 } 
 
-# Run all matrices with extension .pbin in MatDIR with <output> <edges> <interior> <solve>
+# Run all matrices with extension .pbin in MatDIR with <output> <edges> <interior> <solve> <matvecs>
 loop_de_loop() { 
 for i in $MATDIR/*.mat; do
   echo RUNNING Matrix $i 
-  single_run $i $1 $2 $3 $4 
+  single_run $i $1 $2 $3 $4 $5
 done
 }
 
 # Solves all the matrices in the matrix dir, uses a cheap 10,10 sample set to save time. 
 solve_all_matrices() {
-  loop_de_loop $WORKING_DIR/test_timing 10 10 1 
+  loop_de_loop $WORKING_DIR/test_timing 10 10 1 1
 }
 
 # Debug features for 1 matrix. Basically, this runs a test for a single matrix, calculates 
@@ -54,7 +54,7 @@ debug_feature_extraction () {
   fi
   mkdir -p $WORKING_DIR/DEBUG/
   rm -f $WORKING/DEBUG/features_temp
-  single_run $1 $WORKING_DIR/DEBUG/features_temp -1 -1 0 
+  single_run $1 $WORKING_DIR/DEBUG/features_temp -1 -1 0 1 
 
   python ./process_data.py Verify $EXACTFEATURES $WORKING_DIR/DEBUG/features_temp 0.1 
 
@@ -63,12 +63,12 @@ debug_feature_extraction () {
 
 # Extracts featues from all matrices using the full rows (expensive) sample
 run_all_rows() {
-  loop_de_loop $WORKING_DIR/features_all_interior -1 -1 0 
+  loop_de_loop $WORKING_DIR/features_all_interior -1 -1 0 1
 }
 
 # Extract features from all matrices using $1 $2 edge,interior sample set
 run_all_rows_fixed() {
-  loop_de_loop $RESDIR/features_$1\_$2 $1 $2 0
+  loop_de_loop $RESDIR/features_$1\_$2 $1 $2 0 1
 }
 
 # Run the process_data script to check the accuracy of all features against Exact features

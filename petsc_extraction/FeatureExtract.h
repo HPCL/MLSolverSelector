@@ -240,24 +240,40 @@ int GetSamplePoints( int n, int edge, int interior , std::vector<std::pair<int,i
 
 }
 
-int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s )
+int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s, bool mat_vec=true )
 {
     Vec basis, extra; // The basis vector we will multiply by
     MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. 
-    VecDuplicate(basis, s);
+    VecDuplicate(basis, s);      
+    
+    if (!mat_vec)
+    {
+      std::cout << "Using memory " << std::endl;
+      MatGetColumnVector(J,*s,point.first);
+    }
+    else 
+    {    
 
-    PetscInt high, low;  
-    VecGetOwnershipRange(basis, &low, &high );
-    
-    //Set the last value to zero ( might be faster to use VecSet(basis,0);
-    if ( point.first >= low && point.first < high );
-        VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
-    
-    VecAssemblyBegin(basis);
-    VecAssemblyEnd(basis);
-    MatMult( J, basis, *s );  
+
+      Vec basis, extra; // The basis vector we will multiply by
+      MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. 
+      VecDuplicate(basis, s);
+
+      PetscInt high, low;  
+      VecGetOwnershipRange(basis, &low, &high );
+      
+      //Set the last value to zero ( might be faster to use VecSet(basis,0);
+      if ( point.first >= low && point.first < high );
+          VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
+      
+      VecAssemblyBegin(basis);
+      VecAssemblyEnd(basis);
+      MatMult( J, basis, *s );  
+    }
+
     VecDestroy(&basis);
     VecDestroy(&extra);
+    
     return 0;
 }
 
@@ -295,7 +311,7 @@ void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *dat
     for ( int i = shift ; i < *len; i++)   inout[i] += in[i] ; 
 }
 
-int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::pair< std::string, double > > &fnames ) 
+int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::pair< std::string, double > > &fnames , bool matvecs=true )
 {
   std::vector< std::pair< int, int >  >points ; 
   std::map< std::string, double > feature_set; 
@@ -427,7 +443,7 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
        if ( i % 100 == 0 ) std::cout << " Starting row " << i << " of " << npoints <<std::endl;
        
        Vec vec;
-       GetJacobianColumn( J, points[i], &vec );
+       GetJacobianColumn( J, points[i], &vec, matvecs );
 
        VecGetArrayRead( vec, &array );
        VecGetOwnershipRange( vec, &low, &high ) ;  

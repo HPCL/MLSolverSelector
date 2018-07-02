@@ -18,8 +18,8 @@ int main(int argc,char **argv)
   PetscInitialize(&argc,&argv,(char*)0,help);
 
  
-  if ( argc < 6 ) {
-    std::cout << " Useage " << argv[0] << " <path-to-matrix> <output_file> <edgepoints> <interiorpoints> <solve (0|1) " << std::endl;
+  if ( argc < 7 ) {
+    std::cout << " Useage " << argv[0] << " <path-to-matrix> <output_file> <edgepoints> <interiorpoints> <solve (0|1)> <matvecs (0|1)> " << std::endl;
     return 1;
   }
 
@@ -28,6 +28,7 @@ int main(int argc,char **argv)
   int edge = std::atoi(argv[3]);
   int interior = std::atoi(argv[4]);
   int solve = std::atoi(argv[5]);
+  int matvecs = std::atoi(argv[6]);
   auto start = std::chrono::high_resolution_clock::now();
  
   // Load the Matrix 
@@ -66,7 +67,7 @@ int main(int argc,char **argv)
 
   //Extract the features
   std::vector< std::pair<std::string, double> > feature_set;
-  ExtractJacobianFeatures( A, edge, interior, feature_set );
+  ExtractJacobianFeatures( A, edge, interior, feature_set, matvecs );
   
   auto stop4 = std::chrono::high_resolution_clock::now();
  

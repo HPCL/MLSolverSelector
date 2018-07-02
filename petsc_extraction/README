@@ -1,41 +1,41 @@
- Feature extraction for Petsc Matricies
-
-Hi,
-
-1. Installation: 
-     a) export PETSC_DIR =<path-to-petsc>
-     b) make
-
-2. Running a single example
-     a)./matrix_free.a 
-           (i) Simulates feature extraction for Bratu, prints features to stdout
-           (ii) Edit the size of the "matrix" in the petsc_feature_extract_mf.C file
-     b)./matrix_binary.a <path_to_petsc_binary_matrix> <output_file>
-           (i) loads petsc matrix and extracts features using matrix-free methods. 
-           (ii) should work fine in parallel but the results will differ with processor 
-                counts ( i still need to figure out petscs internal dof numbering system ) 
-           (iii) prints data to file outputfile
-
-3. Running multiple matricies
-    a) Open up ./batch_extract.sh and set the matrix_directory and matrix extension and output_file
-    b) chmod u+x ./batch_extract.sh 
-    c) Running ./batch_extract will run feature extract on all matrices in that directory with the given
-       extension. 
 
 
-4. For different feature extraction scripts are provided. These are included at the top of the
-petsc_feature_extraction.C code to choose the feature set. To change the feature set just comment out
-the correct include. 
+Petsc Feature extraction testing code.
 
-   a) *_full.h is the full feature set
-   b) *_reduced_1.h is reduced feature set 1
-   c) *_reduced_2.h is reduced feature set 2
+1. export PETSC_DIR=<path-to-petsc> ( or edit in Makefile )
 
-   d) *_batch.h is the full feature set where all mat-vecs are performed at one time. This is memory heavy
-      so no good for testing. For standard matrices, a matrix-matrix is usually faster than multiple matrix
-      vector multiplications. For matrix-free, it probably isn't any different because matrix-matrix is implemented
-      as $n$ matrix-vectors anyway. 
+2. Build the executable: make all 
+
+    a ) make full ( builds extraction with full feature set 
+    b ) make RS1  ( builds extraction with Reduced set 1 )
+    c ) make RS2  ( builds extraction with Reduced set 2 )
   
-   e) TODO -- Need to put in flags for symmetry. 
-   f) TODO -- Need to put in flags for bandwidth so we can reduce the number of mat-vecs. 
+    d ) make matrix_free_full ( extraction for matrix-free Bratu with Petsc Shell Mat  )
+    e ) make matrix_free_RS1 ( extraction for matrix-free Bratu with Petsc Shell Mat  )
+    f ) make matrix_free_RS2 ( extraction for matrix-free Bratu with Petsc Shell Mat  )
+  
+- The matrix-free example just extracts the features and prints them to screen. This uses the Bratu
+  matrix and a Petsc MatShell. type ./matrix_free_full to see the usage. 
+ 
+- The exe a-c build feature extraction for standard petsc matrices. This executable loads a matrix from file, then extracts the features as if it were matrix-free. I.e., it perfroms matrix vector multiplications to extract the matrix values.
 
+Usage is ./full.a < path-to-matrix > path to the matrix file in petsc binary format
+                  < output file >  file to append results to 
+                  < edge points > how many sample edge rows 
+                  < interior points > how many same interior rows 
+                  < solve >   ( should we also solve the system 
+                  < matvec > ( should we use matvecs (0) or memeory access(1) to get values. 
+
+Setting the edge points and interior points flag < 0 will do all rows with every row considered an interior point. For big matrices, this can take a while. I use this feature to generate the exact feature sets for testing. The executable will dump the features to <output_file> and timining information to <output_file>_timing . 
+
+ The matvec parameter sets how matrix values are extracted. Setting this to 1 will use matrix-vector multiplications to extract the matrix values. Setting this to 0 will use memory acecss to get the values. At the moment, this uses the Petsc MatGetColumn function call. This is because the matrix-free approach is set up to do columnwise feature extraction. Petsc stores matrices in row-wise format, so, if we end up using the sampling approach for all matrices, then we should modify the code to support row-wise feature extraction. 
+
+I did all of my testing using the feature_testing.sh bash script. This script just has a bunch of different bash funcitons that perform certain tests and generate plots. To use these, you run 
+
+  1. make
+  2. source feature_testing.sh 
+  3. setup full  ( or RS1 or RS2 ) 
+  4. call whatever function 
+
+The python script process_data.py is designed to process the data and automatically plot the figures I used in 
+the DOE report. Its a weird mix of generic functions and hard-coded values, so it may-or-may not be useful. 

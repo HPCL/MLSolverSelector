@@ -1,0 +1,90 @@
+These examples show some of the things you can do with 
+the solver selecter.
+
+1. ex03: Build a database from file. 
+
+This example builds a database based on the input file. In the input file, the user specifies the name of the database, the matrices that need to be tested, and the solver-preconditioner-parmater pairs that need to be tested. Based on that input file ( edit input_file in ex03.cpp to change ), this example calls the solver selecter BuildDatabaseFromFile function. This cycles through all possible solver combinations and matrices in the input file and stores the results in the sqlite3 database. The functions classifys the solvers bbased on the classification values set in the interface. 
+
+Usage: 1. Modify the input file to suit needs: 
+       2. ./ ex03.ss
+       3. ... wait ...
+ 
+2. ex01: Solve a tridiagonal system using the Solver selecter:
+
+This example sets a tridiagonal system and solves it using petsc. 
+
+Usage: 1) ./ex01.ss -- Solves the system as if the solver selecter was not there. 
+       2) ./ex01.ss -ksp_type KSPSS -ksp_ss_inputfile <inputfile>  solves the system 
+          using the solver selecter based on the settings in the input file. ( see below)
+
+3. ex02: Same as ex01 except for a matrix stored to file, 
+
+4. ex04: Builds a machine learning model for the database based on the database specified in the input file. To edit the input file, edit <input_file> in ex04.cpp. This example loads the database, builds a machine learning model, serializes it and saves it to file. 
+
+5. ex05: This is the same as ex02 ( delete ? ) 
+
+INPUT-FILE-README
+
+The input file format is a bit of a mess at the moment, but it does the job. See petsc.input for an example. 
+
+Every line in the input file that is to be read must start with a @<tag>. Basically you specify the <tag> then add the parameters for that tag .
+
+@DATABASE : These are the options for setting up the database. 
+@PARAMETER Database < database-name >  ( set the name of the database )  
+
+@MACHINELEANING 
+
+@PARAMETER algorithm < the machine learning algorithm ( see impls/WafflesInterface.cpp for options )
+
+
+@PARAMETER serialized < serialized model file > ( If this parameter is in the input file, then the code 
+attempts to load this machine learning model. If this parameter is not in the input file, the code builds 
+a new machine learning model using the database. To use ex04.cpp this line must be commented out, otherwise 
+it trys to load the serialized model for serialization, rather than building the model from the database. 
+
+@INTERFACE
+@PARAMETER build_inline <true|false> ( This parameter turns on in-line database building. If this flag is set, 
+the code runs as normal. When KSPSolve is called, the code interjects and starts solving the system using the 
+solver combinations listed in this file. Once all the tests have been performed, the solver continues on as normal
+. This is the best way to extract features and solver timings from matrix-free systems because those problems cannot
+be saved to file
+
+@PARAMETER dump_matrix<true|false> This parameter set a flag to dump the matrix to file at the start of each 
+KSPSolve. This should not be set for matrix-free problems. 
+
+@PARAMETER use_ml <true|false> If false, this runs the solve through the solver selecter system, but does not 
+use Machine learning to choose the optimal solver. Instead, the default solver as defined in the interface is 
+used. 
+
+@SOLVER <solver-name> This defines a solver that will be used when building a database (either from file like in ex04 or
+inline using the build_inline flag). Solver parameters can be set like this:
+
+@SOLVER gmres 
+@PARAMETER ksp_gmres_restart 30 40 50 60 70
+@PARAMETER ksp_gmres_haptol 1e-30 1e-15
+
+This solver definition actually represents 10 different solvers. One for each combination of the solver parameters. That is, when database building takes place for this solver, the matrix will be solved using gmres with a restart of 30,40,50,60 and 70 with a haptol of 1e-30 and then again with a haptol of 1e-15
+
+This makes is easy to test a whole range of solver options. 
+
+@PRECON <name> This is the same as solvers, but for preconditioners. I.e
+
+@PRECON ilu
+
+@PRECON jacobi 
+
+@PRECON hypre 
+@PARAMETER pc_hypre_type boomeramg
+
+@PAIR <solver> <precon> <precon> <precon> This parameter defines the solver-preconditioner pairs that will 
+actually be tested when a database building function is called. For each solver, you can define multiple preconditioners
+to test. So the line 
+
+@PAIR gmres bjacobi ilu hypre  ... will add 30 database entries. That is, the 10 gmres solvers defined above for each of the three preconditioners. If preconditioners also have multiple parameter options, then those are all also tested. 
+
+NOTE: There is a function in utils that produces a text file listing all of the petsc solvers and preconditioners 
+along with the parameters for your petsc distribution in a format that case be copy and pasted into an input file. This may-or-may not work if your petsc version is different to the one I used to build this script, so I have included the prebuilt files in the repo just in case.   
+
+
+
+

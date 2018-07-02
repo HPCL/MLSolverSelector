@@ -22,8 +22,6 @@ namespace SolverSelecter {
       
       virtual ~MachineLearningInterface();
 
-      virtual ErrorFlag BuildModel() = 0;      
-
       virtual ErrorFlag Serialize(std::string output) = 0;
 
       virtual ErrorFlag ClassifyImpl( features_map &features, Solver &solver ) = 0;

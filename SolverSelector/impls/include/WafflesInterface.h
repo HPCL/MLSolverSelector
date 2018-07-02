@@ -20,7 +20,6 @@ class WafflesInterface : public MachineLearningInterface
 public:
 
     GClasses::GSupervisedLearner *model;     /**< the machine learning model */
-    GClasses::GAutoFilter        *fmodel;    /**< a filtered machine learning model */
     GClasses::GMatrix            *features;  /**< waffles matrix containing the features */
     GClasses::GMatrix            *labels ;   /**< waffles matrix containing the labels */
 
@@ -45,7 +44,7 @@ public:
      * pairs. If sset.size() > 0, only this pairs listed in sset are used for training, and hence, for
      * solving the problem. Future versions might allow for restriction based on parameters as well.
      **/
-    ErrorFlag BuildModel() override;
+    ErrorFlag BuildModel();
     ErrorFlag BuildModelFromSerial(std::string input);
 
     /**
@@ -54,13 +53,6 @@ public:
     ErrorFlag ClassifyImpl( features_map &afeatures /**< the feature set of the matrix */,
                         Solver &solver /**< output, a (hopefully) "good" solver for the problem */) override;
 
-    /**
-     * Predict if a feature set is going to be a good solver.
-     **/
-    ErrorFlag Predict( features_map &afeatures, /**< feature set to test */
-                       const int &solver_hash,    /**< hash of the solver to test */
-                       std::vector<bool> &good /**< bool staing if solver is good in each category */
-                     );
 
     /** Extra function that converts the data into a GMatrix */
     ErrorFlag ImportData(

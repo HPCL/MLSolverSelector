@@ -18,24 +18,25 @@ WafflesInterface::WafflesInterface()
 
 WafflesInterface::~WafflesInterface()
 {
-    if ( model ) delete model;
+    if ( model ) { delete model; model = NULL; }
     if ( features) delete features;
     if ( labels ) delete labels;
 }
 
 ErrorFlag WafflesInterface::BuildModel()
 {
-    std::string serial = GetParameter("serialized"); 
-    if ( serial.empty() ) 
-    {
-      std::vector< std::string > fnames;
-      database->GetFeatureLabels(fnames);
-      BuildModelAtRuntime( GetParameter("algorithm"), fnames ) ;
-      database->GetUniqueSolverList(solver_hash_list);   
+    if (model == NULL ) {
+      std::string serial = GetParameter("serialized"); 
+      if ( serial.empty() ) 
+      {
+        std::vector< std::string > fnames;
+        database->GetFeatureLabels(fnames);
+        BuildModelAtRuntime( GetParameter("algorithm"), fnames ) ;
+        database->GetUniqueSolverList(solver_hash_list);   
+      }
+      else
+        BuildModelFromSerial(serial);
     }
-    else
-      BuildModelFromSerial(serial);
-    
     return error_flag;
 }
 
@@ -81,12 +82,11 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vect
           model = new GClasses::GBaselineLearner();
 
       model->train( *features , *labels );
-
+      
       const GClasses::GRelation &xx = features->relation();
       for ( int i = 0; i < xx.size(); i++ ) features_order.push_back( xx.attrNameStr(i)) ;
       const GClasses::GRelation &xy = labels->relation();
       for ( int i = 0; i < xy.size(); i++ ) labels_order.push_back( xy.attrNameStr(i)) ;
-  
     }
     return error_flag;
 }
@@ -134,43 +134,45 @@ ErrorFlag WafflesInterface::Serialize(std::string output)
 
 ErrorFlag WafflesInterface::BuildModelFromSerial(std::string serialized)
 {
-    GClasses::GDom gdom;
-    gdom.loadJson(serialized.c_str());
-    const GClasses::GDomNode *gnode = gdom.root();
-    std::string meth = gnode->field("method")->asString();
-    std::string method = GetParameter("algorithm");
     
-    if ( method == "DescisionTree" )
-      model = new GClasses::GDecisionTree(gnode);
-    else if ( method == "RandomForest" ) {
-      GClasses::GLearnerLoader ll; 
-      model = new GClasses::GRandomForest(gnode, ll);
-    }
-    else if ( method == "KNN")
-        model = new GClasses::GKNN(gnode);
-    else if ( method == "Basyian" )
-        model = new GClasses::GNaiveBayes(gnode);
-    else
-        model = new GClasses::GBaselineLearner(gnode);
-    
-    const GClasses::GDomNode *gg = gnode->field("solvers");
-	  for(GClasses::GDomListIterator li(gg->field("slist")); li.current(); li.advance())
-    {
-        int hash = li.current()->asInt() ; 
-        solver_hash_list.push_back( hash );
-        solver_hash_map[hash] = gg->field(std::to_string(hash).c_str())->asString(); 
-    }
-	  for(GClasses::GDomListIterator li(gg->field("flist")); li.current(); li.advance())
-    {
-        std::string hash = li.current()->asString() ; 
-        features_order.push_back( hash );
-    }
-	  for(GClasses::GDomListIterator li(gg->field("llist")); li.current(); li.advance())
-    {
-        std::string hash = li.current()->asString() ; 
-        labels_order.push_back( hash );
-    }
-
+   if ( model == NULL ) { 
+      GClasses::GDom gdom;
+      gdom.loadJson(serialized.c_str());
+      const GClasses::GDomNode *gnode = gdom.root();
+      std::string meth = gnode->field("method")->asString();
+      std::string method = GetParameter("algorithm");
+      
+      if ( method == "DescisionTree" )
+        model = new GClasses::GDecisionTree(gnode);
+      else if ( method == "RandomForest" ) {
+        GClasses::GLearnerLoader ll; 
+        model = new GClasses::GRandomForest(gnode, ll);
+      }
+      else if ( method == "KNN")
+          model = new GClasses::GKNN(gnode);
+      else if ( method == "Basyian" )
+          model = new GClasses::GNaiveBayes(gnode);
+      else
+          model = new GClasses::GBaselineLearner(gnode);
+      
+      const GClasses::GDomNode *gg = gnode->field("solvers");
+      for(GClasses::GDomListIterator li(gg->field("slist")); li.current(); li.advance())
+      {
+          int hash = li.current()->asInt() ; 
+          solver_hash_list.push_back( hash );
+          solver_hash_map[hash] = gg->field(std::to_string(hash).c_str())->asString(); 
+      }
+      for(GClasses::GDomListIterator li(gg->field("flist")); li.current(); li.advance())
+      {
+          std::string hash = li.current()->asString() ; 
+          features_order.push_back( hash );
+      }
+      for(GClasses::GDomListIterator li(gg->field("llist")); li.current(); li.advance())
+      {
+          std::string hash = li.current()->asString() ; 
+          labels_order.push_back( hash );
+      }
+  }
   return error_flag;
 } 
   
@@ -178,24 +180,42 @@ ErrorFlag WafflesInterface::BuildModelFromSerial(std::string serialized)
 ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the feature set of the matrix */,
                                           Solver &solver /**< output, a (hopefully) "good" solver for the problem */)
 {
-
+    BuildModel();
     std::vector< bool > good;
-
+    
     bool found_one = false;
     
     std::string serial = GetParameter("serialized"); 
     
+    GClasses::GVec prediction(labels_order.size());
+    GClasses::GVec pattern(features_order.size()); 
+
+    int i = 1;
+    for ( auto it : afeatures )
+    {
+        auto found = std::find(features_order.begin(), features_order.end(), it.first );
+        if ( found != features_order.end() )
+        {
+            pattern[i++] = it.second;  
+        }
+    }
+
     for ( auto hash : solver_hash_list )
     {
-      std::cout << "HASH " << hash << std::endl; 
-        Predict( afeatures, hash, good );
-        auto it = good.begin();
-        while ( it != good.end() )
+        pattern[0] = hash; 
+        model->predict( pattern ,prediction );
+        
+        bool bad = false;
+        for ( int j = 0; j < prediction.size(); j++ ) 
         {
-            if (*it) it++;
-            else break;
+            if ( ! ((bool) prediction[j]) ) 
+            {
+               bad = true; 
+               //break;
+            }
         }
-        if ( it == good.end() )
+
+        if ( ! bad )
         {
             found_one = true;
             if (serial.empty()) {
@@ -203,7 +223,7 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
             } else {
               solver.ParseSolverString( solver_hash_map[hash] );  
             }
-            break;
+            //break;
         }
     }
     if ( !found_one )
@@ -212,45 +232,6 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
     }
     return error_flag;
 }
-
-ErrorFlag WafflesInterface::Predict( features_map &afeatures, /**< feature set to test */
-                                     const int &solver_hash,    /**< hash of the solver to test */
-                                     std::vector<bool> &good /**< bool staing if solver is good in each category */
-                                   )
-{
-    GClasses::GVec pattern(features_order.size());
-    //TODO Currently we treat the solver hash as a REAL feature. This means the machine learning
-    //algorithm treats it as a continuous parameter. Ideally it should be a catagorical value, but
-    //that seems to cause bugs. This actually isn't a problem though. Basically, every "pattern" 
-    //that we test will have the solver hash of a solver in the database. So basically, the machine
-    //learning algorithm will ALWAYS find a direct match for that value. I would think a decent
-    //algorithm would sort that out for us. 
-    //
-    int i = 0;
-    afeatures["HASH"] = solver_hash;
-    for ( auto it : afeatures )
-    {
-        auto found = std::find(features_order.begin(), features_order.end(), it.first );
-        if ( found != features_order.end() )
-        {
-            pattern[i] = it.second;  
-        }
-    }
-        
-    GClasses::GVec prediction(labels_order.size());
-
-    /* Get the prediction */
-    model->predict( pattern ,prediction );
-
-    good.clear();
-    for ( int i = 0; i < labels_order.size(); i++ )
-    {
-        good.push_back( (bool) prediction[i] );
-    }
-
-    return error_flag;
-}
-
 
 ErrorFlag WafflesInterface::ImportData(
     std::vector < std::string > &feature_list,
@@ -350,10 +331,15 @@ ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< s
         throw GClasses::Ex("There must be at least 1 rep.");
     if(folds < 2)
         throw GClasses::Ex("There must be at least 2 folds.");
-    algorithm = "KNN";
+    
+
+    //Start again each time. 
+    if (model) {
+      delete model; model = NULL;
+    }
+
     BuildModelAtRuntime( algorithm , features_list );
     model->rand().setSeed(seed);
-
 
     // Test
     std::cout.precision(8);

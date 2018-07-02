@@ -5,10 +5,10 @@
 
 @MACHINELEARNING 
 @PARAMETER algorithm RandomForest 
-@PARAMETER serialized model.serialized
+#@PARAMETER serialized model.serialized
 
 @INTERFACE 
-@PARAMETER build_inline false
+@PARAMETER build_inline false 
 @PARAMETER dump_matrix false
 @PARAMETER use_ml true
 

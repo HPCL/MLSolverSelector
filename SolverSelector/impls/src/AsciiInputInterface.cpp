@@ -96,13 +96,10 @@ AsciiFileParser::Parse(std::vector< std::string > &filenames ,
                 {
                     if ( boost::filesystem::exists(dirc) && boost::filesystem::is_directory(dirc) )
                     {
-                        std::cout << "dirc" << std::endl;
                         for ( boost::filesystem::directory_iterator itr(dirc); itr != end_itr; ++itr )
-                        {
-                            std::cout << itr->path() << std::endl;
+                        { 
                             if (boost::filesystem::is_regular_file(itr->path()))
                             {
-                                std::cout << "1";
                                 std::string cfile = itr->path().string();
                                 if ( boost::filesystem::extension(cfile) == exe )
                                     filenames.push_back(cfile);

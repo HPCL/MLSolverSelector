@@ -19,18 +19,18 @@ SolverSelecter<Matrix,Vector>::Initialize(std::string inputfile) {
     std::shared_ptr< InputFileInterface > parser;
     interface->GetInputFileImpl( parser );
     parser->Initialize(inputfile, interface, machinemodel, database);
-    parser->Parse( matrix_filenames, solvers);
- 
-    database->Initialize();
+    parser->Parse( matrix_filenames, solvers); 
     machinemodel->Initialize(database);
-    machinemodel->BuildModel();
+    database->Initialize();
+
     return error_flag;
 }
 
 template<typename Matrix, typename Vector>
 ErrorFlag 
 SolverSelecter<Matrix,Vector>::BuildModelAndSerialize(std::string serial_filename) {
-    
+   
+    database->Initialize();
     machinemodel->Serialize(serial_filename);
     return 0;
 }

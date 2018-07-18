@@ -201,14 +201,13 @@ int main(int argc,char **argv)
 
   PetscInitialize(&argc,&argv,(char*)0,help);
    
-  if ( argc < 4 ) {
-    std::cout << " Useage " << argv[0] << " <output_file> <edgepoints> <interiorpoints> " << std::endl;
+  if ( argc < 3 ) {
+    std::cout << " Useage " << argv[0] << " <edgepoints> <interiorpoints> " << std::endl;
     return 1;
   }
 
-  std::string output_file = argv[1];
-  int edge = std::atoi(argv[2]);
-  int interior = std::atoi(argv[3]);
+  int edge = std::atoi(argv[1]);
+  int interior = std::atoi(argv[2]);
 
   //do we want to add the bratu source term  
   bool bratu = true;
@@ -245,8 +244,14 @@ int main(int argc,char **argv)
   std::vector< std::pair<std::string, double> > feature_set;
   ExtractJacobianFeatures( Jaco, edge, interior, feature_set, true );
   
+   
+  int rank;
+  MPI_Comm_rank(PETSC_COMM_WORLD, &rank); 
+  if (rank == 0 ) {
   for ( auto it : feature_set ) 
     printf("%s : %f \n " , it.first.c_str(), it.second );
+  } 
+
 
   destroy_shell_matrix( &appctx, &dm, &Jaco, &about );
   destroy_mf_matrix(&appctx);

@@ -19,6 +19,9 @@ RS1: petsc_feature_extract.C
 RS2: petsc_feature_extract.C
 	$(SS) -DRS2=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
 
+.PHONY: snes_ex5
+snes_ex5:
+	$(SS) -DFULL $(LOCINCS) $(SS_FLAGS) -o $@.a snes_ex5_extraction.C $(SS_LFLAGS)
 
 .PHONY: matrix_free
 matrix_free_RS1: petsc_feature_extract_mf.C 

@@ -112,8 +112,9 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
 
         std::map<std::string, double> features_map;
         interface->ExtractFeatures( A, features_map);
+        std::cout <<  "Extracted Features \n "  << machinemodel << std::endl;;
         machinemodel->Classify(features_map, solver );
-
+        std::cout << " Classified Solver \n "; 
         if (solver.solver != "NONE" )
         {
             solver.Print();

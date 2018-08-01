@@ -35,10 +35,12 @@ check_clean:
 install:
 	mkdir -p $(SS_INSTALL_DIR)/lib
 	mkdir -p $(SS_INSTALL_DIR)/include
+	
 	install $(OUT) $(SS_INSTALL_DIR)/lib
 	install base/include/*h base/template/*.tpp impls/include/*.h $(SS_INSTALL_DIR)/include
 	install Makefile.inc $(SS_INSTALL_DIR) 
-
+	install Makefile_Moose.inc $(SS_INSTALL_DIR) 
+	
 ###########################################################################################################
 ###########################################################################################################
 ##################################### Install the dependencies ##########################################

@@ -129,7 +129,9 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
 ErrorFlag
 PetscUI::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
+    std::cout << " Started Extracting features \n";
     testing_space->extract_features( ksp, fmap );
+    std::cout << " Finished Extracting features \n";
     return error_flag;
 }
 

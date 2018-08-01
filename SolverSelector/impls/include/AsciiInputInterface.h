@@ -20,6 +20,14 @@ class AsciiFileParser : public InputFileInterface {
    Parse(std::vector< std::string > &filenames,
          std::vector< Solver > &solver_list ); 
 
+  
+  protected: 
+   ErrorFlag GetAllSolvers( std::set< std::pair< std::string, std::string > > &solver_pairs,
+                            std::map< std::string, std::map< std::string, std::set< std::string > > > &solvers,
+                            std::map< std::string, std::map< std::string, std::set< std::string > > > &precons,
+                            std::vector< Solver > &solver_list );
+
+  
   private:
     
   ErrorFlag 

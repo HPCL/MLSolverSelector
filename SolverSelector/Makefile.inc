@@ -43,7 +43,6 @@ SS_DEP_FLAGS += -DWITH_BOOST_FILESYSTEM=1
 SS_DEP_LFLAGS += -lboost_filesystem -lboost_system 
 endif
 
-
 #### This is the commands to call to compile the library
 SS_INCLUDE = -I $(SS_INSTALL_DIR)/include $(SS_DEP_FLAGS) 
 SS_LIBS = -L$(SS_INSTALL_DIR)/lib -l$(SS_LIB) $(SS_DEP_LFLAGS)

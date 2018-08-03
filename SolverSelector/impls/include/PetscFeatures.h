@@ -144,7 +144,7 @@ namespace SolverSelecter
 class PetscTestingSpace
 {
 public:
-
+  
     PetscTestingSpace( );
 
     virtual void
@@ -173,6 +173,8 @@ class DefaultPetscTestingSpace : public PetscTestingSpace
 public:
 
     std::chrono::time_point<std::chrono::high_resolution_clock> time_start;
+    PetscLogDouble space;
+
 
     void
     extract_features( KSP &ksp,

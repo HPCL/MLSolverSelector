@@ -29,7 +29,9 @@ DefaultPetscTestingSpace::start_measurements(KSP &ksp,
         Vec &b )
 
 {
+    PetscMallocGetCurrentUsage(&space);
     time_start = std::chrono::high_resolution_clock::now();
+
 }
 
 void
@@ -43,6 +45,11 @@ DefaultPetscTestingSpace::stop_measurements(KSP &ksp,
     KSPConvergedReason reason;
     KSPGetConvergedReason(ksp, &reason);
     mmap["CPUTime"] =  ( reason > 0 ) ? (double) durr : -1.0 ;
+
+    PetscLogDouble after;
+    PetscMallocGetCurrentUsage(&after);
+    mmap["Memory"] = ( reason > 0 && after > space ) ? (double) after - space : -1.0 ;      
+
 }
 
 void
@@ -55,7 +62,6 @@ int
 DefaultPetscTestingSpace::MapDMNumberingToNaturalNumbering( std::vector< std::pair< int , int > > &points )
 {
     return 0;
-
 }
 
 int

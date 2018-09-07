@@ -9,7 +9,7 @@ include ${PETSC_DIR}/lib/petsc/conf/variables
 SS_FLAGS = $(PETSC_CCPPFLAGS)  
 SS_LFLAGS =$(PETSC_LIB)
 
-all: full RS1 RS2 matrix_free_full matrix_free_RS1 matrix_free_RS2
+all: full RS1 RS2 RSKANIKA matrix_free_full matrix_free_RS1 matrix_free_RS2
 
 .PHONY: full, RS1, RS2
 full: petsc_feature_extract.C
@@ -18,6 +18,8 @@ RS1: petsc_feature_extract.C
 	$(SS) -DRS1=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
 RS2: petsc_feature_extract.C
 	$(SS) -DRS2=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
+RSKANIKA: petsc_feature_extract.C
+	$(SS) -DRSKANIKA=1 $(LOCINCS)  $(SS_FLAGS) -o $@.a $< $(SS_LFLAGS)   
 
 .PHONY: snes_ex5
 snes_ex5:

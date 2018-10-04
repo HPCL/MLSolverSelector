@@ -1,0 +1,167 @@
+89565283 ,  -ksp_type lsqr -pc_type jacobi 
+8793455 ,  -ksp_type tfqmr -pc_type icc -pc_factor_levels 3 
+90197667 ,  -ksp_type lsqr -pc_type icc -pc_factor_levels 2 
+49598909 ,  -ksp_type gmres -pc_type icc -pc_factor_levels 1 
+91036839 ,  -ksp_type bcgs -pc_type bjacobi 
+45869639 ,  -ksp_type fgmres -pc_type asm -pc_asm_overlap 0 
+45869638 ,  -ksp_type fgmres -pc_type asm -pc_asm_overlap 3 
+45869637 ,  -ksp_type fgmres -pc_type asm -pc_asm_overlap 2 
+47942867 ,  -ksp_type chebyshev -pc_type asm -pc_asm_overlap 0 
+89269802 ,  -ksp_type lgmres -pc_type asm -pc_asm_overlap 1 
+89269803 ,  -ksp_type lgmres -pc_type asm -pc_asm_overlap 2 
+89269801 ,  -ksp_type lgmres -pc_type asm -pc_asm_overlap 0 
+89269804 ,  -ksp_type lgmres -pc_type asm -pc_asm_overlap 3 
+59072883 ,  -ksp_type bcgs -pc_type icc -pc_factor_levels 3 
+59072882 ,  -ksp_type bcgs -pc_type icc -pc_factor_levels 0 
+59072881 ,  -ksp_type bcgs -pc_type icc -pc_factor_levels 1 
+7285381 ,  -ksp_type cg -pc_type ilu -pc_factor_levels 3 
+7285384 ,  -ksp_type cg -pc_type ilu -pc_factor_levels 0 
+59072884 ,  -ksp_type bcgs -pc_type icc -pc_factor_levels 2 
+49598911 ,  -ksp_type gmres -pc_type icc -pc_factor_levels 3 
+49598910 ,  -ksp_type gmres -pc_type icc -pc_factor_levels 0 
+49598912 ,  -ksp_type gmres -pc_type icc -pc_factor_levels 2 
+30870721 ,  -ksp_type gmres -pc_type asm -pc_asm_overlap 3 
+36025723 ,  -ksp_type lgmres -pc_type ilu -pc_factor_levels 1 
+36025722 ,  -ksp_type lgmres -pc_type ilu -pc_factor_levels 2 
+53302993 ,  -ksp_type tfqmr -pc_type bjacobi 
+30870720 ,  -ksp_type gmres -pc_type asm -pc_asm_overlap 2 
+64278029 ,  -ksp_type lgmres -pc_type jacobi 
+36025724 ,  -ksp_type lgmres -pc_type ilu -pc_factor_levels 0 
+44526267 ,  -ksp_type fgmres -pc_type jacobi 
+8793454 ,  -ksp_type tfqmr -pc_type icc -pc_factor_levels 0 
+8793456 ,  -ksp_type tfqmr -pc_type icc -pc_factor_levels 2 
+8793453 ,  -ksp_type tfqmr -pc_type icc -pc_factor_levels 1 
+17734818 ,  -ksp_type chebyshev -pc_type bjacobi 
+32168839 ,  -ksp_type gmres -pc_type ilu -pc_factor_levels 0 (default)
+32168838 ,  -ksp_type gmres -pc_type ilu -pc_factor_levels 3 
+57331597 ,  -ksp_type cg -pc_type icc -pc_factor_levels 0 
+95762352 ,  -ksp_type cg -pc_type asm -pc_asm_overlap 3 
+57331599 ,  -ksp_type cg -pc_type icc -pc_factor_levels 2 
+57331598 ,  -ksp_type cg -pc_type icc -pc_factor_levels 1 
+32168837 ,  -ksp_type gmres -pc_type ilu -pc_factor_levels 2 
+88865078 ,  -ksp_type fgmres -pc_type ilu -pc_factor_levels 0 
+88865079 ,  -ksp_type fgmres -pc_type ilu -pc_factor_levels 1 
+49834417 ,  -ksp_type tcqmr -pc_type asm -pc_asm_overlap 0 
+49834419 ,  -ksp_type tcqmr -pc_type asm -pc_asm_overlap 2 
+49834418 ,  -ksp_type tcqmr -pc_type asm -pc_asm_overlap 1 
+88865076 ,  -ksp_type fgmres -pc_type ilu -pc_factor_levels 2 
+88865077 ,  -ksp_type fgmres -pc_type ilu -pc_factor_levels 3 
+11256942 ,  -ksp_type tfqmr -pc_type asm -pc_asm_overlap 0 
+11256943 ,  -ksp_type tfqmr -pc_type asm -pc_asm_overlap 3 
+11256941 ,  -ksp_type tfqmr -pc_type asm -pc_asm_overlap 1 
+42851841 ,  -ksp_type gmres -pc_type bjacobi (default for parallel)
+11256944 ,  -ksp_type tfqmr -pc_type asm -pc_asm_overlap 2 
+31459546 ,  -ksp_type tcqmr -pc_type bjacobi 
+17887723 ,  -ksp_type tcqmr -pc_type jacobi 
+91845162 ,  -ksp_type lgmres -pc_type bjacobi 
+53362206 ,  -ksp_type bicg -pc_type jacobi 
+95762355 ,  -ksp_type cg -pc_type asm -pc_asm_overlap 0 
+12321508 ,  -ksp_type fgmres -pc_type bjacobi 
+75830644 ,  -ksp_type ibcgs -pc_type asm -pc_asm_overlap 2 
+57331600 ,  -ksp_type cg -pc_type icc -pc_factor_levels 3 
+43373444 ,  -ksp_type tcqmr -pc_type icc -pc_factor_levels 3 
+95762353 ,  -ksp_type cg -pc_type asm -pc_asm_overlap 2 
+43373441 ,  -ksp_type tcqmr -pc_type icc -pc_factor_levels 0 
+43373442 ,  -ksp_type tcqmr -pc_type icc -pc_factor_levels 1 
+43373443 ,  -ksp_type tcqmr -pc_type icc -pc_factor_levels 2 
+91068411 ,  -ksp_type chebyshev -pc_type icc -pc_factor_levels 0 
+91068410 ,  -ksp_type chebyshev -pc_type icc -pc_factor_levels 1 
+5890861 ,  -ksp_type ibcgs -pc_type icc -pc_factor_levels 3 
+85483012 ,  -ksp_type lsqr -pc_type bjacobi 
+5890863 ,  -ksp_type ibcgs -pc_type icc -pc_factor_levels 1 
+5890862 ,  -ksp_type ibcgs -pc_type icc -pc_factor_levels 0 
+18868444 ,  -ksp_type ibcgs -pc_type ilu -pc_factor_levels 1 
+18868441 ,  -ksp_type ibcgs -pc_type ilu -pc_factor_levels 2 
+18868443 ,  -ksp_type ibcgs -pc_type ilu -pc_factor_levels 0 
+18868442 ,  -ksp_type ibcgs -pc_type ilu -pc_factor_levels 3 
+91068408 ,  -ksp_type chebyshev -pc_type icc -pc_factor_levels 3 
+47942864 ,  -ksp_type chebyshev -pc_type asm -pc_asm_overlap 3 
+47942865 ,  -ksp_type chebyshev -pc_type asm -pc_asm_overlap 2 
+47942866 ,  -ksp_type chebyshev -pc_type asm -pc_asm_overlap 1 
+91068409 ,  -ksp_type chebyshev -pc_type icc -pc_factor_levels 2 
+8520536 ,  -ksp_type bcgs -pc_type jacobi 
+5890860 ,  -ksp_type ibcgs -pc_type icc -pc_factor_levels 2 
+82456576 ,  -ksp_type tfqmr -pc_type jacobi 
+29030069 ,  -ksp_type lsqr -pc_type ilu -pc_factor_levels 1 
+95762354 ,  -ksp_type cg -pc_type asm -pc_asm_overlap 1 
+90783920 ,  -ksp_type gmres -pc_type jacobi 
+99720138 ,  -ksp_type cg -pc_type bjacobi 
+29030071 ,  -ksp_type lsqr -pc_type ilu -pc_factor_levels 3 
+29030070 ,  -ksp_type lsqr -pc_type ilu -pc_factor_levels 0 
+29030072 ,  -ksp_type lsqr -pc_type ilu -pc_factor_levels 2 
+85490469 ,  -ksp_type chebyshev -pc_type ilu -pc_factor_levels 3 
+30870723 ,  -ksp_type gmres -pc_type asm -pc_asm_overlap 1 
+30870722 ,  -ksp_type gmres -pc_type asm -pc_asm_overlap 0 
+26415435 ,  -ksp_type fgmres -pc_type icc -pc_factor_levels 2 
+26415434 ,  -ksp_type fgmres -pc_type icc -pc_factor_levels 3 
+26415433 ,  -ksp_type fgmres -pc_type icc -pc_factor_levels 0 
+26415432 ,  -ksp_type fgmres -pc_type icc -pc_factor_levels 1 
+13323659 ,  -ksp_type bicg -pc_type bjacobi 
+45869640 ,  -ksp_type fgmres -pc_type asm -pc_asm_overlap 1 
+36564233 ,  -ksp_type bicg -pc_type asm -pc_asm_overlap 1 
+68908713 ,  -ksp_type chebyshev -pc_type jacobi 
+7285382 ,  -ksp_type cg -pc_type ilu -pc_factor_levels 2 
+36564232 ,  -ksp_type bicg -pc_type asm -pc_asm_overlap 0 
+7285383 ,  -ksp_type cg -pc_type ilu -pc_factor_levels 1 
+75830645 ,  -ksp_type ibcgs -pc_type asm -pc_asm_overlap 3 
+36564234 ,  -ksp_type bicg -pc_type asm -pc_asm_overlap 2 
+81986705 ,  -ksp_type cg -pc_type jacobi 
+29553941 ,  -ksp_type bcgs -pc_type ilu -pc_factor_levels 2 
+29553943 ,  -ksp_type bcgs -pc_type ilu -pc_factor_levels 0 
+29553942 ,  -ksp_type bcgs -pc_type ilu -pc_factor_levels 3 
+69654761 ,  -ksp_type tfqmr -pc_type ilu -pc_factor_levels 0 
+29553944 ,  -ksp_type bcgs -pc_type ilu -pc_factor_levels 1 
+69654763 ,  -ksp_type tfqmr -pc_type ilu -pc_factor_levels 2 
+69654762 ,  -ksp_type tfqmr -pc_type ilu -pc_factor_levels 3 
+32874609 ,  -ksp_type lgmres -pc_type icc -pc_factor_levels 0 
+32168840 ,  -ksp_type gmres -pc_type ilu -pc_factor_levels 1 
+90197664 ,  -ksp_type lsqr -pc_type icc -pc_factor_levels 1 
+90197665 ,  -ksp_type lsqr -pc_type icc -pc_factor_levels 0 
+90197666 ,  -ksp_type lsqr -pc_type icc -pc_factor_levels 3 
+69654760 ,  -ksp_type tfqmr -pc_type ilu -pc_factor_levels 1 
+37052870 ,  -ksp_type lsqr -pc_type asm -pc_asm_overlap 3 
+37052871 ,  -ksp_type lsqr -pc_type asm -pc_asm_overlap 2 
+19932321 ,  -ksp_type tcqmr -pc_type ilu -pc_factor_levels 3 
+19932323 ,  -ksp_type tcqmr -pc_type ilu -pc_factor_levels 1 
+19932322 ,  -ksp_type tcqmr -pc_type ilu -pc_factor_levels 2 
+19932324 ,  -ksp_type tcqmr -pc_type ilu -pc_factor_levels 0 
+80361466 ,  -ksp_type bcgs -pc_type asm -pc_asm_overlap 0 
+80361467 ,  -ksp_type bcgs -pc_type asm -pc_asm_overlap 1 
+80361464 ,  -ksp_type bcgs -pc_type asm -pc_asm_overlap 2 
+80361465 ,  -ksp_type bcgs -pc_type asm -pc_asm_overlap 3 
+49834420 ,  -ksp_type tcqmr -pc_type asm -pc_asm_overlap 3 
+1216556 ,  -ksp_type ibcgs -pc_type jacobi 
+38678404 ,  -ksp_type bicg -pc_type ilu -pc_factor_levels 3 
+38678401 ,  -ksp_type bicg -pc_type ilu -pc_factor_levels 0 
+38678402 ,  -ksp_type bicg -pc_type ilu -pc_factor_levels 1 
+38678403 ,  -ksp_type bicg -pc_type ilu -pc_factor_levels 2 
+32874611 ,  -ksp_type lgmres -pc_type icc -pc_factor_levels 2 
+32874610 ,  -ksp_type lgmres -pc_type icc -pc_factor_levels 1 
+32874612 ,  -ksp_type lgmres -pc_type icc -pc_factor_levels 3 
+44114477 ,  -ksp_type bicg -pc_type icc -pc_factor_levels 1 
+44114476 ,  -ksp_type bicg -pc_type icc -pc_factor_levels 0 
+44114479 ,  -ksp_type bicg -pc_type icc -pc_factor_levels 3 
+44114478 ,  -ksp_type bicg -pc_type icc -pc_factor_levels 2 
+36564235 ,  -ksp_type bicg -pc_type asm -pc_asm_overlap 3 
+36025721 ,  -ksp_type lgmres -pc_type ilu -pc_factor_levels 3 
+75830647 ,  -ksp_type ibcgs -pc_type asm -pc_asm_overlap 1 
+75830646 ,  -ksp_type ibcgs -pc_type asm -pc_asm_overlap 0 
+85490471 ,  -ksp_type chebyshev -pc_type ilu -pc_factor_levels 1 
+85490470 ,  -ksp_type chebyshev -pc_type ilu -pc_factor_levels 2 
+85490472 ,  -ksp_type chebyshev -pc_type ilu -pc_factor_levels 0 
+18524981 ,  -ksp_type ibcgs -pc_type bjacobi 
+37052869 ,  -ksp_type lsqr -pc_type asm -pc_asm_overlap 0 
+37052868 ,  -ksp_type lsqr -pc_type asm -pc_asm_overlap 1 
+Total number of combinations: 154
+49542066, bcgs none
+44673503, fgmres none
+7481378, tfqmr none
+19481960, bicg none
+25185158, ibcgs none
+69323954, gmres none
+96689089, cg none
+28187355, lgmres none
+61996489, lsqr none
+83579741, tcqmr none
+88304927, chebyshev none
+

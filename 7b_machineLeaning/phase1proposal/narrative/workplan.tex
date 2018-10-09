@@ -14,22 +14,35 @@
 %%   Discuss the methods planned to achieve each objective or task
 %%   explicitly and in detail.  This section should be a substantial
 %%   portion of the total grant application.} 
+\subsection{ The SASI framework }
+
+\subsubsection{Feature Set Detection}
+
+
+\subsubsection{ Efficient Data Extraction and Management of HPC resources } 
+
+
+\subsection{ Model, data and feature set verification and analysis } 
+
+
+\subsection{ Re-purposing training data for use on other applications and architectures }
+
 
 
 \section{Performance Schedule and Task Plan}
 \label{sec:taskplan}
 
 The goal of the Phase I effort will be to provide the reviewers with a clear idea 
-of the scientific and commercial potential of ... The Phase I effort will primarily focus on .... The research and development topics described in Section \ref{sec:approach} 
-will be addressed by the tasks described in the remainder of this section. 
+of the scientific and commercial potential of SASI. The research and development topics 
+described in Section \ref{sec:approach} will be addressed by the tasks described in the remainder of this section. 
 Figure~\ref{fig:tasks} summarizes, at a high level, the dependencies among tasks 
 and approximate anticipated task durations. The project duration is roughly 
 divided into 1 month blocks. Specific details are included in the description 
 of each task. 
 
 RNET would like to present the project ideas and research plan to the DOE 
-Program Manager and other interested scientists involved with NWChem.
-This meeting will 
+Program Manager and other interested scientists interested in performance tuning
+through smart algorithm selection. This meeting will 
 be scheduled soon after the Phase I contract is awarded. The Kickoff meeting 
 will coincide with the Phase I SBIR PI meeting being hosted by the DOE. The 
 meeting can be hosted at RNET, a DOE site suggested by the Program Manager or 
@@ -61,11 +74,34 @@ interested scientists.
 \setcounter{taskCount}{0}
 
 \refstepcounter{taskCount}\label{task:1}
-\subsection{Task \ref{task:1}: }
+\subsection{Task \ref{task:1}: Generalization and extension of the SolverSelector Framework}
+In this task, the project team will begin the process of generalizing the SolverSelector framework for 
+use with generic algorithms and simulations. This will include a large litriture review focusing on the methods 
+and interfaces used to solve a variety of subproblems in many of the more prominent solver packages (i.e., TODO for 
+graph algorithms, TODO for optimization problems, TODO for ODE solvers, etc). At the end of this task, the software interfaces
+and indirections for building and integration of SASI models will be completed. All remaining work will look to add functionality, verification, analysis and usability features to the overall toolkit
+
 
 \refstepcounter{taskCount}\label{task:2}
-\subsection{Task \ref{task:2}: }
+\subsection{Task \ref{task:2}: Model Verification Toolkit }
+In this task, the project team will develop the tools required for model verification, including the feature and data set analysis tools outline in Section~\ref{TODO}. Initial testing of these tools will be completed using the datasets obtained for linear solvers as part of the SolverSelector 
+project. This data provides a good baseline for testing as it has been shown to be effective in informing an accurate SASI based model for linear solvers. The tools developed in this task will also be used in task~\ref{task:4} to verify the suitability of the graph algorithm data. 
 
 
 \refstepcounter{taskCount}\label{task:3}
 \subsection{Task \ref{task:3}: }
+In this task, the project team will investigate approaches for the re-purposing training data obtained on other architectures and/or from alternative algorithms or application areas in new models and for new architectures. As outlined in Section~\ref{TODO}, this will include an investigation into using data obtained from similar algorithm classes and Baysian methods to kick-start models for new algorithms. To test these methods, RNET and UO will attempt to kick-start a graph algorithm model utilizing training data obtained from linear solvers. 
+
+In addition, this task will also include an investigation into architecture and implementation features such as memory access patterns and/or the structure of the memory on the given architecture. RNET and UO will use the data sets previously obtained for linear solvers to assess the applicability of the developed methods. In those tests, training data will be obtained on the variety of small scale compute facilities available to the project team as outlined in Section~\ref{TODO}. The investigation will be considered a success when RNET can predict the performance of a algorithm on a different computer without requiring specific training data obtained on that machine and when existing training data from linear solvers can be used to inform an accurate machine model for graph algorithms. As above, testing will be done existing data obtained for linear solvers and graph algorithms, as well as will new data generated on various complete architecture. An accuracy of $90\%$ for the prediction of solver performance across architectures will be considered a success. An accuracy of $90\%$ was chosen because that is sufficient to kickstart a model on a new architecture while dramatically reducing the costs associated with data collection. 
+
+A version of this task will likely extend into any phase II project, with the ultimate goal being to create models that are capable of predicting performance on exascale machines utilizing training data obtained on more moderately sized resources using modest core-counts. As such, the phase II effort will require larger scale testing on terra and peta scale compute resources. Previous research suggests achieving this goal will require a combination of the archtecture and implementation backed features developed here with either analytical or heuristic based performance models (also to be investigated in Phase II).  
+
+\refstepcounter{taskCount}\label{task:4}
+\subsection{Task \ref{task:4}: Development of SASI model for Graph Algorithms }
+
+In this task, RNET and UO will demonstrate the capabilities of the SASI framework by applying 
+it to graph algorithms. The solver team has tested smart algorithm selection for graph algorithms 
+with good results; however, this was a completely manual process and no SolverSelector like framework was ever built. Using 
+the SASI framework, the project team will recreate the graph-algorithm models, leading to the development of a SolverSelector
+like API. This will allow the project team to create an informative and instructive proof of concept as to the capabilities 
+of the SASI framework. 

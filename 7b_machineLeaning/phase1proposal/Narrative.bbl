@@ -1,9 +1,0 @@
-\begin{thebibliography}{1}
-
-\bibitem{Lowell1}
-D.~Lowell, J.~Holewinski J.~Godwin, D.~Karthik, C.~Choudary, A.~Mametjanov,
-  B.~Norris, G.~Sabin, P.~Sadayappan, and J.~Sarich.
-\newblock Stencil-aware gpu optimization of iterative solvers.
-\newblock {\em SIAM Journal on Scientific Computing}, 35(5), 2013.
-
-\end{thebibliography}

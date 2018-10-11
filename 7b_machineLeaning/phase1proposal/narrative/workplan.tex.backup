@@ -35,21 +35,21 @@ Gluing all these tools as algorithms together will be the primary SASI API. The 
 
 Implementation of the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that method will be unavailable, but other methods will still be accessible. All in, the SASI API will provide the user with a single place for interacting with and user the numerous SASI based tools. 
 
-\subsection{ 
-
-\subsection{Feature Set Detection}
-
-\subsection{ Phase II Tasks: Efficient Data Extraction and Management of HPC resources } 
-
-
-\subsection{ Model, data and feature set verification and analysis } 
-
-
-SASI will also attempt to minimize instances of conflicting classifications. Conflicting classification occurs when two separate matrices have the same feature set (and are thereby identical as far as the model is concerned), but are classified differently for a given solver. Conflicts such as these must be minimized, either by adding new or changing existing features,  to ensure the feature set exhibits the discriminating qualities required for use in high accuracy machine learning models. 
-
-
 \subsection{ Re-purposing training data for use on other applications and architectures }
 
+In previous work the machine learning models have been architecture specific. The consequence of this is that the training data 
+obtained on one machine cannot be re-used on a new machine. As such, the entire training set must be recomputed for each new architecture, a task 
+that is extremely expensive and time consuming. A similar task must also be completed when applying SASI to a new class of algorithm, even in situations where fundamental structure of the computational model is similar, as was the case with linear solver and eigensolvers which are both matrix based. 
+
+To that end, a large portion of the phase I effort will be devoted to investigating methods for reusing data obtained from data on other architectures and/or from other algorithmic classes to infer informed predictions of algorithm performance on architectures and/or algorithmic classes for which no training data is available. 
+
+The approach taken to address architecture differences will be to develop models whereby the characteristics of the architecture (i.e., the processor speed, available memory, cores-per-node, network speed, etc) are used as features in the machine learning model in addition to the computational model based features. This will allow for the creation of models whereby the features of the machine are incorporated into the prediction, while also adding little to no computational overhead to the overall feature extraction process. 
+
+To enable efficient reuse of data between similar algorithmic classes we will investigate the development of Baysian machine learning models, specifically Baysian transfer learning methods . A major assumption in the machine learning models used in previous work is that the training data must be in the identical feature space and distribution. That is to say, the training data must come from the same domain. This is less than ideal in situations where limited training data is available because it prohibits the reuse of existing data in the new domain. In contrast, transfer learning leads to models capable of simultaneously learning form different source domains, making it possible to transfer relevant knowledge from domains with plenty of labeled data to 
+new domains where training data is limited. A good analogy for transfer based learning is that of learning a new programming language, whereby the transfer of core skills from previous languages acts to reduce the learning curve associated with the new language.
+
+In the context of SASI, the means using data from a domain such as linear solvers to improve prediction in a similar algorithm class such as eigensolvers. The Phase I effort will focus on implementing and testing Baysian transfer learning models for transitioning data from the source domain of linear solvers to a target domain of eigensolvers. Both of these systems are matrix based, making them perfect candidates for testing and developing the transfer learning models. If successful, these Baysian models will dramatically reduce the computational effort of collecting labeled training data in the new domains. 
+ 
 
 
 \section{Performance Schedule and Task Plan}

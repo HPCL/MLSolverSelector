@@ -35,22 +35,13 @@ Gluing all these tools as algorithms together will be the primary SASI API. The 
 
 Implementation of the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that method will be unavailable, but other methods will still be accessible. All in, the SASI API will provide the user with a single place for interacting with and user the numerous SASI based tools. 
 
-The SASI API will provide functions for 
-\begin{itemize} 
-\item Running the aforementioned feature sampling and database management tools
-\item Importing database entries calculated externally
-\item Building a training data set by recursively stepping through a provided list of algorithm configurations.
-\item 
-\end{itemize}
+\subsection{ Re-purposing training data for use on other applications and architectures }
+
+In previous work the machine learning models have been architecture specific. The consequence of this is that the training data 
+obtained on one machine cannot be re-used on a new machine. As such, the entire training set must be recomputed for each new architecture, a task 
+that is extremely expensive and time consuming. 
 
 
-
-
-
-
- 
- 
- \end{itemize}
 
 
 \subsection{Feature Set Detection}

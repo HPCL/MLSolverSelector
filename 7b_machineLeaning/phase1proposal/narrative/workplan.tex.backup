@@ -33,19 +33,7 @@ Finally, the SASI database management tool will include methods for determining 
 \subsubsection{The SASI API} 
 Gluing all these tools as algorithms together will be the primary SASI API. The SASI interface will be written in C++ using template parameters and virtual functions to create an interface that is widely applicable across a broad range of numerical applications and simulations. The implementation of the interface will itself form the guiding star for users looking to build SASI models for new algorithms and simulations. 
 
-Implementation of the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that method will be unavailable, but other methods will still be accessible. All in, the SASI API will provide the user with a single place for interacting with and user the numerous SASI based tools. 
-
-The SASI API will provide functions for 
-\begin{itemize} 
-\item Running the aforementioned feature sampling and database management tools
-\item Importing database entries calculated externally
-\item Building a training data set by recursively stepping through a provided list of algorithm configurations.
-\item 
-\end{itemize}
-
-
-
-
+Implementation of the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that me
 
 
  
@@ -55,7 +43,7 @@ The SASI API will provide functions for
 
 \subsection{Feature Set Detection}
 
-\subsection{ Phase II Tasks: Efficient Data Extraction and Management of HPC resources } 
+\subsection{ Pashe II Tasks: Efficient Data Extraction and Management of HPC resources } 
 
 
 \subsection{ Model, data and feature set verification and analysis } 

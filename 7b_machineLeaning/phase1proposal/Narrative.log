@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 14:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 14:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -532,11 +532,7 @@ LaTeX Warning: Reference `saec:modelver' on page 12 undefined on input line 116
 
 LaTeX Warning: Reference `TODO' on page 12 undefined on input line 124.
 
-) (./narrative/related.tex
-
-LaTeX Warning: Reference `TODO' on page 12 undefined on input line 6.
-
-[12] [13]) (./narrative/personnel.tex
+) (./narrative/related.tex [12] [13]) (./narrative/personnel.tex
 
 LaTeX Warning: Reference `TODO' on page 14 undefined on input line 13.
 
@@ -578,7 +574,7 @@ Here is how much of TeX's memory you used:
  11345 multiletter control sequences out of 15000+600000
  22498 words of font info for 49 fonts, out of 8000000 for 9000
  18 hyphenation exceptions out of 8191
- 36i,12n,43p,1631b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,12n,43p,1396b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
@@ -590,7 +586,7 @@ exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on Narrative.pdf (16 pages, 158215 bytes).
+Output written on Narrative.pdf (16 pages, 158303 bytes).
 PDF statistics:
  260 PDF objects out of 1000 (max. 8388607)
  229 compressed objects within 3 object streams

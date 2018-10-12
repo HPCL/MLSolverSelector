@@ -3,20 +3,18 @@
 %%   including the questions it will try to answer to determine the
 %%   feasibility of the proposed approach.}
  
-To demonstrate the technical feasibility of the proposed approach the Phase I effort will place a specific emphasis on the development of 
-the core components in the SASI toolkit required to enable a demonstration as to the overall functionality of the proposed framework. The specific objectives RNET Technologies, and its subcontractor (UO) will pursue during the Phase I project are:
+To demonstrate the technical feasibility of the proposed approach, the Phase I effort will focus on developing a functional proof of concept for the 
+SASI framework. The specific objectives RNET Technologies, and its subcontractor (UO) will pursue during the Phase I project are:
 
 \begin{itemize}
-  \item Generalize and, where-ever possible, automate, the SolverSelector API to create a SASI framework that 
-  guides the user through the process of building and using an accurate and reliable SASI model, including a robust set of machine learning analysis tools that test, analyze and optimize the feature set, data set, and model based on a user specified set of performance metrics. 
-   
-  \item Investigation of approaches for reusing, modifying and/or re-purposing training data obtained on other architectures and/or from alternative algorithms or application areas in new models and for new architectures. This will include an investigation into implementation and architecture specific features such as the processor speed, available memory and memory access patterns to provide informed predictions when switching to an architecture for which limited training data is available. 
-  
+  \item Develop the core interfaces and software indirections required to create a framework that 
+  guides the user through the process of building and using an accurate and reliable SASI model.
+  \item Prototype a range of tools for ensuring the SASI models are valid, including automated testing and analysis of the features, training data and model. 
+  \item Investigate of approaches for reusing, modifying and/or re-purposing training data obtained on other architectures and/or from alternative algorithms or application areas in new models and for new architectures. 
   \item Demonstrate the effectiveness of the SASI framework by applying it to graph algorithms, a numerical subproblem that
   project team has experience developing SASI models for, but for which no sophisticated integration framework has been developed. 
-  
 \end{itemize}
 
-By achieving these three objectives, RNET will demonstrate the scientific and commercial potential of the proposed package. In particular, the investigation into architecture and implementation features will allow us to demonstrate the capability of SASI models to automatically adapt to not only changes in the computational model, but also to changes in the compute architecture. Likewise, the demonstration of SASI applied to graph algorithms, an area where the project team has prior experience developing SASI models, but for which model building and integration was a manual process, will all the project team to fully highlight the simplicity of the SASI framework, as well as the performance gains that can be achieved using SASI models. 
+By achieving these three objectives, RNET will demonstrate the scientific and commercial potential of the proposed package. The investigation into approaches for re-using data as well as the development of automated tools for assessing the validity of the model and data represent the key and novel scientific contributions of the proposed project requiring. Similarly, the development of . While we will be able to reuse some components of the SolverSelector API ( i.e., the Sqlite3 database interface ), the development of the core the core framework represents a difficult computer science problem that will required an in-depth literature review regarding the best way to implement the framework such that we can support a wide range of numerical algorithms
 
 The Phase II will focus on generalizing and improving the generic machine learning tools proposed in this proposal, including full scale development and testing of the tools developed during Phase I.  This will include investigating efficient data collection algorithms and implementations such as a fork-join model to provide fast in-line data collection that efficiently utilizes the available computational resources and an investigation into ranking based machine learning models. Mechanisms and software indirections required for utilizing and managing automatic algorithm selection using implementations from separate and distinct solver packages will also be developed as part of the Phase II effort. 

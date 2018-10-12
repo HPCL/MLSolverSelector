@@ -17,7 +17,9 @@ electrical engineers with a mechanism for letting the software decide the best p
 method without the need for labor-intensive experimentation, and thus focus on more 
 scientific aspects of their applications. Moreover, by ensuring applications are optimized for the architecture
 for which they are being used on, SASI will inform the efficient usage of the nations current and emerging computational 
-resources. The targeted customers include nuclear power companies, DoD and its Prime Contractors, 
+resources. 
+
+The targeted customers include nuclear power companies, DoD and its Prime Contractors, 
 NASA divisions, DOE agencies, CFD software providers, oil and gas companies, semiconductor 
 design companies etc.
 

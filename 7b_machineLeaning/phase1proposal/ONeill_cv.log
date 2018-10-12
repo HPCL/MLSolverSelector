@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 14:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 08:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**Narrative.tex
-(./Narrative.tex
+**ONeill_cv.tex
+(./ONeill_cv.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 )
 \c@part=\count79
 \c@section=\count80
@@ -319,47 +319,29 @@ Package: geometry 2010/09/12 v5.6 Page Geometry
 \WF@box=\box32
 \WF@everypar=\toks22
 Package: wrapfig 2003/01/31  v 3.6
-))
-(./style/margins.tex) (./style/preamble.tex
-\c@thm=\count112
-\boxone=\box33
-\boxtwo=\box34
-\boxthree=\box35
-\narrow=\skip62
-\cnarrow=\skip63
-\boxwidth=\skip64
-\c@defin=\count113
-) (./title.tex)
-(/usr/share/texlive/texmf-dist/tex/latex/soul/soul.sty
-Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
-\SOUL@word=\toks23
-\SOUL@lasttoken=\toks24
-\SOUL@cmds=\toks25
-\SOUL@buffer=\toks26
-\SOUL@token=\toks27
-\SOUL@spaceskip=\skip65
-\SOUL@ttwidth=\dimen128
-\SOUL@uldp=\dimen129
-\SOUL@ulht=\dimen130
-) (./Narrative.aux)
-\openout1 = `Narrative.aux'.
+)) (./title.tex)
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 50.
-LaTeX Font Info:    ... okay on input line 50.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 50.
+LaTeX Warning: Unused global option(s):
+    [times].
 
+No file ONeill_cv.aux.
+\openout1 = `ONeill_cv.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 33.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
@@ -382,35 +364,33 @@ e
 ))
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count114
-\scratchdimen=\dimen131
-\scratchbox=\box36
-\nofMPsegments=\count115
-\nofMParguments=\count116
-\everyMPshowfont=\toks28
-\MPscratchCnt=\count117
-\MPscratchDim=\dimen132
-\MPnumerator=\count118
-\makeMPintoPDFobject=\count119
-\everyMPtoPDFconversion=\toks29
+\scratchcounter=\count112
+\scratchdimen=\dimen128
+\scratchbox=\box33
+\nofMPsegments=\count113
+\nofMParguments=\count114
+\everyMPshowfont=\toks23
+\MPscratchCnt=\count115
+\MPscratchDim=\dimen129
+\MPnumerator=\count116
+\makeMPintoPDFobject=\count117
+\everyMPtoPDFconversion=\toks24
 )
-\AtBeginShipoutBox=\box37
-Package hyperref Info: Link coloring ON on input line 50.
+\AtBeginShipoutBox=\box34
+Package hyperref Info: Link coloring ON on input line 33.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count120
+\c@section@level=\count118
 )
-LaTeX Info: Redefining \ref on input line 50.
-LaTeX Info: Redefining \pageref on input line 50.
-LaTeX Info: Redefining \nameref on input line 50.
-
-(./Narrative.out) (./Narrative.out)
+LaTeX Info: Redefining \ref on input line 33.
+LaTeX Info: Redefining \pageref on input line 33.
+LaTeX Info: Redefining \nameref on input line 33.
 \@outlinefile=\write4
-\openout4 = `Narrative.out'.
+\openout4 = `ONeill_cv.out'.
 
 
 *geometry* driver: auto-detecting
@@ -432,12 +412,12 @@ LaTeX Info: Redefining \nameref on input line 50.
 * \topmargin=14.45377pt
 * \headheight=43.36243pt
 * \headsep=14.45377pt
-* \topskip=12.0pt
-* \footskip=25.29494pt
+* \topskip=11.0pt
+* \footskip=18.06749pt
 * \marginparwidth=0.0pt
 * \marginparsep=0.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=-75.88371pt
 * \mag=1000
@@ -447,153 +427,33 @@ LaTeX Info: Redefining \nameref on input line 50.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <14.4> on input line 52.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 52.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 52.
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 63.
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 63.
 
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
-File: omsptm.fd 
-)
+! LaTeX Error: File `bio/boneill_cv.tex' not found.
 
-LaTeX Font Warning: Font shape `OMS/ptm/bx/n' undefined
-(Font)              using `OMS/ptm/m/n' instead
-(Font)              for symbol `textbraceleft' on input line 63.
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: tex)
 
-LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 63.
-LaTeX Font Info:    Font shape `OMS/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 64.
-[1
+Enter file name: x
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-(./narrative/proj_narrative.tex (./narrative/identification.tex
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 20.
-
-
-Package natbib Warning: Citation `EijkFuen2010:multistage' on page 2 undefined 
-on input line 25.
-
-
-Package natbib Warning: Citation `TODO' on page 2 undefined on input line 27.
-
-
-Package natbib Warning: Citation `Eller2012' on page 2 undefined on input line 
-27.
-
-[2]
-
-LaTeX Warning: Reference `sec:linearsolvers' on page 3 undefined on input line 
-41.
-
-[3]
-
-LaTeX Warning: Reference `sec:linearsolvers' on page 4 undefined on input line 
-45.
-
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 58.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 58.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 58.
-
-Package natbib Warning: Citation `TODO-MOOSE' on page 4 undefined on input line
- 82.
-
-[4]
-
-Package natbib Warning: Citation `PETSc' on page 5 undefined on input line 84.
-
-
-LaTeX Warning: Reference `TODO' on page 5 undefined on input line 88.
-
-[5]) (./narrative/benefits.tex [6]) (./narrative/objectives.tex [7])
-(./narrative/workplan.tex [8] [9] [10]
-
-LaTeX Warning: Reference `fig:tasks' on page 11 undefined on input line 65.
-
-\c@taskCount=\count121
-[11]
-
-LaTeX Warning: Reference `saec:modelver' on page 12 undefined on input line 116
-.
-
-
-LaTeX Warning: Reference `TODO' on page 12 undefined on input line 124.
-
-) (./narrative/related.tex
-
-LaTeX Warning: Reference `TODO' on page 12 undefined on input line 6.
-
-[12] [13]) (./narrative/personnel.tex
-
-LaTeX Warning: Reference `TODO' on page 14 undefined on input line 13.
-
-
-LaTeX Warning: Reference `TODO' on page 14 undefined on input line 14.
-
-[14]) (./narrative/facilities.tex) (./narrative/consultants.tex
-LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/it' tried instead on input line 4.
- [15]))
-(./Narrative.bbl)
-
-Package natbib Warning: There were undefined citations.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 70.
- (./Narrative.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 70.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 70.
-Package rerunfilecheck Info: File `Narrative.out' has not changed.
-(rerunfilecheck)             Checksum: 9BB43A6A61BEC1F691F122C1D52C7EDA;2593.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 70.
  )
+(\end occurred when \ifx on line 36 was incomplete)
+(\end occurred when \ifx on line 36 was incomplete)
 (\end occurred when \ifcase on line 112 was incomplete)
 (\end occurred when \ifx on line 112 was incomplete)
 (\end occurred when \ifx on line 112 was incomplete) 
 Here is how much of TeX's memory you used:
- 8282 strings out of 494953
- 118016 string characters out of 6180976
- 220786 words of memory out of 5000000
- 11345 multiletter control sequences out of 15000+600000
- 22498 words of font info for 49 fonts, out of 8000000 for 9000
- 18 hyphenation exceptions out of 8191
- 36i,12n,43p,1631b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-d
-ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
-ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1
-2.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
-i8a.pfb>
-Output written on Narrative.pdf (16 pages, 158215 bytes).
+ 7494 strings out of 494953
+ 110340 string characters out of 6180976
+ 203258 words of memory out of 5000000
+ 10691 multiletter control sequences out of 15000+600000
+ 4447 words of font info for 16 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 36i,1n,43p,229b,81s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+No pages of output.
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 233 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3 PDF objects out of 1000 (max. 8388607)
+ 1 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

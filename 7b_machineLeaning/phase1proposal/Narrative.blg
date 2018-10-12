@@ -6,10 +6,11 @@ Database file #1: bib/proposal.bib.bib
 Warning--I didn't find a database entry for "EijkFuen2010:multistage"
 Warning--I didn't find a database entry for "TODO"
 Warning--I didn't find a database entry for "Eller2012"
-Warning--I didn't find a database entry for "Weka"
+Warning--I didn't find a database entry for "TODO-MOOSE"
+Warning--I didn't find a database entry for "PETSc"
 You've used 1 entry,
             2118 wiz_defined-function locations,
-            513 strings with 4341 characters,
+            515 strings with 4363 characters,
 and the built_in function-call counts, 486 in all, are:
 = -- 38
 > -- 48
@@ -48,4 +49,4 @@ warning$ -- 0
 while$ -- 2
 width$ -- 2
 write$ -- 13
-(There were 4 warnings)
+(There were 5 warnings)

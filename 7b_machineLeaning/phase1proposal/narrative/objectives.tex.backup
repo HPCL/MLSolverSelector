@@ -3,10 +3,8 @@
 %%   including the questions it will try to answer to determine the
 %%   feasibility of the proposed approach.}
  
-To demonstrate the feasibility of the proposed approach,  the Phase I effort will place a specific emphasis on the development of 
-the core components in the SASI toolkit, with the more in depth exploratory machine learning research required to fully implement the proposed platform being scheduled for Phase II. In this way, RNET and UO will be able to fully demonstrate the performance tuning capabilities of SASI.  
-
-In order to demonstrate feasibility of the proposed approach in Phase I, RNET Technologies, and its subcontractor (UO) will pursue the following objectives.
+To demonstrate the technical feasibility of the proposed approach the Phase I effort will place a specific emphasis on the development of 
+the core components in the SASI toolkit required to enable a demonstration as to the overall functionality of the proposed framework. The specific objectives RNET Technologies, and its subcontractor (UO) will pursue during the Phase I project are:
 
 \begin{itemize}
   \item Generalize and, where-ever possible, automate, the SolverSelector API to create a SASI framework that 
@@ -21,5 +19,4 @@ In order to demonstrate feasibility of the proposed approach in Phase I, RNET Te
 
 By achieving these three objectives, RNET will demonstrate the scientific and commercial potential of the proposed package. In particular, the investigation into architecture and implementation features will allow us to demonstrate the capability of SASI models to automatically adapt to not only changes in the computational model, but also to changes in the compute architecture. Likewise, the demonstration of SASI applied to graph algorithms, an area where the project team has prior experience developing SASI models, but for which model building and integration was a manual process, will all the project team to fully highlight the simplicity of the SASI framework, as well as the performance gains that can be achieved using SASI models. 
 
-The Phase II will be primarily focused on further generalizing and improving the generic machine learning tools proposed in this proposal, including full scale development and testing of the tools developed during Phase I.  This will include investigating efficient data collection algorithms and implementations such as a fork-join model to provide fast in-line data collection that efficiently utilizes the available computational resources and an investigation into ranking based machine learning models. Mechanisms and software indirections required for utilizing and managing automatic algorithm selection using implementations from separate and distinct solver packages will also be developed as part of the Phase II effort. 
-
+The Phase II will focus on generalizing and improving the generic machine learning tools proposed in this proposal, including full scale development and testing of the tools developed during Phase I.  This will include investigating efficient data collection algorithms and implementations such as a fork-join model to provide fast in-line data collection that efficiently utilizes the available computational resources and an investigation into ranking based machine learning models. Mechanisms and software indirections required for utilizing and managing automatic algorithm selection using implementations from separate and distinct solver packages will also be developed as part of the Phase II effort. 

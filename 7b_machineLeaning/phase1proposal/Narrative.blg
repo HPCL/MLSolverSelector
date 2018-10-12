@@ -3,50 +3,50 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Narrative.aux
 The style file: plain.bst
 Database file #1: bib/proposal.bib.bib
-Warning--I didn't find a database entry for "EijkFuen2010:multistage"
-Warning--I didn't find a database entry for "TODO"
-Warning--I didn't find a database entry for "Eller2012"
-Warning--I didn't find a database entry for "TODO-MOOSE"
-Warning--I didn't find a database entry for "PETSc"
-You've used 1 entry,
+Database file #2: bib/apps.bib.bib
+Database file #3: bib/linear.bib.bib
+Database file #4: bib/ml.bib.bib
+Database file #5: bib/other.bib.bib
+Warning--to sort, need author or key in MOOSE
+You've used 5 entries,
             2118 wiz_defined-function locations,
-            515 strings with 4363 characters,
-and the built_in function-call counts, 486 in all, are:
-= -- 38
-> -- 48
-< -- 0
-+ -- 19
-- -- 18
-* -- 47
-:= -- 97
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 12
+            533 strings with 5225 characters,
+and the built_in function-call counts, 2306 in all, are:
+= -- 195
+> -- 193
+< -- 1
++ -- 77
+- -- 72
+* -- 187
+:= -- 393
+add.period$ -- 15
+call.type$ -- 5
+change.case$ -- 51
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 10
-empty$ -- 19
-format.name$ -- 18
-if$ -- 86
+cite$ -- 6
+duplicate$ -- 64
+empty$ -- 136
+format.name$ -- 72
+if$ -- 464
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 2
-pop$ -- 10
+int.to.str$ -- 5
+missing$ -- 3
+newline$ -- 27
+num.names$ -- 8
+pop$ -- 65
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 46
 quote$ -- 0
-skip$ -- 8
+skip$ -- 52
 stack$ -- 0
-substring$ -- 5
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 61
+swap$ -- 17
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
-warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 13
-(There were 5 warnings)
+type$ -- 20
+warning$ -- 1
+while$ -- 10
+width$ -- 6
+write$ -- 52
+(There was 1 warning)

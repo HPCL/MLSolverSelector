@@ -18,7 +18,7 @@
 Development of the SASI framework will be composed of two connected but distinct components; the development of numerous tools, analysis routines and machine learning algorithms required to build, test and validate  the proposed SASI models, and the development of the core framework for gluing together those tools. In what follows, we outline the approach that will be taken to achieve the overall objectives of the proposed project. 
 
 \subsection{ Model, Data and Feature Set Verification and Analysis }
-
+\label{sec:modelvar}
 The number one requirement for the development of an accurate machine learning model is a robust, discriminating and informative set of training data, features and classification metrics. Speaking from experience, it is all to easy to create a machine learning model that performs wonderfully well in testing and validation tests, but that has little to no predictive capabilities in real-world applications. Based on previous research, the primary causes of poor performance in SASI models can most often be attributed to; (1) a feature set with poor discriminating capabilities, (2) a data set that does not adequately cover the parameter space of the given feature set and (3) a feature set that is too expensive for use in run-time applications. To that end, the SASI framework will include a range of tools dedicated to assessing the validity of the given model. The Phase I effort will focus on the development of two of those tools, each of which is described below: 
 
 \subsubsection{Feature Sampling} A key component of any machine learning model is an accurate, informative and discriminating feature set capable of inferring knowledge about the given phenomenon. The process of determining which features are appropriate for a given algorithm is highly problem dependent and best left up to a domain expert. However, once the features have been determined, there are several existing methods for assessing the validity of the feature set and for optimizing it for use in SASI models. One example of this is known as feature Sampling, whereby we remove features from the feature set that do not possess enough variability to be of any statistical importance. For SASI, removing irrelevant features is incredibly important because it reduces the runtime cost associated with feature extraction, thereby increasing the potential performance benefits of using SASI models. 
@@ -37,7 +37,7 @@ SASI will also include a variety of tests for assessing data validity supported 
 
 
 \subsection{ Re-purposing training data for use on other applications and architectures }
-
+\label{sec:reuse}
 In previous work, the machine learning models and training data has been architecture specific. The consequence of this is that the entire training set must be recomputed for each new architecture, a task that is extremely expensive and time consuming. The situation is even worse when applying SASI to a new model because the results from application area cannot be used in any way in the new application. This means that, even in cases where the computational model has core components that are similar ( i.e., linear solvers and eigensolvers), we cannot use the results or data from the old domain in the new domain; instead requiring the user to build a new set of training applications from scratch.  
 
 This is the key research issue the project team will need to address for SASI to be a success. To that end, the phase I effort will involve a concerned investigation into methods for using data obtained from data on other architectures and/or from other algorithmic classes to infer informed predictions of algorithm performance on architectures and/or algorithmic classes for which limited training data is available. 
@@ -65,7 +65,36 @@ described in Section \ref{sec:approach} will be addressed by the tasks described
 Figure~\ref{fig:tasks} summarizes, at a high level, the dependencies among tasks 
 and approximate anticipated task durations. The project duration is roughly 
 divided into 1 month blocks. Specific details are included in the description 
-of each task. 
+of each task. Phase II proposals will be due at the of the 10th month, hence, it is our
+intention to have the technical components of the proposal complete before the end of 
+the 10'th month as that is when Phase II proposal will be due. The final two months (denoted admin) will
+be dedicated to wrapping up the project, finalizing the documentation, writing the final 
+report and preparing for a Phase II. 
+
+\begin{figure}
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+   \hline 
+   \multirow{2}{*}{ Time (Months): } & \multicolumn{12}{|c|}{ Phase I } \\
+   \cline{2-12} 
+   & 1 & 2 & 3 & 4 & 5 & 6 & 7 &8 & 9 & 10 & 11 & 12 \\
+   \hline 
+   Task 1 & X & X & X  & X &  X & X & & & & & &  \\
+   \hline
+   Task 2 & & & & & & X& X & X & X &X & &   \\
+  \hline
+   Task 3 &X &X &X & X & X & X & X & X & X & X & &\\
+  \hline
+   Task 4 & & & &  &  &  & X & X & X & X & & \\
+  \hline
+   Admin & & & &  &  &  &  & & &  & X & X\\
+  \hline
+
+\end{tabular}
+\caption{Overview of task dependencies and time-line.}
+\label{fig:tasks}
+\end{figure}
+
 
 RNET would like to present the project ideas and research plan to the DOE 
 Program Manager and other interested scientists interested in performance tuning
@@ -113,7 +142,7 @@ RNET will take the lead on this task, with UO providing assistance and insight w
 
 \refstepcounter{taskCount}\label{task:2}
 \subsection{Task \ref{task:2}: Model, Data and Feature set Analysis tools. }
-In this task, the project team will develop the tools required for verifying the data set, feature set and model as described in Section~\ref{saec:modelver}. Initial testing of these tools will be completed using the datasets obtained for linear solvers as part of the SolverSelector 
+In this task, the project team will develop the tools required for verifying the data set, feature set and model as described in Section~\ref{sec:modelvar}. Initial testing of these tools will be completed using the datasets obtained for linear solvers as part of the SolverSelector 
 project. This data provides a good baseline for testing as it has been shown to be effective in informing an accurate SASI based model for linear solvers. The tools developed in this task will also be used in task~\ref{task:4} to verify the suitability of the graph algorithm data. 
 
 RNET will take the lead on this task, with UO providing assistance and insight when needed. 
@@ -121,7 +150,7 @@ RNET will take the lead on this task, with UO providing assistance and insight w
 
 \refstepcounter{taskCount}\label{task:3}
 \subsection{Task \ref{task:3}: Efficient Reuse of Data on new Architectures and Applications.}
-In this task, the project team will implement the approaches for the re-purposing training data obtained on other architectures and/or from alternative algorithms or application areas in new models and for new architectures. As outlined in Section~\ref{TODO}, this will include an investigation into using data obtained from similar algorithm classes and Baysian methods to kick-start models for new algorithms. To test these methods, RNET and UO will attempt to kick-start a graph algorithm model utilizing training data obtained from linear solvers and applying it to eigensolvers. 
+In this task, the project team will implement the approaches for the re-purposing training data obtained on other architectures and/or from alternative algorithms or application areas in new models and for new architectures. As outlined in Section~\ref{sec:reuse}, this will include an investigation into using data obtained from similar algorithm classes and Baysian methods to kick-start models for new algorithms. To test these methods, RNET and UO will attempt to kick-start a graph algorithm model utilizing training data obtained from linear solvers and applying it to eigensolvers. 
 
 The architecture transfer models developed in this task will be considered successful if, at the end of the project, we can predict the performance of an algorithm for a given matrix on a new architecture with an accuracy of over 90\%. The Baysian transfer models will be considered successful if, at the end of the task, we can use data obtained from linear solvers to improve the accuracy of models for eigensolvers when only a small subset of the data for eigensolvers is used.  
 

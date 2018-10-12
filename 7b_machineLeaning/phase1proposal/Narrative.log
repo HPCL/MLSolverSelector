@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 14:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.10.12)  12 OCT 2018 14:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -479,76 +479,37 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 20.
-
-
-Package natbib Warning: Citation `EijkFuen2010:multistage' on page 2 undefined 
-on input line 25.
-
-
-Package natbib Warning: Citation `TODO' on page 2 undefined on input line 27.
-
-
-Package natbib Warning: Citation `Eller2012' on page 2 undefined on input line 
-27.
-
-[2]
-
-LaTeX Warning: Reference `sec:linearsolvers' on page 3 undefined on input line 
-41.
-
-[3]
-
-LaTeX Warning: Reference `sec:linearsolvers' on page 4 undefined on input line 
-45.
-
+ [2] [3]
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 58.
+(Font)              <12> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 58.
+(Font)              <8> on input line 59.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 58.
+(Font)              <6> on input line 59.
 
-Package natbib Warning: Citation `TODO-MOOSE' on page 4 undefined on input line
- 82.
+[4] [5pdfTeX warning (ext4): destination with the same identifier (name{table.1
+}) has been already used, duplicate ignored
 
-[4]
-
-Package natbib Warning: Citation `PETSc' on page 5 undefined on input line 84.
-
-
-LaTeX Warning: Reference `TODO' on page 5 undefined on input line 88.
-
-[5]) (./narrative/benefits.tex [6]) (./narrative/objectives.tex [7])
-(./narrative/workplan.tex [8] [9] [10]
-
-LaTeX Warning: Reference `fig:tasks' on page 11 undefined on input line 65.
-
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.112 
+      ] [6]) (./narrative/benefits.tex) (./narrative/objectives.tex [7])
+(./narrative/workplan.tex [8] [9] [10] [11]
 \c@taskCount=\count121
-[11]
+ [12pdfTeX warning (ext4): destination with the same identifier (name{figure.1}
+) has been already used, duplicate ignored
 
-LaTeX Warning: Reference `saec:modelver' on page 12 undefined on input line 116
-.
-
-
-LaTeX Warning: Reference `TODO' on page 12 undefined on input line 124.
-
-) (./narrative/related.tex [12] [13]) (./narrative/personnel.tex
-
-LaTeX Warning: Reference `TODO' on page 14 undefined on input line 13.
-
-
-LaTeX Warning: Reference `TODO' on page 14 undefined on input line 14.
-
-[14]) (./narrative/facilities.tex) (./narrative/consultants.tex
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.156 
+      ]) (./narrative/related.tex [13] [14]) (./narrative/personnel.tex)
+(./narrative/facilities.tex [15]) (./narrative/consultants.tex
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <17.28> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 4.
- [15]))
-(./Narrative.bbl)
-
-Package natbib Warning: There were undefined citations.
-
+))
+(./Narrative.bbl [16])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 70.
-[16]
+ [17]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 70.
  (./Narrative.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 70.
@@ -559,22 +520,19 @@ Package rerunfilecheck Info: File `Narrative.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were undefined references.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 70.
  )
 (\end occurred when \ifcase on line 112 was incomplete)
 (\end occurred when \ifx on line 112 was incomplete)
 (\end occurred when \ifx on line 112 was incomplete) 
 Here is how much of TeX's memory you used:
- 8282 strings out of 494953
- 118016 string characters out of 6180976
- 220786 words of memory out of 5000000
- 11345 multiletter control sequences out of 15000+600000
- 22498 words of font info for 49 fonts, out of 8000000 for 9000
+ 8304 strings out of 494953
+ 118350 string characters out of 6180976
+ 225315 words of memory out of 5000000
+ 11359 multiletter control sequences out of 15000+600000
+ 23013 words of font info for 51 fonts, out of 8000000 for 9000
  18 hyphenation exceptions out of 8191
- 36i,12n,43p,1396b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,11n,43p,1396b,437s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-d
 ist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
@@ -586,10 +544,10 @@ exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
 st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
 /urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on Narrative.pdf (16 pages, 158303 bytes).
+Output written on Narrative.pdf (17 pages, 162627 bytes).
 PDF statistics:
- 260 PDF objects out of 1000 (max. 8388607)
- 229 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
+ 284 PDF objects out of 1000 (max. 8388607)
+ 252 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
  233 words of extra memory for PDF output out of 10000 (max. 10000000)
 

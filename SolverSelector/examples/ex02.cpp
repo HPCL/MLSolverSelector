@@ -43,7 +43,6 @@ int main(int argc,char **args)
   /* This is it -- the only change */
   SolverSelecter::PetscCoupler::CreateSolverSelectorKSP();
 
-
   KSP ksp; 
   ierr = KSPCreate(PETSC_COMM_WORLD,&ksp);CHKERRQ(ierr);
   ierr = KSPSetOperators(ksp,A,A);CHKERRQ(ierr);

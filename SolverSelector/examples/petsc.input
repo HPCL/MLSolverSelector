@@ -8,7 +8,7 @@
 #@PARAMETER serialized model.serialized
 
 @INTERFACE 
-@PARAMETER build_inline true
+@PARAMETER build_inline false 
 
 @PARAMETER dump_matrix false
 @PARAMETER use_ml true

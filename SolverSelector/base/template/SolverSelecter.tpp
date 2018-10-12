@@ -20,8 +20,8 @@ SolverSelecter<Matrix,Vector>::Initialize(std::string inputfile) {
     interface->GetInputFileImpl( parser );
     parser->Initialize(inputfile, interface, machinemodel, database);
     parser->Parse( matrix_filenames, solvers); 
-    machinemodel->Initialize(database);
     database->Initialize();
+    machinemodel->Initialize(database);
 
     return error_flag;
 }
@@ -60,6 +60,15 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile()
 
     return error_flag;
 }
+
+template<typename Matrix, typename Vector>
+ErrorFlag
+SolverSelecter<Matrix,Vector>::ConvertArffFileToDatabase() {
+
+  database->WriteDatabaseFromArff("asdfsdf"); 
+  return error_flag;
+}
+
 
 
 template<typename Matrix, typename Vector>

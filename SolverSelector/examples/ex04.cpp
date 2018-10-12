@@ -24,7 +24,10 @@ int main(int argc,char **args)
   auto ss = std::unique_ptr<SolverSelecter::PetscSS>(new SolverSelecter::PetscSS(ss_interface));
   ss->Initialize(input_file);
   ss->BuildModelAndSerialize("model.serialized");    
-  
+ 
+  //std::vector<std::string> alg;
+  //alg.push_back("DecisionTree");
+  //ss->CrossValidate(alg, false); 
   /* Destuctors could handle these; but, there is a MPI call is a destructor somewhere which causes
    * an error at exit. Destructors really shouldn't be making MPI calls, so, we need to figure out
    * whats goin on there. */

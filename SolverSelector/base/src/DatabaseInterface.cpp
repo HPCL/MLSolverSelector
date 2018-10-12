@@ -19,9 +19,13 @@ DatabaseInterface::AddRow(Solver &solver,
                           std::map< std::string, double > &features,
                           std::map<std::string, double> &measurements)
 {
-    int solver_hash = AddSolverToDatabase( solver, status  ) ;
-    int matrix_hash = AddMatrixToDatabase( features, status );
-    int row_hash = AddRowToDatabase( solver_hash, matrix_hash, measurements, status);
+    //int solver_hash = AddSolverToDatabase( solver, status  ) ;
+    //int matrix_hash = AddMatrixToDatabase( features, status );
+    //row_hash = AddRowToDatabase( row_hash, solver_hash, matrix_hash, measurements, status);
+    
+    int row_hash = AddToDatabase(solver, features, measurements, status );
+
+    
     return row_hash;
 }
 

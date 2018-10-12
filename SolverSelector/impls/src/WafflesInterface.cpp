@@ -66,7 +66,7 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vect
       *features = splitter.features();
       *labels   = splitter.labels();
    
-      std::string method = GetParameter("algorithm"); 
+      std::string method = algorithm; //GetParameter("algorithm"); 
        if ( method == "DescisionTree" )
         model = new GClasses::GDecisionTree();
       else if ( method == "RandomForest" )
@@ -88,6 +88,7 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vect
       const GClasses::GRelation &xy = labels->relation();
       for ( int i = 0; i < xy.size(); i++ ) labels_order.push_back( xy.attrNameStr(i)) ;
     }
+    std::cout << "FINISHED MODEL BUILDING " << std::endl;
     return error_flag;
 }
 
@@ -316,7 +317,7 @@ ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< s
 {
 
 
-    std::cout << " ----------   Performing Cross Validation -------------- \n";
+    std::cout << " ----------   Performing Cross Validation --------------" << algorithm << " \n";
     std::cout << " --- Features -- " ;
     for ( auto it : features_list ) std::cout << it << " -- ";
     std::cout << "\n\n";
@@ -324,7 +325,7 @@ ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< s
     // Parse options
     unsigned int seed = (unsigned int)time(NULL);
     int reps = 5;
-    int folds = 5;
+    int folds = 10;
     bool succinct = true;
 
     if(reps < 1)

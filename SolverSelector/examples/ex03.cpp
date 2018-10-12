@@ -23,7 +23,8 @@ int main(int argc,char **args)
   std::shared_ptr<SolverSelecter::PetscUI> ss_interface = std::make_shared< SolverSelecter::PetscUI >();  
   auto ss = std::unique_ptr<SolverSelecter::PetscSS>(new SolverSelecter::PetscSS(ss_interface));
   ss->Initialize(input_file);
-  ss->BuildDataBaseFromFile();    
+  ss-> ConvertArffFileToDatabase();
+  //ss->BuildDataBaseFromFile();    
   
   /* Destuctors could handle these; but, there is a MPI call is a destructor somewhere which causes
    * an error at exit. Destructors really shouldn't be making MPI calls, so, we need to figure out

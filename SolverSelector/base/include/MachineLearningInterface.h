@@ -23,7 +23,7 @@ namespace SolverSelecter {
       virtual ~MachineLearningInterface();
 
       virtual ErrorFlag Serialize(std::string output) = 0;
-
+      virtual ErrorFlag BuildModel() = 0;
       virtual ErrorFlag ClassifyImpl( features_map &features, Solver &solver ) = 0;
       
       virtual ErrorFlag CrossValidate(std::string algorithm, 

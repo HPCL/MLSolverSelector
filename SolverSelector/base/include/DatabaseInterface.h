@@ -31,18 +31,20 @@ namespace SolverSelecter {
     Initialize() = 0;
 
     virtual int
-    AddSolverToDatabase( Solver &solver , 
+    AddToDatabase( Solver &solver , std::map<std::string, double> &features, std::map<std::string,double> &measurements,
                          UpdateStatus status) = 0;
     
-    virtual int 
-    AddMatrixToDatabase( std::map< std::string, double > &features, 
-                         UpdateStatus status ) = 0;
+   // virtual int 
+  //  AddMatrixToDatabase( std::map< std::string, double > &features, 
+   //                      UpdateStatus status ) = 0;
     
-    virtual int  
-    AddRowToDatabase( int &solver, 
-                      int &marix, 
-                      std::map<std::string, double> &measurements, 
-                      UpdateStatus status) = 0;
+    virtual int 
+    WriteDatabaseFromArff(std::string arffFile) = 0 ;
+
+    //virtual int  
+    //AddRowToDatabase( int &rowHash, int& solverhash, int &matrixHash, 
+    //                  std::map<std::string, double> &measurements, 
+    //                  UpdateStatus status) = 0;
 
     virtual ErrorFlag 
     AddClassificationToDatabase( int &hash, 

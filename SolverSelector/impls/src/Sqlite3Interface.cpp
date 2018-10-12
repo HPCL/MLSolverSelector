@@ -416,7 +416,7 @@ SqlDatabase::AddMatrixToDatabase( std::map< std::string, double > &features, Upd
 }
 
 int 
-SqlDatabase::AddRowToDatabase( int &solver, int &matrix, std::map<std::string, double> &measurements, UpdateStatus status )
+SqlDatabase::AddRowToDatabase( int &rowhash, int &solver, int &matrix, std::map<std::string, double> &measurements, UpdateStatus status )
 {
 
 
@@ -430,10 +430,28 @@ SqlDatabase::AddRowToDatabase( int &solver, int &matrix, std::map<std::string, d
         map[it.first] = std::make_pair( std::to_string(it.second) , 2 );
     }
 
-    int row_hash = abs(GetHash(std::to_string(solver)) + GetHash(std::to_string(matrix)));
-    SetRowInDatabase( row_hash, meas_table, "REAL", map, status );
-    return row_hash;
+    SetRowInDatabase( rowhash, meas_table, "REAL", map, status );
+    return rowhash;
 }
+
+int SqlDatabase::AddToDatabase( Solver &solver, std::map<std::string, double> &features, std::map<std::string,double> &measurements, UpdateStatus status) {
+
+    int shash = AddSolverToDatabase( solver, status );
+    int mhash = AddMatrixToDatabase( features, status); 
+    
+    std::string rowHashStr;
+    solver.GetSolverString(rowHashStr);
+    std::stringstream oss;
+    oss << rowHashStr ; 
+    for ( auto &it : features )
+        oss << it.first << it.second ;
+    int rowHash = GetHash(oss.str() );
+    
+    
+    return AddRowToDatabase( rowHash, shash, mhash, measurements, status);
+
+}
+
 
 
 ErrorFlag 
@@ -448,7 +466,6 @@ SqlDatabase::AddClassificationToDatabase( int &hash, std::map<std::string, bool 
     SetRowInDatabase( hash, clas_table, "INTEGER", map, status ) ;
     return 0;
 }
-
 
 
 ErrorFlag 
@@ -608,6 +625,115 @@ SqlDatabase::GetMatrixToUniqueMap( std::map< int, std::vector<int> > &solvermap,
     return 0;
 }
 
+int SqlDatabase::WriteDatabaseFromArff(std::string arffFile) {
+ 
+   // Step 1. Get a map of solver hashes from kanika to SS solvers 
+  std::ifstream file ("/home/boneill/Documents/RNET_Development/RNET/MLNEAMS/MLdata/solvers.txt");
+  std::string value;
+  int count = 0;
+  int solver = 0;
+  std::map<int, std::string > solverMap;
+
+  std::vector<std::string> result;
+  while (!file.eof() ) {
+      
+      result.clear();
+      std::getline( file, value);
+      
+      StringSplit(value, ",", result); 
+      if ( result.size() == 2 )
+        solverMap[std::atoi(result[0].c_str())] = result[1];
+    } 
+  
+  // Step 2. Get a map of index to Feature name. 
+  std::map<int, std::string > featureMap;
+  std::ifstream file1 ("/home/boneill/Documents/RNET_Development/RNET/MLNEAMS/MLdata/MOOSE/RS1/RS1_petsc_mfree_MOOSE_artemis_p1_30_30nnz>10000.arff");
+  int index = 0;
+  int class_index = -1;
+  int solver_index = -1;
+  while ( !file1.eof() ) {
+    result.clear();
+    value = "";
+    std::getline( file1, value );
+    result.clear();
+    StringSplit(value, " ", result);
+    if ( value.size() == 0 ) {
+
+    }
+    else if ( result[0].substr(0,5) == "@data")  {
+       break;
+    } else if ( result[1].substr(0,6) == "solver" ) {
+        solver_index = index++; 
+        
+    } else if ( result[1].substr(0,5) == "class") {
+        class_index = index++; 
+    }
+    else if ( result[0].substr(0,5) == "@attr" && result[1].substr(0,1) != "" ) {
+        featureMap[index++] = result[1];
+    }  
+
+  }
+
+  std::vector< Solver > solvers;
+  std::vector< std::map< std::string , double >> features;
+  std::vector< std::map< std::string, double >> measurements;
+  std::vector< std::map< std::string, bool >> classifications;
+
+
+  // This BEGIN TRANSACTION stuff should be implemented in the whole 
+  // thing. Basically, SQL writes to disk once per transaction. Writing
+  // to disk is very slow becaise SQL does it in very SAFE way. So, to 
+  // get any kind of performance, we need to group our calls together into
+  // one big transaction. 1000 per transaction is the max, so 500 seems like
+  // a good compromize. SQL does about 1 transaction per second -- so, 145000
+  // lines should take ~10 mins or something. 
+  int progress = 0;
+  int cprogress = 0;
+  while ( !file1.eof() ) {
+    result.clear();
+    std::getline(file1, value);
+    StringSplit(value, ",",result);
+  
+    if ( progress == 0 ) {
+       std::string s = "BEGIN TRANSACTION"; 
+       SQLExecute(s);
+       progress++;
+    } else if ( progress == 200 ) {
+       std::cout << progress*(cprogress+1) << " records converted " ; 
+       std::string s = "END TRANSACTION" ;
+       SQLExecute(s);
+       progress = 0;
+       cprogress++;
+    } else {
+      progress++;
+    }
+    std::string solverstr = solverMap[ std::atoi(result[solver_index].c_str()) ];
+    Solver solver( solverstr );
+
+    std::map< std::string, double> feature_map;
+    for ( auto f : featureMap ) {
+       feature_map[f.second] = std::atof(result[f.first].c_str());  
+    }
+    
+    // Fake a measurement map that will always give us the given classification 
+    bool classification = ( result[class_index] == "bad" ) ? false : true ;     
+    std::map< std::string, double > measurementMap_unavailable;
+    measurementMap_unavailable["CPUTime"] = ( classification ) ? 0.003 : 1e300 ; 
+    int rowHash = AddToDatabase( solver, feature_map, measurementMap_unavailable, UpdateStatus::REPLACE );
+ 
+    std::map<std::string, bool> classMap;
+    classMap["CPUTime"] = classification;
+    int classHash = AddClassificationToDatabase( rowHash, classMap, UpdateStatus::REPLACE );
+    
+  }
+  
+  if ( progress != 0 ) {
+       std::string s = "END TRANSACTION" ;
+       SQLExecute(s);
+   } 
+	 return 0;
+
+}
 
 }
 #endif

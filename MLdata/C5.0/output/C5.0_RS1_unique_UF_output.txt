@@ -1,0 +1,189 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Fri Oct 12 20:18:37 2018
+-------------------------------
+
+    Options:
+	Application `data/RS1_unique_UF'
+
+Class specified by attribute `class'
+
+Read 15409 cases (11 attributes) from data/RS1_unique_UF.data
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (571)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (110)
+    FrobeniusNorn > 2918.9:
+    :...DiagonalMean > 6:
+        :...Dimension > 36441:
+        :   :...nnz <= 114422: good (54)
+        :   :   nnz > 114422: bad (130/4)
+        :   Dimension <= 36441:
+        :   :...solver > 7.583065e+07:
+        :       :...upperBandwidth <= 304: bad (2293/7)
+        :       :   upperBandwidth > 304:
+        :       :   :...upperBandwidth <= 480:
+        :       :       :...upperBandwidth <= 408: bad (40/4)
+        :       :       :   upperBandwidth > 408: good (20)
+        :       :       upperBandwidth > 480:
+        :       :       :...FrobeniusNorn > 1.46e+07: bad (223)
+        :       :           FrobeniusNorn <= 1.46e+07:
+        :       :           :...SymmetricFrobeniusNorm > 4280000:
+        :       :               :...upperBandwidth <= 1481: bad (20)
+        :       :               :   upperBandwidth > 1481: good (8)
+        :       :               SymmetricFrobeniusNorm <= 4280000:
+        :       :               :...solver > 8.548301e+07: bad (350/5)
+        :       :                   solver <= 8.548301e+07:
+        :       :                   :...solver <= 8.245658e+07: bad (165/4)
+        :       :                       solver > 8.245658e+07:
+        :       :                       :...upperBandwidth <= 1991: bad (6)
+        :       :                           upperBandwidth > 1991: [S1]
+        :       solver <= 7.583065e+07:
+        :       :...solver > 7.583064e+07:
+        :           :...lowerBandwidth <= 108: good (284/113)
+        :           :   lowerBandwidth > 108: bad (183/50)
+        :           solver <= 7.583064e+07:
+        :           :...solver <= 1.852498e+07:
+        :               :...solver > 1.788772e+07:
+        :               :   :...nnz > 31260.8: good (123/7)
+        :               :   :   nnz <= 31260.8:
+        :               :   :   :...lowerBandwidth <= 1406: good (18/3)
+        :               :   :       lowerBandwidth > 1406: bad (12)
+        :               :   solver <= 1.788772e+07:
+        :               :   :...upperBandwidth <= 408: bad (1072)
+        :               :       upperBandwidth > 408:
+        :               :       :...upperBandwidth <= 500:
+        :               :           :...SymmetricFrobeniusNorm <= 2.15e+10: good (15)
+        :               :           :   SymmetricFrobeniusNorm > 2.15e+10: bad (10)
+        :               :           upperBandwidth > 500:
+        :               :           :...Dimension <= 2603:
+        :               :               :...nnz <= 294066: bad (29)
+        :               :               :   nnz > 294066: good (6)
+        :               :               Dimension > 2603:
+        :               :               :...DiagonalMean > 23.0045: bad (245)
+        :               :                   DiagonalMean <= 23.0045:
+        :               :                   :...DiagonalMean <= 17.1242: bad (93)
+        :               :                       DiagonalMean > 17.1242: good (6)
+        :               solver > 1.852498e+07:
+        :               :...upperBandwidth <= 304: bad (3445/12)
+        :                   upperBandwidth > 304:
+        :                   :...upperBandwidth <= 480:
+        :                       :...upperBandwidth <= 408: bad (64/2)
+        :                       :   upperBandwidth > 408: good (20)
+        :                       upperBandwidth > 480:
+        :                       :...solver <= 3.656424e+07: bad (349)
+        :                           solver > 3.656424e+07:
+        :                           :...Dimension <= 3600:
+        :                               :...nnz <= 294066: bad (107/2)
+        :                               :   nnz > 294066:
+        :                               :   :...upperBandwidth <= 2611: good (8)
+        :                               :       upperBandwidth > 2611:
+        :                               :       :...solver <= 3.705287e+07: good (2)
+        :                               :           solver > 3.705287e+07: bad (11/1)
+        :                               Dimension > 3600:
+        :                               :...DiagonalMean > 23.0045: bad (526/10)
+        :                                   DiagonalMean <= 23.0045: [S2]
+        DiagonalMean <= 6:
+        :...Trace > 23021.8:
+            :...upperBandwidth > 25154: bad (188/4)
+            :   upperBandwidth <= 25154:
+            :   :...lowerBandwidth <= 28556: good (252)
+            :       lowerBandwidth > 28556: bad (64/1)
+            Trace <= 23021.8:
+            :...Dimension <= 5339:
+                :...FrobeniusNorn <= 87892.6: bad (854/25)
+                :   FrobeniusNorn > 87892.6:
+                :   :...upperBandwidth <= 230: bad (441/22)
+                :       upperBandwidth > 230:
+                :       :...ColumnVariance <= 1140000: good (22)
+                :           ColumnVariance > 1140000: bad (60/7)
+                Dimension > 5339:
+                :...Dimension <= 7337:
+                    :...upperBandwidth <= 5036: good (77)
+                    :   upperBandwidth > 5036:
+                    :   :...Trace <= 434.375: good (11)
+                    :       Trace > 434.375: bad (61/2)
+                    Dimension > 7337:
+                    :...ColumnVariance <= 0.233119:
+                        :...DiagonalMean <= -0.089579:
+                        :   :...SymmetricFrobeniusNorm <= 217154: good (42)
+                        :   :   SymmetricFrobeniusNorm > 217154: bad (66/2)
+                        :   DiagonalMean > -0.089579:
+                        :   :...DiagonalMean > 0.629949:
+                        :       :...nnz <= 17647.2: bad (193/5)
+                        :       :   nnz > 17647.2:
+                        :       :   :...upperBandwidth <= 15877: good (77)
+                        :       :       upperBandwidth > 15877: bad (188/9)
+                        :       DiagonalMean <= 0.629949:
+                        :       :...upperBandwidth > 25154: bad (253/4)
+                        :           upperBandwidth <= 25154:
+                        :           :...solver > 8.548301e+07: bad (188/4)
+                        :               solver <= 8.548301e+07:
+                        :               :...solver <= 8.245658e+07: bad (704/18)
+                        :                   solver > 8.245658e+07:
+                        :                   :...upperBandwidth <= 3911: bad (4)
+                        :                       upperBandwidth > 3911: good (10/2)
+                        ColumnVariance > 0.233119:
+                        :...Trace > -35213.9: good (165)
+                            Trace <= -35213.9:
+                            :...ColumnVariance <= 1658.37: good (64)
+                                ColumnVariance > 1658.37:
+                                :...Trace > -1.7e+07:
+                                    :...nnz <= 91666.3: bad (141/26)
+                                    :   nnz > 91666.3: good (21)
+                                    Trace <= -1.7e+07:
+                                    :...Trace > -4.2e+09: bad (240/8)
+                                        Trace <= -4.2e+09:
+                                        :...solver <= 6.890871e+07: bad (114/7)
+                                            solver > 6.890871e+07:
+                                            :...solver <= 7.583065e+07: good (12)
+                                                solver > 7.583065e+07:
+                                                :...solver <= 9.184516e+07: bad (45/2)
+                                                    solver > 9.184516e+07:
+                                                    :...solver <= 9.576235e+07: bad (12/5)
+                                                        solver > 9.576235e+07: good (3)
+
+SubTree [S1]
+
+SymmetricFrobeniusNorm <= 854623: good (18/5)
+SymmetricFrobeniusNorm > 854623: bad (2)
+
+SubTree [S2]
+
+SymmetricFrobeniusNorm <= 83175.8: bad (173/2)
+SymmetricFrobeniusNorm > 83175.8:
+:...DiagonalMean <= 12.997: bad (19/1)
+    DiagonalMean > 12.997: good (7)
+
+
+Evaluation on training data (15409 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    70  385( 2.5%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1896   255    (a): class good
+	   130 13128    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  SymmetricFrobeniusNorm
+	     96%  FrobeniusNorn
+	     96%  DiagonalMean
+	     92%  Dimension
+	     78%  upperBandwidth
+	     72%  solver
+	     30%  Trace
+	     17%  ColumnVariance
+	      7%  nnz
+	      5%  lowerBandwidth
+
+
+Time: 0.1 secs

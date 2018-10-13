@@ -1,0 +1,68 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Fri Oct 12 18:55:23 2018
+-------------------------------
+
+    Options:
+	Application `data/All_unique_MOOSE'
+
+Class specified by attribute `class'
+
+Read 70718 cases (34 attributes) from data/All_unique_MOOSE.data
+
+Decision tree:
+
+solver > 7.583065e+07: bad (13741)
+solver <= 7.583065e+07:
+:...solver > 6.965476e+07: good (6166/1195)
+    solver <= 6.965476e+07:
+    :...solver <= 1.993232e+07: bad (13067/2)
+        solver > 1.993232e+07:
+        :...solver > 4.586964e+07: bad (10958)
+            solver <= 4.586964e+07:
+            :...solver > 4.452627e+07:
+                :...Dimension > 20002: bad (609/5)
+                :   Dimension <= 20002:
+                :   :...Dimension <= 20001: bad (278/30)
+                :       Dimension > 20001: good (1918/101)
+                solver <= 4.452627e+07:
+                :...solver <= 2.641543e+07:
+                    :...AvgDiagonalDistance <= 1.90909: bad (2191/2)
+                    :   AvgDiagonalDistance > 1.90909:
+                    :   :...AvgDiagonalDistance <= 2: good (2709/799)
+                    :       AvgDiagonalDistance > 2: bad (1060/3)
+                    solver > 2.641543e+07:
+                    :...AvgNonzerosPerRow > 21.2: bad (375/36)
+                        AvgNonzerosPerRow <= 21.2:
+                        :...DiagonalNonZeros > 12001.2: bad (16409/39)
+                            DiagonalNonZeros <= 12001.2:
+                            :...solver > 2.903007e+07: bad (986/1)
+                                solver <= 2.903007e+07:
+                                :...SymmetricFrobeniusNorm <= 162175: good (94/11)
+                                    SymmetricFrobeniusNorm > 162175: bad (157)
+
+
+Evaluation on training data (70718 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    15 2224( 3.1%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  8781   118    (a): class good
+	  2106 59713    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  solver
+	     25%  AvgNonzerosPerRow
+	     25%  DiagonalNonZeros
+	      8%  AvgDiagonalDistance
+	      4%  Dimension
+
+
+Time: 0.8 secs

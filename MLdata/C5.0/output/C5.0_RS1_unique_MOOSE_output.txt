@@ -1,0 +1,69 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Fri Oct 12 18:28:03 2018
+-------------------------------
+
+    Options:
+	Application `RS1_unique'
+
+Class specified by attribute `class'
+
+Read 58783 cases (9 attributes) from RS1_unique.data
+
+Decision tree:
+
+solver > 7.583065e+07: bad (11414)
+solver <= 7.583065e+07:
+:...solver > 6.965476e+07: good (5322/1140)
+    solver <= 6.965476e+07:
+    :...solver <= 1.993232e+07: bad (10754/2)
+        solver > 1.993232e+07:
+        :...solver <= 2.641543e+07:
+            :...Dimension > 20002: bad (1149/3)
+            :   Dimension <= 20002:
+            :   :...DiagonalNonZeros <= 20001: bad (946/2)
+            :       DiagonalNonZeros > 20001:
+            :       :...SymmeticInfinityNorm <= 4000000: good (2701/797)
+            :           SymmeticInfinityNorm > 4000000: bad (254)
+            solver > 2.641543e+07:
+            :...solver > 4.452627e+07:
+                :...solver > 4.586964e+07: bad (9085)
+                :   solver <= 4.586964e+07:
+                :   :...Dimension > 20002: bad (595/5)
+                :       Dimension <= 20002:
+                :       :...Dimension <= 20001: bad (262/30)
+                :           Dimension > 20001: good (1498/101)
+                solver <= 4.452627e+07:
+                :...DiagonalNonZeros > 12001.2: bad (13566/75)
+                    DiagonalNonZeros <= 12001.2:
+                    :...solver > 2.903007e+07: bad (986/1)
+                        solver <= 2.903007e+07:
+                        :...AbsoluteTrace > 544054: bad (147/7)
+                            AbsoluteTrace <= 544054:
+                            :...SymmeticInfinityNorm <= 105: bad (22)
+                                SymmeticInfinityNorm > 105: good (82/6)
+
+
+Evaluation on training data (58783 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    16 2169( 3.7%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  7559   125    (a): class good
+	  2044 49055    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  solver
+	     32%  DiagonalNonZeros
+	     13%  Dimension
+	      5%  SymmeticInfinityNorm
+
+
+Time: 0.2 secs

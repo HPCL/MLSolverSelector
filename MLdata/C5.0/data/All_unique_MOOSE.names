@@ -1,0 +1,36 @@
+class.						| the target attribute
+
+RowDiagonalDominance: 		continuous. 
+NonZeroPatternSymmetry: 	continuous. 
+DiagonalNonZeros: 			continuous. 
+DiagonalSign: 				continuous. 
+AvgDiagonalDistance: 		continuous. 
+AbsoluteTrace: 				continuous. 
+OneNorm: 					continuous. 
+Trace: 						continuous. 
+AvgNonzerosPerRow: 			continuous. 
+ColumnDiagonalDominance: 	continuous. 
+ Interior : 				continuous. 
+AbsoluteNonZeroSum: 		continuous. 
+InfinityNorm: 				continuous. 
+SymmetricFrobeniusNorm: 	continuous. 
+upperBandwidth: 			continuous. 
+Dimension: 					continuous. 
+Symmetricity: 				continuous. 
+MinNonZeroPerRow: 			continuous. 
+DiagonalAverage: 			continuous. 
+SymmeticInfinityNorm: 		continuous. 
+DiagonalMean: 				continuous. 
+Edge: 						continuous. 
+FrobeniusNorn: 				continuous. 
+RowVariance: 				continuous. 
+AntiSymmetricFrobeniusNorm: continuous. 
+Comm Size : 				continuous. 
+npoints: 					continuous. 
+nnz: 						continuous. 
+MaxNonZeroPerRow: 			continuous. 
+AntiSymmerticInfinityNorm: 	continuous. 
+lowerBandwidth: 			continuous. 
+ColumnVariance: 			continuous. 
+solver: 					continuous. 
+class:						good, bad.

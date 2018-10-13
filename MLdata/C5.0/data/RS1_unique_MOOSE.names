@@ -1,0 +1,11 @@
+class.				| the target attribute
+
+DiagonalNonZeros: 		continuous.
+AbsoluteTrace: 			continuous.
+OneNorm : 			continuous.
+Trace: 				continuous.
+Dimension: 			continuous.
+SymmeticInfinityNorm: 		continuous
+DiagonalMean: 			continuous.
+solver:				continuous.
+class: 				good, bad.

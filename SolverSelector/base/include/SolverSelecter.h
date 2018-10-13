@@ -32,6 +32,9 @@ public:
     // Build a database based on an input file. 
     ErrorFlag BuildDataBaseFromFile();
 
+    ErrorFlag ConvertArffFileToDatabase(); 
+
+
     // Cross validate a machine learning model for a variety of algorithms 
     ErrorFlag CrossValidate( std::vector< std::string >  algorithm , bool all);
 

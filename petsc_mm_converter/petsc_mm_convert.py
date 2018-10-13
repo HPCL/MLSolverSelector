@@ -64,13 +64,15 @@ def download_based_on_names( filename, direct ):
         reader = csv.reader(csvfile, delimiter=',')
         for n,row in enumerate(reader):
             if n>0 : 
-                matrix_file = os.path.basename(row[0])
-                matrix_name = os.path.splitext(matrix_file)[0]
-                r = download_if_not_exists(matrix_name, d=direct)
-                if r == 0 : print "Successfully downloaded " , matrix_name 
-                elif r == 1 : print "download failed ", matrix_name
-                else : print "Already downloaded" , matrix_name
-                
+                try:
+                    matrix_file = os.path.basename(row[0])
+                    matrix_name = os.path.splitext(matrix_file)[0]
+                    r = download_if_not_exists(matrix_name, d=direct)
+                    if r == 0 : print "Successfully downloaded " , matrix_name 
+                    elif r == 1 : print "download failed ", matrix_name
+                    else : print "Already downloaded" , matrix_name
+                except:
+                    pass
 download_based_on_names(sys.argv[1], sys.argv[2])
 
 

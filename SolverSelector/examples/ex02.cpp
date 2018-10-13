@@ -41,8 +41,7 @@ int main(int argc,char **args)
   ierr = MatMult(A,u,b);CHKERRQ(ierr);
    
   /* This is it -- the only change */
-  SolverSelecter::PetscCoupler couple;
-
+  SolverSelecter::PetscCoupler::CreateSolverSelectorKSP();
 
   KSP ksp; 
   ierr = KSPCreate(PETSC_COMM_WORLD,&ksp);CHKERRQ(ierr);

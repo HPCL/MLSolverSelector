@@ -17,6 +17,7 @@ ErrorFlag
 MachineLearningInterface::Initialize( std::shared_ptr< DatabaseInterface > _database)
 {
     database = _database;
+    BuildModel(); 
     return error_flag;
 }
     

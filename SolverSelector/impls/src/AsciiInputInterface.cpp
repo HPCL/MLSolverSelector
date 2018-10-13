@@ -152,11 +152,48 @@ AsciiFileParser::Parse(std::vector< std::string > &filenames ,
             }
         }
     }
+   
+    GetAllSolvers( solver_pairs, solvers, precons, solver_list );
+    
+    for ( auto it : interface_p ) interface->SetParameter(it.first, *it.second.begin() );
+    for ( auto it : machine_p ) machinemodel->SetParameter(it.first, *it.second.begin() );
+    for ( auto it : database_p ) database->SetParameter(it.first, *it.second.begin() );
+
+
+    if ( filenames.size() == 0 || solver_list.size() == 0  )
+    {
+        std::cout << " Does the file contain a solver and a matrix ???. Also, Error handling? TODO " << std::endl;
+    }
+    return error_success;
+
+}
+ErrorFlag
+AsciiFileParser::GetAllSolvers( std::set< std::pair< std::string, std::string > > &solver_pairs,
+                                std::map< std::string, std::map< std::string, std::set< std::string > > > &solvers,
+                                std::map< std::string, std::map< std::string, std::set< std::string > > > &precons,
+                                std::vector< Solver > &solver_list )
+{    
+
+
+    for ( auto it : solver_pairs ) {
+      std::cout << " Pairs " << it.first << " " << it.second << std::endl; 
+    }
+    for ( auto it : solvers ) {
+      std::cout << "Solvers " << it.first << std::endl;
+    }
+    for ( auto it : precons ) {
+      std::cout << " Precons " << it.first << std::endl; 
+    }
+
     /* Finally, add all the solvers */
-    for ( auto it : solver_pairs )
+    for ( auto it : solver_pairs)  
     {
         auto search_solver = solvers.find(it.first);
         auto search_precon = precons.find(it.second);
+
+
+
+
 
         if ( search_solver != solvers.end() )
         {
@@ -173,16 +210,7 @@ AsciiFileParser::Parse(std::vector< std::string > &filenames ,
             std::cout << " solver " << it.first << " must be added to input file \n ";
     }
 
-    for ( auto it : interface_p ) interface->SetParameter(it.first, *it.second.begin() );
-    for ( auto it : machine_p ) machinemodel->SetParameter(it.first, *it.second.begin() );
-    for ( auto it : database_p ) database->SetParameter(it.first, *it.second.begin() );
-
-
-    if ( filenames.size() == 0 || solver_list.size() == 0  )
-    {
-        std::cout << " Does the file contain a solver and a matrix ???. Also, Error handling? TODO " << std::endl;
-    }
-
+ 
     return error_success;
 }
 

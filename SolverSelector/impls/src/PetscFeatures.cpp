@@ -29,7 +29,9 @@ DefaultPetscTestingSpace::start_measurements(KSP &ksp,
         Vec &b )
 
 {
+    PetscMallocGetCurrentUsage(&space);
     time_start = std::chrono::high_resolution_clock::now();
+
 }
 
 void
@@ -43,6 +45,11 @@ DefaultPetscTestingSpace::stop_measurements(KSP &ksp,
     KSPConvergedReason reason;
     KSPGetConvergedReason(ksp, &reason);
     mmap["CPUTime"] =  ( reason > 0 ) ? (double) durr : -1.0 ;
+
+    PetscLogDouble after;
+    PetscMallocGetCurrentUsage(&after);
+    mmap["Memory"] = ( reason > 0 && after > space ) ? (double) after - space : -1.0 ;      
+
 }
 
 void
@@ -55,7 +62,6 @@ int
 DefaultPetscTestingSpace::MapDMNumberingToNaturalNumbering( std::vector< std::pair< int , int > > &points )
 {
     return 0;
-
 }
 
 int
@@ -137,8 +143,7 @@ DefaultPetscTestingSpace::GetJacobianColumn(Mat J,
     PetscInt high, low;
     VecGetOwnershipRange(basis, &low, &high );
 
-    //Set the last value to zero ( might be faster to use VecSet(basis,0);
-    if ( point.first >= low && point.first < high );
+    VecSet(basis,0.0);
     VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES );
 
     VecAssemblyBegin(basis);
@@ -343,7 +348,7 @@ DefaultPetscTestingSpace::ExtractJacobianFeatures(Mat J,
         {
             val = array[j-low];
 
-            aval = abs(val);
+            aval = fabs(val);
 
 
             // Is this a Sample point ?
@@ -797,19 +802,19 @@ DefaultPetscTestingSpace::ExtractJacobianFeatures(Mat J,
             double svalue = rfeatures[ c + col*npoints + row ] ;
 
 #if SYMMETRICITY
-            sym = ( sym && abs( value - svalue ) < 1e-13 );
+            sym = ( sym && fabs( value - svalue ) < 1e-13 );
 #endif
 
 #if NONZEROPATTERNSYMMETRY
-            nzsym = ( nzsym && (  ( abs(value) > 1e-13 && abs(svalue) > 1e-13 ) || ( abs(value) < 1e-13 && abs(svalue) < 1e-13 ) ) );
+            nzsym = ( nzsym && (  ( fabs(value) > 1e-13 && fabs(svalue) > 1e-13 ) || ( fabs(value) < 1e-13 && fabs(svalue) < 1e-13 ) ) );
 #endif
 
 #if SYMMETRICINFINITYNORM
-            sinfnorm[row] += abs( 0.5 * ( svalue + value ) );
+            sinfnorm[row] += fabs( 0.5 * ( svalue + value ) );
 #endif
 
 #if ANTIYSYMMETRICINFINITYNORM
-            asinfnorm[row] += abs( 0.5 * ( svalue - value ) );
+            asinfnorm[row] += fabs( 0.5 * ( svalue - value ) );
 #endif
 
 #if (SYMMETRICFROBENIUSNORM || ANTISYMMETRICFROBENIUSNORM)

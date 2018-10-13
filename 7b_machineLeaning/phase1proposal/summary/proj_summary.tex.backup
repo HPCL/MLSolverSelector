@@ -1,0 +1,50 @@
+%% {\em The project summary must contain a summary of the
+%%   proposed activity suitable for dissemination to the public.  This
+%%   document must not include any proprietary or sensitive business
+%%   information as the Department may make it available to the public.
+%%   The project summary must not exceed 1 page when printed using
+%%   standard 8.5'' by 11'' paper with 1'' margins (top, bottom, left and
+%%   right) with font not smaller than 11 point.  Save this information
+%%   in a file named Summary.pdf, and click on ``Add Optional Other
+%%   Attachment'' to attach.
+%%
+%%  The summary must include: }
+\section*{Project Information}
+Company Name: RNET Technologies Inc.\\
+Project Title: Extreme Scale NWChem\\
+Principal Investigator: Dr. Gerald Sabin\\
+Topic Number/subtopic letter: 7b (Technologies for Extreme Scale Computing (Software))
+
+\section*{Problem Statement}
+%{\em Statement of the problem or situation that is being addressed.
+%  Describe the problem or situation being addressed -- be sure that
+%  the Department of Energy and National interest in the problem is
+%  clear.  (Typically one to three sentences).  }
+
+
+\section*{General Statement}
+%% {\em General statement of how this problem is being addressed.  This
+%%   is the overall objective of the combined Phase I and Phase II
+%%   projects.  How is this problem being addressed? -- i.e., What is the
+%%   overall approach of the combined Phase I/Phase II project?
+%%   (Typically one to two sentences).  }
+
+
+\section*{Phase I Workplan}
+
+\section*{Commercial Applications and Other Benefits}
+%% {\em Summarize the future applications and/or public benefits if the
+%%   project is carried over into Phase II and beyond.  Do not repeat
+%%   information already provided above.}
+
+
+\section*{Key Words}
+%{\em Provide listing of key words that describe this effort.} 
+
+\section*{Summary for Members of Congress}
+%% {\em (Layman's Terms, Two Sentences Maximum, 50 words).  The
+%%   Department notifies members of Congress of awards in their
+%%   districts.  Therefore, please provide, in clear and concise layman's
+%%   terms, a very brief summary of the project, suitable for a possible
+%%   press release from a Congressional office.} 
+

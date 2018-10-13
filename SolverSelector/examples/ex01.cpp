@@ -56,22 +56,44 @@ int main(int argc,char **args)
   ierr = VecSet(u,one);CHKERRQ(ierr);
   ierr = MatMult(A,u,b);CHKERRQ(ierr);
   
-  SolverSelecter::PetscCoupler couple;
-
+  SolverSelecter::PetscCoupler::CreateSolverSelectorKSP();
+  
   KSP ksp;  
   
+  PetscLogDouble space;
+  PetscMallocGetCurrentUsage(&space);
+  std::cout << "Before KSP" << space << std::endl; 
+  
   ierr = KSPCreate(PETSC_COMM_WORLD,&ksp);CHKERRQ(ierr);
+ 
+ 
+  PetscMallocGetCurrentUsage(&space);
+  std::cout << "KSP Created " << space << std::endl; 
+ 
+ 
   ierr = KSPSetOperators(ksp,A,A);CHKERRQ(ierr);
   ierr = KSPSetFromOptions(ksp);CHKERRQ(ierr);
+  
+  PetscMallocGetCurrentUsage(&space);
+  std::cout << "Operators set" << space << std::endl; 
+
   ierr = KSPSolve(ksp,b,x);CHKERRQ(ierr);
+
+  PetscMallocGetCurrentUsage(&space);
+  std::cout << "After Solve" << space << std::endl; 
+
+  ierr = KSPGetIterationNumber(ksp,&its);CHKERRQ(ierr);
+  ierr = KSPDestroy(&ksp);CHKERRQ(ierr);
+  
+  PetscMallocGetCurrentUsage(&space);
+  std::cout << "After KSP Destroy" << space << std::endl; 
+  
   ierr = VecAXPY(x,neg_one,u);CHKERRQ(ierr);
   ierr = VecNorm(x,NORM_2,&norm);CHKERRQ(ierr);
-  ierr = KSPGetIterationNumber(ksp,&its);CHKERRQ(ierr);
-  ierr = KSPView(ksp,PETSC_VIEWER_STDOUT_SELF);
   ierr = PetscPrintf(PETSC_COMM_WORLD,"Norm of error %g, Iterations %D\n",(double)norm,its);CHKERRQ(ierr);
   ierr = VecDestroy(&x);CHKERRQ(ierr); ierr = VecDestroy(&u);CHKERRQ(ierr);
   ierr = VecDestroy(&b);CHKERRQ(ierr); ierr = MatDestroy(&A);CHKERRQ(ierr);
-  ierr = KSPDestroy(&ksp);CHKERRQ(ierr);
+  
   ierr = PetscFinalize();
   return 0;
 }

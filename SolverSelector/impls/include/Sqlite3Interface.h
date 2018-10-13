@@ -31,6 +31,8 @@ public:
 
 
     int GetHash( std::string hash_str );
+      
+    int GetRowHash( Solver &solver, std::map<std::string, double> matrix );
 
     static int callback(void *ptr, int argc, char *argv[], char *azColName[] ) ;
     
@@ -44,9 +46,14 @@ public:
 
     bool CheckColumnExists( std::vector<std::pair<std::string, std::string> > &columns, std::string cname );
 
+    int WriteDatabaseFromArff(std::string arffFile) override; 
+
+
     bool CheckRowExists( int hash, std::string table );
 
     std::vector<std::string> AddNewColumns( std::vector< std::pair< std::string, int >  > &map, std::string table, std::string type );
+
+    int AddToDatabase(Solver &solver, std::map<std::string, double> &features,  std::map<std::string,double> &measurements, UpdateStatus status) override;
 
 
     ErrorFlag NewRowInDatabase( int hash, std::string table, std::map<std::string, std::pair<std::string,int >> &map );
@@ -69,7 +76,7 @@ public:
 
     int AddMatrixToDatabase( std::map< std::string, double > &features, UpdateStatus status );
 
-    int AddRowToDatabase( int &solver, int &matrix, std::map<std::string, double> &measurements, UpdateStatus status );
+    int AddRowToDatabase( int &rowhash, int &solverhash, int &matrixHash, std::map<std::string, double> &measurements, UpdateStatus status );
 
     ErrorFlag AddClassificationToDatabase( int &hash, std::map<std::string, bool > &classification, UpdateStatus status );
 

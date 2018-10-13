@@ -74,6 +74,8 @@ private:
 
 class PetscCoupler {
   public : 
+      
+    
       static PetscErrorCode monitor_ss_convergence(KSP ksp, PetscInt iter, PetscReal rnorm , void * ctx ) ;
       static PetscErrorCode KSPSetUp_SS(KSP ksp);
       static PetscErrorCode KSPSolve_SS(KSP ksp);
@@ -82,10 +84,9 @@ class PetscCoupler {
       static PetscErrorCode KSPSetFromOptions_SS(PetscOptionItems *PetscOptionsObject,KSP ksp);
       static PetscErrorCode KSPCreate_SS(KSP ksp);
 
-      PetscCoupler() 
-      {
+      static void CreateSolverSelectorKSP() {
           KSPRegister("KSPSS", KSPCreate_SS);
-      };
+      }
 
 };
 

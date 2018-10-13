@@ -1,0 +1,35 @@
+\section{Anticipated Public Benefits}
+%% {\em Discuss the technical, economic, social, and other benefits to the
+%%  public as a whole anticipated if the project is successful and is
+%%  carried over into Phases II and III.  Identify specific groups in the
+%%  commercial sector as well as the Federal Government that would
+%%  benefit from the projected results.  Describe the resultant product
+%%  or process, the likelihood that it could lead to a marketable
+%%  product, and the significance of the market.}
+
+The proposed project will facilitate runtime performance tuning of numerical simulations based on 
+both the computational model and the compuation architecture, in terms of any combination of measurable metrics ( 
+e.g., CPU time, Memory consumption, energy efficiency). Numerical simulations, widely applicable across various scientific 
+disciplines, are a key component in the development of most, if not all, of the cutting edge technologies being developed 
+by the DOE and other U.S government agencies. By automating the process of tuning simulations for a specific architecture, 
+SASI will provide the the computational scientists, numerical software developers, and 
+electrical engineers with a mechanism for letting the software decide the best performing 
+method without the need for labor-intensive experimentation, and thus focus on more 
+scientific aspects of their applications. Moreover, by ensuring applications are optimized for the architecture
+for which they are being used on, SASI will inform the efficient usage of the nations current and emerging computational 
+resources. 
+
+The targeted customers include nuclear power companies, DoD and its Prime Contractors, 
+NASA divisions, DOE agencies, CFD software providers, oil and gas companies, semiconductor 
+design companies etc.
+
+
+
+
+
+
+
+
+
+
+

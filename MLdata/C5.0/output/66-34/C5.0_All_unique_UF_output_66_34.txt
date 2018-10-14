@@ -1,0 +1,226 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Sat Oct 13 20:17:09 2018
+-------------------------------
+
+    Options:
+	Application `data/All_unique_UF'
+	Use 66% of data for training
+	Random seed 4
+
+Class specified by attribute `class'
+
+Read 10200 cases (29 attributes) from data/All_unique_UF.data
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (417)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (76)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (49)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...ColumnVariance <= 0.000151: good (34)
+        :       ColumnVariance > 0.000151:
+        :       :...AvgNonzerosPerRow <= 2.9:
+        :           :...AbsoluteNonZeroSum > 37800: good (210)
+        :           :   AbsoluteNonZeroSum <= 37800:
+        :           :   :...DiagonalSign <= -2: good (9)
+        :           :       DiagonalSign > -2: bad (114/4)
+        :           AvgNonzerosPerRow > 2.9:
+        :           :...DiagonalSign <= -3:
+        :               :...AvgNonzerosPerRow <= 7.4: good (68)
+        :               :   AvgNonzerosPerRow > 7.4: bad (194/6)
+        :               DiagonalSign > -3:
+        :               :...AvgNonzerosPerRow <= 125.5: bad (873/58)
+        :                   AvgNonzerosPerRow > 125.5:
+        :                   :...DiagonalNonZeros <= 2568: good (14)
+        :                       DiagonalNonZeros > 2568: bad (17/1)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (18)
+            :   DiagonalNonZeros > 5041: bad (19/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,53362206,
+                :          95762355,12321508,75830644,95762353,47942864,
+                :          47942865,47942866,95762354,90783920,99720138,
+                :          30870723,30870722,13323659,45869640,36564233,
+                :          36564232,75830645,36564234,37052870,37052871,
+                :          80361466,80361467,80361464,80361465,49834420,
+                :          1216556,36564235,37052868}: bad (6401/97)
+                solver = 85483012:
+                :...DiagonalSign > -2: bad (108/6)
+                :   DiagonalSign <= -2:
+                :   :...FrobeniusNorn <= 3.34e+08: good (18/5)
+                :       FrobeniusNorn > 3.34e+08: bad (2)
+                solver = 75830647:
+                :...ColumnDiagonalDominance <= 0: bad (66/7)
+                :   ColumnDiagonalDominance > 0:
+                :   :...DiagonalNonZeros <= 9801: good (50/5)
+                :       DiagonalNonZeros > 9801: bad (4)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (25/2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow <= 0: bad (6/1)
+                :       MaxNonZeroPerRow > 0: good (86/7)
+                solver = 89565283:
+                :...DiagonalMean > 12.997: bad (92)
+                :   DiagonalMean <= 12.997:
+                :   :...nnz <= 66221.5: bad (29/1)
+                :       nnz > 66221.5:
+                :       :...AvgDiagonalDistance <= 13012.2: good (13)
+                :           AvgDiagonalDistance > 13012.2: bad (5)
+                solver = 64278029:
+                :...ColumnDiagonalDominance > 0: bad (61)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 5489:
+                :       :...Trace <= 0: good (4/1)
+                :       :   Trace > 0: bad (44)
+                :       DiagonalNonZeros > 5489:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (10)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (22/6)
+                solver = 44526267:
+                :...ColumnDiagonalDominance > 0: bad (55)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (45/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (9)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (37/8)
+                solver = 17887723:
+                :...DiagonalMean > 6: bad (92/2)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.3: bad (26/1)
+                :       AvgNonzerosPerRow > 4.3:
+                :       :...Dimension <= 5339: bad (2)
+                :           Dimension > 5339: good (16)
+                solver = 8520536:
+                :...Trace > 33378: bad (118/3)
+                :   Trace <= 33378:
+                :   :...AvgNonzerosPerRow <= 4.8: bad (29/3)
+                :       AvgNonzerosPerRow > 4.8:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (12)
+                solver = 82456576:
+                :...upperBandwidth <= 416: bad (79)
+                :   upperBandwidth > 416:
+                :   :...nnz <= 72527.4: bad (41/4)
+                :       nnz > 72527.4:
+                :       :...DiagonalMean <= 12.997: good (11)
+                :           DiagonalMean > 12.997: bad (12/1)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...DiagonalNonZeros <= 8856: bad (21)
+                :   :   DiagonalNonZeros > 8856: good (3)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (98/12)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (5)
+                :           DiagonalSign > -1: good (4)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...DiagonalNonZeros <= 13209: good (24)
+                :   :   DiagonalNonZeros > 13209: bad (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: bad (96/4)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: good (5)
+                :           DiagonalSign > -1: bad (2)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (57)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 2641.2: bad (36/1)
+                :       DiagonalNonZeros > 2641.2:
+                :       :...DiagonalMean > 12.997: bad (24/2)
+                :           DiagonalMean <= 12.997:
+                :           :...FrobeniusNorn <= 3.34e+08: good (17/3)
+                :               FrobeniusNorn > 3.34e+08: bad (3)
+                solver = 68908713:
+                :...MaxNonZeroPerRow <= 0: bad (7)
+                    MaxNonZeroPerRow > 0:
+                    :...Symmetricity <= 0: bad (5)
+                        Symmetricity > 0:
+                        :...ColumnDiagonalDominance > 0: bad (4)
+                            ColumnDiagonalDominance <= 0:
+                            :...DiagonalNonZeros <= 2641.2:
+                                :...Trace <= 434.375: good (2)
+                                :   Trace > 434.375: bad (15)
+                                DiagonalNonZeros > 2641.2:
+                                :...RowVariance <= 6.73218: good (13)
+                                    RowVariance > 6.73218:
+                                    :...MinNonZeroPerRow <= 0: good (8/2)
+                                        MinNonZeroPerRow > 0: bad (5)
+
+
+Evaluation on training data (10200 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    72  256( 2.5%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1263   221    (a): class good
+	    35  8681    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  SymmetricFrobeniusNorm
+	     96%  FrobeniusNorn
+	     95%  NonZeroPatternSymmetry
+	     83%  AbsoluteNonZeroSum
+	     79%  solver
+	     18%  DiagonalSign
+	     16%  AvgDiagonalDistance
+	     16%  AvgNonzerosPerRow
+	     15%  ColumnVariance
+	      6%  ColumnDiagonalDominance
+	      5%  DiagonalNonZeros
+	      4%  MaxNonZeroPerRow
+	      3%  DiagonalMean
+	      2%  Trace
+	      1%  upperBandwidth
+	      1%  nnz
+
+
+Evaluation on test data (5254 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    72  182( 3.5%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	   579   132    (a): class good
+	    50  4493    (b): class bad
+
+
+Time: 0.3 secs

@@ -1,0 +1,2290 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Sat Oct 13 19:48:58 2018
+-------------------------------
+
+    Options:
+	Application `data/All_unique_UF'
+	Cross-validate using 10 folds
+
+Class specified by attribute `class'
+
+Read 15454 cases (29 attributes) from data/All_unique_UF.data
+
+
+[ Fold 1 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (553)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (103)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (67)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (383)
+        :       :   AvgNonzerosPerRow > 7.4: bad (272/12)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (21)
+        :           :   DiagonalNonZeros > 2568: bad (30/3)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1030/37)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (46)
+        :                   MinNonZeroPerRow > 0: bad (321/39)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (22)
+            :   DiagonalNonZeros > 5041: bad (28/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,95762355,
+                :          12321508,75830644,95762353,47942864,47942865,
+                :          47942866,95762354,99720138,30870723,30870722,
+                :          13323659,45869640,36564233,36564232,75830645,
+                :          36564234,81986705,37052870,37052871,80361466,
+                :          80361467,80361464,80361465,49834420,36564235,
+                :          37052868}: bad (8363/74)
+                solver = 53362206:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.7: bad (34/3)
+                :   :   AvgNonzerosPerRow > 4.7: good (16/1)
+                :   DiagonalMean > 6:
+                :   :...Dimension <= 20944: bad (130)
+                :       Dimension > 20944:
+                :       :...nnz <= 101870: good (3)
+                :           nnz > 101870: bad (6)
+                solver = 85483012:
+                :...DiagonalSign <= -2:
+                :   :...Dimension <= 9801: good (16)
+                :   :   Dimension > 9801:
+                :   :   :...Trace <= 16955: bad (8)
+                :   :       Trace > 16955: good (7/2)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (116)
+                :       upperBandwidth > 6116:
+                :       :...DiagonalNonZeros <= 10938: good (11/4)
+                :           DiagonalNonZeros > 10938: bad (8)
+                solver = 82456576:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.3: bad (33/1)
+                :   :   AvgNonzerosPerRow > 4.3:
+                :   :   :...Dimension <= 5339: bad (4)
+                :   :       Dimension > 5339: good (19)
+                :   DiagonalMean > 6:
+                :   :...Dimension <= 20944: bad (125)
+                :       Dimension > 20944:
+                :       :...nnz <= 101870: good (4)
+                :           nnz > 101870: bad (8)
+                solver = 90783920:
+                :...DiagonalMean > 6: bad (141/4)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (35/3)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (18/1)
+                solver = 75830647:
+                :...Symmetricity <= 0:
+                :   :...DiagonalNonZeros <= 7980: bad (4)
+                :   :   DiagonalNonZeros > 7980: good (68/7)
+                :   Symmetricity > 0:
+                :   :...lowerBandwidth > 1783: bad (51)
+                :       lowerBandwidth <= 1783:
+                :       :...nnz <= 330390: bad (41/11)
+                :           nnz > 330390: good (3)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: bad (30/1)
+                :   :   ColumnVariance > 126487: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (128/18)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (6)
+                :           DiagonalSign > -1: good (3)
+                solver = 8520536:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :       :   SymmetricFrobeniusNorm > 13325.2: bad (51/11)
+                :       DiagonalNonZeros <= 3345.47:
+                :       :...Trace > 0: bad (52)
+                :           Trace <= 0:
+                :           :...Symmetricity <= 0: bad (2)
+                :               Symmetricity > 0: good (3)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (31/2)
+                :   DiagonalSign > -2:
+                :   :...AvgNonzerosPerRow > 3.5: good (110/3)
+                :       AvgNonzerosPerRow <= 3.5:
+                :       :...upperBandwidth > 4449: bad (4)
+                :           upperBandwidth <= 4449:
+                :           :...RowVariance <= 1620000: good (13/1)
+                :               RowVariance > 1620000: bad (3)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: good (31/2)
+                :   :   ColumnVariance > 126487: bad (3)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (118)
+                :       upperBandwidth > 6116:
+                :       :...DiagonalNonZeros > 10938: bad (8)
+                :           DiagonalNonZeros <= 10938:
+                :           :...AbsoluteTrace <= 3.65e+07: good (8)
+                :               AbsoluteTrace > 3.65e+07: bad (2)
+                solver = 44526267:
+                :...ColumnDiagonalDominance > 0: bad (83)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 2641.2: bad (51/2)
+                :       DiagonalNonZeros > 2641.2:
+                :       :...DiagonalMean > 6.28255: bad (43/5)
+                :           DiagonalMean <= 6.28255:
+                :           :...DiagonalSign > -2: good (16)
+                :               DiagonalSign <= -2:
+                :               :...AvgNonzerosPerRow <= 4.3: bad (7)
+                :                   AvgNonzerosPerRow > 4.3: good (2)
+                solver = 68908713:
+                :...MaxNonZeroPerRow <= 0: bad (9)
+                :   MaxNonZeroPerRow > 0:
+                :   :...ColumnDiagonalDominance > 0: bad (6)
+                :       ColumnDiagonalDominance <= 0:
+                :       :...RowVariance > 5.36513: bad (38/6)
+                :           RowVariance <= 5.36513:
+                :           :...AvgNonzerosPerRow > 4.2: good (12)
+                :               AvgNonzerosPerRow <= 4.2:
+                :               :...DiagonalNonZeros <= 10938: bad (6)
+                :                   DiagonalNonZeros > 10938: good (2)
+                solver = 1216556:
+                :...ColumnDiagonalDominance > 0: bad (84)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace <= 0: good (4/1)
+                :       :   Trace > 0: bad (54)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...SymmetricFrobeniusNorm > 9010000: bad (18)
+                :               SymmetricFrobeniusNorm <= 9010000:
+                :               :...DiagonalAverage <= 0.103663: bad (21/3)
+                :                   DiagonalAverage > 0.103663: good (9/1)
+                solver = 89565283:
+                :...upperBandwidth <= 416: bad (111/1)
+                :   upperBandwidth > 416:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace <= 0: good (3)
+                :       :   Trace > 0: bad (34)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...RowVariance > 691207: bad (10)
+                :           RowVariance <= 691207:
+                :           :...ColumnDiagonalDominance > 0: bad (3)
+                :               ColumnDiagonalDominance <= 0:
+                :               :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :                   SymmetricFrobeniusNorm > 13325.2:
+                :                   :...AbsoluteNonZeroSum <= 631936: bad (10)
+                :                       AbsoluteNonZeroSum > 631936: good (15/5)
+                solver = 17887723:
+                :...ColumnDiagonalDominance > 0: bad (81)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 2641.2: bad (47/1)
+                :       DiagonalNonZeros > 2641.2:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (13/1)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0:
+                :               :...DiagonalAverage <= 0.018572: good (2)
+                :               :   DiagonalAverage > 0.018572: bad (25)
+                :               MinNonZeroPerRow <= 0:
+                :               :...DiagonalAverage <= 0.017867: bad (11)
+                :                   DiagonalAverage > 0.017867:
+                :                   :...DiagonalAverage <= 1.70432: good (9/1)
+                :                       DiagonalAverage > 1.70432: bad (9/1)
+                solver = 64278029:
+                :...ColumnDiagonalDominance > 0: bad (81)
+                    ColumnDiagonalDominance <= 0:
+                    :...DiagonalNonZeros <= 3345.47: bad (53/2)
+                        DiagonalNonZeros > 3345.47:
+                        :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                            SymmetricFrobeniusNorm > 13325.2:
+                            :...MinNonZeroPerRow > 0:
+                                :...DiagonalAverage <= 0.018572: good (2)
+                                :   DiagonalAverage > 0.018572: bad (21)
+                                MinNonZeroPerRow <= 0:
+                                :...AbsoluteTrace <= 210238: bad (9)
+                                    AbsoluteTrace > 210238:
+                                    :...Symmetricity <= 0: bad (2)
+                                        Symmetricity > 0:
+                                        :...nnz <= 227794: good (7)
+                                            nnz > 227794: bad (3)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   105   61( 3.9%)   <<
+
+
+[ Fold 2 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (547)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (102)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (67)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (384)
+        :       :   AvgNonzerosPerRow > 7.4: bad (282/13)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (21)
+        :           :   DiagonalNonZeros > 2568: bad (26/3)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1035/37)
+        :               Trace <= 68.5128:
+        :               :...DiagonalSign <= -2: bad (336/43)
+        :                   DiagonalSign > -2: good (48)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (20)
+            :   DiagonalNonZeros > 5041: bad (30/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...Trace <= 0:
+                :...AvgDiagonalDistance > 1830.49: good (60)
+                :   AvgDiagonalDistance <= 1830.49:
+                :   :...nnz <= 54804: bad (313/11)
+                :       nnz > 54804:
+                :       :...DiagonalSign <= -2: bad (80/19)
+                :           DiagonalSign > -2: good (10)
+                Trace > 0:
+                :...solver in {8793455,90197667,49598909,59072883,59072882,
+                    :          59072881,7285381,7285384,59072884,49598911,
+                    :          49598910,49598912,36025723,36025722,36025724,
+                    :          8793454,8793456,8793453,32168839,32168838,
+                    :          57331597,57331599,57331598,32168837,88865078,
+                    :          88865079,88865076,88865077,57331600,43373444,
+                    :          43373441,43373442,43373443,91068411,91068410,
+                    :          5890861,5890863,5890862,18868444,18868441,
+                    :          18868443,18868442,91068408,91068409,5890860,
+                    :          29030069,29030071,29030070,29030072,85490469,
+                    :          26415435,26415434,26415433,26415432,7285382,
+                    :          7285383,29553941,29553943,29553942,69654761,
+                    :          29553944,69654763,69654762,32874609,32168840,
+                    :          90197664,90197665,90197666,69654760,19932321,
+                    :          199323231,9932322,19932324,38678404,38678401,
+                    :          38678402,38678403,32874611,32874610,32874612,
+                    :          44114477,44114476,44114479,44114478,36025721,
+                    :          85490471,85490470,85490472}: bad (0)
+                    solver in {91036839,45869639,45869638,45869637,47942867,
+                    :          89269802,89269803,89269801,89269804,30870721,
+                    :          53302993,30870720,17734818,95762352,49834417,
+                    :          49834419,49834418,11256942,11256943,11256941,
+                    :          42851841,11256944,31459546,91845162,95762355,
+                    :          12321508,75830644,95762353,47942864,47942865,
+                    :          47942866,95762354,30870723,30870722,13323659,
+                    :          45869640,36564233,36564232,36564234,37052870,
+                    :          37052871,80361466,80361467,80361464,80361465,
+                    :          49834420,36564235,37052868}: bad (7520/23)
+                    solver = 75830647:
+                    :...Symmetricity <= 0: good (66/7)
+                    :   Symmetricity > 0: bad (94/14)
+                    solver = 89565283:
+                    :...DiagonalAverage > 0.022094: bad (146/4)
+                    :   DiagonalAverage <= 0.022094:
+                    :   :...MinNonZeroPerRow <= 0: bad (24/3)
+                    :       MinNonZeroPerRow > 0: good (12/1)
+                    solver = 82456576:
+                    :...MinNonZeroPerRow <= 0: bad (63/5)
+                    :   MinNonZeroPerRow > 0:
+                    :   :...DiagonalMean <= 6.28255: good (13/1)
+                    :       DiagonalMean > 6.28255: bad (107)
+                    solver = 99720138:
+                    :...lowerBandwidth <= 23195: bad (151/2)
+                    :   lowerBandwidth > 23195:
+                    :   :...lowerBandwidth <= 28556: good (3)
+                    :       lowerBandwidth > 28556: bad (7)
+                    solver = 68908713:
+                    :...DiagonalNonZeros <= 3345.47: bad (25)
+                    :   DiagonalNonZeros > 3345.47:
+                    :   :...DiagonalMean <= 0.88032: good (10)
+                    :       DiagonalMean > 0.88032: bad (23/7)
+                    solver = 75830645:
+                    :...lowerBandwidth > 75: bad (160/3)
+                    :   lowerBandwidth <= 75:
+                    :   :...AbsoluteTrace <= -7.75e+12: good (4)
+                    :       AbsoluteTrace > -7.75e+12: bad (5)
+                    solver = 64278029:
+                    :...DiagonalNonZeros <= 13209: bad (154/5)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...RowVariance > 167.659: bad (11)
+                    :       RowVariance <= 167.659:
+                    :       :...ColumnDiagonalDominance <= 0: good (9/1)
+                    :           ColumnDiagonalDominance > 0: bad (2)
+                    solver = 44526267:
+                    :...ColumnDiagonalDominance > 0: bad (78)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3200: bad (51)
+                    :       DiagonalNonZeros > 3200:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (41/6)
+                    solver = 17887723:
+                    :...DiagonalNonZeros <= 13209: bad (157/6)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm > 54450.6: bad (18/2)
+                    :       SymmetricFrobeniusNorm <= 54450.6:
+                    :       :...ColumnDiagonalDominance <= 0: good (9)
+                    :           ColumnDiagonalDominance > 0: bad (2)
+                    solver = 53362206:
+                    :...ColumnDiagonalDominance > 0: bad (82)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (53)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (43/7)
+                    solver = 85483012:
+                    :...DiagonalSign <= -2:
+                    :   :...DiagonalMean > 2.04224: good (14)
+                    :   :   DiagonalMean <= 2.04224:
+                    :   :   :...SymmetricFrobeniusNorm <= 3891.65: good (5)
+                    :   :       SymmetricFrobeniusNorm > 3891.65: bad (9/2)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 5569: bad (118)
+                    :       upperBandwidth > 5569:
+                    :       :...DiagonalNonZeros <= 10938: good (10/3)
+                    :           DiagonalNonZeros > 10938: bad (9)
+                    solver = 8520536:
+                    :...ColumnDiagonalDominance > 0: bad (79)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (53)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 12421.3: good (9)
+                    :           SymmetricFrobeniusNorm > 12421.3: bad (41/7)
+                    solver = 81986705:
+                    :...ColumnDiagonalDominance > 0: bad (81)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (52)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (39/6)
+                    solver = 1216556:
+                    :...ColumnDiagonalDominance > 0: bad (78)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (46)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 16011.6: good (11)
+                    :           SymmetricFrobeniusNorm > 16011.6: bad (41/7)
+                    solver = 75830646:
+                    :...DiagonalSign <= -2: bad (29)
+                    :   DiagonalSign > -2:
+                    :   :...MaxNonZeroPerRow > 0: good (128/16)
+                    :       MaxNonZeroPerRow <= 0:
+                    :       :...DiagonalSign <= -1: bad (6)
+                    :           DiagonalSign > -1: good (3)
+                    solver = 18524981:
+                    :...DiagonalSign <= -2: bad (30/1)
+                    :   DiagonalSign > -2:
+                    :   :...AvgDiagonalDistance <= 4240.71: good (122.8/6.9)
+                    :       AvgDiagonalDistance > 4240.71:
+                    :       :...DiagonalSign <= -1: bad (8.2/0.1)
+                    :           DiagonalSign > -1: good (3)
+                    solver = 37052869:
+                    :...DiagonalSign <= -2: good (28/1)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 6116: bad (120/1)
+                    :       upperBandwidth > 6116:
+                    :       :...DiagonalNonZeros <= 10938: good (9/2)
+                    :           DiagonalNonZeros > 10938: bad (9)
+                    solver = 90783920:
+                    :...upperBandwidth <= 408: bad (110)
+                        upperBandwidth > 408:
+                        :...DiagonalNonZeros <= 3345.47: bad (34)
+                            DiagonalNonZeros > 3345.47:
+                            :...AvgNonzerosPerRow > 6.1:
+                                :...DiagonalMean <= 8.09186: good (2)
+                                :   DiagonalMean > 8.09186: bad (16)
+                                AvgNonzerosPerRow <= 6.1:
+                                :...ColumnDiagonalDominance > 0: bad (2)
+                                    ColumnDiagonalDominance <= 0:
+                                    :...AvgDiagonalDistance <= 10367.2: good (14)
+                                        AvgDiagonalDistance > 10367.2: bad (3)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    87   37( 2.4%)   <<
+
+
+[ Fold 3 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (553)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (97)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (69)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (394)
+        :       :   AvgNonzerosPerRow > 7.4: bad (286/8)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (18)
+        :           :   DiagonalNonZeros > 2568: bad (33/3)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1036/40)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (48)
+        :                   MinNonZeroPerRow > 0: bad (338/43)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (19)
+            :   DiagonalNonZeros > 5041: bad (31/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...Trace <= 0:
+                :...AvgDiagonalDistance > 1830.49: good (58)
+                :   AvgDiagonalDistance <= 1830.49:
+                :   :...nnz <= 54804: bad (321/14)
+                :       nnz > 54804:
+                :       :...DiagonalSign <= -2: bad (80/19)
+                :           DiagonalSign > -2: good (11)
+                Trace > 0:
+                :...solver in {8793455,90197667,49598909,59072883,59072882,
+                    :          59072881,7285381,7285384,59072884,49598911,
+                    :          49598910,49598912,36025723,36025722,36025724,
+                    :          8793454,8793456,8793453,32168839,32168838,
+                    :          57331597,57331599,57331598,32168837,88865078,
+                    :          88865079,88865076,88865077,57331600,43373444,
+                    :          43373441,43373442,43373443,91068411,91068410,
+                    :          5890861,5890863,5890862,18868444,18868441,
+                    :          18868443,18868442,91068408,91068409,5890860,
+                    :          29030069,29030071,29030070,29030072,85490469,
+                    :          26415435,26415434,26415433,26415432,7285382,
+                    :          7285383,29553941,29553943,29553942,69654761,
+                    :          29553944,69654763,69654762,32874609,32168840,
+                    :          90197664,90197665,90197666,69654760,19932321,
+                    :          199323231,9932322,19932324,38678404,38678401,
+                    :          38678402,38678403,32874611,32874610,32874612,
+                    :          44114477,44114476,44114479,44114478,36025721,
+                    :          85490471,85490470,85490472}: bad (0)
+                    solver in {91036839,45869639,45869638,45869637,47942867,
+                    :          89269802,89269803,89269801,89269804,30870721,
+                    :          53302993,30870720,17734818,95762352,49834417,
+                    :          49834419,49834418,11256942,11256943,11256941,
+                    :          42851841,11256944,31459546,17887723,91845162,
+                    :          95762355,12321508,75830644,95762353,47942864,
+                    :          47942865,47942866,95762354,99720138,30870723,
+                    :          30870722,13323659,45869640,36564233,36564232,
+                    :          36564234,37052870,37052871,80361466,80361467,
+                    :          80361464,80361465,49834420,36564235,
+                    :          37052868}: bad (7865/45)
+                    solver = 75830647:
+                    :...Symmetricity <= 0: good (72/7)
+                    :   Symmetricity > 0: bad (91/12)
+                    solver = 8520536:
+                    :...DiagonalAverage > 0.022094: bad (143.2/3)
+                    :   DiagonalAverage <= 0.022094:
+                    :   :...MinNonZeroPerRow <= 0: bad (22.8/3)
+                    :       MinNonZeroPerRow > 0: good (12/1)
+                    solver = 75830645:
+                    :...upperBandwidth > 44: bad (153/3)
+                    :   upperBandwidth <= 44:
+                    :   :...AbsoluteTrace <= -7.75e+12: good (4)
+                    :       AbsoluteTrace > -7.75e+12: bad (5)
+                    solver = 81986705:
+                    :...DiagonalMean > 6: bad (141/3)
+                    :   DiagonalMean <= 6:
+                    :   :...AvgNonzerosPerRow <= 4.8: bad (32/2)
+                    :       AvgNonzerosPerRow > 4.8: good (12)
+                    solver = 89565283:
+                    :...ColumnDiagonalDominance > 0: bad (81)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3200: bad (47)
+                    :       DiagonalNonZeros > 3200:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (9)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (39/7)
+                    solver = 64278029:
+                    :...ColumnDiagonalDominance > 0: bad (80)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (53)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (41/7)
+                    solver = 44526267:
+                    :...ColumnDiagonalDominance > 0: bad (84)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (51)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (9)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (41/6)
+                    solver = 53362206:
+                    :...DiagonalSign > -1: bad (108/1)
+                    :   DiagonalSign <= -1:
+                    :   :...MinNonZeroPerRow <= 0: bad (61/7)
+                    :       MinNonZeroPerRow > 0:
+                    :       :...AvgNonzerosPerRow <= 17.8: good (7)
+                    :           AvgNonzerosPerRow > 17.8: bad (2)
+                    solver = 85483012:
+                    :...DiagonalSign <= -2:
+                    :   :...AvgDiagonalDistance <= 19438.7: good (22/4)
+                    :   :   AvgDiagonalDistance > 19438.7: bad (3)
+                    :   DiagonalSign > -2:
+                    :   :...DiagonalNonZeros > 0: bad (120)
+                    :       DiagonalNonZeros <= 0:
+                    :       :...DiagonalSign <= -1: good (4)
+                    :           DiagonalSign > -1: bad (4)
+                    solver = 82456576:
+                    :...ColumnDiagonalDominance > 0: bad (77)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (54)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (39/6)
+                    solver = 90783920:
+                    :...ColumnDiagonalDominance > 0: bad (74)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (52)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (39/5)
+                    solver = 68908713:
+                    :...DiagonalNonZeros <= 3345.47: bad (27)
+                    :   DiagonalNonZeros > 3345.47:
+                    :   :...DiagonalMean <= 8.09186:
+                    :       :...ColumnDiagonalDominance <= 0: good (13)
+                    :       :   ColumnDiagonalDominance > 0: bad (2)
+                    :       DiagonalMean > 8.09186:
+                    :       :...AvgNonzerosPerRow <= 4.7: good (6/2)
+                    :           AvgNonzerosPerRow > 4.7: bad (14)
+                    solver = 1216556:
+                    :...Dimension <= 13436: bad (132/1)
+                    :   Dimension > 13436:
+                    :   :...MinNonZeroPerRow <= 0: bad (31/4)
+                    :       MinNonZeroPerRow > 0:
+                    :       :...RowVariance <= 12.1966: good (11/1)
+                    :           RowVariance > 12.1966: bad (10)
+                    solver = 75830646:
+                    :...DiagonalSign <= -2: bad (27)
+                    :   DiagonalSign > -2:
+                    :   :...MaxNonZeroPerRow > 0: good (120/17)
+                    :       MaxNonZeroPerRow <= 0:
+                    :       :...DiagonalSign <= -1: bad (5)
+                    :           DiagonalSign > -1: good (4)
+                    solver = 18524981:
+                    :...DiagonalSign <= -2: bad (27/1)
+                    :   DiagonalSign > -2:
+                    :   :...MaxNonZeroPerRow > 0: good (130/9)
+                    :       MaxNonZeroPerRow <= 0:
+                    :       :...DiagonalSign <= -1: bad (6)
+                    :           DiagonalSign > -1: good (3)
+                    solver = 37052869:
+                    :...DiagonalSign <= -2: good (25/1)
+                        DiagonalSign > -2:
+                        :...upperBandwidth <= 6116: bad (119/1)
+                            upperBandwidth > 6116:
+                            :...DiagonalNonZeros <= 11484.2: good (9/2)
+                                DiagonalNonZeros > 11484.2: bad (6)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    78   41( 2.7%)   <<
+
+
+[ Fold 4 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (557)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (96)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (68)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (376)
+        :       :   AvgNonzerosPerRow > 7.4: bad (274/11)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 14.5:
+        :           :...ColumnVariance <= 81568.5: bad (84/5)
+        :           :   ColumnVariance > 81568.5: good (30)
+        :           AvgNonzerosPerRow <= 14.5:
+        :           :...Trace > 68.5128: bad (977/37)
+        :               Trace <= 68.5128:
+        :               :...DiagonalSign <= -2: bad (332/44)
+        :                   DiagonalSign > -2: good (39)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (21)
+            :   DiagonalNonZeros > 5041: bad (30/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...Trace <= 0:
+                :...AvgDiagonalDistance > 1830.49: good (62)
+                :   AvgDiagonalDistance <= 1830.49:
+                :   :...nnz <= 54804: bad (329/13)
+                :       nnz > 54804:
+                :       :...DiagonalSign <= -2: bad (73/19)
+                :           DiagonalSign > -2: good (10)
+                Trace > 0:
+                :...solver in {8793455,90197667,49598909,59072883,59072882,
+                    :          59072881,7285381,7285384,59072884,49598911,
+                    :          49598910,49598912,36025723,36025722,36025724,
+                    :          8793454,8793456,8793453,32168839,32168838,
+                    :          57331597,57331599,57331598,32168837,88865078,
+                    :          88865079,88865076,88865077,57331600,43373444,
+                    :          43373441,43373442,43373443,91068411,91068410,
+                    :          5890861,5890863,5890862,18868444,18868441,
+                    :          18868443,18868442,91068408,91068409,5890860,
+                    :          29030069,29030071,29030070,29030072,85490469,
+                    :          26415435,26415434,26415433,26415432,7285382,
+                    :          7285383,29553941,29553943,29553942,69654761,
+                    :          29553944,69654763,69654762,32874609,32168840,
+                    :          90197664,90197665,90197666,69654760,19932321,
+                    :          199323231,9932322,19932324,38678404,38678401,
+                    :          38678402,38678403,32874611,32874610,32874612,
+                    :          44114477,44114476,44114479,44114478,36025721,
+                    :          85490471,85490470,85490472}: bad (0)
+                    solver in {91036839,45869639,45869638,45869637,47942867,
+                    :          89269802,89269803,89269801,89269804,30870721,
+                    :          53302993,30870720,17734818,95762352,49834417,
+                    :          49834419,49834418,11256942,11256943,11256941,
+                    :          42851841,11256944,31459546,91845162,12321508,
+                    :          75830644,95762353,47942864,47942865,47942866,
+                    :          95762354,99720138,30870723,30870722,13323659,
+                    :          45869640,36564233,36564232,36564234,37052870,
+                    :          37052871,80361466,80361467,80361464,80361465,
+                    :          49834420,36564235,37052868}: bad (7527/22)
+                    solver = 17887723:
+                    :...DiagonalAverage > 0.022094: bad (145/3)
+                    :   DiagonalAverage <= 0.022094:
+                    :   :...MinNonZeroPerRow <= 0: bad (25/3)
+                    :       MinNonZeroPerRow > 0: good (11/1)
+                    solver = 95762355:
+                    :...lowerBandwidth <= 23195: bad (154/1)
+                    :   lowerBandwidth > 23195:
+                    :   :...lowerBandwidth <= 28556: good (3)
+                    :       lowerBandwidth > 28556: bad (7)
+                    solver = 90783920:
+                    :...DiagonalAverage > 0.022094: bad (143.6/4)
+                    :   DiagonalAverage <= 0.022094:
+                    :   :...MinNonZeroPerRow <= 0: bad (23.4/3)
+                    :       MinNonZeroPerRow > 0: good (11)
+                    solver = 68908713:
+                    :...DiagonalNonZeros <= 3345.47: bad (27)
+                    :   DiagonalNonZeros > 3345.47:
+                    :   :...DiagonalMean <= 0.804842: good (9)
+                    :       DiagonalMean > 0.804842: bad (24/7)
+                    solver = 75830645:
+                    :...lowerBandwidth > 47: bad (163/4)
+                    :   lowerBandwidth <= 47:
+                    :   :...AbsoluteTrace <= -7.75e+12: good (4)
+                    :       AbsoluteTrace > -7.75e+12: bad (5)
+                    solver = 81986705:
+                    :...DiagonalAverage > 0.022094: bad (151.3/4)
+                    :   DiagonalAverage <= 0.022094:
+                    :   :...MinNonZeroPerRow <= 0: bad (24.7/3)
+                    :       MinNonZeroPerRow > 0: good (11)
+                    solver = 75830647:
+                    :...Symmetricity <= 0: good (73/8)
+                    :   Symmetricity > 0:
+                    :   :...AbsoluteTrace <= -2e+13: good (2)
+                    :       AbsoluteTrace > -2e+13: bad (90/9)
+                    solver = 89565283:
+                    :...DiagonalNonZeros <= 13209:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (55)
+                    :   :   DiagonalNonZeros > 3345.47:
+                    :   :   :...SymmetricFrobeniusNorm <= 11903.7: good (6/1)
+                    :   :       SymmetricFrobeniusNorm > 11903.7: bad (97/1)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...ColumnDiagonalDominance > 0: bad (5)
+                    :       ColumnDiagonalDominance <= 0:
+                    :       :...SymmetricFrobeniusNorm <= 54450.6: good (9)
+                    :           SymmetricFrobeniusNorm > 54450.6: bad (13/2)
+                    solver = 44526267:
+                    :...ColumnDiagonalDominance > 0: bad (81)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (50)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 12421.3: good (11)
+                    :           SymmetricFrobeniusNorm > 12421.3: bad (40/5)
+                    solver = 53362206:
+                    :...DiagonalNonZeros <= 13209: bad (159/5)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm > 54450.6: bad (17/2)
+                    :       SymmetricFrobeniusNorm <= 54450.6:
+                    :       :...ColumnDiagonalDominance <= 0: good (9)
+                    :           ColumnDiagonalDominance > 0: bad (2)
+                    solver = 85483012:
+                    :...DiagonalSign <= -2: good (28/8)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 6116: bad (123)
+                    :       upperBandwidth > 6116:
+                    :       :...DiagonalNonZeros <= 10938: good (9/3)
+                    :           DiagonalNonZeros > 10938: bad (9)
+                    solver = 8520536:
+                    :...DiagonalNonZeros <= 13209:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (55)
+                    :   :   DiagonalNonZeros > 3345.47:
+                    :   :   :...SymmetricFrobeniusNorm <= 11903.7: good (5/1)
+                    :   :       SymmetricFrobeniusNorm > 11903.7: bad (90/1)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm > 54450.6: bad (19/2)
+                    :       SymmetricFrobeniusNorm <= 54450.6:
+                    :       :...ColumnDiagonalDominance <= 0: good (9)
+                    :           ColumnDiagonalDominance > 0: bad (2)
+                    solver = 1216556:
+                    :...ColumnDiagonalDominance > 0: bad (79)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3200: bad (48)
+                    :       DiagonalNonZeros > 3200:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (10)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (39/6)
+                    solver = 75830646:
+                    :...DiagonalSign <= -2: bad (25)
+                    :   DiagonalSign > -2:
+                    :   :...MaxNonZeroPerRow > 0: good (130/18)
+                    :       MaxNonZeroPerRow <= 0:
+                    :       :...DiagonalSign <= -1: bad (5)
+                    :           DiagonalSign > -1: good (4)
+                    solver = 18524981:
+                    :...DiagonalSign <= -2: bad (28/1)
+                    :   DiagonalSign > -2:
+                    :   :...AvgDiagonalDistance <= 4240.71: good (123.8/7.9)
+                    :       AvgDiagonalDistance > 4240.71:
+                    :       :...DiagonalSign <= -1: bad (8.2/0.1)
+                    :           DiagonalSign > -1: good (3)
+                    solver = 37052869:
+                    :...DiagonalSign <= -2: good (26/1)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 6116: bad (111/1)
+                    :       upperBandwidth > 6116:
+                    :       :...DiagonalNonZeros <= 10938: good (8/2)
+                    :           DiagonalNonZeros > 10938: bad (8)
+                    solver = 64278029:
+                    :...Dimension <= 13436: bad (126/2)
+                    :   Dimension > 13436:
+                    :   :...SymmetricFrobeniusNorm > 9010000: bad (13)
+                    :       SymmetricFrobeniusNorm <= 9010000:
+                    :       :...AvgDiagonalDistance > 11458.5: bad (13.3)
+                    :           AvgDiagonalDistance <= 11458.5:
+                    :           :...DiagonalNonZeros > 28711.7: bad (5)
+                    :               DiagonalNonZeros <= 28711.7:
+                    :               :...OneNorm <= 36: bad (4.7)
+                    :                   OneNorm > 36: good (17/2)
+                    solver = 82456576:
+                    :...Dimension <= 13436: bad (128/2)
+                        Dimension > 13436:
+                        :...MaxNonZeroPerRow <= 0: bad (8)
+                            MaxNonZeroPerRow > 0:
+                            :...ColumnDiagonalDominance > 0: bad (6)
+                                ColumnDiagonalDominance <= 0:
+                                :...SymmetricFrobeniusNorm > 9010000: bad (11)
+                                    SymmetricFrobeniusNorm <= 9010000:
+                                    :...AvgDiagonalDistance > 10367.2: bad (5)
+                                        AvgDiagonalDistance <= 10367.2:
+                                        :...upperBandwidth > 4415: good (13)
+                                            upperBandwidth <= 4415:
+                                            :...InfinityNorm <= 3347: bad (6)
+                                                InfinityNorm > 3347: good (2)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    92   37( 2.4%)   <<
+
+
+[ Fold 5 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (554)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (100)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (70)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (372)
+        :       :   AvgNonzerosPerRow > 7.4: bad (269/13)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (21)
+        :           :   DiagonalNonZeros > 2568: bad (30/3)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1012/37)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (48)
+        :                   MinNonZeroPerRow > 0: bad (329/44)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (20)
+            :   DiagonalNonZeros > 5041: bad (27)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,12321508,
+                :          75830644,95762353,47942864,47942865,47942866,
+                :          95762354,99720138,30870723,30870722,13323659,
+                :          45869640,36564233,36564232,75830645,36564234,
+                :          37052870,37052871,80361466,80361467,80361464,
+                :          80361465,49834420,36564235,
+                :          37052868}: bad (8006/47)
+                solver = 85483012:
+                :...DiagonalSign <= -2: good (33/11)
+                :   DiagonalSign > -2: bad (139/6)
+                solver = 95762355:
+                :...lowerBandwidth <= 23195: bad (158/1)
+                :   lowerBandwidth > 23195:
+                :   :...lowerBandwidth <= 28556: good (3)
+                :       lowerBandwidth > 28556: bad (6)
+                solver = 68908713:
+                :...DiagonalMean > 6.28255: bad (35/2)
+                :   DiagonalMean <= 6.28255:
+                :   :...AvgNonzerosPerRow <= 4.8: bad (23/4)
+                :       AvgNonzerosPerRow > 4.8: good (15/1)
+                solver = 44526267:
+                :...upperBandwidth <= 416: bad (111)
+                :   upperBandwidth > 416:
+                :   :...DiagonalMean > 7.45212: bad (36/5)
+                :       DiagonalMean <= 7.45212:
+                :       :...AvgNonzerosPerRow <= 4.6: bad (32/2)
+                :           AvgNonzerosPerRow > 4.6: good (17)
+                solver = 17887723:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (36/2)
+                :   :   AvgNonzerosPerRow > 4.6:
+                :   :   :...upperBandwidth <= 108: bad (2)
+                :   :       upperBandwidth > 108: good (17)
+                :   DiagonalMean > 6:
+                :   :...lowerBandwidth <= 13325: bad (133/1)
+                :       lowerBandwidth > 13325:
+                :       :...AvgNonzerosPerRow <= 2.7: good (3)
+                :           AvgNonzerosPerRow > 2.7: bad (4)
+                solver = 53362206:
+                :...ColumnDiagonalDominance > 0: bad (77)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 2641.2: bad (51/2)
+                :       DiagonalNonZeros > 2641.2:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12/1)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (54/11)
+                solver = 8520536:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (36/2)
+                :   :   AvgNonzerosPerRow > 4.6:
+                :   :   :...Symmetricity <= 0: bad (2)
+                :   :       Symmetricity > 0: good (17/1)
+                :   DiagonalMean > 6:
+                :   :...Dimension <= 20944: bad (133)
+                :       Dimension > 20944:
+                :       :...nnz <= 101870: good (4)
+                :           nnz > 101870: bad (8)
+                solver = 82456576:
+                :...DiagonalMean > 6: bad (141/3)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (36/3)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (19/1)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: bad (27/1)
+                :   :   ColumnVariance > 126487: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (130/17)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (6)
+                :           DiagonalSign > -1: good (4)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (30/2)
+                :   DiagonalSign > -2:
+                :   :...AvgDiagonalDistance <= 4240.71: good (128.8/7.9)
+                :       AvgDiagonalDistance > 4240.71:
+                :       :...DiagonalSign <= -1: bad (8.2/0.1)
+                :           DiagonalSign > -1: good (3)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...AbsoluteNonZeroSum <= 527679: good (30/1)
+                :   :   AbsoluteNonZeroSum > 527679: bad (3)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: bad (133/4)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: good (6/1)
+                :           DiagonalSign > -1: bad (4)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (72)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (57/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...SymmetricFrobeniusNorm > 9010000: bad (20)
+                :               SymmetricFrobeniusNorm <= 9010000:
+                :               :...SymmetricFrobeniusNorm <= 1860000: bad (24/6)
+                :                   SymmetricFrobeniusNorm > 1860000: good (4)
+                solver = 75830647:
+                :...Symmetricity <= 0:
+                :   :...ColumnDiagonalDominance <= 0: bad (5/1)
+                :   :   ColumnDiagonalDominance > 0: good (66/6)
+                :   Symmetricity > 0:
+                :   :...lowerBandwidth > 1783: bad (53)
+                :       lowerBandwidth <= 1783:
+                :       :...nnz > 330390: good (3)
+                :           nnz <= 330390:
+                :           :...RowVariance > 9.92: bad (31/3)
+                :               RowVariance <= 9.92:
+                :               :...OneNorm <= 25: bad (3)
+                :                   OneNorm > 25: good (7)
+                solver = 1216556:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (29)
+                :       RowVariance <= 148757:
+                :       :...DiagonalNonZeros <= 3345.47:
+                :           :...Trace > 68.5128: bad (38)
+                :           :   Trace <= 68.5128:
+                :           :   :...Symmetricity <= 0: bad (2)
+                :           :       Symmetricity > 0: good (3)
+                :           DiagonalNonZeros > 3345.47:
+                :           :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :               SymmetricFrobeniusNorm > 13325.2:
+                :               :...InfinityNorm <= 185: bad (18/1)
+                :                   InfinityNorm > 185:
+                :                   :...MinNonZeroPerRow <= 0: good (9/1)
+                :                       MinNonZeroPerRow > 0: bad (3)
+                solver = 89565283:
+                :...ColumnDiagonalDominance > 0: bad (75)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (54/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0: bad (22/1)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (12)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (2)
+                :                       Symmetricity > 0:
+                :                       :...nnz <= 236700: good (8)
+                :                           nnz > 236700: bad (3)
+                solver = 90783920:
+                :...ColumnDiagonalDominance > 0: bad (84)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (33)
+                :       RowVariance <= 148757:
+                :       :...DiagonalNonZeros <= 3345.47:
+                :           :...Trace > 0: bad (38)
+                :           :   Trace <= 0:
+                :           :   :...Symmetricity <= 0: bad (2)
+                :           :       Symmetricity > 0: good (3)
+                :           DiagonalNonZeros > 3345.47:
+                :           :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :               SymmetricFrobeniusNorm > 13325.2:
+                :               :...AbsoluteNonZeroSum <= 631936: bad (11)
+                :                   AbsoluteNonZeroSum > 631936:
+                :                   :...DiagonalAverage > 0.176411: good (7)
+                :                       DiagonalAverage <= 0.176411:
+                :                       :...lowerBandwidth <= 12592: bad (8)
+                :                           lowerBandwidth > 12592: good (4/1)
+                solver = 64278029:
+                :...upperBandwidth <= 416: bad (114)
+                    upperBandwidth > 416:
+                    :...DiagonalNonZeros <= 3345.47:
+                        :...Trace <= 0: good (3)
+                        :   Trace > 0: bad (34)
+                        DiagonalNonZeros > 3345.47:
+                        :...RowVariance > 691207: bad (10)
+                            RowVariance <= 691207:
+                            :...ColumnDiagonalDominance > 0: bad (3)
+                                ColumnDiagonalDominance <= 0:
+                                :...DiagonalSign > 0:
+                                    :...DiagonalAverage <= 0.018572: good (3)
+                                    :   DiagonalAverage > 0.018572: bad (9)
+                                    DiagonalSign <= 0:
+                                    :...AvgDiagonalDistance > 11458.5: bad (3)
+                                        AvgDiagonalDistance <= 11458.5:
+                                        :...OneNorm <= 204948: good (16)
+                                            OneNorm > 204948:
+                                            :...AbsoluteTrace <= 6560000: bad (3)
+                                                AbsoluteTrace > 6560000: good (2)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   110   52( 3.4%)   <<
+
+
+[ Fold 6 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (552)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (98)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (67)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (389)
+        :       :   AvgNonzerosPerRow > 7.4: bad (273/13)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (20)
+        :           :   DiagonalNonZeros > 2568: bad (29/2)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1025/38)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (50)
+        :                   MinNonZeroPerRow > 0: bad (334/42)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (18)
+            :   DiagonalNonZeros > 5041: bad (31/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,53362206,
+                :          95762355,12321508,75830644,95762353,47942864,
+                :          47942865,47942866,95762354,99720138,30870723,
+                :          30870722,13323659,45869640,36564233,36564232,
+                :          36564234,37052870,37052871,80361466,80361467,
+                :          80361464,80361465,49834420,36564235,
+                :          37052868}: bad (8208/67)
+                solver = 75830645:
+                :...lowerBandwidth > 44: bad (164/5)
+                :   lowerBandwidth <= 44:
+                :   :...AbsoluteTrace <= -7.75e+12: good (4)
+                :       AbsoluteTrace > -7.75e+12: bad (5)
+                solver = 75830647:
+                :...lowerBandwidth > 108: bad (86/6)
+                :   lowerBandwidth <= 108:
+                :   :...DiagonalSign <= 0: bad (9/3)
+                :       DiagonalSign > 0: good (76/8)
+                solver = 17887723:
+                :...DiagonalMean > 6: bad (139/4)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (37/3)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (18/1)
+                solver = 85483012:
+                :...DiagonalSign <= -2:
+                :   :...FrobeniusNorn <= 3.04e+08: good (28/9)
+                :   :   FrobeniusNorn > 3.04e+08: bad (3)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (117)
+                :       upperBandwidth > 6116:
+                :       :...RowVariance <= 1176.06: good (10/3)
+                :           RowVariance > 1176.06: bad (7)
+                solver = 8520536:
+                :...ColumnDiagonalDominance > 0: bad (83)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace <= 0: good (4/1)
+                :       :   Trace > 0: bad (54)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (44/10)
+                solver = 82456576:
+                :...ColumnDiagonalDominance > 0: bad (78)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3200: bad (58/2)
+                :       DiagonalNonZeros > 3200:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (9)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (49/11)
+                solver = 1216556:
+                :...DiagonalMean > 6: bad (134/4)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (34/3)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (17)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: bad (30/1)
+                :   :   ColumnVariance > 126487: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (123/15)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (5)
+                :           DiagonalSign > -1: good (4)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (30/2)
+                :   DiagonalSign > -2:
+                :   :...AvgDiagonalDistance <= 4240.71: good (122.8/8.9)
+                :       AvgDiagonalDistance > 4240.71:
+                :       :...DiagonalSign <= -1: bad (8.2/0.1)
+                :           DiagonalSign > -1: good (2)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...AbsoluteNonZeroSum <= 527679: good (29/1)
+                :   :   AbsoluteNonZeroSum > 527679: bad (3)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (119/1)
+                :       upperBandwidth > 6116:
+                :       :...DiagonalNonZeros <= 10938: good (11/3)
+                :           DiagonalNonZeros > 10938: bad (7)
+                solver = 44526267:
+                :...ColumnDiagonalDominance > 0: bad (81)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 5.36513: bad (66/8)
+                :       RowVariance <= 5.36513:
+                :       :...MinNonZeroPerRow > 0: good (12)
+                :           MinNonZeroPerRow <= 0:
+                :           :...AvgNonzerosPerRow <= 4.8: bad (25/1)
+                :               AvgNonzerosPerRow > 4.8: good (4)
+                solver = 68908713:
+                :...MaxNonZeroPerRow <= 0: bad (10)
+                :   MaxNonZeroPerRow > 0:
+                :   :...ColumnDiagonalDominance > 0: bad (6)
+                :       ColumnDiagonalDominance <= 0:
+                :       :...Symmetricity <= 0: bad (5)
+                :           Symmetricity > 0:
+                :           :...DiagonalMean > 6.28255: bad (25/4)
+                :               DiagonalMean <= 6.28255:
+                :               :...AvgNonzerosPerRow <= 4.2: bad (8/2)
+                :                   AvgNonzerosPerRow > 4.2: good (17)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (29)
+                :       RowVariance <= 148757:
+                :       :...MaxNonZeroPerRow <= 0: bad (10)
+                :           MaxNonZeroPerRow > 0:
+                :           :...DiagonalSign <= -2:
+                :               :...SymmetricFrobeniusNorm <= 1280000: bad (32/4)
+                :               :   SymmetricFrobeniusNorm > 1280000: good (2)
+                :               DiagonalSign > -2:
+                :               :...DiagonalMean <= 6.28255:
+                :                   :...OneNorm <= 37: bad (2)
+                :                   :   OneNorm > 37: good (16)
+                :                   DiagonalMean > 6.28255:
+                :                   :...AvgNonzerosPerRow <= 2.9: good (2)
+                :                       AvgNonzerosPerRow > 2.9: bad (15)
+                solver = 89565283:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (55/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 16011.6: good (11)
+                :           SymmetricFrobeniusNorm > 16011.6:
+                :           :...MinNonZeroPerRow > 0:
+                :               :...DiagonalAverage <= 0.018572: good (2)
+                :               :   DiagonalAverage > 0.018572: bad (21)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (11)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (2)
+                :                       Symmetricity > 0:
+                :                       :...nnz <= 236700: good (10/1)
+                :                           nnz > 236700: bad (2)
+                solver = 64278029:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (59/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0: bad (21/1)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (13)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (3)
+                :                       Symmetricity > 0:
+                :                       :...nnz <= 236700: good (10/1)
+                :                           nnz > 236700: bad (3)
+                solver = 90783920:
+                :...ColumnDiagonalDominance > 0: bad (83)
+                    ColumnDiagonalDominance <= 0:
+                    :...DiagonalNonZeros <= 3600:
+                        :...Trace <= 0: good (4/1)
+                        :   Trace > 0: bad (52)
+                        DiagonalNonZeros > 3600:
+                        :...SymmetricFrobeniusNorm <= 13325.2: good (10)
+                            SymmetricFrobeniusNorm > 13325.2:
+                            :...MinNonZeroPerRow > 0:
+                                :...DiagonalAverage <= 0.018572: good (2)
+                                :   DiagonalAverage > 0.018572: bad (20)
+                                MinNonZeroPerRow <= 0:
+                                :...AbsoluteTrace <= 210238: bad (12)
+                                    AbsoluteTrace > 210238:
+                                    :...Symmetricity <= 0: bad (2)
+                                        Symmetricity > 0:
+                                        :...nnz <= 236700: good (9/1)
+                                            nnz > 236700: bad (2)
+
+Evaluation on hold-out data (1545 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   102   45( 2.9%)   <<
+
+
+[ Fold 7 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (555)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (100)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (72)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (381)
+        :       :   AvgNonzerosPerRow > 7.4: bad (275/12)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 125.5:
+        :           :...DiagonalNonZeros <= 2568: good (19)
+        :           :   DiagonalNonZeros > 2568: bad (28/3)
+        :           AvgNonzerosPerRow <= 125.5:
+        :           :...Trace > 68.5128: bad (1018/35)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (45)
+        :                   MinNonZeroPerRow > 0: bad (323/38)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (18)
+            :   DiagonalNonZeros > 5041: bad (31/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...Trace <= 0:
+                :...AvgDiagonalDistance > 1830.49: good (59)
+                :   AvgDiagonalDistance <= 1830.49:
+                :   :...nnz <= 54804: bad (327/14)
+                :       nnz > 54804:
+                :       :...DiagonalSign <= -2: bad (81/18)
+                :           DiagonalSign > -2: good (11)
+                Trace > 0:
+                :...solver in {8793455,90197667,49598909,59072883,59072882,
+                    :          59072881,7285381,7285384,59072884,49598911,
+                    :          49598910,49598912,36025723,36025722,36025724,
+                    :          8793454,8793456,8793453,32168839,32168838,
+                    :          57331597,57331599,57331598,32168837,88865078,
+                    :          88865079,88865076,88865077,57331600,43373444,
+                    :          43373441,43373442,43373443,91068411,91068410,
+                    :          5890861,5890863,5890862,18868444,18868441,
+                    :          18868443,18868442,91068408,91068409,5890860,
+                    :          29030069,29030071,29030070,29030072,85490469,
+                    :          26415435,26415434,26415433,26415432,7285382,
+                    :          7285383,29553941,29553943,29553942,69654761,
+                    :          29553944,69654763,69654762,32874609,32168840,
+                    :          90197664,90197665,90197666,69654760,19932321,
+                    :          199323231,9932322,19932324,38678404,38678401,
+                    :          38678402,38678403,32874611,32874610,32874612,
+                    :          44114477,44114476,44114479,44114478,36025721,
+                    :          85490471,85490470,85490472}: bad (0)
+                    solver in {91036839,45869639,45869638,45869637,47942867,
+                    :          89269802,89269803,89269801,89269804,30870721,
+                    :          53302993,30870720,17734818,95762352,49834417,
+                    :          49834419,49834418,11256942,11256943,11256941,
+                    :          42851841,11256944,31459546,91845162,12321508,
+                    :          75830644,95762353,47942864,47942865,47942866,
+                    :          95762354,99720138,30870723,30870722,13323659,
+                    :          45869640,36564233,36564232,36564234,37052870,
+                    :          37052871,80361466,80361467,80361464,80361465,
+                    :          49834420,36564235,37052868}: bad (7526/23)
+                    solver = 95762355:
+                    :...lowerBandwidth <= 23195: bad (148/1)
+                    :   lowerBandwidth > 23195:
+                    :   :...lowerBandwidth <= 28556: good (3)
+                    :       lowerBandwidth > 28556: bad (6)
+                    solver = 75830645:
+                    :...lowerBandwidth > 75: bad (160/4)
+                    :   lowerBandwidth <= 75:
+                    :   :...AbsoluteTrace <= -7.75e+12: good (4)
+                    :       AbsoluteTrace > -7.75e+12: bad (5)
+                    solver = 89565283:
+                    :...DiagonalNonZeros <= 3345.47: bad (54)
+                    :   DiagonalNonZeros > 3345.47:
+                    :   :...SymmetricFrobeniusNorm > 13325.2: bad (120/7)
+                    :       SymmetricFrobeniusNorm <= 13325.2:
+                    :       :...ColumnDiagonalDominance <= 0: good (10)
+                    :           ColumnDiagonalDominance > 0: bad (3)
+                    solver = 64278029:
+                    :...ColumnDiagonalDominance > 0: bad (79)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (51)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (43/7)
+                    solver = 44526267:
+                    :...DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm <= 54450.6: good (9/1)
+                    :   :   SymmetricFrobeniusNorm > 54450.6: bad (17/2)
+                    :   DiagonalNonZeros <= 13209:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (57)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 11903.7: good (5)
+                    :           SymmetricFrobeniusNorm > 11903.7: bad (91/2)
+                    solver = 17887723:
+                    :...ColumnDiagonalDominance > 0: bad (84)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (52)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (40/7)
+                    solver = 53362206:
+                    :...ColumnDiagonalDominance > 0: bad (78)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (51)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (41/7)
+                    solver = 85483012:
+                    :...DiagonalSign <= -2: good (26/5)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 6116: bad (113)
+                    :       upperBandwidth > 6116:
+                    :       :...DiagonalNonZeros <= 10938: good (9/3)
+                    :           DiagonalNonZeros > 10938: bad (7)
+                    solver = 8520536:
+                    :...Dimension <= 13436: bad (128/1)
+                    :   Dimension > 13436:
+                    :   :...MinNonZeroPerRow <= 0: bad (30/4)
+                    :       MinNonZeroPerRow > 0:
+                    :       :...RowVariance <= 12.1966: good (9/1)
+                    :           RowVariance > 12.1966: bad (7)
+                    solver = 82456576:
+                    :...DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm <= 54450.6: good (10/1)
+                    :   :   SymmetricFrobeniusNorm > 54450.6: bad (17/2)
+                    :   DiagonalNonZeros <= 13209:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (54)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 11903.7: good (6/1)
+                    :           SymmetricFrobeniusNorm > 11903.7: bad (101/2)
+                    solver = 90783920:
+                    :...ColumnDiagonalDominance > 0: bad (82)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (53)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 13325.2: good (10)
+                    :           SymmetricFrobeniusNorm > 13325.2: bad (44/7)
+                    solver = 81986705:
+                    :...ColumnDiagonalDominance > 0: bad (84)
+                    :   ColumnDiagonalDominance <= 0:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (54)
+                    :       DiagonalNonZeros > 3345.47:
+                    :       :...SymmetricFrobeniusNorm <= 12421.3: good (11)
+                    :           SymmetricFrobeniusNorm > 12421.3: bad (41/7)
+                    solver = 1216556:
+                    :...DiagonalNonZeros <= 13209:
+                    :   :...DiagonalNonZeros <= 3345.47: bad (57)
+                    :   :   DiagonalNonZeros > 3345.47:
+                    :   :   :...SymmetricFrobeniusNorm <= 13495.3: good (6/1)
+                    :   :       SymmetricFrobeniusNorm > 13495.3: bad (96/2)
+                    :   DiagonalNonZeros > 13209:
+                    :   :...SymmetricFrobeniusNorm > 54450.6: bad (17/2)
+                    :       SymmetricFrobeniusNorm <= 54450.6:
+                    :       :...ColumnDiagonalDominance <= 0: good (9)
+                    :           ColumnDiagonalDominance > 0: bad (2)
+                    solver = 75830647:
+                    :...Symmetricity <= 0: good (69/8)
+                    :   Symmetricity > 0:
+                    :   :...lowerBandwidth > 1783: bad (55)
+                    :       lowerBandwidth <= 1783:
+                    :       :...nnz <= 330390: bad (41/10)
+                    :           nnz > 330390: good (3)
+                    solver = 75830646:
+                    :...DiagonalSign <= -2: bad (29)
+                    :   DiagonalSign > -2:
+                    :   :...MaxNonZeroPerRow > 0: good (131/16)
+                    :       MaxNonZeroPerRow <= 0:
+                    :       :...DiagonalSign <= -1: bad (5)
+                    :           DiagonalSign > -1: good (3)
+                    solver = 18524981:
+                    :...DiagonalSign <= -2: bad (28/1)
+                    :   DiagonalSign > -2:
+                    :   :...AvgDiagonalDistance <= 4240.71: good (121.9/8)
+                    :       AvgDiagonalDistance > 4240.71:
+                    :       :...DiagonalSign <= -1: bad (7.1/0.1)
+                    :           DiagonalSign > -1: good (2)
+                    solver = 37052869:
+                    :...DiagonalSign <= -2: good (27/1)
+                    :   DiagonalSign > -2:
+                    :   :...upperBandwidth <= 6116: bad (112/1)
+                    :       upperBandwidth > 6116:
+                    :       :...DiagonalNonZeros <= 10938: good (9/2)
+                    :           DiagonalNonZeros > 10938: bad (8)
+                    solver = 68908713:
+                    :...DiagonalNonZeros <= 3345.47: bad (25)
+                        DiagonalNonZeros > 3345.47:
+                        :...DiagonalMean <= 0.88032: good (9)
+                            DiagonalMean > 0.88032:
+                            :...AvgNonzerosPerRow > 31.1: good (3)
+                                AvgNonzerosPerRow <= 31.1:
+                                :...AvgNonzerosPerRow > 2.9: bad (15)
+                                    AvgNonzerosPerRow <= 2.9: [S1]
+
+SubTree [S1]
+
+ColumnDiagonalDominance <= 0: good (4)
+ColumnDiagonalDominance > 0: bad (4)
+
+Evaluation on hold-out data (1546 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	    93   37( 2.4%)   <<
+
+
+[ Fold 8 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (549)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (97)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (74)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (373)
+        :       :   AvgNonzerosPerRow > 7.4: bad (271/12)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 14.5:
+        :           :...ColumnVariance <= 81568.5: bad (84/4)
+        :           :   ColumnVariance > 81568.5: good (31)
+        :           AvgNonzerosPerRow <= 14.5:
+        :           :...Trace > 68.5128: bad (952/32)
+        :               Trace <= 68.5128:
+        :               :...DiagonalSign <= -2: bad (323/39)
+        :                   DiagonalSign > -2: good (41)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (20)
+            :   DiagonalNonZeros > 5041: bad (31/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,17887723,91845162,
+                :          12321508,75830644,95762353,47942864,47942865,
+                :          47942866,82456576,95762354,99720138,30870723,
+                :          30870722,13323659,45869640,36564233,36564232,
+                :          36564234,37052870,37052871,80361466,80361467,
+                :          80361464,80361465,49834420,36564235,
+                :          37052868}: bad (8232/89)
+                solver = 85483012:
+                :...DiagonalSign <= -2: good (33/11)
+                :   DiagonalSign > -2: bad (137/6)
+                solver = 75830645:
+                :...AbsoluteTrace <= -7.75e+12: good (3)
+                :   AbsoluteTrace > -7.75e+12: bad (163/3)
+                solver = 95762355:
+                :...lowerBandwidth <= 23195: bad (158)
+                :   lowerBandwidth > 23195:
+                :   :...lowerBandwidth <= 28556: good (3)
+                :       lowerBandwidth > 28556: bad (7)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: bad (30/1)
+                :   :   ColumnVariance > 126487: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (134/18)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (5)
+                :           DiagonalSign > -1: good (3)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (31/2)
+                :   DiagonalSign > -2:
+                :   :...AvgDiagonalDistance <= 3919.78: good (130.8/8.9)
+                :       AvgDiagonalDistance > 3919.78:
+                :       :...DiagonalSign <= -1: bad (8.2/0.1)
+                :           DiagonalSign > -1: good (3)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...AvgDiagonalDistance <= 1792.65: bad (4)
+                :   :   AvgDiagonalDistance > 1792.65: good (27/1)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: bad (129/3)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: good (6/1)
+                :           DiagonalSign > -1: bad (4)
+                solver = 53362206:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 2568: bad (46/2)
+                :       DiagonalNonZeros > 2568:
+                :       :...SymmetricFrobeniusNorm > 13325.2: bad (53/10)
+                :           SymmetricFrobeniusNorm <= 13325.2:
+                :           :...OneNorm <= 1487: good (12)
+                :               OneNorm > 1487: bad (2)
+                solver = 68908713:
+                :...MaxNonZeroPerRow <= 0: bad (9)
+                :   MaxNonZeroPerRow > 0:
+                :   :...ColumnDiagonalDominance > 0: bad (6)
+                :       ColumnDiagonalDominance <= 0:
+                :       :...DiagonalMean > 6.28255: bad (28/3)
+                :           DiagonalMean <= 6.28255:
+                :           :...AvgNonzerosPerRow <= 4.2: bad (12/2)
+                :               AvgNonzerosPerRow > 4.2: good (18/1)
+                solver = 75830647:
+                :...Symmetricity <= 0:
+                :   :...DiagonalSign <= 0: bad (5/1)
+                :   :   DiagonalSign > 0: good (71/6)
+                :   Symmetricity > 0:
+                :   :...lowerBandwidth > 1783: bad (52)
+                :       lowerBandwidth <= 1783:
+                :       :...DiagonalMean <= 8.80208: good (5)
+                :           DiagonalMean > 8.80208:
+                :           :...nnz <= 330390: bad (35/5)
+                :               nnz > 330390: good (3)
+                solver = 64278029:
+                :...upperBandwidth <= 416: bad (113/1)
+                :   upperBandwidth > 416:
+                :   :...DiagonalMean <= 0.804842:
+                :       :...AvgNonzerosPerRow > 4.6: good (14)
+                :       :   AvgNonzerosPerRow <= 4.6:
+                :       :   :...upperBandwidth <= 3650: good (2)
+                :       :       upperBandwidth > 3650: bad (13)
+                :       DiagonalMean > 0.804842:
+                :       :...Dimension <= 13436: bad (22)
+                :           Dimension > 13436:
+                :           :...AvgDiagonalDistance <= 200: good (4)
+                :               AvgDiagonalDistance > 200:
+                :               :...lowerBandwidth <= 37084: bad (18/1)
+                :                   lowerBandwidth > 37084: good (2)
+                solver = 8520536:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace > 0: bad (55)
+                :       :   Trace <= 0:
+                :       :   :...Symmetricity <= 0: bad (2)
+                :       :       Symmetricity > 0: good (3)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...SymmetricFrobeniusNorm > 9010000: bad (19)
+                :               SymmetricFrobeniusNorm <= 9010000:
+                :               :...SymmetricFrobeniusNorm <= 1860000: bad (27/7)
+                :                   SymmetricFrobeniusNorm > 1860000: good (4)
+                solver = 90783920:
+                :...ColumnDiagonalDominance > 0: bad (77)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (58/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...SymmetricFrobeniusNorm > 9010000: bad (19)
+                :               SymmetricFrobeniusNorm <= 9010000:
+                :               :...AbsoluteNonZeroSum <= 631936: bad (10)
+                :                   AbsoluteNonZeroSum > 631936: good (17/6)
+                solver = 89565283:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (55/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0: bad (22/1)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (13)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (3)
+                :                       Symmetricity > 0: good (9/2)
+                solver = 44526267:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (34)
+                :       RowVariance <= 148757:
+                :       :...DiagonalNonZeros <= 3345.47:
+                :           :...Trace > 0: bad (37)
+                :           :   Trace <= 0:
+                :           :   :...Symmetricity <= 0: bad (2)
+                :           :       Symmetricity > 0: good (3)
+                :           DiagonalNonZeros > 3345.47:
+                :           :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :               SymmetricFrobeniusNorm > 13325.2:
+                :               :...AbsoluteNonZeroSum <= 631936: bad (11)
+                :                   AbsoluteNonZeroSum > 631936:
+                :                   :...DiagonalAverage <= 0.247016: bad (15/5)
+                :                       DiagonalAverage > 0.247016: good (6)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (78)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace > 0: bad (51)
+                :       :   Trace <= 0:
+                :       :   :...Symmetricity <= 0: bad (2)
+                :       :       Symmetricity > 0: good (3)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0:
+                :               :...DiagonalAverage <= 0.018572: good (2)
+                :               :   DiagonalAverage > 0.018572: bad (19)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (10)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (3)
+                :                       Symmetricity > 0:
+                :                       :...nnz <= 236700: good (10/1)
+                :                           nnz > 236700: bad (3)
+                solver = 1216556:
+                :...ColumnDiagonalDominance > 0: bad (78)
+                    ColumnDiagonalDominance <= 0:
+                    :...DiagonalNonZeros <= 3345.47: bad (59/1)
+                        DiagonalNonZeros > 3345.47:
+                        :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                            SymmetricFrobeniusNorm > 13325.2:
+                            :...MinNonZeroPerRow > 0: bad (23/1)
+                                MinNonZeroPerRow <= 0:
+                                :...AbsoluteTrace <= 210238: bad (13)
+                                    AbsoluteTrace > 210238:
+                                    :...Symmetricity <= 0: bad (3)
+                                        Symmetricity > 0:
+                                        :...nnz <= 236700: good (10/1)
+                                            nnz > 236700: bad (3)
+
+Evaluation on hold-out data (1546 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   107   61( 3.9%)   <<
+
+
+[ Fold 9 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (557)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (102)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (70)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (379)
+        :       :   AvgNonzerosPerRow > 7.4: bad (279/13)
+        :       DiagonalSign > -3:
+        :       :...nnz > 461050:
+        :           :...DiagonalNonZeros <= 2568: good (21)
+        :           :   DiagonalNonZeros > 2568: bad (30/3)
+        :           nnz <= 461050:
+        :           :...Trace > 68.5128: bad (1008/33)
+        :               Trace <= 68.5128:
+        :               :...MinNonZeroPerRow <= 0: good (50)
+        :                   MinNonZeroPerRow > 0: bad (329/40)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (19)
+            :   DiagonalNonZeros > 5041: bad (25/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,12321508,
+                :          75830644,95762353,47942864,47942865,47942866,
+                :          95762354,99720138,30870723,30870722,13323659,
+                :          45869640,36564233,68908713,36564232,36564234,
+                :          37052870,37052871,80361466,80361467,80361464,
+                :          80361465,49834420,36564235,
+                :          37052868}: bad (7912/65)
+                solver = 75830645:
+                :...AbsoluteTrace <= -7.75e+12: good (4)
+                :   AbsoluteTrace > -7.75e+12: bad (165/5)
+                solver = 95762355:
+                :...lowerBandwidth <= 23195: bad (153/1)
+                :   lowerBandwidth > 23195:
+                :   :...lowerBandwidth <= 28556: good (3)
+                :       lowerBandwidth > 28556: bad (6)
+                solver = 75830647:
+                :...ColumnDiagonalDominance <= 0: bad (90/7)
+                :   ColumnDiagonalDominance > 0:
+                :   :...DiagonalNonZeros <= 9801: good (74/9)
+                :       DiagonalNonZeros > 9801: bad (6)
+                solver = 89565283:
+                :...DiagonalMean > 6: bad (145/4)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (36/3)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (18/1)
+                solver = 44526267:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (37/2)
+                :   :   AvgNonzerosPerRow > 4.6:
+                :   :   :...Symmetricity <= 0: bad (2)
+                :   :       Symmetricity > 0: good (15/1)
+                :   DiagonalMean > 6:
+                :   :...Dimension <= 20944: bad (126)
+                :       Dimension > 20944:
+                :       :...nnz <= 101870: good (3)
+                :           nnz > 101870: bad (8)
+                solver = 53362206:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (36/2)
+                :   :   AvgNonzerosPerRow > 4.6:
+                :   :   :...Symmetricity <= 0: bad (2)
+                :   :       Symmetricity > 0: good (19/1)
+                :   DiagonalMean > 6:
+                :   :...lowerBandwidth <= 13325: bad (131/1)
+                :       lowerBandwidth > 13325:
+                :       :...AvgNonzerosPerRow <= 2.7: good (3)
+                :           AvgNonzerosPerRow > 2.7: bad (4)
+                solver = 85483012:
+                :...DiagonalSign <= -2:
+                :   :...FrobeniusNorn <= 3.04e+08: good (31/8)
+                :   :   FrobeniusNorn > 3.04e+08: bad (3)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (120)
+                :       upperBandwidth > 6116:
+                :       :...DiagonalNonZeros <= 10938: good (11/4)
+                :           DiagonalNonZeros > 10938: bad (8)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...AbsoluteNonZeroSum <= 527679: bad (30)
+                :   :   AbsoluteNonZeroSum > 527679: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (127/17)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (5)
+                :           DiagonalSign > -1: good (4)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (31/1)
+                :   DiagonalSign > -2:
+                :   :...AvgDiagonalDistance <= 6238.5: good (124.9/8.9)
+                :       AvgDiagonalDistance > 6238.5:
+                :       :...DiagonalSign <= -1: bad (7.1/0.1)
+                :           DiagonalSign > -1: good (2)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...ColumnVariance <= 126487: good (31/1)
+                :   :   ColumnVariance > 126487: bad (3)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: bad (124/3)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: good (6/1)
+                :           DiagonalSign > -1: bad (3)
+                solver = 64278029:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...MaxNonZeroPerRow <= 0: bad (13)
+                :       MaxNonZeroPerRow > 0:
+                :       :...RowVariance > 148757: bad (29)
+                :           RowVariance <= 148757:
+                :           :...DiagonalSign <= -2:
+                :               :...SymmetricFrobeniusNorm <= 1280000: bad (35/4)
+                :               :   SymmetricFrobeniusNorm > 1280000: good (2)
+                :               DiagonalSign > -2:
+                :               :...DiagonalMean <= 6.28255: good (20/2)
+                :                   DiagonalMean > 6.28255:
+                :                   :...AvgNonzerosPerRow <= 2.9: good (2)
+                :                       AvgNonzerosPerRow > 2.9: bad (15)
+                solver = 1216556:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace > 0: bad (56)
+                :       :   Trace <= 0:
+                :       :   :...Symmetricity <= 0: bad (2)
+                :       :       Symmetricity > 0: good (3)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 12421.3: good (10)
+                :           SymmetricFrobeniusNorm > 12421.3:
+                :           :...SymmetricFrobeniusNorm > 9010000: bad (18)
+                :               SymmetricFrobeniusNorm <= 9010000:
+                :               :...AbsoluteNonZeroSum <= 631936: bad (10)
+                :                   AbsoluteNonZeroSum > 631936:
+                :                   :...DiagonalNonZeros <= 25935.8: good (16/5)
+                :                       DiagonalNonZeros > 25935.8: bad (4)
+                solver = 17887723:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (33)
+                :       RowVariance <= 148757:
+                :       :...MaxNonZeroPerRow <= 0: bad (11)
+                :           MaxNonZeroPerRow > 0:
+                :           :...DiagonalSign > -2:
+                :               :...DiagonalMean <= 6.28255: good (19/2)
+                :               :   DiagonalMean > 6.28255:
+                :               :   :...AvgNonzerosPerRow <= 2.9: good (2)
+                :               :       AvgNonzerosPerRow > 2.9: bad (15)
+                :               DiagonalSign <= -2:
+                :               :...DiagonalNonZeros <= 3200: bad (23)
+                :                   DiagonalNonZeros > 3200:
+                :                   :...AvgNonzerosPerRow > 3.7: good (3)
+                :                       AvgNonzerosPerRow <= 3.7:
+                :                       :...InfinityNorm <= 4099: bad (7)
+                :                           InfinityNorm > 4099: good (2)
+                solver = 8520536:
+                :...ColumnDiagonalDominance > 0: bad (81)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 148757: bad (32)
+                :       RowVariance <= 148757:
+                :       :...DiagonalNonZeros <= 3345.47: bad (37/2)
+                :           DiagonalNonZeros > 3345.47:
+                :           :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :               SymmetricFrobeniusNorm > 13325.2:
+                :               :...AbsoluteNonZeroSum <= 631936: bad (11)
+                :                   AbsoluteNonZeroSum > 631936:
+                :                   :...upperBandwidth > 7947: good (6)
+                :                       upperBandwidth <= 7947:
+                :                       :...InfinityNorm <= 258: bad (8)
+                :                           InfinityNorm > 258: good (5/1)
+                solver = 82456576:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (54/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 16011.6: good (12)
+                :           SymmetricFrobeniusNorm > 16011.6:
+                :           :...MinNonZeroPerRow > 0: bad (22/1)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (10)
+                :                   AbsoluteTrace > 210238:
+                :                   :...Symmetricity <= 0: bad (3)
+                :                       Symmetricity > 0:
+                :                       :...nnz <= 236700: good (10/1)
+                :                           nnz > 236700: bad (3)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 26024.4: bad (33)
+                :       RowVariance <= 26024.4:
+                :       :...MaxNonZeroPerRow <= 0: bad (12)
+                :           MaxNonZeroPerRow > 0:
+                :           :...DiagonalSign <= -2: bad (30/4)
+                :               DiagonalSign > -2:
+                :               :...DiagonalMean > 6.28255:
+                :                   :...AvgNonzerosPerRow <= 2.9: good (2)
+                :                   :   AvgNonzerosPerRow > 2.9: bad (17)
+                :                   DiagonalMean <= 6.28255:
+                :                   :...AvgNonzerosPerRow > 4.3: good (13)
+                :                       AvgNonzerosPerRow <= 4.3:
+                :                       :...DiagonalNonZeros <= 2154.6: bad (3)
+                :                           DiagonalNonZeros > 2154.6: good (2)
+                solver = 90783920:
+                :...ColumnDiagonalDominance > 0: bad (80)
+                    ColumnDiagonalDominance <= 0:
+                    :...RowVariance > 148757: bad (32)
+                        RowVariance <= 148757:
+                        :...DiagonalNonZeros <= 2641.2: bad (38/2)
+                            DiagonalNonZeros > 2641.2:
+                            :...SymmetricFrobeniusNorm <= 13325.2: good (12/1)
+                                SymmetricFrobeniusNorm > 13325.2:
+                                :...FrobeniusNorn <= 106751: bad (12)
+                                    FrobeniusNorn > 106751:
+                                    :...SymmetricFrobeniusNorm <= 199739: good (6)
+                                        SymmetricFrobeniusNorm > 199739:
+                                        :...lowerBandwidth > 19554: good (3)
+                                            lowerBandwidth <= 19554:
+                                            :...Trace <= -456351: good (3)
+                                                Trace > -456351: bad (12)
+
+Evaluation on hold-out data (1546 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   117   53( 3.4%)   <<
+
+
+[ Fold 10 ]
+
+Decision tree:
+
+SymmetricFrobeniusNorm <= 7.12301: good (558)
+SymmetricFrobeniusNorm > 7.12301:
+:...FrobeniusNorn <= 2918.9: good (95)
+    FrobeniusNorn > 2918.9:
+    :...NonZeroPatternSymmetry <= 0:
+        :...AvgDiagonalDistance > 2261.62: good (69)
+        :   AvgDiagonalDistance <= 2261.62:
+        :   :...DiagonalSign <= -3:
+        :       :...AvgNonzerosPerRow <= 7.4: good (385)
+        :       :   AvgNonzerosPerRow > 7.4: bad (282/10)
+        :       DiagonalSign > -3:
+        :       :...AvgNonzerosPerRow > 14.5:
+        :           :...ColumnVariance <= 81568.5: bad (89/4)
+        :           :   ColumnVariance > 81568.5: good (29)
+        :           AvgNonzerosPerRow <= 14.5:
+        :           :...Trace > 68.5128: bad (956/37)
+        :               Trace <= 68.5128:
+        :               :...DiagonalSign <= -2: bad (329/42)
+        :                   DiagonalSign > -2: good (38)
+        NonZeroPatternSymmetry > 0:
+        :...AbsoluteNonZeroSum <= 12472.9:
+            :...DiagonalNonZeros <= 5041: good (21)
+            :   DiagonalNonZeros > 5041: bad (24/1)
+            AbsoluteNonZeroSum > 12472.9:
+            :...solver in {8793455,90197667,49598909,59072883,59072882,
+                :          59072881,7285381,7285384,59072884,49598911,49598910,
+                :          49598912,36025723,36025722,36025724,8793454,8793456,
+                :          8793453,32168839,32168838,57331597,57331599,
+                :          57331598,32168837,88865078,88865079,88865076,
+                :          88865077,57331600,43373444,43373441,43373442,
+                :          43373443,91068411,91068410,5890861,5890863,5890862,
+                :          18868444,18868441,18868443,18868442,91068408,
+                :          91068409,5890860,29030069,29030071,29030070,
+                :          29030072,85490469,26415435,26415434,26415433,
+                :          26415432,7285382,7285383,29553941,29553943,29553942,
+                :          69654761,29553944,69654763,69654762,32874609,
+                :          32168840,90197664,90197665,90197666,69654760,
+                :          19932321,199323231,9932322,19932324,38678404,
+                :          38678401,38678402,38678403,32874611,32874610,
+                :          32874612,44114477,44114476,44114479,44114478,
+                :          36025721,85490471,85490470,
+                :          85490472}: bad (0)
+                solver in {91036839,45869639,45869638,45869637,47942867,
+                :          89269802,89269803,89269801,89269804,30870721,
+                :          53302993,30870720,17734818,95762352,49834417,
+                :          49834419,49834418,11256942,11256943,11256941,
+                :          42851841,11256944,31459546,91845162,95762355,
+                :          12321508,75830644,95762353,47942864,47942865,
+                :          47942866,95762354,99720138,30870723,30870722,
+                :          13323659,45869640,36564233,36564232,75830645,
+                :          36564234,37052870,37052871,80361466,80361467,
+                :          80361464,80361465,49834420,36564235,
+                :          37052868}: bad (8168/56)
+                solver = 89565283:
+                :...DiagonalMean > 6: bad (142/4)
+                :   DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (31/2)
+                :       AvgNonzerosPerRow > 4.6:
+                :       :...Symmetricity <= 0: bad (2)
+                :           Symmetricity > 0: good (16/1)
+                solver = 64278029:
+                :...DiagonalMean <= 6:
+                :   :...AvgNonzerosPerRow <= 4.6: bad (38/3)
+                :   :   AvgNonzerosPerRow > 4.6:
+                :   :   :...Symmetricity <= 0: bad (2)
+                :   :       Symmetricity > 0: good (15/1)
+                :   DiagonalMean > 6:
+                :   :...Dimension <= 20944: bad (132)
+                :       Dimension > 20944:
+                :       :...AvgNonzerosPerRow <= 2.9: good (3)
+                :           AvgNonzerosPerRow > 2.9: bad (7)
+                solver = 44526267:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (54/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 16011.6: good (12)
+                :           SymmetricFrobeniusNorm > 16011.6: bad (48/11)
+                solver = 85483012:
+                :...DiagonalSign <= -2:
+                :   :...FrobeniusNorn <= 3.04e+08: good (31/9)
+                :   :   FrobeniusNorn > 3.04e+08: bad (3)
+                :   DiagonalSign > -2:
+                :   :...upperBandwidth <= 6116: bad (118)
+                :       upperBandwidth > 6116:
+                :       :...DiagonalNonZeros <= 10938: good (11/4)
+                :           DiagonalNonZeros > 10938: bad (8)
+                solver = 1216556:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47: bad (57/2)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (11)
+                :           SymmetricFrobeniusNorm > 13325.2: bad (46/7)
+                solver = 75830647:
+                :...Symmetricity <= 0:
+                :   :...DiagonalSign <= 0: bad (5/1)
+                :   :   DiagonalSign > 0: good (70/5)
+                :   Symmetricity > 0:
+                :   :...lowerBandwidth > 1783: bad (55)
+                :       lowerBandwidth <= 1783:
+                :       :...nnz <= 330390: bad (37/10)
+                :           nnz > 330390: good (3)
+                solver = 75830646:
+                :...DiagonalSign <= -2:
+                :   :...AbsoluteNonZeroSum <= 527679: bad (29)
+                :   :   AbsoluteNonZeroSum > 527679: good (2)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: good (123/15)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: bad (6)
+                :           DiagonalSign > -1: good (4)
+                solver = 18524981:
+                :...DiagonalSign <= -2: bad (31/2)
+                :   DiagonalSign > -2:
+                :   :...AvgDiagonalDistance <= 4240.71: good (126.9/7.9)
+                :       AvgDiagonalDistance > 4240.71:
+                :       :...DiagonalSign <= -1: bad (7.1/0.1)
+                :           DiagonalSign > -1: good (3)
+                solver = 37052869:
+                :...DiagonalSign <= -2:
+                :   :...AbsoluteNonZeroSum <= 527679: good (28/1)
+                :   :   AbsoluteNonZeroSum > 527679: bad (3)
+                :   DiagonalSign > -2:
+                :   :...MaxNonZeroPerRow > 0: bad (131/3)
+                :       MaxNonZeroPerRow <= 0:
+                :       :...DiagonalSign <= -1: good (6/1)
+                :           DiagonalSign > -1: bad (2)
+                solver = 90783920:
+                :...DiagonalMean > 24.8477: bad (117/1)
+                :   DiagonalMean <= 24.8477:
+                :   :...OneNorm <= 92: bad (32)
+                :       OneNorm > 92:
+                :       :...AvgNonzerosPerRow <= 4.2: bad (22/3)
+                :           AvgNonzerosPerRow > 4.2:
+                :           :...upperBandwidth <= 154: bad (4)
+                :               upperBandwidth > 154: good (15)
+                solver = 68908713:
+                :...MaxNonZeroPerRow <= 0: bad (9)
+                :   MaxNonZeroPerRow > 0:
+                :   :...ColumnDiagonalDominance > 0: bad (6)
+                :       ColumnDiagonalDominance <= 0:
+                :       :...RowVariance > 5.36513: bad (37/6)
+                :           RowVariance <= 5.36513:
+                :           :...AvgDiagonalDistance <= 10367.2: good (18/1)
+                :               AvgDiagonalDistance > 10367.2: bad (4)
+                solver = 17887723:
+                :...ColumnDiagonalDominance > 0: bad (79)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...MaxNonZeroPerRow <= 0: bad (13)
+                :       MaxNonZeroPerRow > 0:
+                :       :...RowVariance > 148757: bad (29)
+                :           RowVariance <= 148757:
+                :           :...DiagonalNonZeros <= 3200:
+                :               :...Trace > 434.375: bad (24)
+                :               :   Trace <= 434.375:
+                :               :   :...Symmetricity <= 0: bad (2)
+                :               :       Symmetricity > 0: good (3)
+                :               DiagonalNonZeros > 3200:
+                :               :...SymmetricFrobeniusNorm <= 13325.2: good (10)
+                :                   SymmetricFrobeniusNorm > 13325.2:
+                :                   :...DiagonalAverage <= 0.103663: bad (20/2)
+                :                       DiagonalAverage > 0.103663: good (10/2)
+                solver = 82456576:
+                :...ColumnDiagonalDominance > 0: bad (77)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...DiagonalNonZeros <= 3345.47:
+                :       :...Trace > 0: bad (51)
+                :       :   Trace <= 0:
+                :       :   :...Symmetricity <= 0: bad (2)
+                :       :       Symmetricity > 0: good (3)
+                :       DiagonalNonZeros > 3345.47:
+                :       :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                :           SymmetricFrobeniusNorm > 13325.2:
+                :           :...MinNonZeroPerRow > 0: bad (21/1)
+                :               MinNonZeroPerRow <= 0:
+                :               :...AbsoluteTrace <= 210238: bad (10)
+                :                   AbsoluteTrace > 210238:
+                :                   :...nnz <= 236700: good (11/2)
+                :                       nnz > 236700: bad (4)
+                solver = 81986705:
+                :...ColumnDiagonalDominance > 0: bad (86)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...RowVariance > 188695: bad (34)
+                :       RowVariance <= 188695:
+                :       :...DiagonalNonZeros <= 2641.2: bad (41/2)
+                :           DiagonalNonZeros > 2641.2:
+                :           :...DiagonalSign > 0:
+                :               :...DiagonalMean <= 8.09186: good (3)
+                :               :   DiagonalMean > 8.09186: bad (11)
+                :               DiagonalSign <= 0:
+                :               :...DiagonalSign <= -2: bad (15/5)
+                :                   DiagonalSign > -2:
+                :                   :...DiagonalMean <= 24.8477: good (14/1)
+                :                       DiagonalMean > 24.8477: bad (3)
+                solver = 8520536:
+                :...ColumnDiagonalDominance > 0: bad (82)
+                :   ColumnDiagonalDominance <= 0:
+                :   :...MaxNonZeroPerRow <= 0: bad (12)
+                :       MaxNonZeroPerRow > 0:
+                :       :...RowVariance > 148757: bad (29)
+                :           RowVariance <= 148757:
+                :           :...DiagonalSign <= -2:
+                :               :...OneNorm <= 309940: bad (29/3)
+                :               :   OneNorm > 309940: good (2)
+                :               DiagonalSign > -2:
+                :               :...DiagonalMean > 6.28255:
+                :                   :...AvgNonzerosPerRow <= 2.9: good (2)
+                :                   :   AvgNonzerosPerRow > 2.9: bad (17)
+                :                   DiagonalMean <= 6.28255:
+                :                   :...AvgNonzerosPerRow > 4.3: good (15)
+                :                       AvgNonzerosPerRow <= 4.3:
+                :                       :...DiagonalNonZeros <= 2154.6: bad (3)
+                :                           DiagonalNonZeros > 2154.6: good (2)
+                solver = 53362206:
+                :...ColumnDiagonalDominance > 0: bad (83)
+                    ColumnDiagonalDominance <= 0:
+                    :...DiagonalNonZeros <= 3345.47:
+                        :...Trace > 0: bad (52)
+                        :   Trace <= 0:
+                        :   :...Symmetricity <= 0: bad (2)
+                        :       Symmetricity > 0: good (3)
+                        DiagonalNonZeros > 3345.47:
+                        :...SymmetricFrobeniusNorm <= 13325.2: good (12)
+                            SymmetricFrobeniusNorm > 13325.2:
+                            :...SymmetricFrobeniusNorm > 1.34e+07: bad (18)
+                                SymmetricFrobeniusNorm <= 1.34e+07:
+                                :...AbsoluteNonZeroSum <= 631936: bad (11)
+                                    AbsoluteNonZeroSum > 631936:
+                                    :...DiagonalNonZeros > 26616.2: bad (3)
+                                        DiagonalNonZeros <= 26616.2:
+                                        :...OneNorm <= 181577: good (9)
+                                            OneNorm > 181577:
+                                            :...InfinityNorm <= 4099: bad (5)
+                                                InfinityNorm > 4099: good (2)
+
+Evaluation on hold-out data (1546 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   112   53( 3.4%)   <<
+
+
+[ Summary ]
+
+Fold	    Decision Tree   
+----	  ----------------  
+	  Size      Errors  
+
+   1	   105        3.9%
+   2	    87        2.4%
+   3	    78        2.7%
+   4	    92        2.4%
+   5	   110        3.4%
+   6	   102        2.9%
+   7	    93        2.4%
+   8	   107        3.9%
+   9	   117        3.4%
+  10	   112        3.4%
+
+  Mean	 100.3        3.1%
+  SE	   3.9        0.2%
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  1850   345    (a): class good
+	   132 13127    (b): class bad
+
+
+Time: 1.7 secs

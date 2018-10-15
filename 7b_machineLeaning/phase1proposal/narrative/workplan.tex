@@ -40,11 +40,11 @@ To that end, the Phase I effort will involve a in depth investigation into metho
 The approach taken to address architecture differences will be to develop models whereby the characteristics of the architecture (i.e., the processor speed, available memory, cores-per-node, network speed, etc) are used as features in the machine learning model. The result will be a model that can, for example, predict that an algorithm will perform poorly on a new architecture because the memory allocations are to small or because the network is to slow. To test this, the project team will generate the linear solver training data set on a range of different architectures and use it to build a single model whereby the linear solver features as well as the machines internal specifications are used as the features. 
 
 To further enable efficient reuse of data we will also investigate the development of Bayesian transfer learning methods. Transfer learning leads to models capable of simultaneously learning from different source domains, making it possible to transfer relevant knowledge from domains with plenty of labeled data to new domains where training data is limited. A good analogy for transfer based learning is that of learning a new programming language, whereby the transfer of core skills from previous languages acts to reduce the learning curve associated with the new language. In the context of SASI, this means using data from a class of algorithms (such as linear solvers) and architecture,  to improve prediction in a similar algorithm class or on another architecture. In Phase I we will use existing data for linear solvers, eigensolvers and graph algorithms to build and test models using several classes of Bayesian transfer methods. In particular, we will look at developing a model whereby the learning solvers dataset is used to kickstart the model for eigensolvers (on the initial assumption that the sparse linear features that are predictive of Krylov method convergence are also likely to be predictive of eigensolver convergence).
-\todo[inline[{ We discussed these Baysian methods on the phone last week, and this was my best guess at what that might look like. But, I am a lot thin on the details. Any ideas? BN: I think it's pretty good, I'd keep it at a high level -- the actual method application is pretty straightforward, the main question is would it work or not (which we won't know until we try). This is a useful reference: https://arxiv.org/pdf/1801.00857.pdf}
+\todo[inline]{ We discussed these Bayesian methods on the phone last week, and this was my best guess at what that might look like. But, I am a lot thin on the details. Any ideas? BN: I think it's pretty good, I'd keep it at a high level -- the actual method application is pretty straightforward, the main question is would it work or not (which we won't know until we try). This is a useful reference: https://arxiv.org/pdf/1801.00857.pdf}
 
 
 \subsection{The SASI API} 
-Gluing all these tools as algorithms together will be the primary SASI API. Completion of this interface will require a large literature review to asses the best methods for developing an interface that is applicable to generic numerical algorithms. Currently, the idea is that the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that method will be unavailable, but other methods will still be accessible. A similar interface has proven to be very succssesful in the SolverSelector API. Work on documentation and examples will be completed throughout the development of the interface as each new feature is added. 
+Gluing all these tools as algorithms together will be the primary SASI API. Completion of this interface will require a large literature review to asses the best methods for developing an interface that is applicable to generic numerical algorithms. Currently, the idea is that the interface will require the user to specify a list of functions for tasks that must be completed to utilize the various tools given inside SASI. All interaction between the domain scientist and the internal SASI tools will go through this interface, with every effort being made to minimize the required number of function definitions. If a function definition is not provided, any tools using that method will be unavailable, but other methods will still be accessible. A similar interface has proven to be very succssessful in the SolverSelector API. Work on documentation and examples will be completed throughout the development of the interface as each new feature is added. 
  
 \section{Performance Schedule and Task Plan}
 \label{sec:taskplan}
@@ -116,7 +116,7 @@ interested scientists.
 \setcounter{taskCount}{0}
 
 \refstepcounter{taskCount}\label{task:1}
-\subsection{Task \ref{task:1}: Protype the core SASI framework}
+\subsection{Task \ref{task:1}: Prototype the core SASI framework}
 In this task, the project team will begin the process of developing the core SASI framework. As discussed above, the framework
 will be developed based on the results of a comprehensive literature review focusing on the methods 
 and interfaces used to solve a variety of subproblems in many of the more prominent solver packages.
@@ -135,19 +135,18 @@ RNET will take the lead on this task, with UO providing assistance and insight w
 
 \refstepcounter{taskCount}\label{task:3}
 \subsection{Task \ref{task:3}: Efficient Reuse of Data on new Architectures and Applications.}
-In this task, the project team will prototype the approaches for the re-purposing training data. As outlined in Section~\ref{sec:reuse}, this will include an investigation into using data obtained from similar algorithm classes and Baysian methods to kick-start models for new algorithms. To test these methods, RNET and UO will attempt to kick-start a graph algorithm model utilizing training data obtained from linear solvers and applying it to eigensolvers. The Baysian transfer models will be considered successful if, at the end of the task, we can use data obtained from linear solvers to improve the accuracy of models for eigensolvers when only a small subset of the data for eigensolvers is used. 
+In this task, the project team will prototype the approaches for the re-purposing training data. As outlined in Section~\ref{sec:reuse}, this will include an investigation into using data obtained from similar algorithm classes and Bayesian methods to kick-start models for new algorithms. To test these methods, RNET and UO will attempt to kick-start a graph algorithm model utilizing training data obtained from linear solvers and applying it to eigensolvers. The Bayesian transfer models will be considered successful if, at the end of the task, we can use data obtained from linear solvers to improve the accuracy of models for eigensolvers when only a small subset of the data for eigensolvers is used. 
 Additionally, the project team will develop models that use the machines internal capabilities as features in the overall feature set. This will involve collecting training data on a range of machines with various levels of computing prowess. The architecture transfer models developed in this task will be considered successful if, at the end of the project, we can predict the performance of an algorithm for a given matrix on a new architecture with an accuracy of over 90\%. This task constitutes the major novel scientific contribution of the proposed project and is expected to form the bulk of the Phase I effort. 
 
 RNET and UO will collaborate closley on this task. 
 
 \refstepcounter{taskCount}\label{task:4}
 \subsection{Task \ref{task:4}: Demonstration of SASI using Graph Algorithms }
-\todo{ @Boyana, does this seem like a good choice for a demonstration ( and do you think we even need one at this point ) }
+\todo{ @Boyana, does this seem like a good choice for a demonstration ( and do you think we even need one at this point ) @Ben, yes, it does seem like a safe way to demonstrate it}
 In this task, RNET and UO will demonstrate the capabilities of the SASI framework by applying 
-it to graph algorithms. The solver team has tested smart algorithm selection for graph algorithms 
-with good results; however, this was a completely manual process and no SolverSelector like framework was ever built. Using 
+it to graph algorithms that rely on the matrix representation of graphs. The solver team has tested smart algorithm selection for non-matrix graph algorithms 
+with good results; however, this was a completely manual process and no SolverSelector-like framework was ever built. Using 
 the SASI framework, the project team will recreate the graph-algorithm models, leading to the development of a SolverSelector
-like API. This will allow the project team to create an informative and instructive proof of concept as to the capabilities 
-of the SASI framework. 
+like API for the increasingly growing set of matrix-based graph algorithms.  This will allow the project team to create an informative and instructive proof of concept as to the capabilities of the SASI framework. 
 
 RNET will take the lead on this task, with UO assisting with data collection and integration. 

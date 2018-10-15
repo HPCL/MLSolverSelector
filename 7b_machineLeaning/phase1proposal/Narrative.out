@@ -12,7 +12,7 @@
 \BOOKMARK [2][-]{subsection.4.2}{ Re-purposing training data for use on other applications and architectures }{section.4}% 12
 \BOOKMARK [2][-]{subsection.4.3}{The SASI API}{section.4}% 13
 \BOOKMARK [1][-]{section.5}{Performance Schedule and Task Plan}{}% 14
-\BOOKMARK [2][-]{subsection.5.1}{Task 1: Protype the core SASI framework}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.1}{Task 1: Prototype the core SASI framework}{section.5}% 15
 \BOOKMARK [2][-]{subsection.5.2}{Task 2: Model, Data and Feature set Analysis tools. }{section.5}% 16
 \BOOKMARK [2][-]{subsection.5.3}{Task 3: Efficient Reuse of Data on new Architectures and Applications.}{section.5}% 17
 \BOOKMARK [2][-]{subsection.5.4}{Task 4: Demonstration of SASI using Graph Algorithms }{section.5}% 18

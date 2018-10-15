@@ -4,15 +4,6 @@
 {MOOSE - Open Source Multiphysics }.
 \newblock \url{http://mooseframework.org/}.
 
-\bibitem{PETSc}
-Satish Balay, Shrirang Abhyankar, Mark~F. Adams, Jed Brown, Peter Brune, Kris
-  Buschelman, Lisandro Dalcin, Alp Dener, Victor Eijkhout, William~D. Gropp,
-  Dinesh Kaushik, Matthew~G. Knepley, Dave~A. May, Lois~Curfman McInnes,
-  Richard~Tran Mills, Todd Munson, Karl Rupp, Patrick Sanan, Barry~F. Smith,
-  Stefano Zampini, Hong Zhang, and Hong Zhang.
-\newblock {PETS}c {W}eb page.
-\newblock \url{http://www.mcs.anl.gov/petsc}, 2018.
-
 \bibitem{EijkFuen2010:multistage}
 Victor Eijkhout and Erika Fuentes.
 \newblock Machine learning for multi-stage selection of numerical methods.

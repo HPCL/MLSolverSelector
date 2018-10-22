@@ -1,0 +1,243 @@
+=== Run information ===
+
+Scheme:weka.classifiers.trees.J48 -C 0.25 -M 2
+Relation:     RS1nnz>10000labelsonly_MOOSE
+Instances:    62702
+Attributes:   9
+              DiagonalNonZeros
+              AbsoluteTrace
+              OneNorm
+              Trace
+              Dimension
+              SymmetricInfinityNorm
+              DiagonalMean
+              solver
+              class
+Test mode:split 66.0% train, remainder test
+
+=== Classifier model (full training set) ===
+
+J48 pruned tree
+------------------
+
+solver = 89565283: bad (0.0)
+solver = 8793455: bad (0.0)
+solver = 90197667: bad (2226.0)
+solver = 49598909: bad (0.0)
+solver = 91036839: bad (0.0)
+solver = 45869639: bad (0.0)
+solver = 45869638: bad (0.0)
+solver = 45869637: bad (0.0)
+solver = 47942867: bad (0.0)
+solver = 89269802: bad (26.0)
+solver = 89269803: bad (0.0)
+solver = 89269801: bad (0.0)
+solver = 89269804: bad (0.0)
+solver = 59072883: bad (0.0)
+solver = 59072882: bad (2315.0)
+solver = 59072881: bad (2270.0)
+solver = 7285381: bad (0.0)
+solver = 7285384: bad (0.0)
+solver = 59072884: bad (0.0)
+solver = 49598911: bad (0.0)
+solver = 49598910: bad (0.0)
+solver = 49598912: bad (0.0)
+solver = 30870721: bad (0.0)
+solver = 36025723: bad (0.0)
+solver = 36025722: bad (2273.0/20.0)
+solver = 53302993: bad (1565.0/2.0)
+solver = 30870720: bad (0.0)
+solver = 64278029: bad (0.0)
+solver = 36025724: bad (0.0)
+solver = 44526267: bad (2243.0)
+solver = 8793454: bad (0.0)
+solver = 8793456: bad (0.0)
+solver = 8793453: bad (1707.0)
+solver = 17734818: bad (0.0)
+solver = 32168839: bad (2354.0/24.0)
+solver = 32168838: bad (2272.0/18.0)
+solver = 57331597: bad (0.0)
+solver = 95762352: bad (0.0)
+solver = 57331599: bad (0.0)
+solver = 57331598: bad (0.0)
+solver = 32168837: bad (0.0)
+solver = 88865078: bad (0.0)
+solver = 88865079: bad (0.0)
+solver = 49834417: bad (0.0)
+solver = 49834419: bad (2245.0)
+solver = 49834418: bad (0.0)
+solver = 88865076: bad (0.0)
+solver = 88865077: bad (0.0)
+solver = 11256942: bad (0.0)
+solver = 11256943: bad (0.0)
+solver = 11256941: bad (0.0)
+solver = 42851841: bad (0.0)
+solver = 11256944: bad (0.0)
+solver = 31459546: bad (0.0)
+solver = 17887723: bad (0.0)
+solver = 91845162: bad (0.0)
+solver = 53362206: bad (0.0)
+solver = 95762355: bad (0.0)
+solver = 12321508: bad (0.0)
+solver = 75830644: bad (0.0)
+solver = 57331600: bad (0.0)
+solver = 43373444: bad (0.0)
+solver = 95762353: bad (0.0)
+solver = 43373441: bad (0.0)
+solver = 43373442: bad (1771.0)
+solver = 43373443: bad (0.0)
+solver = 91068411: bad (0.0)
+solver = 91068410: bad (0.0)
+solver = 5890861: bad (0.0)
+solver = 85483012: bad (0.0)
+solver = 5890863: bad (0.0)
+solver = 5890862: bad (2245.0)
+solver = 18868444: bad (0.0)
+solver = 18868441: bad (0.0)
+solver = 18868443: bad (0.0)
+solver = 18868442: bad (0.0)
+solver = 91068408: bad (0.0)
+solver = 47942864: bad (0.0)
+solver = 47942865: bad (0.0)
+solver = 47942866: bad (0.0)
+solver = 91068409: bad (0.0)
+solver = 8520536: bad (0.0)
+solver = 5890860: bad (0.0)
+solver = 82456576: bad (0.0)
+solver = 29030069: bad (0.0)
+solver = 95762354: bad (0.0)
+solver = 90783920: bad (0.0)
+solver = 99720138: bad (0.0)
+solver = 29030071: bad (0.0)
+solver = 29030070
+|   DiagonalNonZeros <= 12001.2
+|   |   AbsoluteTrace <= 544054
+|   |   |   OneNorm <= 107: bad (22.0)
+|   |   |   OneNorm > 107: good (82.0/6.0)
+|   |   AbsoluteTrace > 544054
+|   |   |   DiagonalNonZeros <= 11334.5: bad (130.0)
+|   |   |   DiagonalNonZeros > 11334.5
+|   |   |   |   AbsoluteTrace <= 906048: good (9.0/2.0)
+|   |   |   |   AbsoluteTrace > 906048: bad (8.0)
+|   DiagonalNonZeros > 12001.2
+|   |   Dimension <= 51005
+|   |   |   DiagonalNonZeros <= 38666.7: bad (1886.0/3.0)
+|   |   |   DiagonalNonZeros > 38666.7
+|   |   |   |   OneNorm <= 1086: bad (67.0)
+|   |   |   |   OneNorm > 1086: good (8.0)
+|   |   Dimension > 51005
+|   |   |   Dimension <= 67200: good (40.0/13.0)
+|   |   |   Dimension > 67200: bad (20.0)
+solver = 29030072: bad (0.0)
+solver = 85490469: bad (0.0)
+solver = 30870723: bad (0.0)
+solver = 30870722: bad (0.0)
+solver = 26415435: bad (0.0)
+solver = 26415434
+|   Dimension <= 20002
+|   |   DiagonalNonZeros <= 20001: bad (474.0)
+|   |   DiagonalNonZeros > 20001
+|   |   |   OneNorm <= 9100000: good (1364.0/414.0)
+|   |   |   OneNorm > 9100000: bad (127.0)
+|   Dimension > 20002: bad (549.0/1.0)
+solver = 26415433: bad (0.0)
+solver = 26415432
+|   Dimension <= 20002
+|   |   DiagonalNonZeros <= 20001: bad (472.0/2.0)
+|   |   DiagonalNonZeros > 20001
+|   |   |   OneNorm <= 9100000: good (1337.0/383.0)
+|   |   |   OneNorm > 9100000: bad (127.0)
+|   Dimension > 20002: bad (600.0/2.0)
+solver = 13323659: bad (2223.0/2.0)
+solver = 45869640
+|   Dimension <= 20002
+|   |   Dimension <= 20001: bad (262.0/30.0)
+|   |   Dimension > 20001: good (1498.0/101.0)
+|   Dimension > 20002: bad (595.0/5.0)
+solver = 36564233: bad (0.0)
+solver = 68908713: bad (0.0)
+solver = 7285382: bad (0.0)
+solver = 36564232: bad (0.0)
+solver = 7285383: bad (0.0)
+solver = 75830645: good (2652.0/572.0)
+solver = 36564234: bad (0.0)
+solver = 81986705: bad (2332.0)
+solver = 29553941: bad (0.0)
+solver = 29553943: bad (0.0)
+solver = 29553942: bad (2250.0)
+solver = 69654761: bad (2255.0)
+solver = 29553944: bad (0.0)
+solver = 69654763: bad (0.0)
+solver = 69654762: bad (0.0)
+solver = 32874609: bad (1722.0)
+solver = 32168840: bad (0.0)
+solver = 90197664: bad (0.0)
+solver = 90197665: bad (2235.0)
+solver = 90197666: bad (0.0)
+solver = 69654760: bad (0.0)
+solver = 37052870: bad (0.0)
+solver = 37052871: bad (0.0)
+solver = 19932321: bad (0.0)
+solver = 19932323: bad (0.0)
+solver = 19932322: bad (0.0)
+solver = 19932324: bad (2244.0)
+solver = 80361466: bad (2242.0)
+solver = 80361467: bad (2251.0)
+solver = 80361464: bad (0.0)
+solver = 80361465: bad (0.0)
+solver = 49834420: bad (0.0)
+solver = 1216556: bad (2335.0)
+solver = 38678404: bad (0.0)
+solver = 38678401: bad (0.0)
+solver = 38678402: bad (0.0)
+solver = 38678403: bad (0.0)
+solver = 32874611: bad (0.0)
+solver = 32874610: bad (0.0)
+solver = 32874612: bad (0.0)
+solver = 44114477: bad (0.0)
+solver = 44114476: bad (0.0)
+solver = 44114479: bad (0.0)
+solver = 44114478: bad (0.0)
+solver = 36564235: bad (0.0)
+solver = 36025721: bad (0.0)
+solver = 75830647: good (2670.0/568.0)
+solver = 75830646: bad (0.0)
+solver = 85490471: bad (0.0)
+solver = 85490470: bad (102.0)
+solver = 85490472: bad (0.0)
+solver = 18524981: bad (0.0)
+solver = 37052869: bad (0.0)
+solver = 37052868: bad (0.0)
+
+Number of Leaves  : 	171
+
+Size of the tree : 	189
+
+
+Time taken to build model: 0.44 seconds
+
+=== Evaluation on test split ===
+=== Summary ===
+
+Correctly Classified Instances       20611               96.679  %
+Incorrectly Classified Instances       708                3.321  %
+Kappa statistic                          0.8602
+Mean absolute error                      0.0523
+Root mean squared error                  0.1606
+Relative absolute error                 24.2581 %
+Root relative squared error             48.9714 %
+Total Number of Instances            21319     
+
+=== Detailed Accuracy By Class ===
+
+               TP Rate   FP Rate   Precision   Recall  F-Measure   ROC Area  Class
+                 0.986     0.036      0.793     0.986     0.879      0.984    good
+                 0.964     0.014      0.998     0.964     0.981      0.984    bad
+Weighted Avg.    0.967     0.017      0.973     0.967     0.968      0.984
+
+=== Confusion Matrix ===
+
+     a     b   <-- classified as
+  2577    37 |     a = good
+   671 18034 |     b = bad
+

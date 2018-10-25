@@ -22,7 +22,16 @@
 /*      <http://www.gnu.org/licenses/>.					 */
 /*									 */
 /*************************************************************************/
-#include "ModelBuilder.h"
+
+// This is just a modified version of the c50gt.c file that C5.0 creates
+// to build the c5.0 excutable. This is real, nasty, but basically, we just
+// shoved the hole thing into the C50Online namespace. 
+//
+// To make things even messier, there is another set of functions in the C50Interface
+// class that are likely the same as most of these ones. Those functions are copies of
+// the functions in the public see-5.0.zip for using models at runtime. Maybe one day
+// I will clean all of this up, but for now, it does the job without having to figure
+// out what is going on in C5.0. 
 
 #include <stdio.h>
 #include <math.h>
@@ -32,14 +41,11 @@
 #include <ctype.h>
 #include <limits.h>
 #include <float.h>
-
-
+#include <string>
 #include <signal.h>
-
 #include <sys/unistd.h>
 #include <sys/time.h>
 #include <sys/resource.h>
-
 
 
 /*************************************************************************/
@@ -773,6 +779,7 @@ int	    ReadProp(char *Delim);
 String	    RemoveQuotes(String S);
 Set	    MakeSubset(Attribute Att);
 void	    StreamIn(String S, int n);
+void buildModel(std::string filestem , int trial_no, int cross_val = -1 );
 
 	/* update.c (Unix) or winmain.c (WIN32) */
 
@@ -1040,7 +1047,9 @@ FILE  		*Of=0;		/* output file */
 			if ( ! EndPtr || *EndPtr != '\00' ) break;\
 			ArgOK = true
 
-ModelBuilder::ModelBuilder(std::string filestem , int trial_no)
+
+
+void buildModel(std::string filestem , int trial_no, int cross_val )
 /*  ----  */
 {
     int			o;
@@ -1093,7 +1102,13 @@ ModelBuilder::ModelBuilder(std::string filestem , int trial_no)
     }
 
     InitialiseTreeData();
-    ConstructClassifiers();
+    if ( cross_val <= 0 ) 
+        ConstructClassifiers();
+    else {
+      FOLDS = cross_val; 
+      CrossVal();
+    }
+
 }
 
 /*************************************************************************/

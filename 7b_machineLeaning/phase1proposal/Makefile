@@ -28,20 +28,20 @@ bio: Sabin_cv.pdf Robinson_cv.pdf Oneill_cv.pdf
 complete: Complete.pdf
 levelofeffort: LevelOfEffort.pdf
 
-#Commercialization.pdf:
-#	cp ./commercialization/commercial.pdf ./Commercialization.pdf
+Commercialization.pdf:
+	cp ./commercialization/Commercialization.pdf ./Commercialization.pdf
 
 SBC.pdf:
 	cp ./company/SBC.pdf ./SBC.pdf
 
 Budget.pdf:	
 
-Complete.pdf : Summary.pdf Narrative.pdf Sabin_cv.pdf Sabin_support.pdf ONeill_cv.pdf ONeill_support.pdf Robinson_cv.pdf Robinson_support.pdf Yallamelli_cv.pdf Yallamelli_support.pdf Budget.pdf LevelOfEffort.pdf Commercialization.pdf RNETHistory.pdf SBC.pdf Dataplan.pdf
-	pdftk Summary.pdf Narrative.pdf Sabin_cv.pdf Sabin_support.pdf ONeill_cv.pdf ONeill_support.pdf Robinson_cv.pdf Robinson_support.pdf Budget.pdf LevelOfEffort.pdf Commercialization.pdf RNETHistory.pdf SBC.pdf Dataplan.pdf cat output Complete.pdf
+Complete.pdf : Summary.pdf Narrative.pdf Sabin_cv.pdf Sabin_support.pdf ONeill_cv.pdf ONeill_support.pdf Budget.pdf LevelOfEffort.pdf Commercialization.pdf RNETHistory.pdf SBC.pdf Dataplan.pdf
+	pdftk Summary.pdf Narrative.pdf Sabin_cv.pdf Sabin_support.pdf ONeill_cv.pdf ONeill_support.pdf LevelOfEffort.pdf Commercialization.pdf RNETHistory.pdf SBC.pdf Dataplan.pdf cat output Complete.pdf
 
 
 ONeill_cv.pdf:
-	cp ./bio/ben_cv_dec2017.pdf ONeill_cv.pdf
+	cp ./bio/ONeill_cv.pdf ONeill_cv.pdf
 
 Robinson_cv.pdf:
 	cp ./bio/jamar_cv.pdf Robinson_cv.pdf
@@ -61,7 +61,7 @@ RNETHistory.pdf : Company.pdf
 
 support : 
 	pdftk ./bio/overall_support.pdf ./bio/robinson_support.pdf cat output ./Robinson_support.pdf
-	pdftk ./bio/overall_support.pdf ./bio/oneill_support.pdf cat output ./Oneill_support.pdf
+	pdftk ./bio/overall_support.pdf ./bio/oneill_support.pdf cat output ./ONeill_support.pdf
 	pdftk ./bio/overall_support.pdf ./bio/sabin_support.pdf cat output ./Sabin_support.pdf
 	pdftk ./bio/overall_support.pdf ./bio/yallamelli_support.pdf cat output ./Yallamelli_support.pdf
 

@@ -54,7 +54,7 @@
 /*									 */
 /*************************************************************************/
 
-#include "defns.h"
+//#include "defns.h"
 #include "global.c"
 #include "hooks.c"
 

@@ -71,50 +71,50 @@ Boolean ReadName(FILE *f, String s, int n, char ColonOpt)
 
     while ( (c = InChar(f)) == '|' || Space(c) )
     {
-	if ( c == '|' ) SkipComment;
+        if ( c == '|' ) SkipComment;
     }
 
     /*  Return false if no names to read  */
 
     if ( c == EOF )
     {
-	Delimiter = EOF;
-	return false;
+        Delimiter = EOF;
+        return false;
     }
 
     /*  Read in characters up to the next delimiter  */
 
     while ( c != ColonOpt && c != ',' && c != '\n' && c != '|' && c != EOF )
     {
-	if ( --n <= 0 )
-	{
-	    if ( Of ) Error(LONGNAME, "", "");
-	}
+        if ( --n <= 0 )
+        {
+            if ( Of ) Error(LONGNAME, "", "");
+        }
 
-	if ( c == '.' )
-	{
-	    if ( (c = InChar(f)) == '|' || Space(c) || c == EOF ) break;
-	    *Sp++ = '.';
-	    continue;
-	}
+        if ( c == '.' )
+        {
+            if ( (c = InChar(f)) == '|' || Space(c) || c == EOF ) break;
+            *Sp++ = '.';
+            continue;
+        }
 
-	if ( c == '\\' )
-	{
-	    c = InChar(f);
-	}
+        if ( c == '\\' )
+        {
+            c = InChar(f);
+        }
 
-	if ( Space(c) )
-	{
-	    *Sp++ = ' ';
+        if ( Space(c) )
+        {
+            *Sp++ = ' ';
 
-	    while ( ( c = InChar(f) ) == ' ' || c == '\t' )
-		;
-	}
-	else
-	{
-	    *Sp++ = c;
-	    c = InChar(f);
-	}
+            while ( ( c = InChar(f) ) == ' ' || c == '\t' )
+                ;
+        }
+        else
+        {
+            *Sp++ = c;
+            c = InChar(f);
+        }
     }
 
     if ( c == '|' ) SkipComment;
@@ -124,11 +124,11 @@ Boolean ReadName(FILE *f, String s, int n, char ColonOpt)
 
     if ( Delimiter == ':' )
     {
-	if ( *LBp == '=' )
-	{
-	    Delimiter = '=';
-	    LBp++;
-	}
+        if ( *LBp == '=' )
+        {
+            Delimiter = '=';
+            LBp++;
+        }
     }
 
     /*  Strip trailing spaces  */
@@ -137,9 +137,9 @@ Boolean ReadName(FILE *f, String s, int n, char ColonOpt)
 
     if ( Sp == s )
     {
-	Msg[0] = ( Space(c) ? '.' : c );
-	Msg[1] = '\00';
-	Error(MISSNAME, Fn, Msg);
+        Msg[0] = ( Space(c) ? '.' : c );
+        Msg[1] = '\00';
+        Error(MISSNAME, Fn, Msg);
     }
 
     *Sp++ = '\0';
@@ -182,55 +182,54 @@ void GetNames(FILE *Nf)
     MaxClass = ClassAtt = LabelAtt = CWtAtt = 0;
 
     /*  Get class names from names file.  This entry can be:
-	- a list of discrete values separated by commas
-	- the name of the discrete attribute to use as the class
-	- the name of a continuous attribute followed by a colon and
-	  a comma-separated list of thresholds used to segment it  */
+    - a list of discrete values separated by commas
+    - the name of the discrete attribute to use as the class
+    - the name of a continuous attribute followed by a colon and
+      a comma-separated list of thresholds used to segment it  */
 
     ClassName = AllocZero(ClassCeiling, String);
     do
     {
-	ReadName(Nf, Buffer, 1000, ':');
+        ReadName(Nf, Buffer, 1000, ':');
 
-	if ( ++MaxClass >= ClassCeiling)
-	{
-	    ClassCeiling += 100;
-	    Realloc(ClassName, ClassCeiling, String);
-	}
-	ClassName[MaxClass] = strdup(Buffer);
+        if ( ++MaxClass >= ClassCeiling)
+        {
+            ClassCeiling += 100;
+            Realloc(ClassName, ClassCeiling, String);
+        }
+        ClassName[MaxClass] = strdup(Buffer);
     }
     while ( Delimiter == ',' );
 
     if ( Delimiter == ':' )
     {
-	/*  Thresholds for continuous class attribute  */
+        /*  Thresholds for continuous class attribute  */
 
-	ClassThresh = Alloc(ClassCeiling, ContValue);
-	MaxClass = 0;
+        ClassThresh = Alloc(ClassCeiling, ContValue);
+        MaxClass = 0;
 
-	do
-	{
-	    ReadName(Nf, Buffer, 1000, ':');
+        do
+        {
+            ReadName(Nf, Buffer, 1000, ':');
 
-	    if ( ++MaxClass >= ClassCeiling)
-	    {
-		ClassCeiling += 100;
-		Realloc(ClassThresh, ClassCeiling, ContValue);
-	    }
+            if ( ++MaxClass >= ClassCeiling)
+            {
+                ClassCeiling += 100;
+                Realloc(ClassThresh, ClassCeiling, ContValue);
+            }
 
-	    ClassThresh[MaxClass] = strtod(Buffer, &EndBuff);
-	    if ( EndBuff == Buffer || *EndBuff != '\0' )
-	    {
-		Error(BADCLASSTHRESH, Buffer, Nil);
-	    }
-	    else
-	    if ( MaxClass > 1 &&
-		 ClassThresh[MaxClass] <= ClassThresh[MaxClass-1] )
-	    {
-		Error(LEQCLASSTHRESH, Buffer, Nil);
-	    }
-	}
-	while ( Delimiter == ',' );
+            ClassThresh[MaxClass] = strtod(Buffer, &EndBuff);
+            if ( EndBuff == Buffer || *EndBuff != '\0' )
+            {
+                Error(BADCLASSTHRESH, Buffer, Nil);
+            }
+            else if ( MaxClass > 1 &&
+                      ClassThresh[MaxClass] <= ClassThresh[MaxClass-1] )
+            {
+                Error(LEQCLASSTHRESH, Buffer, Nil);
+            }
+        }
+        while ( Delimiter == ',' );
     }
 
     /*  Get attribute and attribute value names from names file  */
@@ -245,168 +244,165 @@ void GetNames(FILE *Nf)
     MaxAtt = 0;
     while ( ReadName(Nf, Buffer, 1000, ':') )
     {
-	if ( Delimiter != ':' && Delimiter != '=' )
-	{
-	    Error(BADATTNAME, Buffer, "");
-	}
+        if ( Delimiter != ':' && Delimiter != '=' )
+        {
+            Error(BADATTNAME, Buffer, "");
+        }
 
-	/*  Check for attributes included/excluded  */
+        /*  Check for attributes included/excluded  */
 
-	if ( ( *Buffer == 'a' || *Buffer == 'A' ) &&
-	     ! memcmp(Buffer+1, "ttributes ", 10) &&
-	     ! memcmp(Buffer+strlen(Buffer)-6, "cluded", 6) )
-	{
-	    AttExIn = ( ! memcmp(Buffer+strlen(Buffer)-8, "in", 2) ? 1 : -1 );
-	    if ( AttExIn == 1 )
-	    {
-		ForEach(Att, 1, MaxAtt)
-		{
-		    SpecialStatus[Att] |= SKIP;
-		}
-	    }
+        if ( ( *Buffer == 'a' || *Buffer == 'A' ) &&
+                ! memcmp(Buffer+1, "ttributes ", 10) &&
+                ! memcmp(Buffer+strlen(Buffer)-6, "cluded", 6) )
+        {
+            AttExIn = ( ! memcmp(Buffer+strlen(Buffer)-8, "in", 2) ? 1 : -1 );
+            if ( AttExIn == 1 )
+            {
+                ForEach(Att, 1, MaxAtt)
+                {
+                    SpecialStatus[Att] |= SKIP;
+                }
+            }
 
-	    while ( ReadName(Nf, Buffer, 1000, ':') )
-	    {
-		Att = Which(Buffer, AttName, 1, MaxAtt);
-		if ( ! Att )
-		{
-		    Error(UNKNOWNATT, Buffer, Nil);
-		}
-		else
-		if ( AttExIn == 1 )
-		{
-		    SpecialStatus[Att] -= SKIP;
-		}
-		else
-		{
-		    SpecialStatus[Att] |= SKIP;
-		}
-	    }
+            while ( ReadName(Nf, Buffer, 1000, ':') )
+            {
+                Att = Which(Buffer, AttName, 1, MaxAtt);
+                if ( ! Att )
+                {
+                    Error(UNKNOWNATT, Buffer, Nil);
+                }
+                else if ( AttExIn == 1 )
+                {
+                    SpecialStatus[Att] -= SKIP;
+                }
+                else
+                {
+                    SpecialStatus[Att] |= SKIP;
+                }
+            }
 
-	    break;
-	}
+            break;
+        }
 
-	if ( Which(Buffer, AttName, 1, MaxAtt) > 0 )
-	{
-	    Error(DUPATTNAME, Buffer, Nil);
-	}
+        if ( Which(Buffer, AttName, 1, MaxAtt) > 0 )
+        {
+            Error(DUPATTNAME, Buffer, Nil);
+        }
 
-	if ( ++MaxAtt >= AttCeiling )
-	{
-	    AttCeiling += 100;
-	    Realloc(AttName, AttCeiling, String);
-	    Realloc(MaxAttVal, AttCeiling, DiscrValue);
-	    Realloc(AttValName, AttCeiling, String *);
-	    Realloc(SpecialStatus, AttCeiling, char);
-	    Realloc(AttDef, AttCeiling, Definition);
-	    Realloc(AttDefUses, AttCeiling, Attribute *);
-	}
+        if ( ++MaxAtt >= AttCeiling )
+        {
+            AttCeiling += 100;
+            Realloc(AttName, AttCeiling, String);
+            Realloc(MaxAttVal, AttCeiling, DiscrValue);
+            Realloc(AttValName, AttCeiling, String *);
+            Realloc(SpecialStatus, AttCeiling, char);
+            Realloc(AttDef, AttCeiling, Definition);
+            Realloc(AttDefUses, AttCeiling, Attribute *);
+        }
 
-	AttName[MaxAtt]       = strdup(Buffer);
-	SpecialStatus[MaxAtt] = Nil;
-	AttDef[MaxAtt]        = Nil;
-	MaxAttVal[MaxAtt]     = 0;
-	AttDefUses[MaxAtt]    = Nil;
+        AttName[MaxAtt]       = strdup(Buffer);
+        SpecialStatus[MaxAtt] = Nil;
+        AttDef[MaxAtt]        = Nil;
+        MaxAttVal[MaxAtt]     = 0;
+        AttDefUses[MaxAtt]    = Nil;
 
-	if ( Delimiter == '=' )
-	{
-	    if ( MaxClass == 1 && ! strcmp(ClassName[1], AttName[MaxAtt]) )
-	    {
-		Error(BADDEF3, Nil, Nil);
-	    }
+        if ( Delimiter == '=' )
+        {
+            if ( MaxClass == 1 && ! strcmp(ClassName[1], AttName[MaxAtt]) )
+            {
+                Error(BADDEF3, Nil, Nil);
+            }
 
-	    ImplicitAtt(Nf);
-	    ListAttsUsed();
-	}
-	else
-	{
-	    ExplicitAtt(Nf);
-	}
+            ImplicitAtt(Nf);
+            ListAttsUsed();
+        }
+        else
+        {
+            ExplicitAtt(Nf);
+        }
 
-	/*  Check for case weight attribute, which must be type continuous  */
+        /*  Check for case weight attribute, which must be type continuous  */
 
-	if (  ! strcmp(AttName[MaxAtt], "case weight") )
-	{
-	    CWtAtt = MaxAtt;
+        if (  ! strcmp(AttName[MaxAtt], "case weight") )
+        {
+            CWtAtt = MaxAtt;
 
-	    if ( ! Continuous(CWtAtt) )
-	    {
-		Error(CWTATTERR, "", "");
-	    }
-	}
+            if ( ! Continuous(CWtAtt) )
+            {
+                Error(CWTATTERR, "", "");
+            }
+        }
     }
 
     /*  Check whether class is one of the attributes  */
 
     if ( MaxClass == 1 || ClassThresh )
     {
-	/*  Class attribute must be present and must be either
-	    a discrete attribute or a thresholded continuous attribute  */
+        /*  Class attribute must be present and must be either
+            a discrete attribute or a thresholded continuous attribute  */
 
-	ClassAtt = Which(ClassName[1], AttName, 1, MaxAtt);
+        ClassAtt = Which(ClassName[1], AttName, 1, MaxAtt);
 
-	if ( ClassAtt <= 0 || Exclude(ClassAtt) )
-	{
-	    Error(NOTARGET, ClassName[1], "");
-	}
-	else
-	if ( ClassThresh &&
-	     ( ! Continuous(ClassAtt) ||
-	       StatBit(ClassAtt, DATEVAL|STIMEVAL|TSTMPVAL) ) )
-	{
-	    Error(BADCTARGET, ClassName[1], "");
-	}
-	else
-	if ( ! ClassThresh &&
-	     ( Continuous(ClassAtt) || StatBit(ClassAtt, DISCRETE) ) )
-	{
-	    Error(BADDTARGET, ClassName[1], "");
-	}
+        if ( ClassAtt <= 0 || Exclude(ClassAtt) )
+        {
+            Error(NOTARGET, ClassName[1], "");
+        }
+        else if ( ClassThresh &&
+                  ( ! Continuous(ClassAtt) ||
+                    StatBit(ClassAtt, DATEVAL|STIMEVAL|TSTMPVAL) ) )
+        {
+            Error(BADCTARGET, ClassName[1], "");
+        }
+        else if ( ! ClassThresh &&
+                  ( Continuous(ClassAtt) || StatBit(ClassAtt, DISCRETE) ) )
+        {
+            Error(BADDTARGET, ClassName[1], "");
+        }
 
-	Free(ClassName[1]);
+        Free(ClassName[1]);
 
-	if ( ! ClassThresh )
-	{
-	    Free(ClassName);
-	    MaxClass  = MaxAttVal[ClassAtt];
-	    ClassName = AttValName[ClassAtt];
-	}
-	else
-	{
-	    /*  Set up class names as segments of continuous target att  */
+        if ( ! ClassThresh )
+        {
+            Free(ClassName);
+            MaxClass  = MaxAttVal[ClassAtt];
+            ClassName = AttValName[ClassAtt];
+        }
+        else
+        {
+            /*  Set up class names as segments of continuous target att  */
 
-	    MaxClass++;
-	    Realloc(ClassName, MaxClass+1, String);
+            MaxClass++;
+            Realloc(ClassName, MaxClass+1, String);
 
-	    sprintf(Buffer, "%s <= %g", AttName[ClassAtt], ClassThresh[1]);
-	    ClassName[1] = strdup(Buffer);
+            sprintf(Buffer, "%s <= %g", AttName[ClassAtt], ClassThresh[1]);
+            ClassName[1] = strdup(Buffer);
 
-	    ForEach(c, 2, MaxClass-1)
-	    {
-		sprintf(Buffer, "%g < %s <= %g",
-			ClassThresh[c-1], AttName[ClassAtt], ClassThresh[c]);
-		ClassName[c] = strdup(Buffer);
-	    }
+            ForEach(c, 2, MaxClass-1)
+            {
+                sprintf(Buffer, "%g < %s <= %g",
+                        ClassThresh[c-1], AttName[ClassAtt], ClassThresh[c]);
+                ClassName[c] = strdup(Buffer);
+            }
 
-	    sprintf(Buffer, "%s > %g",
-		    AttName[ClassAtt], ClassThresh[MaxClass-1]);
-	    ClassName[MaxClass] = strdup(Buffer);
-	}
+            sprintf(Buffer, "%s > %g",
+                    AttName[ClassAtt], ClassThresh[MaxClass-1]);
+            ClassName[MaxClass] = strdup(Buffer);
+        }
     }
 
     /*  Ignore case weight attribute if it is excluded; otherwise,
-	it cannot be used in models  */
+    it cannot be used in models  */
 
     if ( CWtAtt )
     {
-	if ( Skip(CWtAtt) )
-	{
-	    CWtAtt = 0;
-	}
-	else
-	{
-	    SpecialStatus[CWtAtt] |= SKIP;
-	}
+        if ( Skip(CWtAtt) )
+        {
+            CWtAtt = 0;
+        }
+        else
+        {
+            SpecialStatus[CWtAtt] |= SKIP;
+        }
     }
 
     ClassName[0] = "?";
@@ -437,136 +433,130 @@ void ExplicitAtt(FILE *Nf)
 
     if ( ! ( ReadName(Nf, Buffer, 1000, ':') ) )
     {
-	Error(EOFINATT, AttName[MaxAtt], "");
+        Error(EOFINATT, AttName[MaxAtt], "");
     }
 
     MaxAttVal[MaxAtt] = 0;
 
     if ( Delimiter != ',' )
     {
-	/*  Typed attribute  */
+        /*  Typed attribute  */
 
-	if ( ! strcmp(Buffer, "continuous") )
-	{
-	}
-	else
-	if ( ! strcmp(Buffer, "timestamp") )
-	{
-	    SpecialStatus[MaxAtt] = TSTMPVAL;
+        if ( ! strcmp(Buffer, "continuous") )
+        {
+        }
+        else if ( ! strcmp(Buffer, "timestamp") )
+        {
+            SpecialStatus[MaxAtt] = TSTMPVAL;
 
-	    /*  Set the base date if not done already  */
+            /*  Set the base date if not done already  */
 
-	    if ( ! TSBase )
-	    {
-		clock = time(0);
-		BaseYear = gmtime(&clock)->tm_year + 1900;
-		SetTSBase(BaseYear);
-	    }
-	}
-	else
-	if ( ! strcmp(Buffer, "date") )
-	{
-	    SpecialStatus[MaxAtt] = DATEVAL;
-	}
-	else
-	if ( ! strcmp(Buffer, "time") )
-	{
-	    SpecialStatus[MaxAtt] = STIMEVAL;
-	}
-	else
-	if ( ! memcmp(Buffer, "discrete", 8) )
-	{
-	    SpecialStatus[MaxAtt] = DISCRETE;
+            if ( ! TSBase )
+            {
+                clock = time(0);
+                BaseYear = gmtime(&clock)->tm_year + 1900;
+                SetTSBase(BaseYear);
+            }
+        }
+        else if ( ! strcmp(Buffer, "date") )
+        {
+            SpecialStatus[MaxAtt] = DATEVAL;
+        }
+        else if ( ! strcmp(Buffer, "time") )
+        {
+            SpecialStatus[MaxAtt] = STIMEVAL;
+        }
+        else if ( ! memcmp(Buffer, "discrete", 8) )
+        {
+            SpecialStatus[MaxAtt] = DISCRETE;
 
-	    /*  Read max values and reserve space  */
+            /*  Read max values and reserve space  */
 
-	    v = atoi(&Buffer[8]);
-	    if ( v < 2 )
-	    {
-		Error(BADDISCRETE, AttName[MaxAtt], "");
-	    }
+            v = atoi(&Buffer[8]);
+            if ( v < 2 )
+            {
+                Error(BADDISCRETE, AttName[MaxAtt], "");
+            }
 
-	    AttValName[MaxAtt] = Alloc(v+3, String);
-	    AttValName[MaxAtt][0] = (char *) (long) v+1;
-	    AttValName[MaxAtt][(MaxAttVal[MaxAtt]=1)] = strdup("N/A");
-	}
-	else
-	if ( ! strcmp(Buffer, "ignore") )
-	{
-	    SpecialStatus[MaxAtt] = EXCLUDE;
-	}
-	else
-	if ( ! strcmp(Buffer, "label") )
-	{
-	    LabelAtt = MaxAtt;
-	    SpecialStatus[MaxAtt] = EXCLUDE;
-	}
-	else
-	{
-	    /*  Cannot have only one discrete value for an attribute  */
+            AttValName[MaxAtt] = Alloc(v+3, String);
+            AttValName[MaxAtt][0] = (char *) (long) v+1;
+            AttValName[MaxAtt][(MaxAttVal[MaxAtt]=1)] = strdup("N/A");
+        }
+        else if ( ! strcmp(Buffer, "ignore") )
+        {
+            SpecialStatus[MaxAtt] = EXCLUDE;
+        }
+        else if ( ! strcmp(Buffer, "label") )
+        {
+            LabelAtt = MaxAtt;
+            SpecialStatus[MaxAtt] = EXCLUDE;
+        }
+        else
+        {
+            /*  Cannot have only one discrete value for an attribute  */
 
-	    Error(SINGLEATTVAL, AttName[MaxAtt], Buffer);
-	}
+            Error(SINGLEATTVAL, AttName[MaxAtt], Buffer);
+        }
     }
     else
     {
-	/*  Discrete attribute with explicit values  */
+        /*  Discrete attribute with explicit values  */
 
-	AttValName[MaxAtt] = AllocZero(ValCeiling, String);
+        AttValName[MaxAtt] = AllocZero(ValCeiling, String);
 
-	/*  Add "N/A" unless this attribute is the class  */
+        /*  Add "N/A" unless this attribute is the class  */
 
-	if ( MaxClass > 1 || strcmp(ClassName[1], AttName[MaxAtt]) )
-	{
-	    AttValName[MaxAtt][(MaxAttVal[MaxAtt]=1)] = strdup("N/A");
-	}
-	else
-	{
-	    MaxAttVal[MaxAtt] = 0;
-	}
+        if ( MaxClass > 1 || strcmp(ClassName[1], AttName[MaxAtt]) )
+        {
+            AttValName[MaxAtt][(MaxAttVal[MaxAtt]=1)] = strdup("N/A");
+        }
+        else
+        {
+            MaxAttVal[MaxAtt] = 0;
+        }
 
-	p = Buffer;
+        p = Buffer;
 
-	/*  Special check for ordered attribute  */
+        /*  Special check for ordered attribute  */
 
-	if ( ! memcmp(Buffer, "[ordered]", 9) )
-	{
-	    SpecialStatus[MaxAtt] = ORDERED;
+        if ( ! memcmp(Buffer, "[ordered]", 9) )
+        {
+            SpecialStatus[MaxAtt] = ORDERED;
 
-	    for ( p = Buffer+9 ; Space(*p) ; p++ )
-		;
-	}
+            for ( p = Buffer+9 ; Space(*p) ; p++ )
+                ;
+        }
 
-	/*  Record first real explicit value  */
+        /*  Record first real explicit value  */
 
-	AttValName[MaxAtt][++MaxAttVal[MaxAtt]] = strdup(p);
+        AttValName[MaxAtt][++MaxAttVal[MaxAtt]] = strdup(p);
 
-	/*  Record remaining values  */
+        /*  Record remaining values  */
 
-	do
-	{
-	    if ( ! ( ReadName(Nf, Buffer, 1000, ':') ) )
-	    {
-		Error(EOFINATT, AttName[MaxAtt], "");
-	    }
+        do
+        {
+            if ( ! ( ReadName(Nf, Buffer, 1000, ':') ) )
+            {
+                Error(EOFINATT, AttName[MaxAtt], "");
+            }
 
-	    if ( ++MaxAttVal[MaxAtt] >= ValCeiling )
-	    {
-		ValCeiling += 100;
-		Realloc(AttValName[MaxAtt], ValCeiling, String);
-	    }
+            if ( ++MaxAttVal[MaxAtt] >= ValCeiling )
+            {
+                ValCeiling += 100;
+                Realloc(AttValName[MaxAtt], ValCeiling, String);
+            }
 
-	    AttValName[MaxAtt][MaxAttVal[MaxAtt]] = strdup(Buffer);
-	}
-	while ( Delimiter == ',' );
+            AttValName[MaxAtt][MaxAttVal[MaxAtt]] = strdup(Buffer);
+        }
+        while ( Delimiter == ',' );
 
-	/*  Cancel ordered status if <3 real values  */
+        /*  Cancel ordered status if <3 real values  */
 
-	if ( Ordered(MaxAtt) && MaxAttVal[MaxAtt] <= 3 )
-	{
-	    SpecialStatus[MaxAtt] = 0;
-	}
-	if ( MaxAttVal[MaxAtt] > MaxDiscrVal ) MaxDiscrVal = MaxAttVal[MaxAtt];
+        if ( Ordered(MaxAtt) && MaxAttVal[MaxAtt] <= 3 )
+        {
+            SpecialStatus[MaxAtt] = 0;
+        }
+        if ( MaxAttVal[MaxAtt] > MaxDiscrVal ) MaxDiscrVal = MaxAttVal[MaxAtt];
     }
 }
 
@@ -614,35 +604,34 @@ void ListAttsUsed()
 
     for ( e = 0 ; ; e++ )
     {
-	if ( DefOp(D[e]) == OP_ATT )
-	{
-	    Att = (Attribute) DefSVal(D[e]);
-	    if ( ! DefUses[Att] )
-	    {
-		DefUses[Att] = true;
-		NUsed++;
-	    }
-	}
-	else
-	if ( DefOp(D[e]) == OP_END )
-	{
-	    break;
-	}
+        if ( DefOp(D[e]) == OP_ATT )
+        {
+            Att = (Attribute) DefSVal(D[e]);
+            if ( ! DefUses[Att] )
+            {
+                DefUses[Att] = true;
+                NUsed++;
+            }
+        }
+        else if ( DefOp(D[e]) == OP_END )
+        {
+            break;
+        }
     }
 
     if ( NUsed )
     {
-	AttDefUses[MaxAtt] = Alloc(NUsed+1, Attribute);
-	AttDefUses[MaxAtt][0] = NUsed;
+        AttDefUses[MaxAtt] = Alloc(NUsed+1, Attribute);
+        AttDefUses[MaxAtt][0] = NUsed;
 
-	NUsed=0;
-	ForEach(Att, 1, MaxAtt-1)
-	{
-	    if ( DefUses[Att] )
-	    {
-		AttDefUses[MaxAtt][++NUsed] = Att;
-	    }
-	}
+        NUsed=0;
+        ForEach(Att, 1, MaxAtt-1)
+        {
+            if ( DefUses[Att] )
+            {
+                AttDefUses[MaxAtt][++NUsed] = Att;
+            }
+        }
     }
 
     Free(DefUses);
@@ -666,41 +655,49 @@ void FreeNames()
 
     ForEach(a, 1, MaxAtt)
     {
-	if ( a != ClassAtt && Discrete(a) )
-	{
-	    FreeVector((void **) AttValName[a], 1, MaxAttVal[a]);
-	}
+        if ( a != ClassAtt && Discrete(a) )
+        {
+            FreeVector((void **) AttValName[a], 1, MaxAttVal[a]);
+        }
     }
-    FreeUnlessNil(AttValName);				AttValName = Nil;
-    FreeUnlessNil(MaxAttVal);				MaxAttVal = Nil;
-    FreeUnlessNil(ClassThresh);				ClassThresh = Nil;
-    FreeVector((void **) AttName, 1, MaxAtt);		AttName = Nil;
-    FreeVector((void **) ClassName, 1, MaxClass);	ClassName = Nil;
+    FreeUnlessNil(AttValName);
+    AttValName = Nil;
+    FreeUnlessNil(MaxAttVal);
+    MaxAttVal = Nil;
+    FreeUnlessNil(ClassThresh);
+    ClassThresh = Nil;
+    FreeVector((void **) AttName, 1, MaxAtt);
+    AttName = Nil;
+    FreeVector((void **) ClassName, 1, MaxClass);
+    ClassName = Nil;
 
-    FreeUnlessNil(SpecialStatus);			SpecialStatus = Nil;
+    FreeUnlessNil(SpecialStatus);
+    SpecialStatus = Nil;
 
     /*  Definitions (if any)  */
 
     if ( AttDef )
     {
-	ForEach(a, 1, MaxAtt)
-	{
-	    if ( AttDef[a] )
-	    {
-		for ( t = 0 ; DefOp(AttDef[a][t]) != OP_END ; t++ )
-		{
-		    if ( DefOp(AttDef[a][t]) == OP_STR )
-		    {
-			Free(DefSVal(AttDef[a][t]));
-		    }
-		}
+        ForEach(a, 1, MaxAtt)
+        {
+            if ( AttDef[a] )
+            {
+                for ( t = 0 ; DefOp(AttDef[a][t]) != OP_END ; t++ )
+                {
+                    if ( DefOp(AttDef[a][t]) == OP_STR )
+                    {
+                        Free(DefSVal(AttDef[a][t]));
+                    }
+                }
 
-		Free(AttDef[a]);
-		Free(AttDefUses[a]);
-	    }
-	}
-	Free(AttDef);					AttDef = Nil;
-	Free(AttDefUses);				AttDefUses = Nil;
+                Free(AttDef[a]);
+                Free(AttDefUses[a]);
+            }
+        }
+        Free(AttDef);
+        AttDef = Nil;
+        Free(AttDefUses);
+        AttDefUses = Nil;
     }
 }
 
@@ -718,16 +715,16 @@ int InChar(FILE *f)
 {
     if ( ! *LBp )
     {
-	LBp = LineBuffer;
+        LBp = LineBuffer;
 
-	if ( ! fgets(LineBuffer, MAXLINEBUFFER, f) )
-	{
-	    LineBuffer[0] = '\00';
-	    return EOF;
-	}
+        if ( ! fgets(LineBuffer, MAXLINEBUFFER, f) )
+        {
+            LineBuffer[0] = '\00';
+            return EOF;
+        }
 
-	LineNo++;
+        LineNo++;
     }
-	
+
     return (int) *LBp++;
 }

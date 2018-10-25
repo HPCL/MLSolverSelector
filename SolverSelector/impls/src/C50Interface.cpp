@@ -1,5 +1,11 @@
 #include "C50Interface.h"
-#include "ModelBuilder.h"
+
+namespace C50Online {
+
+void buildModel(std::string filestem , int trial_no, int cross_val = -1 );
+
+}
+
 
 const char* sRelOps[] = {">=", "<=", "!=", "<>", ">", "<", "=", (const char*) 0};
 const char* sAddOps[] = {"+", "-", (String) 0};
@@ -231,17 +237,6 @@ DataRec C50Classifier::GetDataRecFromVec(std::vector<std::string> &datavec, Bool
         return Nil;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 Boolean C50Classifier::ReadName(FILE *f, String s, int n, char ColonOpt)
 /*      --------  */
@@ -4643,9 +4638,7 @@ ErrorFlag C50Interface::BuildModelFromDatabase() {
   outfile.close();
 
   //4. Build the c5.0 model. 
-  C50Online::ModelBuilder c( GetParameter("filestem").c_str(), std::atoi(GetParameter("trials").c_str()));
-  
-
+  C50Online::buildModel( GetParameter("filestem").c_str(), std::atoi(GetParameter("trials").c_str()), -1 );
   return BuildModelFromFile();
 }
 
@@ -4693,7 +4686,7 @@ ErrorFlag C50Interface::ClassifyImpl( features_map &features, Solver &solver ) {
 
 ErrorFlag C50Interface::CrossValidateImpl(int folds ) {
 
-  std::cout << " Cross Validate not supported for C5.0 yet \n ";
+  C50Online::buildModel( GetParameter("filestem").c_str(), std::atoi(GetParameter("trials").c_str()), folds );
   return -1;
 }
 

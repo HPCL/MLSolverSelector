@@ -17,7 +17,7 @@ SHELL  = /bin/csh
 
 src =\
 	global.c\
-	c50.c\
+	c50online.c\
 	construct.c\
 	formtree.c\
 	info.c\
@@ -45,7 +45,7 @@ src =\
 	xval.c
 
 obj =\
-	 c50.o global.o\
+	 c50online.o global.o\
 	 construct.o formtree.o info.o discr.o contin.o subset.o prune.o\
 	 p-thresh.o trees.o\
 	 formrules.o siftrules.o ruletree.o rules.o\
@@ -74,9 +74,7 @@ c5.0:\
 	$(src) defns.i text.i Makefile
 	cat defns.i $(src)\
 		| egrep -v 'defns.i|extern.i' >c50gt.c
-	$(CC) $(LFLAGS) -O3 -o c5.0 c50gt.c -lm
-	strip c5.0
-	rm c50gt.c
+	$(CC) $(LFLAGS) -O3 -g -o c5.0 c50gt.c -lm
 
 
 $(obj):		Makefile defns.i extern.i text.i

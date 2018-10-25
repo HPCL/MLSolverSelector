@@ -21,9 +21,9 @@ int main(int argc,char **args)
   std::map<std::string, std::string> parameters;
   
   // Set the machine learning interface -- in this case C50 (default is Waffles) 
-  parameters["mlinterface"] = "Waffles";
+  parameters["mlinterface"] = "C5.0";
   parameters["waffles.algorithm"] = "RandomForest";
-  //parameters["C50.filestem"] = "serializedModel";
+  parameters["C50.filestem"] = "./models/RS1Model/RS1_unique_MOOSE_Oct15";
 
   ss->CrossValidate(parameters, 10);
   

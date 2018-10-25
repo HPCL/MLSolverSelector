@@ -2,11 +2,16 @@
 \section{Related Work}
 \label{related}
 
-%%% Put in something about my thesis to say we have experience with the solver. 
-RNET has past and current experience in several SBIR/STTR projects on modeling and simulation, high performance computing, and large data formats. The proposed project is an extension and generalization of RNETs Phase II automated linear solver selection project as outlined in Section~\ref{TODO}. Some additional related projects completed by RNET are briefly described below. 
+The proposed project is based on the ideas and workflows developed as part of the ongoing SBIR Phase II grant entitled Automated Solver Selection for Nuclear Engineering Simulations (Contract \#DESC0013869). Every effort has been made in the report to highlight the new work being proposed that was not funded as part of the Solver selection project, including the development of the numerous machine learning model verification tools, the development of models utilizing architecture specific features such as available memory and network speed, and most notably, the development of Bayesian transfer learning models designed to encourage efficient data reuse across applications and architectures. Some additional related projects completed by RNET are briefly described below. 
 
+<<<<<<< .mine
+\subsection{Verification and Validation Toolkit for Nuclear Engineering Simulations} 
+  To aid in the verification and validation of numerical simulations, RNET is developing the V\&V toolkit. The toolkit will offer a complete set of verification and validation routines designed to rigorously test every aspect of numerical simulation. The toolkit will use the dyninstAPI for binary source code injection to inject the tests into a numerical simulations, producing an external verification binary. The results from running that binary will be automatically parsed by the toolkit to produce a Doxygen style HTML verification report, with the textual components provided both by the specific tests being run and through user specified description files. As such, the V\&V toolkit will provide users with a mechanism for developing and maintaining a detailed and living verification document for any simulation.     
+||||||| .r6125
 \subsection{Verification and Validation Toolkit for Nuclear Engineering Simulations} 
  numerical simulation codes being used to design real world nuclear reactors, erroneous simulations can result in design errors that can be extremely expensive to fix, damage the environment, and ultimately result in loss of human life. To aid in the verification and validation of numerical simulations, RNET is developing the V\&V toolkit. The toolkit will offer a complete set of verification and validation routines designed to rigorously test every aspect of numerical simulation. To use the tests in existing simulations, users will simply provide a set of function pointers defining implementations of test dependent tasks that are likely already implemented by the underlying simulation library ( i.e., a matrix-vector multiplication or printing a mesh to file) and a xml file defining which tests should be used and on which functions, all of which will be created through a user friendly GUI. Given this, the toolkit will use the dyninstAPI for binary source code injection to inject the tests into an existing binary producing an external verification binary. The verification binary will be automatically parsed by the toolkit to produce a Doxygen style HTML verification report, with the textual components provided both by the specific tests being run and through user specified description files. All in, the V\&V toolkit will provide users with a mechanism for developing and maintaining a detailed and living verification document specifically designed to test each and every component of the given numerical simulation or library.    
+=======
+>>>>>>> .r6258
 
 %\subsection{VERA-WorkBench: A unified multi-physics interface for the VERA Suite of Tools}
 %Nuclear engineering simulations typically involve a multi-scale setup to resolve phenomena
@@ -37,24 +42,22 @@ nodes and GPGPUs being added to the ``cluster architectures''.
 This project was funded by Department of Energy under the STTR program from August 2010 (Contract Number DE-SC0002434) 
 to May 2013. Dr. P. Sadayappan (OSU) and Dr. Boyana Norris (ANL) have played a key role in this effort by serving as 
 technical advisors. As part of the project, the team has investigated ways for the PETSc library to fully utilize the 
-computing power of future Petascale computers. Novel sparse matrix types,  vector types, and preconditioning techniques 
-that are conducive for GPU processing and SIMD parallelization have been integrated into the PETSc library. The matrix 
-vector operations have been optimized for specific architectures and GPUs by 
-utilizing the autotuning tools.
+computing power of future petascale computers. Novel sparse matrix types,  vector types, and preconditioning techniques 
+that are conducive for GPU processing and SIMD parallelization have been integrated into the PETSc library. 
 
 
-\subsection{A Map-Reduce Like Data-Intensive Processing Framework for Native Data Storage}
+%\subsection{A Map-Reduce Like Data-Intensive Processing Framework for Native Data Storage}
 
-RNET is currently under a DOE Phase II STTR contract for developing a MapReduce-like data-intensive processing framework 
-for native data storage (Contract\#: DE-SC0011312). The Ohio State University (OSU) is a collaborator on this STTR project. 
-MapReduce is a very popular data analytic framework that is widely used in both industry and scientific research. Despite 
-t%he popularity of MapReduce, there are several obstacles to applying it for developing some commercial and scientific data 
-analysis applications.
+%RNET is currently under a DOE Phase II STTR contract for developing a MapReduce-like data-intensive processing framework 
+%for native data storage (Contract\#: DE-SC0011312). The Ohio State University (OSU) is a collaborator on this STTR project. 
+%MapReduce is a very popular data analytic framework that is widely used in both industry and scientific research. Despite 
+%the popularity of MapReduce, there are several obstacles to applying it for developing some commercial and scientific data 
+%analysis applications.
 
-This project is developing a Native data format MapREDuce-like framework, iNFORMER, based on SciMate architecture. The 
-framework allows MapReduce-like applications to be executed over data stored in a native data format, without first loading 
-the data into the framework. This addresses a major limitation of existing MapReduce-like implementations that require the 
-data to be loaded into specialized file systems, e.g., the Hadoop Distributed File System (HDFS). The overheads and additional
-data management process.
+%This project is developing a Native data format MapREDuce-like framework, iNFORMER, based on SciMate architecture. The 
+%framework allows MapReduce-like applications to be executed over data stored in a native data format, without first loading 
+%the data into the framework. This addresses a major limitation of existing MapReduce-like implementations that require the 
+%data to be loaded into specialized file systems, e.g., the Hadoop Distributed File System (HDFS). The overheads and additional
+%data management process.
 
 

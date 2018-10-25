@@ -46,8 +46,6 @@ public:
 
     bool CheckColumnExists( std::vector<std::pair<std::string, std::string> > &columns, std::string cname );
 
-    int WriteDatabaseFromArff(std::string arffFile) override; 
-
 
     bool CheckRowExists( int hash, std::string table );
 

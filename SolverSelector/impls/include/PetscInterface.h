@@ -7,7 +7,7 @@
 #include "UserInterface.h"
 #include "WafflesInterface.h"
 #include "Sqlite3Interface.h"
-#include "AsciiInputInterface.h"
+#include "C50Interface.h"
 
 #include "petscksp.h"
 #include "petsc/private/kspimpl.h"
@@ -23,7 +23,7 @@ public:
 
     KSP _ksp; 
     std::shared_ptr< PetscTestingSpace > testing_space;
-    std::string internal_prefix, input_file ;
+    std::string internal_prefix;
     bool use_internal_ksp = true;
     
     PetscUI();
@@ -33,8 +33,6 @@ public:
     virtual ErrorFlag GetDataBaseImplimentation(std::shared_ptr< DatabaseInterface > &database); 
      
     virtual ErrorFlag GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &machine);
-        
-    virtual ErrorFlag GetInputFileImpl( std::shared_ptr< InputFileInterface > &parser ); 
     
     virtual ErrorFlag ChangeSolver( KSP &A, Vec &x, Vec &b , bool &change_it ); 
 
@@ -74,7 +72,8 @@ private:
 
 class PetscCoupler {
   public : 
-      
+      static bool initialized;  
+      static std::shared_ptr<PetscSS> static_petcs_ss_ptr; 
     
       static PetscErrorCode monitor_ss_convergence(KSP ksp, PetscInt iter, PetscReal rnorm , void * ctx ) ;
       static PetscErrorCode KSPSetUp_SS(KSP ksp);

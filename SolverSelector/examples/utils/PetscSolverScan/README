@@ -1,0 +1,12 @@
+Running should be as simple as :
+
+export PETSC_DIR=path/to/petsc/dir
+python petsc_options_list.py
+
+
+This should produce two files: 
+    1. PetscPreconOptions.db -- A text file containing all the preconditioners available in petsc with the options
+    2. PetscSolverOptions.db -- Same, but for the krylov solvers. 
+
+
+

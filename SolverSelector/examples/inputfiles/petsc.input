@@ -1,0 +1,27 @@
+
+#Solver information for build from file or build inline. 
+@MATRIX ./matrix/spd-real-int32-float32
+@MATRIXDIR ./matrix/ .pbin  
+
+@SOLVER cg 
+
+@SOLVER gmres 
+@PARAMETER ksp_gmres_restart 30 40 50 60 70
+@PARAMETER ksp_gmres_haptol 1e-30
+@PARAMETER ksp_gmres_preallocate FALSE
+@PARAMETER ksp_gmres_classicalgramschmidt TRUE
+@PARAMETER ksp_gmres_cgs_refinement_type REFINE_NEVER
+@PARAMETER ksp_gmres_krylov_monitor FALSE
+
+@SOLVER minres 
+
+@PRECON hypre 
+@PARAMETER pc_hypre_type boomeramg
+
+@PRECON bjacobi
+
+@PAIR cg bjacobi
+@PAIR gmres bjacobi
+
+
+

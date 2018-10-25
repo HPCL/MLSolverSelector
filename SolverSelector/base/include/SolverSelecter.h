@@ -4,13 +4,16 @@
 #include "typedefs.h"
 #include "MachineLearningInterface.h"
 #include "UserInterface.h"
-#include "InputFileInterface.h"
+#include "AsciiFileParser.h"
 #include "DatabaseInterface.h"
 
 namespace SolverSelecter
 {
 
 template <typename Matrix, typename Vector>
+
+  
+/** Main API class for calling the various solverselector functions. */  
 class SolverSelecter
 {
 
@@ -22,37 +25,41 @@ public:
     std::vector< Solver > solvers;
     std::vector< std::string > matrix_filenames; 
     Solver solver;
+    bool inputParsed = false;
+    bool initialized = false;
 
+    /** Constructor */
     SolverSelecter( std::shared_ptr< UserInterface<Matrix,Vector>> _interface);
-
-    ErrorFlag Initialize(std::string inputfile);
-
+     
+    /** Desctructor */
     virtual ~SolverSelecter();
 
-    // Build a database based on an input file. 
-    ErrorFlag BuildDataBaseFromFile();
+    /** Build a database based on an input file. */ 
+    ErrorFlag BuildDataBaseFromFile(std::map<std::string,std::string> &parameters);
 
-    ErrorFlag ConvertArffFileToDatabase(); 
-
-
-    // Cross validate a machine learning model for a variety of algorithms 
-    ErrorFlag CrossValidate( std::vector< std::string >  algorithm , bool all);
+    /** Cross validate a machine learning model for a variety of algorithms. This one
+     * does cross validation on   */
+    ErrorFlag CrossValidate(std::map<std::string, std::string> &parameters, int folds);
 
     /** Print the parameter set for the chosen solver */
     ErrorFlag PrintSolver( Solver &solver);
 
     /** Build the machine learning model and serialize it */
-    ErrorFlag BuildModelAndSerialize( std::string serial_name ); 
+    ErrorFlag SerializeMachineLearningModel(std::map<std::string,std::string> &parameters, std::string output ); 
 
     /** Solve a system using the solver selecter */
     ErrorFlag Solve(Matrix &A, Vector &x, Vector &b );
 
-    /** Classify the solvers in the database. matrix = -1 signifies all matrices should
-     * be re-classified. */
-    ErrorFlag ClassifySolvers(int matrix = -1);
+    /** Initialize the solver selector. This is called by all functions prior to use, but 
+     * only done once per instance of the class. */
+    ErrorFlag Initialize(std::map<std::string, std::string> &parameters);
 
 private:
 
+    ErrorFlag ParseInputFile();
+
+    /** Perform a solve with Performance measurements turned on. This is used to record things
+     * like CPU time for putting into the database. */
     ErrorFlag
     MeasuredSolve(Matrix &A,
                   Vector &x,
@@ -60,6 +67,7 @@ private:
                   Solver &solver,
                   std::map<std::string,double> &mresult );
 
+    /** Init the testing system for building database entries */
     ErrorFlag
     InitTestSystem(std::string filename,
                    std::map<std::string,double> &fmap,
@@ -67,22 +75,30 @@ private:
                    std::unique_ptr< Vector >    &x,
                    std::unique_ptr< Vector >    &b );
 
+    /** Build the parameter space for database building from the input file */
     ErrorFlag
     ParameterSpaceFromFile(std::string &database_name,
                            std::vector< std::string > &matrix_filenames,
                            std::vector< Solver > &solvers );
 
+    /** Free the test vectors that were build for testing */
     ErrorFlag
     FreeTestVectors(std::unique_ptr< Vector >  &x,
                     std::unique_ptr< Vector >  &b );
 
+    /** Free the testing system that was built for database building */
     ErrorFlag
     FreeTestSystem(std::unique_ptr< Matrix >  &A,
                    std::unique_ptr< Vector >  &x,
                    std::unique_ptr< Vector >  &b );
+    
+    /** Build database in line. This is called in solve when the option is set to build 
+     * database entries inside existing simulations */
     ErrorFlag
     BuildDataBaseInline(Matrix &A, Vector &x, Vector &b );
 
+    /** Classify all the solvers in the database (or just one matrix if index given */
+    ErrorFlag ClassifySolvers(int matrix = -1);
 };
 
 }

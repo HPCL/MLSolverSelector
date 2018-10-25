@@ -23,15 +23,13 @@ WafflesInterface::~WafflesInterface()
     if ( labels ) delete labels;
 }
 
-ErrorFlag WafflesInterface::BuildModel()
+ErrorFlag WafflesInterface::BuildImpl()
 {
     if (model == NULL ) {
       std::string serial = GetParameter("serialized"); 
       if ( serial.empty() ) 
       {
-        std::vector< std::string > fnames;
-        database->GetFeatureLabels(fnames);
-        BuildModelAtRuntime( GetParameter("algorithm"), fnames ) ;
+        BuildModelAtRuntime( ) ;
         database->GetUniqueSolverList(solver_hash_list);   
       }
       else
@@ -40,10 +38,13 @@ ErrorFlag WafflesInterface::BuildModel()
     return error_flag;
 }
 
-ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vector<std::string> &fnames )
+ErrorFlag WafflesInterface::BuildModelAtRuntime()
 {
     if ( model == NULL ) 
     {
+      std::vector< std::string > fnames;
+      database->GetFeatureLabels(fnames);
+      std::string algorithm = GetParameter("algorithm");
       std::shared_ptr< GClasses::GMatrix > matrix(nullptr) ;
       int labelsdim;
       ImportData( fnames, matrix, labelsdim ) ;
@@ -92,16 +93,13 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime(std::string algorithm, std::vect
     return error_flag;
 }
 
-ErrorFlag WafflesInterface::Serialize(std::string output)
+ErrorFlag WafflesInterface::SerializeImpl(std::string outputfile)
 {
-    std::string method = GetParameter("algorithm");
-    std::vector< std::string > fnames;
-    database->GetFeatureLabels(fnames);
-    BuildModelAtRuntime( method, fnames ) ;
+    BuildModelAtRuntime( ) ;
 
     GClasses::GDom gdom;
     GClasses::GDomNode *gnode = model->serialize(&gdom);
-    gnode->addField(&gdom, "method", gdom.newString(method.c_str()));
+    gnode->addField(&gdom, "method", gdom.newString(GetParameter("algorithm").c_str()));
     
     GClasses::GDomNode *ggnode = gdom.newObj(); 
     
@@ -129,7 +127,7 @@ ErrorFlag WafflesInterface::Serialize(std::string output)
     gnode->addField(&gdom, "solvers", ggnode );
 
     gdom.setRoot(gnode);
-    gdom.saveJson(output.c_str());
+    gdom.saveJson(outputfile.c_str());
     return error_flag;
 }
 
@@ -181,7 +179,6 @@ ErrorFlag WafflesInterface::BuildModelFromSerial(std::string serialized)
 ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the feature set of the matrix */,
                                           Solver &solver /**< output, a (hopefully) "good" solver for the problem */)
 {
-    BuildModel();
     std::vector< bool > good;
     
     bool found_one = false;
@@ -197,8 +194,11 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
         auto found = std::find(features_order.begin(), features_order.end(), it.first );
         if ( found != features_order.end() )
         {
+          printf("\t\t %s found in model \n", it.first.c_str());
             pattern[i++] = it.second;  
         }
+         else
+            printf("\t\t %s not found in model \n", it.first.c_str());
     }
 
     for ( auto hash : solver_hash_list )
@@ -212,24 +212,32 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
             if ( ! ((bool) prediction[j]) ) 
             {
                bad = true; 
-               //break;
+               
             }
         }
+        
+        Solver tempSolver;
+        database->GetUniqueSolver( hash, tempSolver );
+        std::string solverT;
+        tempSolver.GetSolverString(solverT);
+        printf( " Solver %s  was %s \n " , solverT.c_str(), ( bad )? "bad" : "good " );
 
         if ( ! bad )
         {
-            found_one = true;
             if (serial.empty()) {
               database->GetUniqueSolver( hash, solver );
             } else {
               solver.ParseSolverString( solver_hash_map[hash] );  
             }
-            //break;
+            if ( ! isBaned(solver) ) {
+              return 0;
+            }
         }
     }
     if ( !found_one )
     {
         std::cout<<"No Good Solvers -- Using the default \n";
+        solver.Clear();
     }
     return error_flag;
 }
@@ -313,19 +321,15 @@ ErrorFlag WafflesInterface::ImportData(
     return error_flag ;
 }
 
-ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< std::string > &features_list )
+ErrorFlag WafflesInterface::CrossValidateImpl(int folds )
 {
 
 
-    std::cout << " ----------   Performing Cross Validation --------------" << algorithm << " \n";
-    std::cout << " --- Features -- " ;
-    for ( auto it : features_list ) std::cout << it << " -- ";
-    std::cout << "\n\n";
+    std::cout << " ----------   Performing Cross Validation --------------" << GetParameter("algorithm") << " \n";
 
     // Parse options
     unsigned int seed = (unsigned int)time(NULL);
     int reps = 5;
-    int folds = 10;
     bool succinct = true;
 
     if(reps < 1)
@@ -333,13 +337,6 @@ ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< s
     if(folds < 2)
         throw GClasses::Ex("There must be at least 2 folds.");
     
-
-    //Start again each time. 
-    if (model) {
-      delete model; model = NULL;
-    }
-
-    BuildModelAtRuntime( algorithm , features_list );
     model->rand().setSeed(seed);
 
     // Test
@@ -368,7 +365,7 @@ ErrorFlag WafflesInterface::CrossValidate( std::string algorithm, std::vector< s
         }
     }
 
-    std::cout << " ------------ Finished Cross Validation with " << algorithm << " ------------------- \n\n" ;
+    std::cout << " ------------ Finished Cross Validation with " << GetParameter("algorithm") << " ------------------- \n\n" ;
 
     return error_flag;
 }

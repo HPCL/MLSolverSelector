@@ -8,37 +8,51 @@ template<typename Matrix, typename Vector>
 SolverSelecter<Matrix,Vector>::SolverSelecter( std::shared_ptr< UserInterface<Matrix,Vector>> _interface)
 {
     interface = _interface;
+}
+
+template<typename Matrix, typename Vector>
+ErrorFlag 
+SolverSelecter<Matrix,Vector>::Initialize(std::map<std::string, std::string > &parameters) {
+
+  if ( !initialized ) {  
+      
+    interface->SetParameters(parameters);  
     interface->GetDataBaseImplimentation(database);
     interface->GetMachineLearningModel(machinemodel);
-}
-
-template<typename Matrix, typename Vector>
-ErrorFlag 
-SolverSelecter<Matrix,Vector>::Initialize(std::string inputfile) {
- 
-    std::shared_ptr< InputFileInterface > parser;
-    interface->GetInputFileImpl( parser );
-    parser->Initialize(inputfile, interface, machinemodel, database);
-    parser->Parse( matrix_filenames, solvers); 
     database->Initialize();
     machinemodel->Initialize(database);
+  }
+  return  error_flag;
+}
 
-    return error_flag;
+template<typename Matrix, typename Vector>
+ErrorFlag
+SolverSelecter<Matrix,Vector>::ParseInputFile() {
+
+  if ( !inputParsed) {
+    AsciiFileParser parser;
+    parser.Parse( interface->GetInputFileName(), matrix_filenames, solvers); 
+    inputParsed = true; 
+  }
+  return 0;
 }
 
 template<typename Matrix, typename Vector>
 ErrorFlag 
-SolverSelecter<Matrix,Vector>::BuildModelAndSerialize(std::string serial_filename) {
+SolverSelecter<Matrix,Vector>::SerializeMachineLearningModel(std::map<std::string,std::string> &parameters, std::string output) {
    
-    database->Initialize();
-    machinemodel->Serialize(serial_filename);
+    Initialize(parameters);
+    machinemodel->Serialize(output);
     return 0;
 }
 
 template<typename Matrix, typename Vector>
 ErrorFlag
-SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile()
+SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile(std::map<std::string,std::string> &parameters )
 {
+    Initialize(parameters);
+    ParseInputFile(); 
+    
     std::unique_ptr<Matrix> A;
     std::unique_ptr<Vector> x, b;
     
@@ -63,21 +77,10 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile()
 
 template<typename Matrix, typename Vector>
 ErrorFlag
-SolverSelecter<Matrix,Vector>::ConvertArffFileToDatabase() {
-
-  database->WriteDatabaseFromArff("asdfsdf"); 
-  return error_flag;
-}
-
-
-
-template<typename Matrix, typename Vector>
-ErrorFlag
-SolverSelecter<Matrix,Vector>::CrossValidate(std::vector< std::string >  algorithm ,
-                              bool all)
+SolverSelecter<Matrix,Vector>::CrossValidate(std::map<std::string,std::string> &parameters, int folds)
 {
-
-    machinemodel->CrossValidateAll( algorithm, all );
+    Initialize(parameters);
+    machinemodel->CrossValidate( folds );
     return error_flag;
 }
 
@@ -120,6 +123,7 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
     {
 
         std::map<std::string, double> features_map;
+        std::cout <<  "Extracting Features \n "  << machinemodel << std::endl;;
         interface->ExtractFeatures( A, features_map);
         std::cout <<  "Extracted Features \n "  << machinemodel << std::endl;;
         machinemodel->Classify(features_map, solver );
@@ -128,10 +132,25 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
         {
             solver.Print();
             interface->SolveSystem( A, x, b, solver, success );
-            if (!success)
+            int count = 0;
+            while (!success && count < 5 )
             {
-                printf("Yikes, the solver we picked diverged -- rerunning with default solver\n");
-                interface->GetDefaultSolver(solver);
+                count++;
+                printf("Yikes, the solver we picked diverged -- adding to banned list and restarting-rerunning with default solver\n");
+                machinemodel->AddToBanedListAndTryAgain(features_map,solver);
+                if (solver.solver == "NONE" ) {
+                    printf("Yikes, this this model sucks rerunning with default solver\n");
+                    interface->GetDefaultSolver(solver);
+                    interface->SolveSystem(A,x,b,solver,success);
+                    if ( !success ) {
+                        printf("Even the default failed - Bailing \n" );
+                        return -1;
+                    }
+                } else 
+                    interface->SolveSystem(A,x,b,solver,success);
+
+            }
+            if (!success) {
                 interface->SolveSystem(A,x,b,solver,success);
             }
         }
@@ -223,7 +242,8 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseInline( Matrix &A,
                                      Vector &x,
                                      Vector &b )
 {
-
+    ParseInputFile();
+    
     std::string matrix_name;
     std::map<std::string, double> features_map;
     interface->ExtractFeatures( A, features_map);

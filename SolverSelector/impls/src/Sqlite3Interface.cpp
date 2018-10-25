@@ -624,10 +624,11 @@ SqlDatabase::GetMatrixToUniqueMap( std::map< int, std::vector<int> > &solvermap,
     }
     return 0;
 }
-
+/*  This function was used to read Kanikas arff files into the existing sql database. It is 
+ *  probably not needed anymore. 
 int SqlDatabase::WriteDatabaseFromArff(std::string arffFile) {
  
-   // Step 1. Get a map of solver hashes from kanika to SS solvers 
+  // Step 1. Get a map of solver hashes from kanika to SS solvers 
   std::ifstream file ("/home/boneill/Documents/RNET_Development/RNET/MLNEAMS/MLdata/solvers.txt");
   std::string value;
   int count = 0;
@@ -643,7 +644,7 @@ int SqlDatabase::WriteDatabaseFromArff(std::string arffFile) {
       StringSplit(value, ",", result); 
       if ( result.size() == 2 )
         solverMap[std::atoi(result[0].c_str())] = result[1];
-    } 
+  } 
   
   // Step 2. Get a map of index to Feature name. 
   std::map<int, std::string > featureMap;
@@ -733,7 +734,7 @@ int SqlDatabase::WriteDatabaseFromArff(std::string arffFile) {
    } 
 	 return 0;
 
-}
+}*/
 
 }
 #endif

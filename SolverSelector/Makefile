@@ -13,6 +13,8 @@ IMPL_OBS=$(IMPL_SRC:%.cpp=%.o)
 
 SS_INCS = -I base/include -I base/template -I impls/include 
 
+SS_FLAGS +=-Wno-write-strings 
+
 default: $(OUT)
 
 $(OUT): $(BASE_OBS) $(IMPL_OBS)

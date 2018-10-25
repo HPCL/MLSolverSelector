@@ -5,6 +5,7 @@ import re
 import glob
 import os
 from subprocess import call 
+import sys
 
 ###TODO Add inputs for solvers and preconditioners, and hypre preconditioners 
 ### to make a config file only containing certain solvers 

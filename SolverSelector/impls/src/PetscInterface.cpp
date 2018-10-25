@@ -11,7 +11,14 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     KSPCreate(PETSC_COMM_WORLD,&_ksp);
     SetTestingSpace();
     internal_prefix = "internal_";
-    input_file = "petsc.input";
+    
+    AddParameter("mlinterface", "Waffles", "Choose a machine learning interface" );
+    AddParameter("waffles.algorithm" , "RandomForest", "Choose the algorithm for Waffles");
+    AddParameter("waffles.serialized", "", "Set the filename for waffles to read serialized model from");
+    AddParameter("sqlite3.database", "./new_test_file.db", "Set the filename for sqlite3 database");
+    AddParameter("C50.filestem", "./model", "set the filestem for the C50 serialized model");
+    AddParameter("C50.database", "false", "build the model from the database at runtime (sloooow)");
+    AddParameter("C50.trials", "-1", "Number of trials to use if building a C50 model");
 }
 
 ErrorFlag
@@ -24,36 +31,42 @@ PetscUI::SetTestingSpace()
 ErrorFlag
 PetscUI::GetDataBaseImplimentation(std::shared_ptr< DatabaseInterface > &database)
 {
+  
 #ifdef WITH_SQLITE3
-    database.reset( new SqlDatabase() );
+        database.reset( new SqlDatabase() );
+        database->SetParameter("Database", GetParameter("sqlite3.database") );
 #else
-    std::cout << "PetscUI uses the Sqlite3 support by default. Either recompile with sqlite3" 
-              << "enabled, or override the PetscUI::GetDataBaseImplimentation function to set "
-              << "the database implementation" << std::endl;
-    std::abort();
-#endif    
+        std::cout << "PetscUI uses the Sqlite3 support by default. Either recompile with sqlite3" 
+                  << "enabled, or override the PetscUI::GetDataBaseImplimentation function to set "
+                  << "the database implementation" << std::endl;
+         std::abort();
+#endif
+       
     return error_flag;
 }
 
 ErrorFlag
 PetscUI::GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &machine)
 {
+
+   if ( GetParameter("mlinterface") == "Waffles") {
 #ifdef WITH_WAFFLES   
     machine.reset( new WafflesInterface() ) ;
+    machine->SetParameter("algorithm", GetParameter("waffles.algorithm") );
+    machine->SetParameter("serialized", GetParameter("waffles.serialized") );
 #else
     std::cout << "Compiled without support for waffles. Either recompile with waffles support or \
                   override the PetscUI::GetMachineLearningModel function to set the required \
                   machine learning interface." << std::endl;
     std::abort(); 
 #endif    
-    return error_flag;
-}
-
-ErrorFlag
-PetscUI::GetInputFileImpl( std::shared_ptr< InputFileInterface > &parser )
-{
-    parser.reset( new AsciiFileParser() );
-    return error_flag;
+  } else {
+    machine.reset( new C50Interface() );
+    machine->SetParameter("filestem", GetParameter("C50.filestem"));
+    machine->SetParameter("trials", GetParameter("C50.trials"));
+    machine->SetParameter("database", GetParameter("C50.database"));
+  }
+  return error_flag;
 }
 
 ErrorFlag
@@ -88,7 +101,7 @@ PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
         SetSolver(ksp, solver);
         KSPSolve(ksp,b,x);
     }    
-    success = (ksp->reason > 0 ) ;
+    success = true;  //(ksp->reason > 0 ) ;
     return 0;
 
 }
@@ -356,20 +369,27 @@ PetscCoupler::KSPSetFromOptions_SS(PetscOptionItems *PetscOptionsObject,KSP ksp)
     PetscOptionsHead(PetscOptionsObject,"KSP SS options");
 
     PetscBool flg;
-
-    char inname[256];
-    PetscStrcpy(inname, ui->input_file.c_str());
-    PetscOptionsString("-ksp_ss_inputfile", " Name of the inputfile", NULL, inname,inname,256,&flg);
-    if (flg) {
-      ui->input_file = inname;
-      ss->Initialize(ui->input_file); 
+    
+    std::map<std::string, std::string> parametersMap;
+    for ( auto &it: ui->GetParameters() ) {
+        
+        char inname[256];
+        PetscStrcpy(inname, it.second.c_str());
+        std::string name = "-ksp_ss_" + it.first;
+        std::string helpp = ui->GetParameterHelp(it.first); 
+        PetscOptionsString(name.c_str(), helpp.c_str(), NULL, inname,inname,256,&flg);
+        if(flg) {
+          parametersMap.insert(std::make_pair(it.first, inname));
+        }
     } 
-    else
-      throw SSException("You Must specifiy an input file using the -ksp_ss_inputfile");
-
+    ss->Initialize(parametersMap);
     PetscOptionsTail();
     PetscFunctionReturn(0);
 }
+
+// Decalare the static shared_ptr in the coupler
+bool PetscCoupler::initialized = false; 
+std::shared_ptr<PetscSS> PetscCoupler::static_petcs_ss_ptr = nullptr;
 
 PetscErrorCode
 PetscCoupler::KSPCreate_SS(KSP ksp)
@@ -388,10 +408,19 @@ PetscCoupler::KSPCreate_SS(KSP ksp)
     KSPSetSupportedNorm(ksp,KSP_NORM_PRECONDITIONED,PC_SYMMETRIC,2);
     KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_RIGHT,1);
     KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_LEFT,1);
+   
+    // We keep a copy of the shared pointer in a static member of the PetscCoupler class. That
+    // way we do not have to rebuild the model every time the KSP is initialized.  
+    if (PetscCoupler::static_petcs_ss_ptr == nullptr)
+        PetscCoupler::static_petcs_ss_ptr.reset( new PetscSS( std::make_shared< PetscUI >() ));
+    ksp->data = (void*) static_petcs_ss_ptr.get(); 
+    
+    // The solver selector should not use a preconditioner externally (although, we could actually 
+    // set it up so that the preconditioner is actually a feature extraction?) 
 
-    PetscSS *ss = new PetscSS( std::make_shared< PetscUI >() );
-    ksp->data = (void*) ss;
-
+    PC pc;
+    KSPGetPC(ksp, &pc);
+    PCSetType(pc, PCNONE); 
     PetscFunctionReturn(0);
 }
 

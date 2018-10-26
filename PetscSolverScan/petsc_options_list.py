@@ -16,16 +16,17 @@ for program in programs:
 ###TODO Add inputs for solvers and preconditioners, and hypre preconditioners 
 ### to make a config file only containing certain solvers 
 
-  executable = './' + program + '.a'
+  #executable = './' + program + '.a'
+  executable = 'mpiexec -np 2 ./' + program + '.a'
   output = "%s.output"%program
   error = "%s.error"%program
 
   ##### Step one is two call the scanner function 
-  call(["make", executable])
+  call(["make", program+'.a'])
 
   #### Step 2, get a list of all the solvers and preconditioners
   f = open(output,"w")
-  call([executable, snes_opt, "-pc_type", "hypre", "-help"], stdout=f, stderr=subprocess.STDOUT)
+  call(executable.split() + [snes_opt, "-pc_type", "hypre", "-help"], stdout=f, stderr=subprocess.STDOUT)
   f.close()
   
   f = open(output,"r")
@@ -55,7 +56,7 @@ for program in programs:
   gsolver_dict = {}
   for ksp in solvers:
       f = open(output,"w")
-      call([executable, snes_opt,"-ksp_type",ksp,"-help"], stdout=f, stderr=subprocess.STDOUT)
+      call(executable.split() + [snes_opt,"-ksp_type",ksp,"-help"], stdout=f, stderr=subprocess.STDOUT)
       f.close()
     
     
@@ -99,7 +100,7 @@ for program in programs:
   ghypre_dict = {}
   for htype in hypre:
     f = open(output,"w")
-    call([executable, snes_opt, "-pc_type","hypre","-pc_hypre_type",htype,"-help"], stdout=f, stderr=subprocess.STDOUT)
+    call(executable.split() + [snes_opt, "-pc_type","hypre","-pc_hypre_type",htype,"-help"], stdout=f, stderr=subprocess.STDOUT)
     f.close()
         
     ss = "(\-pc\_[a-z\_A-Z]*)(.*)"

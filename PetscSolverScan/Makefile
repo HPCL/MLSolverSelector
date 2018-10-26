@@ -1,5 +1,5 @@
 
-#PETSC_DIR ?=/opt/moose/petsc/mpich_petsc-3.7.5/gcc-opt-superlu
+PETSC_DIR ?=/opt/moose/petsc/mpich_petsc-3.7.5/gcc-opt-superlu
 
 include $(PETSC_DIR)/lib/petsc/conf/variables
 

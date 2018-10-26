@@ -1,0 +1,191 @@
+# List of options for each solver 
+
+@SOLVER bcgs 
+
+@SOLVER bcgsl 
+@PARAMETER -ksp_bcgsl_ell 2   #  <2>: Number of Krylov search directions (KSPBCGSLSetEll) 
+@PARAMETER -ksp_bcgsl_cxpoly FALSE   # : <FALSE> Polynomial part of BiCGStabL is MinRes + OR (KSPBCGSLSetPol) 
+@PARAMETER -ksp_bcgsl_mrpoly FALSE   # : <FALSE> Polynomial part of BiCGStabL is MinRes (KSPBCGSLSetPol) 
+@PARAMETER -ksp_bcgsl_xres 0.   #  <0.>: Threshold used to decide when to refresh computed residuals (KSPBCGSLSetXRes) 
+@PARAMETER -ksp_bcgsl_pinv TRUE   # : <TRUE> Polynomial correction via pseudoinverse (KSPBCGSLSetUsePseudoinverse) 
+
+@SOLVER bicg 
+
+@SOLVER cg 
+@PARAMETER -ksp_cg_single_reduction FALSE   # : <FALSE> Merge inner products into single MPIU_Allreduce() (KSPCGUseSingleReduction) 
+
+@SOLVER cgls 
+
+@SOLVER cgne 
+@PARAMETER -ksp_cg_single_reduction FALSE   # : <FALSE> Merge inner products into single MPIU_Allreduce() (KSPCGUseSingleReduction) 
+
+@SOLVER cgs 
+
+@SOLVER chebyshev 
+@PARAMETER -ksp_chebyshev_esteig_steps 10   #  <10>: Number of est steps in Chebyshev () 
+@PARAMETER -ksp_chebyshev_eigenvalues 0.   #  <0.>: extreme eigenvalues (KSPChebyshevSetEigenvalues) 
+@PARAMETER -ksp_chebyshev_esteig -1.   #  <-1.>: estimate eigenvalues using a Krylov method, then use this transform for Chebyshev eigenvalue bounds (KSPChebyshevEstEigSet) 
+@PARAMETER -ksp_chebyshev_esteig_noisy TRUE   # : <TRUE> Use noisy right hand side for estimate (KSPChebyshevEstEigSetUseNoisy) 
+
+@SOLVER cr 
+
+@SOLVER dgmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+@PARAMETER -ksp_dgmres_eigen 1   #  <1>: Number of smallest eigenvalues to extract at each restart (KSPDGMRESSetEigen) 
+@PARAMETER -ksp_dgmres_max_eigen 9   #  <9>: Maximum Number of smallest eigenvalues to extract  (KSPDGMRESSetMaxEigen) 
+@PARAMETER -ksp_dgmres_ratio 1.   #  <1.>: Relaxation parameter for the smaller number of matrix-vectors product allowed (KSPDGMRESSetRatio) 
+@PARAMETER -ksp_dgmres_improve FALSE   # : <FALSE> Improve the computation of eigenvalues by solving a new generalized eigenvalue problem (experimental - not stable at this time) (None) 
+@PARAMETER -ksp_dgmres_force FALSE   # : <FALSE> Sets DGMRES always at restart active, i.e do not use the adaptive strategy (KSPDGMRESForce) 
+
+@SOLVER fbcgs 
+
+@SOLVER fbcgsr 
+
+@SOLVER fcg 
+@PARAMETER -ksp_fcg_mmax 30   #  <30>: Maximum number of search directions to store (KSPFCGSetMmax) 
+@PARAMETER -ksp_fcg_nprealloc 10   #  <10>: Number of directions to preallocate (KSPFCGSetNprealloc) 
+@PARAMETER -ksp_fcg_truncation_type NOTAY   #  <NOTAY> Truncation approach for directions (choose one of) STANDARD NOTAY (KSPFCGSetTruncationType) 
+
+@SOLVER fetidp 
+@PARAMETER -ksp_fetidp_fullyredundant FALSE   # : <FALSE> Use fully redundant multipliers (none) 
+@PARAMETER -ksp_fetidp_saddlepoint FALSE   # : <FALSE> Activates support for saddle-point problems (None) 
+@PARAMETER -ksp_fetidp_check FALSE   # : <FALSE> Activates verbose debugging output FETI-DP operators (None) 
+
+@SOLVER fgmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+@PARAMETER -ksp_fgmres_modifypcnochange none   # : do not vary the preconditioner (KSPFGMRESSetModifyPC) 
+@PARAMETER -ksp_fgmres_modifypcksp none   # : vary the KSP based preconditioner (KSPFGMRESSetModifyPC) 
+
+@SOLVER gcr 
+@PARAMETER -ksp_gcr_restart 30   #  <30>: Number of Krylov search directions (KSPGCRSetRestart) 
+
+@SOLVER gltr 
+@PARAMETER -ksp_cg_radius 0.   #  <0.>: Trust Region Radius (KSPCGSetRadius) 
+@PARAMETER -ksp_cg_dtype unpreconditioned   #  <unpreconditioned> Norm used for direction (choose one of) preconditioned unpreconditioned () 
+@PARAMETER -ksp_cg_gltr_init_pert 1e-08   #  <1e-08>: Initial perturbation () 
+@PARAMETER -ksp_cg_gltr_eigen_tol 1e-10   #  <1e-10>: Eigenvalue tolerance () 
+@PARAMETER -ksp_cg_gltr_newton_tol 1e-06   #  <1e-06>: Newton tolerance () 
+@PARAMETER -ksp_cg_gltr_max_lanczos_its 20   #  <20>: Maximum Lanczos Iters () 
+@PARAMETER -ksp_cg_gltr_max_newton_its 10   #  <10>: Maximum Newton Iters () 
+
+@SOLVER gmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+
+@SOLVER groppcg 
+
+@SOLVER ibcgs 
+
+@SOLVER lcd 
+@PARAMETER -ksp_lcd_restart 30   #  <30>: Number of vectors conjugate (KSPLCDSetRestart) 
+@PARAMETER -ksp_lcd_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPLCDSetHapTol) 
+
+@SOLVER lgmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+@PARAMETER -ksp_lgmres_constant FALSE   # : <FALSE> Use constant approx. space size (KSPGMRESSetConstant) 
+@PARAMETER -ksp_lgmres_augment 2   #  <2>: Number of error approximations to augment the Krylov space with (KSPLGMRESSetAugDim) 
+
+@SOLVER lsqr 
+@PARAMETER -ksp_lsqr_set_standard_error none   # : Set Standard Error Estimates of Solution (KSPLSQRSetStandardErrorVec) 
+@PARAMETER -ksp_lsqr_monitor none   #  ascii[:[filename][:[format][:append]]]: Prints object to stdout or ASCII file (PetscOptionsGetViewer) 
+@PARAMETER -ksp_lsqr_monitor none   #  binary[:[filename][:[format][:append]]]: Saves object to a binary file (PetscOptionsGetViewer) 
+@PARAMETER -ksp_lsqr_monitor none   #  draw[:[drawtype][:filename|format]] Draws object (PetscOptionsGetViewer) 
+@PARAMETER -ksp_lsqr_monitor none   #  socket[:port]: Pushes object to a Unix socket (PetscOptionsGetViewer) 
+@PARAMETER -ksp_lsqr_monitor none   #  saws[:communicatorname]: Publishes object to SAWs (PetscOptionsGetViewer) 
+
+@SOLVER minres 
+
+@SOLVER nash 
+@PARAMETER -ksp_cg_radius 0.   #  <0.>: Trust Region Radius (KSPCGSetRadius) 
+@PARAMETER -ksp_cg_dtype unpreconditioned   #  <unpreconditioned> Norm used for direction (choose one of) preconditioned unpreconditioned () 
+
+@SOLVER pgmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+
+@SOLVER pipebcgs 
+
+@SOLVER pipecg 
+
+@SOLVER pipecgrr 
+
+@SOLVER pipecr 
+
+@SOLVER pipefcg 
+@PARAMETER -ksp_pipefcg_mmax 15   #  <15>: Number of search directions to storue (KSPPIPEFCGSetMmax) 
+@PARAMETER -ksp_pipefcg_nprealloc 5   #  <5>: Number of directions to preallocate (KSPPIPEFCGSetNprealloc) 
+@PARAMETER -ksp_pipefcg_truncation_type NOTAY   #  <NOTAY> Truncation approach for directions (choose one of) STANDARD NOTAY (KSPFCGSetTruncationType) 
+
+@SOLVER pipefgmres 
+@PARAMETER -ksp_gmres_restart 30   #  <30>: Number of Krylov search directions (KSPGMRESSetRestart) 
+@PARAMETER -ksp_gmres_haptol 1e-30   #  <1e-30>: Tolerance for exact convergence (happy ending) (KSPGMRESSetHapTol) 
+@PARAMETER -ksp_gmres_preallocate FALSE   # : <FALSE> Preallocate Krylov vectors (KSPGMRESSetPreAllocateVectors) 
+@PARAMETER -ksp_gmres_classicalgramschmidt none   # : Classical (unmodified) Gram-Schmidt (fast) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_modifiedgramschmidt none   # : Modified Gram-Schmidt (slow,more stable) (KSPGMRESSetOrthogonalization) 
+@PARAMETER -ksp_gmres_cgs_refinement_type REFINE_NEVER   #  <REFINE_NEVER> Type of iterative refinement for classical (unmodified) Gram-Schmidt (choose one of) REFINE_NEVER REFINE_IFNEEDED REFINE_ALWAYS (KSPGMRESSetCGSRefinementType) 
+@PARAMETER -ksp_gmres_krylov_monitor FALSE   # : <FALSE> Plot the Krylov directions (KSPMonitorSet) 
+@PARAMETER -ksp_pipefgmres_shift 1.   #  <1.>: shift parameter (KSPPIPEFGMRESSetShift) 
+
+@SOLVER pipegcr 
+@PARAMETER -ksp_pipegcr_mmax 15   #  <15>: Number of search directions to storue (KSPPIPEGCRSetMmax) 
+@PARAMETER -ksp_pipegcr_nprealloc 5   #  <5>: Number of directions to preallocate (KSPPIPEGCRSetNprealloc) 
+@PARAMETER -ksp_pipegcr_truncation_type NOTAY   #  <NOTAY> Truncation approach for directions (choose one of) STANDARD NOTAY (KSPFCGSetTruncationType) 
+@PARAMETER -ksp_pipegcr_unroll_w TRUE   # : <TRUE> Use unrolling of w (KSPPIPEGCRSetUnrollW) 
+
+@SOLVER pipelcg 
+@PARAMETER -ksp_pipelcg_pipel 0   #  <0>: Pipeline length () 
+@PARAMETER -ksp_pipelcg_lmin 0.   #  <0.>: Estimate for smallest eigenvalue () 
+@PARAMETER -ksp_pipelcg_lmax 0.   #  <0.>: Estimate for largest eigenvalue () 
+
+@SOLVER preonly 
+
+@SOLVER qcg 
+
+@SOLVER richardson 
+@PARAMETER -ksp_richardson_scale 1.   #  <1.>: damping factor (KSPRichardsonSetScale) 
+@PARAMETER -ksp_richardson_self_scale FALSE   # : <FALSE> dynamically determine optimal damping factor (KSPRichardsonSetSelfScale) 
+
+@SOLVER stcg 
+@PARAMETER -ksp_cg_radius 0.   #  <0.>: Trust Region Radius (KSPCGSetRadius) 
+@PARAMETER -ksp_cg_dtype unpreconditioned   #  <unpreconditioned> Norm used for direction (choose one of) preconditioned unpreconditioned () 
+
+@SOLVER symmlq 
+
+@SOLVER tcqmr 
+
+@SOLVER tfqmr 
+
+@SOLVER tsirm 
+@PARAMETER -ksp_tsirm_cgls 0   #  <0>: Method used for the minimization step () 
+@PARAMETER -ksp_tsirm_tol_ls 0.   #  <0.>: Tolerance threshold for the minimization step () 
+@PARAMETER -ksp_tsirm_max_it_ls 0   #  <0>: Maximum number of iterations for the minimization step () 
+@PARAMETER -ksp_tsirm_size_ls 0   #  <0>: Number of residuals for minimization () 
+

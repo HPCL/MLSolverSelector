@@ -61,7 +61,8 @@ public:
     virtual ErrorFlag SetVector( std::unique_ptr<Vec> &x, std::string type_ ) override;
     
     virtual ErrorFlag GetDefaultSolver( Solver &solver ) override;
-    
+   
+    virtual int GetNNZ( KSP &A) override; 
 
     virtual  ~PetscUI();
   

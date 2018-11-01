@@ -20,7 +20,10 @@ public:
 
     virtual void
     extract_features(KSP &ksp,
-                     std::map<std::string, double> &fmap ) = 0;
+                     std::map<std::string, double> &fmap,
+                     int edge,
+                     int internal,
+                     bool matvec ) = 0;
 
     virtual void
     start_measurements(KSP &ksp,
@@ -49,8 +52,10 @@ public:
 
     void
     extract_features( KSP &ksp,
-                      std::map<std::string, double> &fmap ) override;
-
+                      std::map<std::string, double> &fmap,
+                      int edge,
+                      int interior,
+                      bool matvecs ) override;
     void
     start_measurements(KSP &ksp,
                        Vec &x,

@@ -85,4 +85,12 @@ UserInterface<Matrix,Vector>::GetDefaultSolver( Solver &solver )
     return error_flag;
 }
 
+template<typename Matrix, typename Vector>
+int 
+UserInterface<Matrix,Vector>::GetNNZ( Matrix &A)
+{
+    std::cout << "GetDefaultSolver Not Implimented\n";
+    return error_flag;
+}
+
 }

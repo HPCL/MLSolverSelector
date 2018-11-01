@@ -1,0 +1,7 @@
+
+#Solver information for build from file or build inline. 
+#@MATRIX ./matrix/1138_bus.pbin 
+@MATRIXDIR ./moose_matrices/ .mat  
+
+
+

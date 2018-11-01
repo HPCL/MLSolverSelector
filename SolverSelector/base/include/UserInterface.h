@@ -59,7 +59,10 @@ public:
     virtual ErrorFlag
     ExtractFeatures(Matrix &A,
                     std::map<std::string, double> &fmap ) = 0;
-   
+
+  
+    virtual int GetNNZ(Matrix &A) = 0;
+
     /** This function should start any measurements that the user wants to make during the next
      * call to solve ( i.e., start a CPUTimer or power monitor */
     virtual ErrorFlag

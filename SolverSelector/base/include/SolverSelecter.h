@@ -50,6 +50,16 @@ public:
     /** Solve a system using the solver selecter */
     ErrorFlag Solve(Matrix &A, Vector &x, Vector &b );
 
+    /** Time Feature Extraction for the Matrices in the input file, then use the default solver to compare
+     * the time to solve the matrix to the time to solve with the default solver. ( Testing --  */
+    ErrorFlag FeatureExtractionAnalysis(std::vector<std::map<std::string,std::string>> &parameters, std::string outputfile, bool solve);
+    
+    ErrorFlag FeatureExtractionAnalysis( std::vector<std::map<std::string,std::string>> &parameters,
+                                                          std::string matrixfile,
+                                                          std::string outputfile,
+                                                          bool solve);
+
+
     /** Initialize the solver selector. This is called by all functions prior to use, but 
      * only done once per instance of the class. */
     ErrorFlag Initialize(std::map<std::string, std::string> &parameters);

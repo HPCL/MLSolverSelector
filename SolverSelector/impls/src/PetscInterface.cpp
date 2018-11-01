@@ -19,6 +19,10 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     AddParameter("C50.filestem", "./model", "set the filestem for the C50 serialized model");
     AddParameter("C50.database", "false", "build the model from the database at runtime (sloooow)");
     AddParameter("C50.trials", "-1", "Number of trials to use if building a C50 model");
+    AddParameter("petsc.internalSample", "10", "Number of internal samples to use" );
+    AddParameter("petsc.edgeSample", "10", "Number of edgeSamples to use" );
+    AddParameter("petsc.matvec", "true", "Use Matvecs to extract samples" );
+
 }
 
 ErrorFlag
@@ -101,10 +105,22 @@ PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
         SetSolver(ksp, solver);
         KSPSolve(ksp,b,x);
     }    
-    success = true;  //(ksp->reason > 0 ) ;
+    success = (ksp->reason > 0 ) ;
     return 0;
 
 }
+
+int PetscUI::GetNNZ(KSP &ksp) {
+
+      Mat A,P;
+      MatInfo info;
+      KSPGetOperators(ksp, &A, &P );
+      MatGetInfo(A, MAT_GLOBAL_SUM, &info);
+
+      PetscLogDouble nnz = info.nz_used;
+      return (int) nnz;
+}
+
 
 ErrorFlag
 PetscUI::SetSolver( KSP ksp, Solver solver )
@@ -142,9 +158,7 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
 ErrorFlag
 PetscUI::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
-    std::cout << " Started Extracting features \n";
-    testing_space->extract_features( ksp, fmap );
-    std::cout << " Finished Extracting features \n";
+    testing_space->extract_features( ksp, fmap, GetParameterAsInt("petsc.edgeSample"), GetParameterAsInt("petsc.internalSample"), GetParameterAsBool("petsc.matvec") );
     return error_flag;
 }
 
@@ -254,9 +268,7 @@ PetscUI::SetVector( std::unique_ptr<Vec> &x, std::string type_ )
 ErrorFlag
 PetscUI::GetDefaultSolver( Solver &solver ) 
 {
-    solver.SetSolverName("gmres", "hypre");
-    solver.SetParameter("pc_hypre_type", "boomeramg");
-    solver.SetParameter("pc_hypre_boomeramg_strong_threshold", "0.25");
+    solver.SetSolverName("gmres", "bjacobi");
     return error_flag;
 }
 

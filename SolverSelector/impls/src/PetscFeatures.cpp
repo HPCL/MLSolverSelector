@@ -18,11 +18,12 @@ PetscTestingSpace::PetscTestingSpace() {}
 
 void
 DefaultPetscTestingSpace::extract_features(KSP &ksp,
-        std::map<std::string, double> &fmap )
+        std::map<std::string, double> &fmap, int edge, int internal, bool matvec )
 {
     Mat AA,PP;
     KSPGetOperators(ksp, &AA, &PP );
-    ExtractJacobianFeatures(AA,5,3,fmap,true);
+    std::cout << edge << internal << matvec << std::endl; 
+    ExtractJacobianFeatures(AA,edge,internal,fmap,matvec);
 }
 
 void

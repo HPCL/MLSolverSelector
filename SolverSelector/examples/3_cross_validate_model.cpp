@@ -23,7 +23,7 @@ int main(int argc,char **args)
   // Set the machine learning interface -- in this case C50 (default is Waffles) 
   parameters["mlinterface"] = "C5.0";
   parameters["waffles.algorithm"] = "RandomForest";
-  parameters["C50.filestem"] = "./models/RS1Model/RS1_unique_MOOSE_Oct15";
+  parameters["C50.filestem"] = "./models/RS2Model/RS1_unique_MOOSE_Oct31";
 
   ss->CrossValidate(parameters, 10);
   

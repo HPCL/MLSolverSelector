@@ -105,9 +105,7 @@ class SSBase
     CheckValid(name, value, valid) ;
     if ( valid == 1 ) {
         parameter_values[name] = value;
-        std::cout << "\t setting parameter: " << name << " = " << value << std::endl;
     } else {
-      std::cout << "Unrecognized Parameter " << name << std::endl; 
     }
    return error_flag; 
   }

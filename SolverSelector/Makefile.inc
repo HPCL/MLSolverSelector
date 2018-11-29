@@ -1,7 +1,7 @@
 
 # Set the compiler and the flags. Note that c++11 support is required. 
 SS=mpicxx 
-SS_FLAGS = -g -std=c++11 
+SS_FLAGS = -g -fopenmp -std=c++11 
 
 # The directory this makefile is is (automatic)!
 SS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))

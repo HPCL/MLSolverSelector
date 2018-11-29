@@ -27,7 +27,9 @@ public:
     bool use_internal_ksp = true;
     
     PetscUI();
-    
+
+    virtual ErrorFlag Initialize() override; 
+
     virtual ErrorFlag SetTestingSpace();
 
     virtual ErrorFlag GetDataBaseImplimentation(std::shared_ptr< DatabaseInterface > &database); 

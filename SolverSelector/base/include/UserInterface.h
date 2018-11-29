@@ -32,8 +32,13 @@ public:
        for ( auto &it : parameters ) {
           SetParameter(it.first, it.second); 
        }
+       Initialize();
        return 0;
     }
+
+    // Initialize is called after the parameters are set. Override if there are 
+    // things to setup based on the parameters; 
+    virtual ErrorFlag Initialize() {};
 
     /** This function should solve the system Ax = b using the given solver and set 
      * the success flag accordingly. */

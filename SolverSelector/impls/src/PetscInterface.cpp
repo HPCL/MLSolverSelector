@@ -9,7 +9,6 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
 {
     srand(time(NULL));
     KSPCreate(PETSC_COMM_WORLD,&_ksp);
-    SetTestingSpace();
     internal_prefix = "internal_";
     
     AddParameter("mlinterface", "Waffles", "Choose a machine learning interface" );
@@ -22,13 +21,19 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     AddParameter("petsc.internalSample", "10", "Number of internal samples to use" );
     AddParameter("petsc.edgeSample", "10", "Number of edgeSamples to use" );
     AddParameter("petsc.matvec", "true", "Use Matvecs to extract samples" );
+    AddParameter("power.interval","10000", "Interval in ns to sample power");
 
+}
+
+ErrorFlag PetscUI::Initialize() {
+  SetTestingSpace();
 }
 
 ErrorFlag
 PetscUI::SetTestingSpace()
 {
-    testing_space.reset( new DefaultPetscTestingSpace() );
+    int durr = GetParameterAsInt("power.interval");
+    testing_space.reset( new DefaultPetscTestingSpace(std::chrono::nanoseconds(durr) ));
     return error_flag;
 }
 
@@ -158,7 +163,8 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
 ErrorFlag
 PetscUI::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
-    testing_space->extract_features( ksp, fmap, GetParameterAsInt("petsc.edgeSample"), GetParameterAsInt("petsc.internalSample"), GetParameterAsBool("petsc.matvec") );
+      
+  testing_space->extract_features( ksp, fmap, GetParameterAsInt("petsc.edgeSample"), GetParameterAsInt("petsc.internalSample"), GetParameterAsBool("petsc.matvec") );
     return error_flag;
 }
 
@@ -204,6 +210,7 @@ PetscUI::InitMatrix( std::string filename, std::unique_ptr<KSP> &A )
     PetscViewerBinaryOpen(PETSC_COMM_WORLD, filename.c_str(), FILE_MODE_READ, &fd);
     MatSetFromOptions(mat_op);
     MatLoad(mat_op,fd);
+    
     PetscViewerDestroy(&fd);
     KSPSetOperators(*A, mat_op, mat_op);
 

@@ -251,7 +251,7 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
   PetscInt n, m, low, high;
   MatGetSize(J, &n, &m ) ; 
   
-  
+  std::cout << " Sma " << edge << " " << interior << std::endl; 
   Vec *s ; 
   const PetscScalar *array; 
   

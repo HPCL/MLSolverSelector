@@ -2,7 +2,7 @@
 
 ## Feature computation
 
-To build it just type "make" in the petsc_extractoin directory. That will create a set of executables full_p.a, RS1_p.a, etc
+To build it just type "make" in the **petsc_extraction** directory. That will create a set of executables full_p.a, RS1_p.a, etc
 Typing ./full_p.a will print the usage information.
 
 But for reference the usage is 

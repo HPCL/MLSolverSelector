@@ -67,8 +67,14 @@ int main(int argc,char **argv)
 
   //Extract the features
   std::vector< std::pair<std::string, double> > feature_set;
-  ExtractJacobianFeatures( A, edge, interior, feature_set, matvecs );
   
+  PetscLogStage stage;
+  PetscLogStageRegister("Feature Extraction", &stage);
+  
+  PetscLogStagePush(stage);
+  ExtractJacobianFeatures( A, edge, interior, feature_set, matvecs );
+  PetscLogStagePop();
+
   auto stop4 = std::chrono::high_resolution_clock::now();
  
   long long mload    = std::chrono::duration_cast<std::chrono::microseconds>(stop1-start).count(); 

@@ -89,7 +89,12 @@ int main(int argc,char **argv)
   int ninterior = (int) mcols*interior;
   if ( pmax > 0 && pmax < ninterior ) ninterior = pmax; 
 
+  PetscLogStage stage;
+  PetscLogStageRegister("Feature Extraction", &stage);
+  
+  PetscLogStagePush(stage);
   ExtractJacobianFeatures( A, edge, ninterior, feature_set, matvecs );
+  PetscLogStagePop();
 
   
   auto stop4 = std::chrono::high_resolution_clock::now();

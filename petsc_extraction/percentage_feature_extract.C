@@ -85,7 +85,6 @@ int main(int argc,char **argv)
   //Extract the features
   std::vector< std::pair<std::string, double> > feature_set;
   
-  std::cout << " Sdfsd " << mcols << " sdf " << interior << " " << (int) mcols*interior << std::endl;
   int ninterior = (int) mcols*interior;
   if ( pmax > 0 && pmax < ninterior ) ninterior = pmax; 
 

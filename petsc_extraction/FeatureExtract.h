@@ -149,40 +149,34 @@ int GetSamplePoints( int n, int edge, int interior , std::vector<std::pair<int,i
     return 0; 
 }
 
-int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s, bool mat_vec=true )
-{
+int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s, Vec *basis, bool mat_vec){
 
+    if ( *s == NULL || *basis == NULL ) { 
+      MatCreateVecs( J, basis, s ) ; // make basis compatible with J. 
+    }
+    
     if (!mat_vec)
     {
-      Vec basis, extra;
-      MatCreateVecs(J,&basis, &extra);
-      VecDuplicate(extra, s);
       std::cout << "Using memory " << std::endl;
       MatGetColumnVector(J,*s,point.first);
-      VecDestroy(&basis);
-      VecDestroy(&extra);
     }
     else 
     {    
 
       // basis is vector
-      Vec basis, extra; // The basis vector we will multiply by
-      MatCreateVecs( J, &basis, &extra ) ; // make basis compatible with J. 
-      VecDuplicate(extra, s);
-
+      
       PetscInt high, low;  
-      VecGetOwnershipRange(basis, &low, &high );
+      VecGetOwnershipRange(*basis, &low, &high );
       
-      VecSet(basis,0);     
+      VecSet(*basis,0);     
       if ( point.first >= low && point.first < high );
-          VecSetValue( basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
+          VecSetValue( *basis, point.first, (PetscScalar) 1.0 , INSERT_VALUES ); 
       
-      VecAssemblyBegin(basis);
-      VecAssemblyEnd(basis);
+      VecAssemblyBegin(*basis);
+      VecAssemblyEnd(*basis);
       VecAssemblyBegin(*s);
       VecAssemblyEnd(*s);
-      MatMult( J, basis, *s );  
-
+      MatMult( J, *basis, *s );  
  
     }
 
@@ -251,7 +245,6 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
   PetscInt n, m, low, high;
   MatGetSize(J, &n, &m ) ; 
   
-  std::cout << " Sma " << edge << " " << interior << std::endl; 
   Vec *s ; 
   const PetscScalar *array; 
   
@@ -377,11 +370,12 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
  
    int num_t1 = 0;
    int num_samples = 0;
+   Vec vec = NULL;
+   Vec basis = NULL; 
    for ( int i = 0; i < npoints; i++ ) 
    {
        
-       Vec vec;
-       GetJacobianColumn( J, points[i], &vec, matvecs );
+       GetJacobianColumn( J, points[i], &vec, &basis,  matvecs );
 
        VecGetArrayRead( vec, &array );
        VecGetOwnershipRange( vec, &low, &high ) ;  
@@ -541,9 +535,11 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::vector< std::p
              #endif // LOWERBANDWIDTH || UPPERBANDWIDTH
        }          
        VecRestoreArrayRead( vec , &array ) ;
-       VecDestroy(&vec);
    }
-  
+   VecDestroy(&vec);
+   VecDestroy(&basis); 
+
+
    #ifdef ROWVARIANCE   
    row_var = 0.0;
    for ( auto i = 0; i < npoints; i++ ) 

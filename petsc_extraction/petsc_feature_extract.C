@@ -58,7 +58,11 @@ int main(int argc,char **argv)
   
   auto stop2 = std::chrono::high_resolution_clock::now();
   if (solve) {
-     KSPSolve(ksp,b,x);
+    PetscLogStage stage;
+    PetscLogStageRegister("Solve State", &stage);  
+    PetscLogStagePush(stage);
+    KSPSolve(ksp,b,x);
+    PetscLogStagePop();
   }
   PetscInt  iter ; 
   KSPConvergedReason converged_reason; 
@@ -69,8 +73,7 @@ int main(int argc,char **argv)
   std::vector< std::pair<std::string, double> > feature_set;
   
   PetscLogStage stage;
-  PetscLogStageRegister("Feature Extraction", &stage);
-  
+  PetscLogStageRegister("Feature Extraction", &stage);  
   PetscLogStagePush(stage);
   ExtractJacobianFeatures( A, edge, interior, feature_set, matvecs );
   PetscLogStagePop();

@@ -1,0 +1,883 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Tue Dec 11 17:45:20 2018
+-------------------------------
+
+    Options:
+	Application `data/Dec11/RS1_petsc_mfree_UFlorida_artemis_p38_dec11_300'
+	Use 66% of data for training
+	Random seed 4
+
+Class specified by attribute `class'
+
+Read 63729 cases (9 attributes) from data/Dec11/RS1_petsc_mfree_UFlorida_artemis_p38_dec11_300.data
+
+Decision tree:
+
+ColumnDiagonalDominance > 0:
+:...AbsoluteTrace <= 18.6585:
+:   :...nnz <= 0: bad (127/52)
+:   :   nnz > 0: good (1493/244)
+:   AbsoluteTrace > 18.6585:
+:   :...nnz > 19108.8: bad (955/76)
+:       nnz <= 19108.8:
+:       :...DiagonalMean <= 0.123743: good (175/23)
+:           DiagonalMean > 0.123743:
+:           :...OneNorm > 7111120: bad (389/27)
+:               OneNorm <= 7111120:
+:               :...AbsoluteTrace > 573789: good (730/142)
+:                   AbsoluteTrace <= 573789:
+:                   :...AbsoluteTrace <= 99.45: good (94/16)
+:                       AbsoluteTrace > 99.45:
+:                       :...DiagonalMean > 2.19857: bad (1019/123)
+:                           DiagonalMean <= 2.19857:
+:                           :...AbsoluteTrace <= 1507.43: bad (211/55)
+:                               AbsoluteTrace > 1507.43: good (96/17)
+ColumnDiagonalDominance <= 0:
+:...solver in {87479578,66008279,74176667,91095061,87479577,66008277,12926478,
+    :          18328899,26428018,34794780,40519755,40519756,25008640,25008643,
+    :          25008642,74176668,89991837,3902529,22810771,39942442,79693719,
+    :          44673503,90783920,71145806,79351911,76640887,76640886,66008276,
+    :          17815468,17815469,36126304,37410329,95762352,9085803,47756800,
+    :          51690414,51690415,7668974,40519753,51493155,17815471,17815470,
+    :          60752023,36126305,41159761,18328900,19552033,79693718,63998594,
+    :          89269801,63998596,63998593,34794779,9085800,22938024,31740290,
+    :          31740291,26428017,79693720,27072311,27072312,3891769,3891768,
+    :          30523627,47044345,47044346,47044347,95344436,25008641,95344435,
+    :          62245245,72229354,31740289,97810718,91914994,21591613,3891770,
+    :          96452103,96452102,96452101,98189421,98189420,91095060,98189422,
+    :          1643696,9085802,59601201,47756799,53621904,47756798,46168061,
+    :          46168060,46168063,46168062,56511605,3902530,37363116,37363115,
+    :          63511432,7668972,41016082,52273133,52273132,89991839,89991836,
+    :          51493154,71145805,51493153,79211537,77519572,77519571,77519570,
+    :          28257539,47756797,85650328,85650327,85650326,60752024,84689714,
+    :          60392863,45850727,84689713,36126307}: bad (0)
+    solver in {66604316,87479579,17479586,73388125,28257538,50249253,45869639,
+    :          45869638,45869637,54685154,18707297,89269802,89269803,32110529,
+    :          89269804,22355199,39942441,39942440,39942443,44791169,28187355,
+    :          44526267,24483136,87217530,95762354,32110531,32110530,32110532,
+    :          11256942,11256943,11256941,42851841,11256944,88436999,28257537,
+    :          33998453,12321508,16306266,59171420,42998286,33173731,86142508,
+    :          86142506,19552035,19552034,19552032,86142505,36171345,69323954,
+    :          93306185,75259914,34159646,20321736,47355262,30621843,11728976,
+    :          30523628,30523625,94479547,30523626,56513173,82456576,92331214,
+    :          64278029,96590062,8173694,35768768,86142507,30870723,30870722,
+    :          30870721,30870720,28257540,94599137,45869640,94599138,94599139,
+    :          14953989,47483213,58743454,58743455,96929765,58743453,20321734,
+    :          24748479,87479580,20321735,94599140,20321733,88987917,49513306,
+    :          91845162,7481378,53302993,60392862,60392860,60392861,
+    :          32197588}: bad (35177/550)
+    solver in {92521299,7948153}: good (1119/39)
+    solver = 43707384:
+    :...nnz > 306: bad (236)
+    :   nnz <= 306:
+    :   :...AbsoluteTrace <= 7219.66: bad (8)
+    :       AbsoluteTrace > 7219.66: good (5)
+    solver = 37410328:
+    :...nnz <= 52146.1: good (134/25)
+    :   nnz > 52146.1:
+    :   :...nnz <= 291189: good (120/57)
+    :       nnz > 291189: bad (23/1)
+    solver = 95762353:
+    :...DiagonalMean > -0.473053: bad (221/13)
+    :   DiagonalMean <= -0.473053:
+    :   :...FrobeniusNorn <= 769658: good (13/4)
+    :       FrobeniusNorn > 769658: bad (18/4)
+    solver = 95279263:
+    :...SymmetricInfinityNorm > 0.2273: bad (227/2)
+    :   SymmetricInfinityNorm <= 0.2273:
+    :   :...FrobeniusNorn <= 15051.6: bad (15)
+    :       FrobeniusNorn > 15051.6: good (4)
+    solver = 6735028:
+    :...nnz <= 492496: good (246/5)
+    :   nnz > 492496:
+    :   :...FrobeniusNorn <= 220527: good (7/1)
+    :       FrobeniusNorn > 220527: bad (6/1)
+    solver = 52198660:
+    :...nnz > 37156: bad (242/10)
+    :   nnz <= 37156:
+    :   :...AbsoluteTrace > 18.15: bad (208/59)
+    :       AbsoluteTrace <= 18.15:
+    :       :...OneNorm <= 1.52583: bad (11/3)
+    :           OneNorm > 1.52583: good (87/13)
+    solver = 37410331:
+    :...nnz > 12929.6:
+    :   :...DiagonalMean <= -154.912: good (10/2)
+    :   :   DiagonalMean > -154.912: bad (178/52)
+    :   nnz <= 12929.6:
+    :   :...OneNorm <= 21210.5: good (62)
+    :       OneNorm > 21210.5:
+    :       :...OneNorm <= 91807.7: bad (5/1)
+    :           OneNorm > 91807.7: good (27/4)
+    solver = 62466491:
+    :...nnz > 308.2: bad (238)
+    :   nnz <= 308.2:
+    :   :...AbsoluteTrace > 494.48: good (4)
+    :       AbsoluteTrace <= 494.48:
+    :       :...OneNorm <= 0.369505: good (2)
+    :           OneNorm > 0.369505: bad (7)
+    solver = 58743452:
+    :...nnz <= 78173.6:
+    :   :...nnz <= 20598.5: bad (79/16)
+    :   :   nnz > 20598.5:
+    :   :   :...nnz <= 26392.5: good (6)
+    :   :       nnz > 26392.5: bad (35/14)
+    :   nnz > 78173.6:
+    :   :...nnz <= 100582: bad (62)
+    :       nnz > 100582:
+    :       :...nnz <= 105882: good (3)
+    :           nnz > 105882: bad (48/6)
+    solver = 96590063:
+    :...nnz > 19639.6: bad (278/1)
+    :   nnz <= 19639.6:
+    :   :...nnz <= 18578: bad (244/39)
+    :       nnz > 18578:
+    :       :...OneNorm <= 15002.7: bad (3)
+    :           OneNorm > 15002.7: good (13/2)
+    solver = 45850728:
+    :...nnz > 20296: bad (283/5)
+    :   nnz <= 20296:
+    :   :...AbsoluteTrace > 26.7968: bad (172/44)
+    :       AbsoluteTrace <= 26.7968:
+    :       :...SymmetricInfinityNorm <= 0.000306: bad (21/9)
+    :           SymmetricInfinityNorm > 0.000306: good (84/18)
+    solver = 52421328:
+    :...nnz > 40000: bad (224/1)
+    :   nnz <= 40000:
+    :   :...AbsoluteTrace <= 26.7968:
+    :       :...SymmetricInfinityNorm <= 0.125357: bad (32/3)
+    :       :   SymmetricInfinityNorm > 0.125357: good (98/28)
+    :       AbsoluteTrace > 26.7968:
+    :       :...DiagonalMean > -0.034104: bad (155/19)
+    :           DiagonalMean <= -0.034104:
+    :           :...AbsoluteTrace <= 147.445: good (5)
+    :               AbsoluteTrace > 147.445: bad (50/14)
+    solver = 52421325:
+    :...AbsoluteTrace > 26.7968: bad (409/48)
+    :   AbsoluteTrace <= 26.7968:
+    :   :...SymmetricInfinityNorm <= 2.8e-05: bad (31/5)
+    :       SymmetricInfinityNorm > 2.8e-05:
+    :       :...nnz <= 37156:
+    :           :...OneNorm <= 1.07514: bad (5)
+    :           :   OneNorm > 1.07514: good (91/13)
+    :           nnz > 37156:
+    :           :...DiagonalMean <= 3e-06: bad (11/1)
+    :               DiagonalMean > 3e-06: good (4)
+    solver = 52421326:
+    :...nnz <= 51480:
+    :   :...AbsoluteTrace <= 665.149:
+    :   :   :...FrobeniusNorn > 104.626: good (119/13)
+    :   :   :   FrobeniusNorn <= 104.626:
+    :   :   :   :...AbsoluteTrace <= 8.6e-05: good (10/1)
+    :   :   :       AbsoluteTrace > 8.6e-05: bad (43/14)
+    :   :   AbsoluteTrace > 665.149:
+    :   :   :...OneNorm <= 4182.83: bad (64/16)
+    :   :       OneNorm > 4182.83:
+    :   :       :...OneNorm <= 4865.9: good (9)
+    :   :           OneNorm > 4865.9: bad (50/13)
+    :   nnz > 51480:
+    :   :...FrobeniusNorn > 11417.4: bad (167/8)
+    :       FrobeniusNorn <= 11417.4:
+    :       :...SymmetricInfinityNorm <= 7.40762: bad (33/4)
+    :           SymmetricInfinityNorm > 7.40762:
+    :           :...OneNorm <= 163.181: good (12)
+    :               OneNorm > 163.181: bad (3)
+    solver = 91914995:
+    :...nnz > 88209: bad (137/11)
+    :   nnz <= 88209:
+    :   :...FrobeniusNorn <= 2.64214:
+    :       :...FrobeniusNorn <= 0.017671: good (11/2)
+    :       :   FrobeniusNorn > 0.017671: bad (25/1)
+    :       FrobeniusNorn > 2.64214:
+    :       :...nnz <= 20598.5: good (257/42)
+    :           nnz > 20598.5:
+    :           :...nnz <= 80992.2: bad (84/17)
+    :               nnz > 80992.2: good (72/7)
+    solver = 52198657:
+    :...nnz <= 19639.6:
+    :   :...AbsoluteTrace <= 18.6585: good (104/26)
+    :   :   AbsoluteTrace > 18.6585:
+    :   :   :...FrobeniusNorn <= 26.0488: bad (24)
+    :   :       FrobeniusNorn > 26.0488:
+    :   :       :...AbsoluteTrace <= 91.7207: good (13/2)
+    :   :           AbsoluteTrace > 91.7207: bad (129/41)
+    :   nnz > 19639.6:
+    :   :...AbsoluteTrace > 23.6: bad (253/1)
+    :       AbsoluteTrace <= 23.6:
+    :       :...DiagonalMean > 2.6e-05: good (3)
+    :           DiagonalMean <= 2.6e-05:
+    :           :...SymmetricInfinityNorm <= 13.5: bad (22/1)
+    :               SymmetricInfinityNorm > 13.5: good (4)
+    solver = 7668973:
+    :...nnz > 19639.6: bad (295/2)
+    :   nnz <= 19639.6:
+    :   :...AbsoluteTrace > 288.44: bad (98/14)
+    :       AbsoluteTrace <= 288.44:
+    :       :...FrobeniusNorn <= 12.983: bad (31/2)
+    :           FrobeniusNorn > 12.983:
+    :           :...DiagonalMean <= 0.411534: good (140/46)
+    :               DiagonalMean > 0.411534: bad (12/3)
+    solver = 96590060:
+    :...AbsoluteTrace <= 0.021838:
+    :   :...nnz > 38332.3: bad (20)
+    :   :   nnz <= 38332.3:
+    :   :   :...SymmetricInfinityNorm <= 2.8e-05: bad (19/1)
+    :   :       SymmetricInfinityNorm > 2.8e-05: good (77/34)
+    :   AbsoluteTrace > 0.021838:
+    :   :...nnz > 50209.5: bad (216)
+    :       nnz <= 50209.5:
+    :       :...nnz > 1818: bad (173/14)
+    :           nnz <= 1818:
+    :           :...AbsoluteTrace <= 1635.54: good (27/11)
+    :               AbsoluteTrace > 1635.54: bad (19/1)
+    solver = 95762355:
+    :...nnz <= 72975.7:
+    :   :...OneNorm <= 2.69739: bad (17/1)
+    :   :   OneNorm > 2.69739:
+    :   :   :...SymmetricInfinityNorm <= 735.5: good (39/10)
+    :   :       SymmetricInfinityNorm > 735.5: bad (57/19)
+    :   nnz > 72975.7:
+    :   :...nnz <= 89910: bad (57)
+    :       nnz > 89910:
+    :       :...nnz <= 122511: good (8/1)
+    :           nnz > 122511:
+    :           :...SymmetricInfinityNorm <= 4.67257: bad (18)
+    :               SymmetricInfinityNorm > 4.67257:
+    :               :...DiagonalMean <= 1.73581: good (8/2)
+    :                   DiagonalMean > 1.73581: bad (27/3)
+    solver = 16465898:
+    :...DiagonalMean > 8: bad (148/23)
+    :   DiagonalMean <= 8:
+    :   :...OneNorm <= 5308.58: bad (288/95)
+    :       OneNorm > 5308.58:
+    :       :...DiagonalMean > -25629.6:
+    :           :...nnz <= 602844: good (76/6)
+    :           :   nnz > 602844: bad (5/1)
+    :           DiagonalMean <= -25629.6:
+    :           :...OneNorm <= 1.14811e+07: bad (5)
+    :               OneNorm > 1.14811e+07:
+    :               :...nnz <= 3264: bad (4/1)
+    :                   nnz > 3264: good (4)
+    solver = 22938022:
+    :...nnz > 34502:
+    :   :...SymmetricInfinityNorm <= 3.81903e+09: bad (242/15)
+    :   :   SymmetricInfinityNorm > 3.81903e+09:
+    :   :   :...FrobeniusNorn <= 5.65942e+15: bad (5)
+    :   :       FrobeniusNorn > 5.65942e+15: good (3)
+    :   nnz <= 34502:
+    :   :...FrobeniusNorn <= 2.64214: bad (28/2)
+    :       FrobeniusNorn > 2.64214:
+    :       :...AbsoluteTrace <= 91.7207: good (115/19)
+    :           AbsoluteTrace > 91.7207:
+    :           :...FrobeniusNorn <= 4.46151e+07: bad (129/52)
+    :               FrobeniusNorn > 4.46151e+07:
+    :               :...AbsoluteTrace <= 3.02537e+07: good (13/1)
+    :                   AbsoluteTrace > 3.02537e+07: bad (14/4)
+    solver = 52421327:
+    :...nnz > 20598.5: bad (306/6)
+    :   nnz <= 20598.5:
+    :   :...AbsoluteTrace > 18.6585:
+    :       :...SymmetricInfinityNorm > 1059970: bad (18)
+    :       :   SymmetricInfinityNorm <= 1059970:
+    :       :   :...DiagonalMean <= 36932.7: bad (148/25)
+    :       :       DiagonalMean > 36932.7: good (8/1)
+    :       AbsoluteTrace <= 18.6585:
+    :       :...DiagonalMean > 0.038068: good (5)
+    :           DiagonalMean <= 0.038068:
+    :           :...SymmetricInfinityNorm <= 2.8e-05: bad (15/2)
+    :               SymmetricInfinityNorm > 2.8e-05:
+    :               :...nnz <= 5382: good (21/4)
+    :                   nnz > 5382: bad (52/22)
+    solver = 71466616:
+    :...DiagonalMean > 0.05049: good (215/17)
+    :   DiagonalMean <= 0.05049:
+    :   :...OneNorm <= 0.725091: good (21/1)
+    :       OneNorm > 0.725091:
+    :       :...DiagonalMean > -0.280639:
+    :           :...DiagonalMean <= 0.001682: bad (111)
+    :           :   DiagonalMean > 0.001682:
+    :           :   :...SymmetricInfinityNorm <= 0.778488: good (4)
+    :           :       SymmetricInfinityNorm > 0.778488: bad (7)
+    :           DiagonalMean <= -0.280639:
+    :           :...OneNorm <= 4416.59: good (18)
+    :               OneNorm > 4416.59:
+    :               :...DiagonalMean > -495.047: bad (12)
+    :                   DiagonalMean <= -495.047:
+    :                   :...nnz <= 131066: good (10)
+    :                       nnz > 131066: bad (6/2)
+    solver = 12926476:
+    :...AbsoluteTrace <= 26.7968:
+    :   :...nnz <= 28358.4:
+    :   :   :...OneNorm <= 1.20361: bad (8/1)
+    :   :   :   OneNorm > 1.20361: good (102/23)
+    :   :   nnz > 28358.4:
+    :   :   :...SymmetricInfinityNorm <= 13.5: bad (31/2)
+    :   :       SymmetricInfinityNorm > 13.5: good (3)
+    :   AbsoluteTrace > 26.7968:
+    :   :...nnz > 20296: bad (266/1)
+    :       nnz <= 20296:
+    :       :...FrobeniusNorn <= 40.4823: bad (31)
+    :           FrobeniusNorn > 40.4823:
+    :           :...AbsoluteTrace <= 121.706: good (11/2)
+    :               AbsoluteTrace > 121.706:
+    :               :...SymmetricInfinityNorm > 3067320: bad (15)
+    :                   SymmetricInfinityNorm <= 3067320:
+    :                   :...SymmetricInfinityNorm <= 615858: bad (110/28)
+    :                       SymmetricInfinityNorm > 615858: good (7/1)
+    solver = 93485612:
+    :...OneNorm <= 2.9574: bad (89/7)
+    :   OneNorm > 2.9574:
+    :   :...nnz > 406602:
+    :       :...AbsoluteTrace <= 36106.6: bad (13)
+    :       :   AbsoluteTrace > 36106.6: good (23/8)
+    :       nnz <= 406602:
+    :       :...OneNorm > 616.723: good (238/8)
+    :           OneNorm <= 616.723:
+    :           :...nnz <= 171240: good (174/47)
+    :               nnz > 171240:
+    :               :...nnz > 297616: good (5)
+    :                   nnz <= 297616:
+    :                   :...AbsoluteTrace <= 2850.95: good (5/1)
+    :                       AbsoluteTrace > 2850.95: bad (9)
+    solver = 37410330:
+    :...nnz > 89910:
+    :   :...DiagonalMean > 0.00144: bad (60/2)
+    :   :   DiagonalMean <= 0.00144:
+    :   :   :...nnz <= 185706: good (3)
+    :   :       nnz > 185706: bad (5/1)
+    :   nnz <= 89910:
+    :   :...nnz > 74037: good (61)
+    :       nnz <= 74037:
+    :       :...nnz <= 11673.6: good (88/9)
+    :           nnz > 11673.6:
+    :           :...DiagonalMean <= -0.158577: good (8/1)
+    :               DiagonalMean > -0.158577:
+    :               :...OneNorm > 3.08975: bad (51/4)
+    :                   OneNorm <= 3.08975:
+    :                   :...nnz <= 34516.9: good (4)
+    :                       nnz > 34516.9: bad (2)
+    solver = 12926477:
+    :...nnz > 20296: bad (293/7)
+    :   nnz <= 20296:
+    :   :...AbsoluteTrace <= 31.1259:
+    :       :...OneNorm <= 0.068779: bad (8)
+    :       :   OneNorm > 0.068779: good (95/22)
+    :       AbsoluteTrace > 31.1259:
+    :       :...AbsoluteTrace <= 1635.54:
+    :           :...FrobeniusNorn <= 1747.23: bad (69/17)
+    :           :   FrobeniusNorn > 1747.23:
+    :           :   :...OneNorm <= 1.01179e+09: good (17/1)
+    :           :       OneNorm > 1.01179e+09: bad (2)
+    :           AbsoluteTrace > 1635.54:
+    :           :...FrobeniusNorn <= 4.12661e+07: bad (63/6)
+    :               FrobeniusNorn > 4.12661e+07:
+    :               :...FrobeniusNorn <= 7.3671e+07: good (6)
+    :                   FrobeniusNorn > 7.3671e+07:
+    :                   :...DiagonalMean <= -38.3517: good (10/4)
+    :                       DiagonalMean > -38.3517: bad (12)
+    solver = 12271644:
+    :...DiagonalMean > -0.080865: bad (475/40)
+    :   DiagonalMean <= -0.080865:
+    :   :...FrobeniusNorn <= 4187.53: bad (18)
+    :       FrobeniusNorn > 4187.53:
+    :       :...SymmetricInfinityNorm <= 3.54364: good (9)
+    :           SymmetricInfinityNorm > 3.54364:
+    :           :...FrobeniusNorn <= 250586: bad (15)
+    :               FrobeniusNorn > 250586:
+    :               :...DiagonalMean > -2.52248: bad (7)
+    :                   DiagonalMean <= -2.52248:
+    :                   :...AbsoluteTrace <= 1313190: good (7)
+    :                       AbsoluteTrace > 1313190: bad (25/10)
+    solver = 22938021:
+    :...nnz > 72975.7: bad (201/33)
+    :   nnz <= 72975.7:
+    :   :...AbsoluteTrace > 3.38871e+07: bad (27/4)
+    :       AbsoluteTrace <= 3.38871e+07:
+    :       :...FrobeniusNorn <= 0.271111:
+    :           :...nnz <= 66: good (6)
+    :           :   nnz > 66: bad (13/3)
+    :           FrobeniusNorn > 0.271111:
+    :           :...AbsoluteTrace <= 53.125: good (130/6)
+    :               AbsoluteTrace > 53.125:
+    :               :...nnz <= 18144: good (121/29)
+    :                   nnz > 18144:
+    :                   :...FrobeniusNorn <= 975.82: bad (7)
+    :                       FrobeniusNorn > 975.82: good (43/12)
+    solver = 21591612:
+    :...nnz > 71417.5: bad (207/36)
+    :   nnz <= 71417.5:
+    :   :...DiagonalMean > 80165.3: bad (19/3)
+    :       DiagonalMean <= 80165.3:
+    :       :...SymmetricInfinityNorm <= 0.426077:
+    :           :...OneNorm <= 0.083176: bad (10/1)
+    :           :   OneNorm > 0.083176:
+    :           :   :...AbsoluteTrace <= 26.7968: good (26/1)
+    :           :       AbsoluteTrace > 26.7968: bad (9/2)
+    :           SymmetricInfinityNorm > 0.426077:
+    :           :...AbsoluteTrace > 334.286:
+    :               :...OneNorm <= 8.10939: bad (11/1)
+    :               :   OneNorm > 8.10939: good (135/53)
+    :               AbsoluteTrace <= 334.286:
+    :               :...DiagonalMean <= 0.476933: good (140/8)
+    :                   DiagonalMean > 0.476933:
+    :                   :...nnz <= 703.8: good (5/1)
+    :                       nnz > 703.8: bad (4)
+    solver = 91914993:
+    :...nnz > 300000:
+    :   :...nnz > 647669: bad (23)
+    :   :   nnz <= 647669:
+    :   :   :...AbsoluteTrace <= 271901: bad (19/2)
+    :   :       AbsoluteTrace > 271901:
+    :   :       :...DiagonalMean <= 752.808: good (5)
+    :   :           DiagonalMean > 752.808: bad (2)
+    :   nnz <= 300000:
+    :   :...nnz <= 23075.9: good (277/2)
+    :       nnz > 23075.9:
+    :       :...FrobeniusNorn > 93702.6: good (112/8)
+    :           FrobeniusNorn <= 93702.6:
+    :           :...FrobeniusNorn <= 4427.19: good (40/1)
+    :               FrobeniusNorn > 4427.19:
+    :               :...DiagonalMean <= 0.856841: bad (25/7)
+    :                   DiagonalMean > 0.856841:
+    :                   :...OneNorm <= 1037.92: good (37/2)
+    :                       OneNorm > 1037.92: bad (9/2)
+    solver = 21591615:
+    :...nnz > 20296: bad (273/10)
+    :   nnz <= 20296:
+    :   :...DiagonalMean <= 0.516187:
+    :       :...DiagonalMean <= -241.457: bad (22/6)
+    :       :   DiagonalMean > -241.457:
+    :       :   :...nnz <= 5382: good (84/25)
+    :       :       nnz > 5382:
+    :       :       :...SymmetricInfinityNorm <= 138.512: bad (72/17)
+    :       :           SymmetricInfinityNorm > 138.512: good (35/10)
+    :       DiagonalMean > 0.516187:
+    :       :...FrobeniusNorn <= 454717: bad (43/4)
+    :           FrobeniusNorn > 454717:
+    :           :...SymmetricInfinityNorm > 2463420: bad (11/1)
+    :               SymmetricInfinityNorm <= 2463420:
+    :               :...nnz <= 2988: good (9)
+    :                   nnz > 2988:
+    :                   :...nnz <= 12693.5: bad (4)
+    :                       nnz > 12693.5: good (3)
+    solver = 71929702:
+    :...AbsoluteTrace <= 115.763: bad (134/1)
+    :   AbsoluteTrace > 115.763:
+    :   :...DiagonalMean > 869.178: bad (76/5)
+    :       DiagonalMean <= 869.178:
+    :       :...nnz > 80992.2:
+    :           :...nnz <= 94290.4: bad (31/1)
+    :           :   nnz > 94290.4:
+    :           :   :...DiagonalMean <= 118.918: bad (65/18)
+    :           :       DiagonalMean > 118.918: good (7/1)
+    :           nnz <= 80992.2:
+    :           :...FrobeniusNorn <= 3753.54: bad (38/8)
+    :               FrobeniusNorn > 3753.54:
+    :               :...AbsoluteTrace > 3.35609e+10: good (3)
+    :                   AbsoluteTrace <= 3.35609e+10:
+    :                   :...OneNorm <= 1655.83: good (34/7)
+    :                       OneNorm > 1655.83: bad (29/13)
+    solver = 99720138:
+    :...OneNorm <= 2.69739: bad (28)
+    :   OneNorm > 2.69739:
+    :   :...DiagonalMean <= 1.58114:
+    :       :...nnz > 408842: bad (5)
+    :       :   nnz <= 408842:
+    :       :   :...SymmetricInfinityNorm <= 735.5: good (37/11)
+    :       :       SymmetricInfinityNorm > 735.5:
+    :       :       :...DiagonalMean > -1375.31: bad (9)
+    :       :           DiagonalMean <= -1375.31:
+    :       :           :...nnz <= 50209.5: bad (14/5)
+    :       :               nnz > 50209.5: good (3)
+    :       DiagonalMean > 1.58114:
+    :       :...nnz > 80992.2:
+    :           :...nnz <= 94137: bad (60)
+    :           :   nnz > 94137:
+    :           :   :...nnz <= 109209: good (5/1)
+    :           :       nnz > 109209: bad (25/3)
+    :           nnz <= 80992.2:
+    :           :...AbsoluteTrace > 1006490: bad (30/3)
+    :               AbsoluteTrace <= 1006490:
+    :               :...nnz > 19108.8: good (10)
+    :                   nnz <= 19108.8:
+    :                   :...OneNorm > 2897120: good (2)
+    :                       OneNorm <= 2897120:
+    :                       :...SymmetricInfinityNorm <= 5.75586: good (2)
+    :                           SymmetricInfinityNorm > 5.75586: bad (21/3)
+    solver = 9786219:
+    :...FrobeniusNorn <= 695.252: bad (33)
+    :   FrobeniusNorn > 695.252:
+    :   :...AbsoluteTrace <= 9760.81:
+    :       :...SymmetricInfinityNorm <= 12.7483: bad (34/15)
+    :       :   SymmetricInfinityNorm > 12.7483: good (5)
+    :       AbsoluteTrace > 9760.81:
+    :       :...FrobeniusNorn > 1.83767e+13:
+    :           :...nnz <= 16368: bad (4/1)
+    :           :   nnz > 16368: good (5)
+    :           FrobeniusNorn <= 1.83767e+13:
+    :           :...nnz > 50209.5: bad (99/4)
+    :               nnz <= 50209.5:
+    :               :...nnz > 19639.6: good (12/4)
+    :                   nnz <= 19639.6:
+    :                   :...OneNorm <= 4380410: bad (27)
+    :                       OneNorm > 4380410:
+    :                       :...AbsoluteTrace <= 1.29725e+08: good (3)
+    :                           AbsoluteTrace > 1.29725e+08: bad (10)
+    solver = 52198658:
+    :...nnz > 19639.6:
+    :   :...AbsoluteTrace > 23.6: bad (252)
+    :   :   AbsoluteTrace <= 23.6:
+    :   :   :...DiagonalMean <= 2.6e-05: bad (33/3)
+    :   :       DiagonalMean > 2.6e-05: good (3)
+    :   nnz <= 19639.6:
+    :   :...FrobeniusNorn <= 1.64787: bad (30/1)
+    :       FrobeniusNorn > 1.64787:
+    :       :...AbsoluteTrace <= 288.44:
+    :           :...SymmetricInfinityNorm <= 1.8e-05: bad (10/2)
+    :           :   SymmetricInfinityNorm > 1.8e-05: good (146/48)
+    :           AbsoluteTrace > 288.44:
+    :           :...OneNorm <= 4182.83: bad (45/3)
+    :               OneNorm > 4182.83:
+    :               :...OneNorm <= 4845.88: good (7/1)
+    :                   OneNorm > 4845.88:
+    :                   :...FrobeniusNorn <= 4.12661e+07: bad (19)
+    :                       FrobeniusNorn > 4.12661e+07:
+    :                       :...SymmetricInfinityNorm <= 3067320: good (13/4)
+    :                           SymmetricInfinityNorm > 3067320: bad (10)
+    solver = 7668975:
+    :...AbsoluteTrace > 222.026:
+    :   :...nnz > 20296: bad (248/5)
+    :   :   nnz <= 20296:
+    :   :   :...nnz > 8540:
+    :   :       :...AbsoluteTrace <= 426965: bad (18/5)
+    :   :       :   AbsoluteTrace > 426965: good (10/1)
+    :   :       nnz <= 8540:
+    :   :       :...AbsoluteTrace > 1584.5: bad (63/5)
+    :   :           AbsoluteTrace <= 1584.5:
+    :   :           :...SymmetricInfinityNorm <= 61.8454: bad (10/2)
+    :   :               SymmetricInfinityNorm > 61.8454: good (5)
+    :   AbsoluteTrace <= 222.026:
+    :   :...FrobeniusNorn <= 26.0488:
+    :       :...AbsoluteTrace > 14.4095: bad (22)
+    :       :   AbsoluteTrace <= 14.4095:
+    :       :   :...OneNorm <= 0.002653: bad (12/1)
+    :       :       OneNorm > 0.002653: good (5)
+    :       FrobeniusNorn > 26.0488:
+    :       :...nnz > 56592.8: bad (14)
+    :           nnz <= 56592.8:
+    :           :...AbsoluteTrace > 91.7207: bad (31/14)
+    :               AbsoluteTrace <= 91.7207:
+    :               :...nnz <= 23075.9: good (100/13)
+    :                   nnz > 23075.9:
+    :                   :...SymmetricInfinityNorm > 12.2055: good (2)
+    :                       SymmetricInfinityNorm <= 12.2055:
+    :                       :...OneNorm <= 10.9369: good (5/1)
+    :                           OneNorm > 10.9369: bad (7)
+    solver = 96689089:
+    :...DiagonalMean > 3e-06:
+    :   :...nnz <= 4849.8: good (78/36)
+    :   :   nnz > 4849.8:
+    :   :   :...nnz > 475608: bad (26)
+    :   :       nnz <= 475608:
+    :   :       :...nnz <= 101598: bad (176/27)
+    :   :           nnz > 101598:
+    :   :           :...FrobeniusNorn > 39391.2: good (33/13)
+    :   :               FrobeniusNorn <= 39391.2:
+    :   :               :...nnz <= 107916: good (2)
+    :   :                   nnz > 107916: bad (26/5)
+    :   DiagonalMean <= 3e-06:
+    :   :...OneNorm <= 1.00005: bad (13)
+    :       OneNorm > 1.00005:
+    :       :...AbsoluteTrace > 3.38871e+07: bad (18/6)
+    :           AbsoluteTrace <= 3.38871e+07:
+    :           :...SymmetricInfinityNorm <= 0.002653: bad (30/13)
+    :               SymmetricInfinityNorm > 0.002653:
+    :               :...OneNorm <= 2144.36:
+    :                   :...SymmetricInfinityNorm <= 99.6897: good (57/6)
+    :                   :   SymmetricInfinityNorm > 99.6897: bad (16/6)
+    :                   OneNorm > 2144.36:
+    :                   :...SymmetricInfinityNorm <= 53401.7: good (71/1)
+    :                       SymmetricInfinityNorm > 53401.7:
+    :                       :...AbsoluteTrace <= 46583.8: bad (3)
+    :                           AbsoluteTrace > 46583.8: good (4)
+    solver = 45850725:
+    :...AbsoluteTrace <= 26.7968:
+    :   :...nnz > 128320: bad (10)
+    :   :   nnz <= 128320:
+    :   :   :...SymmetricInfinityNorm <= 0.3188: bad (35/16)
+    :   :       SymmetricInfinityNorm > 0.3188: good (86/9)
+    :   AbsoluteTrace > 26.7968:
+    :   :...nnz > 28358.4: bad (236/6)
+    :       nnz <= 28358.4:
+    :       :...SymmetricInfinityNorm > 3067320: bad (18)
+    :           SymmetricInfinityNorm <= 3067320:
+    :           :...SymmetricInfinityNorm > 912430: good (9)
+    :               SymmetricInfinityNorm <= 912430:
+    :               :...DiagonalMean > 2.68588: bad (35/3)
+    :                   DiagonalMean <= 2.68588:
+    :                   :...DiagonalMean <= -343.467: bad (9)
+    :                       DiagonalMean > -343.467:
+    :                       :...AbsoluteTrace <= 426965: bad (106/38)
+    :                           AbsoluteTrace > 426965: good (9)
+    solver = 12926479:
+    :...nnz > 28358.4: bad (262/15)
+    :   nnz <= 28358.4:
+    :   :...AbsoluteTrace <= 18.15:
+    :       :...OneNorm <= 1.29469: bad (7/2)
+    :       :   OneNorm > 1.29469:
+    :       :   :...SymmetricInfinityNorm > 18.326: good (40)
+    :       :       SymmetricInfinityNorm <= 18.326:
+    :       :       :...SymmetricInfinityNorm <= 4.47444: good (41/5)
+    :       :           SymmetricInfinityNorm > 4.47444: bad (3)
+    :       AbsoluteTrace > 18.15:
+    :       :...FrobeniusNorn <= 16.5784: bad (25)
+    :           FrobeniusNorn > 16.5784:
+    :           :...DiagonalMean <= 0.476933:
+    :               :...AbsoluteTrace > 136.716: bad (73/30)
+    :               :   AbsoluteTrace <= 136.716:
+    :               :   :...OneNorm <= 0.943108: bad (2)
+    :               :       OneNorm > 0.943108: good (16/1)
+    :               DiagonalMean > 0.476933:
+    :               :...FrobeniusNorn <= 5023.48: bad (29)
+    :                   FrobeniusNorn > 5023.48:
+    :                   :...SymmetricInfinityNorm <= 90.57: good (9/2)
+    :                       SymmetricInfinityNorm > 90.57:
+    :                       :...OneNorm > 2000020: bad (15)
+    :                           OneNorm <= 2000020:
+    :                           :...SymmetricInfinityNorm <= 615858: bad (15/2)
+    :                               SymmetricInfinityNorm > 615858: good (3)
+    solver = 22938023:
+    :...nnz > 37156: bad (257/7)
+    :   nnz <= 37156:
+    :   :...DiagonalMean > 7e-06: bad (136/43)
+    :       DiagonalMean <= 7e-06:
+    :       :...SymmetricInfinityNorm <= 2.8e-05: bad (18/4)
+    :           SymmetricInfinityNorm > 2.8e-05:
+    :           :...AbsoluteTrace <= 182.729: good (85/11)
+    :               AbsoluteTrace > 182.729:
+    :               :...DiagonalMean > -3.97704: bad (5)
+    :                   DiagonalMean <= -3.97704:
+    :                   :...FrobeniusNorn <= 5537.91: good (10)
+    :                       FrobeniusNorn > 5537.91:
+    :                       :...SymmetricInfinityNorm <= 163.347: bad (4)
+    :                           SymmetricInfinityNorm > 163.347:
+    :                           :...SymmetricInfinityNorm <= 12144.1: good (10/1)
+    :                               SymmetricInfinityNorm > 12144.1: bad (12/4)
+    solver = 21591614:
+    :...nnz > 19639.6: bad (293/13)
+    :   nnz <= 19639.6:
+    :   :...FrobeniusNorn <= 2.64214: bad (33/1)
+    :       FrobeniusNorn > 2.64214:
+    :       :...AbsoluteTrace > 91.7207:
+    :           :...DiagonalMean > -0.289201: bad (88/22)
+    :           :   DiagonalMean <= -0.289201:
+    :           :   :...DiagonalMean > -400.406: good (28/6)
+    :           :       DiagonalMean <= -400.406:
+    :           :       :...OneNorm <= 5.97911e+07: bad (11)
+    :           :           OneNorm > 5.97911e+07: good (4/1)
+    :           AbsoluteTrace <= 91.7207:
+    :           :...SymmetricInfinityNorm <= 4.7e-05:
+    :               :...FrobeniusNorn > 2798.31: bad (3)
+    :               :   FrobeniusNorn <= 2798.31:
+    :               :   :...nnz <= 3952.7: bad (4/1)
+    :               :       nnz > 3952.7: good (3)
+    :               SymmetricInfinityNorm > 4.7e-05:
+    :               :...SymmetricInfinityNorm > 2416.44: bad (6/2)
+    :                   SymmetricInfinityNorm <= 2416.44:
+    :                   :...SymmetricInfinityNorm > 20.9777: good (29)
+    :                       SymmetricInfinityNorm <= 20.9777:
+    :                       :...SymmetricInfinityNorm <= 3.2172: good (28/2)
+    :                           SymmetricInfinityNorm > 3.2172:
+    :                           :...FrobeniusNorn <= 967.657: bad (5)
+    :                               FrobeniusNorn > 967.657: good (21/4)
+    solver = 52198659:
+    :...AbsoluteTrace <= 222.373:
+    :   :...nnz <= 56592.8: good (166/14)
+    :   :   nnz > 56592.8: bad (23/4)
+    :   AbsoluteTrace > 222.373:
+    :   :...DiagonalMean > 7.93211: bad (152/11)
+    :       DiagonalMean <= 7.93211:
+    :       :...nnz > 343308: bad (31)
+    :           nnz <= 343308:
+    :           :...DiagonalMean <= -5712.76: bad (14/1)
+    :               DiagonalMean > -5712.76:
+    :               :...OneNorm <= 14: bad (40/7)
+    :                   OneNorm > 14:
+    :                   :...OneNorm > 674520: good (10)
+    :                       OneNorm <= 674520:
+    :                       :...DiagonalMean <= 1.81105: bad (68/30)
+    :                           DiagonalMean > 1.81105:
+    :                           :...FrobeniusNorn <= 143757: good (29/5)
+    :                               FrobeniusNorn > 143757: bad (2)
+    solver = 81986705:
+    :...DiagonalMean > 3.75586:
+    :   :...nnz > 70076.6: bad (113/15)
+    :   :   nnz <= 70076.6:
+    :   :   :...nnz <= 32453: bad (47/15)
+    :   :       nnz > 32453: good (11)
+    :   DiagonalMean <= 3.75586:
+    :   :...FrobeniusNorn <= 82.4243: bad (63/16)
+    :       FrobeniusNorn > 82.4243:
+    :       :...OneNorm > 427:
+    :           :...nnz <= 546475: good (117/23)
+    :           :   nnz > 546475:
+    :           :   :...FrobeniusNorn <= 1.19981e+09: good (4/1)
+    :           :       FrobeniusNorn > 1.19981e+09: bad (4)
+    :           OneNorm <= 427:
+    :           :...OneNorm > 235.42: bad (23/6)
+    :               OneNorm <= 235.42:
+    :               :...SymmetricInfinityNorm > 9.06667: good (31/4)
+    :                   SymmetricInfinityNorm <= 9.06667:
+    :                   :...SymmetricInfinityNorm > 5.75586: bad (9/1)
+    :                       SymmetricInfinityNorm <= 5.75586:
+    :                       :...AbsoluteTrace <= 5964.31:
+    :                           :...FrobeniusNorn <= 30081.1: good (101/34)
+    :                           :   FrobeniusNorn > 30081.1: bad (6)
+    :                           AbsoluteTrace > 5964.31:
+    :                           :...FrobeniusNorn <= 20122.5: bad (7)
+    :                               FrobeniusNorn > 20122.5: good (3)
+    solver = 91914992:
+    :...nnz > 89910: bad (132/9)
+    :   nnz <= 89910:
+    :   :...nnz <= 4003.4: good (112/7)
+    :       nnz > 4003.4:
+    :       :...SymmetricInfinityNorm > 8.54694: good (182/33)
+    :           SymmetricInfinityNorm <= 8.54694:
+    :           :...SymmetricInfinityNorm <= 0.017545:
+    :               :...FrobeniusNorn <= 3753.54: good (13)
+    :               :   FrobeniusNorn > 3753.54:
+    :               :   :...OneNorm <= 3.61792e+07: bad (5/1)
+    :               :       OneNorm > 3.61792e+07: good (2)
+    :               SymmetricInfinityNorm > 0.017545:
+    :               :...FrobeniusNorn <= 12.2392: bad (22/1)
+    :                   FrobeniusNorn > 12.2392:
+    :                   :...nnz > 40660.8:
+    :                       :...OneNorm <= 9.10299: good (4/1)
+    :                       :   OneNorm > 9.10299: bad (20/1)
+    :                       nnz <= 40660.8:
+    :                       :...DiagonalMean > 0.69066: good (9)
+    :                           DiagonalMean <= 0.69066:
+    :                           :...SymmetricInfinityNorm > 4.67257: bad (7)
+    :                               SymmetricInfinityNorm <= 4.67257:
+    :                               :...AbsoluteTrace <= 1635.54: good (46/17)
+    :                                   AbsoluteTrace > 1635.54: bad (4/1)
+    solver = 45850726:
+    :...AbsoluteTrace <= 222.373:
+    :   :...nnz <= 34502:
+    :   :   :...DiagonalMean > 0.384057:
+    :   :   :   :...nnz <= 638.4: good (4)
+    :   :   :   :   nnz > 638.4: bad (5)
+    :   :   :   DiagonalMean <= 0.384057:
+    :   :   :   :...FrobeniusNorn > 150.293: good (119/2)
+    :   :   :       FrobeniusNorn <= 150.293:
+    :   :   :       :...DiagonalMean <= -5e-06: bad (4)
+    :   :   :           DiagonalMean > -5e-06: good (45/5)
+    :   :   nnz > 34502:
+    :   :   :...nnz > 166441: bad (9)
+    :   :       nnz <= 166441:
+    :   :       :...AbsoluteTrace > 18.6585: bad (2)
+    :   :           AbsoluteTrace <= 18.6585:
+    :   :           :...nnz <= 36239: bad (3)
+    :   :               nnz > 36239:
+    :   :               :...FrobeniusNorn <= 6868.4: good (8)
+    :   :                   FrobeniusNorn > 6868.4:
+    :   :                   :...FrobeniusNorn <= 2173110: bad (6/1)
+    :   :                       FrobeniusNorn > 2173110: good (3)
+    :   AbsoluteTrace > 222.373:
+    :   :...nnz > 76528.2: bad (169/17)
+    :       nnz <= 76528.2:
+    :       :...AbsoluteTrace > 3.02537e+07: bad (32/3)
+    :           AbsoluteTrace <= 3.02537e+07:
+    :           :...FrobeniusNorn > 4.12661e+07: good (14/1)
+    :               FrobeniusNorn <= 4.12661e+07:
+    :               :...FrobeniusNorn > 1275430: bad (13)
+    :                   FrobeniusNorn <= 1275430:
+    :                   :...SymmetricInfinityNorm <= 9: bad (42/10)
+    :                       SymmetricInfinityNorm > 9:
+    :                       :...nnz > 60048.3: good (7)
+    :                           nnz <= 60048.3:
+    :                           :...FrobeniusNorn <= 3943.51:
+    :                               :...AbsoluteTrace <= 3319.85: bad (11/4)
+    :                               :   AbsoluteTrace > 3319.85: good (15)
+    :                               FrobeniusNorn > 3943.51:
+    :                               :...FrobeniusNorn > 416730: good (4)
+    :                                   FrobeniusNorn <= 416730:
+    :                                   :...AbsoluteTrace <= 1845.39: good (4)
+    :                                       AbsoluteTrace > 1845.39: bad (35/7)
+    solver = 96590061:
+    :...nnz > 71417.5:
+        :...AbsoluteTrace > 33378: bad (119)
+        :   AbsoluteTrace <= 33378:
+        :   :...DiagonalMean <= 3.3521: bad (63)
+        :       DiagonalMean > 3.3521: good (9/3)
+        nnz <= 71417.5:
+        :...DiagonalMean > 3.68287:
+            :...nnz > 2286.9: bad (47/2)
+            :   nnz <= 2286.9:
+            :   :...nnz <= 842.4: bad (9)
+            :       nnz > 842.4:
+            :       :...SymmetricInfinityNorm <= 18190.5: bad (2)
+            :           SymmetricInfinityNorm > 18190.5: good (8/1)
+            DiagonalMean <= 3.68287:
+            :...SymmetricInfinityNorm <= 0.002653: bad (30/3)
+                SymmetricInfinityNorm > 0.002653:
+                :...AbsoluteTrace <= 18.6585: good (94/25)
+                    AbsoluteTrace > 18.6585:
+                    :...FrobeniusNorn <= 150.293: bad (43/8)
+                        FrobeniusNorn > 150.293:
+                        :...FrobeniusNorn > 8213.12: bad (57/15)
+                            FrobeniusNorn <= 8213.12:
+                            :...DiagonalMean <= -215.027: good (10)
+                                DiagonalMean > -215.027:
+                                :...AbsoluteTrace <= 222.373: good (24/3)
+                                    AbsoluteTrace > 222.373:
+                                    :...nnz <= 6666: bad (9)
+                                        nnz > 6666:
+                                        :...FrobeniusNorn <= 1854.94: bad (11/2)
+                                            FrobeniusNorn > 1854.94:
+                                            :...OneNorm <= 301: good (18/4)
+                                                OneNorm > 301: bad (2)
+
+
+Evaluation on training data (63729 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   420 4084( 6.4%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  9011  2527    (a): class good
+	  1557 50634    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  ColumnDiagonalDominance
+	     92%  solver
+	     38%  nnz
+	     24%  AbsoluteTrace
+	     15%  DiagonalMean
+	     10%  OneNorm
+	      8%  FrobeniusNorn
+	      7%  SymmetricInfinityNorm
+
+
+Evaluation on test data (32830 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	   420 2664( 8.1%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  4387  1613    (a): class good
+	  1051 25779    (b): class bad
+
+
+Time: 0.7 secs

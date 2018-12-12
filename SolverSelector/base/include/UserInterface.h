@@ -38,7 +38,7 @@ public:
 
     // Initialize is called after the parameters are set. Override if there are 
     // things to setup based on the parameters; 
-    virtual ErrorFlag Initialize() {};
+    virtual ErrorFlag Initialize() {return error_flag;};
 
     /** This function should solve the system Ax = b using the given solver and set 
      * the success flag accordingly. */

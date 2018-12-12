@@ -11,7 +11,7 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     KSPCreate(PETSC_COMM_WORLD,&_ksp);
     internal_prefix = "internal_";
     
-    AddParameter("mlinterface", "Waffles", "Choose a machine learning interface" );
+    AddParameter("mlinterface", "C50", "Choose a machine learning interface" );
     AddParameter("waffles.algorithm" , "RandomForest", "Choose the algorithm for Waffles");
     AddParameter("waffles.serialized", "", "Set the filename for waffles to read serialized model from");
     AddParameter("sqlite3.database", "./new_test_file.db", "Set the filename for sqlite3 database");
@@ -23,10 +23,14 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     AddParameter("petsc.matvec", "true", "Use Matvecs to extract samples" );
     AddParameter("power.interval","10000", "Interval in ns to sample power");
 
+    
+    PetscLogStageRegister("Actual Solve", &solveStage ) ;
+    PetscLogStageRegister("Extract", &extractStage ) ;
 }
 
 ErrorFlag PetscUI::Initialize() {
   SetTestingSpace();
+  return error_flag;
 }
 
 ErrorFlag
@@ -58,7 +62,7 @@ ErrorFlag
 PetscUI::GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &machine)
 {
 
-   if ( GetParameter("mlinterface") == "Waffles") {
+   if ( 0 && GetParameter("mlinterface") == "Waffles") {
 #ifdef WITH_WAFFLES   
     machine.reset( new WafflesInterface() ) ;
     machine->SetParameter("algorithm", GetParameter("waffles.algorithm") );
@@ -71,7 +75,7 @@ PetscUI::GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &ma
 #endif    
   } else {
     machine.reset( new C50Interface() );
-    machine->SetParameter("filestem", GetParameter("C50.filestem"));
+    machine->SetParameter("filestem", "./model" ); //GetParameter("C50.filestem"));
     machine->SetParameter("trials", GetParameter("C50.trials"));
     machine->SetParameter("database", GetParameter("C50.database"));
   }
@@ -92,7 +96,7 @@ PetscUI::ChangeSolver( KSP &A, Vec &x, Vec &b , bool &change_it )
 ErrorFlag
 PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
 {
-    
+    PetscLogStagePush(solveStage);
     if (use_internal_ksp) 
     {
         PetscCopyFunction(_ksp, ksp );
@@ -110,6 +114,7 @@ PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
         SetSolver(ksp, solver);
         KSPSolve(ksp,b,x);
     }    
+    PetscLogStagePop();
     success = (ksp->reason > 0 ) ;
     return 0;
 
@@ -163,8 +168,9 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
 ErrorFlag
 PetscUI::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
-      
+  PetscLogStagePush(extractStage);
   testing_space->extract_features( ksp, fmap, GetParameterAsInt("petsc.edgeSample"), GetParameterAsInt("petsc.internalSample"), GetParameterAsBool("petsc.matvec") );
+   PetscLogStagePop();  
     return error_flag;
 }
 

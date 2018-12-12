@@ -4537,8 +4537,11 @@ int C50Predictor::findAGoodSolver(std::map<std::string, double> &features) {
 
       for ( auto &it : solvers ) {
           sfeatures["solver"] = std::to_string(it);
+          
+          
           if ( Predict(sfeatures) ) 
-              return it ;
+            std::cout << "Found a good Solver " << it << std::endl;  
+            return it ;
       } 
 
       std::cout << " No good solvers found \n " ;
@@ -4668,6 +4671,7 @@ ErrorFlag C50Interface::BuildModelFromFile() {
       StringSplit(value, ",", result); 
       if ( result.size() == 2 ) {
         solverMap[std::atoi(result[0].c_str())] = result[1];
+        std::cout << result[0].c_str() << " " << result[1] << std::endl;
       }
   } 
   return 1;    
@@ -4675,7 +4679,13 @@ ErrorFlag C50Interface::BuildModelFromFile() {
 
 ErrorFlag C50Interface::ClassifyImpl( features_map &features, Solver &solver ) {
     if ( predictor ) {
+      
+      std::cout << "SDFSDFSDFSDFDSFSDFSDFDSFSDFDSFDSFS"<< std::endl;
+      
       int solverChoice = predictor->findAGoodSolver(features);
+      
+      std::cout << solverChoice << std::endl;
+      std::cout << solverMap[solverChoice] << std::endl;; 
       if ( solverChoice < 0 ) 
          solver.Clear();
       else 

@@ -20,7 +20,7 @@ typedef SolverSelecter<KSP,Vec> PetscSS;
 class PetscUI : public UserInterface<KSP,Vec>
 {
 public:
-
+    PetscLogStage extractStage, solveStage;
     KSP _ksp; 
     std::shared_ptr< PetscTestingSpace > testing_space;
     std::string internal_prefix;

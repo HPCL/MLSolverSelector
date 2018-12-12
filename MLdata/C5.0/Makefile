@@ -17,7 +17,6 @@ SHELL  = /bin/csh
 
 src =\
 	global.c\
-	c50online.c\
 	construct.c\
 	formtree.c\
 	info.c\
@@ -45,7 +44,7 @@ src =\
 	xval.c
 
 obj =\
-	 c50online.o global.o\
+	 global.o\
 	 construct.o formtree.o info.o discr.o contin.o subset.o prune.o\
 	 p-thresh.o trees.o\
 	 formrules.o siftrules.o ruletree.o rules.o\

@@ -16,9 +16,10 @@ def get_group_map(stats_file='ssstats.csv'):
 
 def convert_mm_binary(filename, output):
     A = scipy.io.mmread(filename)
+    print A.diagonal()
+    
     io = PBIO.PetscBinaryIO()
     io.writeMatSciPy(open(output,'w'),A) 
-
 def extract_tar( filename, edir="./"):
     return call(["tar", "-xf", filename, "-C" , edir ] )
 
@@ -73,7 +74,7 @@ def download_based_on_names( filename, direct ):
                     else : print "Already downloaded" , matrix_name
                 except:
                     pass
-download_based_on_names(sys.argv[1], sys.argv[2])
-
+#download_based_on_names(sys.argv[1], sys.argv[2])
+download_if_not_exists("bayer04", d="./test/")
 
 

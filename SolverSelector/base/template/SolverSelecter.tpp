@@ -235,7 +235,7 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
     else
     {
 
-        std::map<std::string, double> features_map;
+          std::map<std::string, double> features_map;
         std::cout <<  "Extracting Features \n "  << machinemodel << std::endl;;
         interface->ExtractFeatures( A, features_map);
         std::cout <<  "Extracted Features \n "  << machinemodel << std::endl;;

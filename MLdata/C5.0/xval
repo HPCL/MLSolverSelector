@@ -126,7 +126,7 @@ set r = 0
 while ( $r < $repeats )
 
     set outf = $filestem.o$r$label
-    c5.0 -f $filestem $opts -X $folds -I $r >$outf
+    ./c5.0 -f $filestem $opts -X $folds -I $r >$outf
     grep "<<" $outf >> $filestem.xsum
 
     @ r++

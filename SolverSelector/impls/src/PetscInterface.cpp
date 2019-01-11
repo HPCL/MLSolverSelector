@@ -211,12 +211,14 @@ PetscUI::InitMatrix( std::string filename, std::unique_ptr<KSP> &A )
     
     Mat mat_op;
     PetscViewer fd;
-
+    std::cout << " Loading Matrix " << filename << std::endl;
     MatCreate(PETSC_COMM_WORLD, &mat_op);
     PetscViewerBinaryOpen(PETSC_COMM_WORLD, filename.c_str(), FILE_MODE_READ, &fd);
     MatSetFromOptions(mat_op);
     MatLoad(mat_op,fd);
     
+    MatView(mat_op,PETSC_VIEWER_STDOUT_WORLD); 
+    std::cout << " Finished Loading Matrix " << std::endl;
     PetscViewerDestroy(&fd);
     KSPSetOperators(*A, mat_op, mat_op);
 

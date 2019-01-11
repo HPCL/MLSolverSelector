@@ -336,6 +336,11 @@ class PetscBinaryIO(object):
         if hasattr(mat, 'tocsr'):
             mat = mat.tocsr()
         assert isinstance(mat, csr_matrix)
+        
+        # Petsc Likes an explicit diagonal -- set it here because I have no idea
+        # how to do it in Petsc before the load (: 
+        mat.setdiag(mat.diagonal()+0)
+        
         V = mat.data
         M,N = mat.shape
         J = mat.indices

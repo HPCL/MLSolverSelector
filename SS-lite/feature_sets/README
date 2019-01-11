@@ -1,0 +1,36 @@
+
+
+This directory is used to manage the feature sets that are available in the SS-Lite 
+library when it is compiled. 
+
+Basically, the library supports a large number of features. However, it is propably
+the case that you do not need all of them, so this allows us to pick only the 
+features that are actually used in the model
+
+For performance reasons (way to many if statements), we implemented the Feature
+sets using MACROs. This means feature sets must be known in advance. 
+
+
+Adding a feature set is simple. 
+
+ 1) Copy the fullfeatureset.fs file from the templates directory to the impls directory 
+    and give it a unique name. Do not change the filename extension  -- i.e it must be <>.fs
+
+ 2) Open the new <unique>.fs file. In there is a list of #defines, the names of which are features
+    available in the code. Define any features you do not want to be zero -- i.e., 
+       
+      #define FEATURE _FEATURE -----> #define FEATURE 0 // _FEATURE
+  
+  3) Save the file. 
+
+  4) cd to feature_sets/ and run the ./generateExtraction.sh script. This will autogenerate the 
+     required C++ files and make the Feature set available in the library
+
+  5) cd .. back to the main directory and recompile the library
+       make clean && make && make install
+
+  6) Remake any examples, then when running you can pass the parameter -ksp_ss_featureset <your-unique-name-from-step-1> 
+
+
+Done  
+

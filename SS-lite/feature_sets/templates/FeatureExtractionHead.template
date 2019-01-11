@@ -1,0 +1,77 @@
+
+#ifndef __NAME__FeatureExtraction_H
+#define __NAME__FeatureExtraction_H
+
+#include <string>
+#include <iostream>
+#include <map>
+#include <vector>
+#include <numeric>
+#include <set>
+#include <memory>
+#include <mpi.h> // MPI Support
+#include <algorithm>
+#include "petscdmda.h"
+#include "petscksp.h"
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+
+// This will extract features from any PETSC matrix using mat-vecs and the sampling system. All features 
+// are seperated out using MACROS, so to change the feature set, we only need to change the macro definition
+// and recompile. This gets rid of a tonne of run-time if statements. 
+//
+// Symmetry based Features: Symmetry is somewhat finicky to implement in parallel. To avoid that, I implemented the symmetrical
+// features by gathering the sample data using a MPI sum inside the above all reduce command. Because we only
+// use sample data for these calcualtions, this equates to sending NUMSAMPLES**2 extra doubles in the communication buffer.
+// I don't see this ever being a problem unless the number of samples grows dramatically, in which case we will have other 
+// problems ( i.e, the mat-vecs ) . 
+
+
+// Define a tolerance for a value being non-zero
+#define NONZEROTOLERANCE 1e-125
+
+// Define a processor to do the final calcuations on 
+#define ROOTPROC 0
+
+// Defines for features supported. The value associated with each feature is the number of entries
+// used in the MPI buffer to do the communication. I.e, diagonal sign needs three places in the buffer
+// to make sure we can calculate the value of the root processor. 
+
+// MPI_SUM
+#define _NNZ 1 
+#define _AVGNONZEROSPERROW 1
+#define _ABSOLUTENONZEROSUM 1
+#define _FROBENIUSNORM 1 
+#define _AVERAGEDIAGONALDISTANCE 2                 
+#define _ROWVARIANCE 1
+#define _TRACE 1
+#define _ABSOLUTETRACE 1
+#define _DIAGONALMEAN 1          
+#define _DIAGONALAVERAGE 2    
+#define _DIAGONALNONZEROS 1 
+
+//MPI_MAX
+#define _INFINITYNORM 1
+#define _MAXNONZEROSPERROW 1
+#define _DIAGONALSIGN 3           
+#define _LOWERBANDWIDTH 1 
+#define _UPPERBANDWIDTH 1 
+#define _ROWDIAGONALDOMINANCE 1
+
+//MPI_MIN
+#define _MINNONZEROSPERROW 1
+
+//MPI_COLUMN
+#define _ONENORM 1
+#define _COLDIAGONALDOMINANCE 1
+#define _COLUMNVARIANCE 2 
+
+//MPI_SYMMETRY
+#define _SYMMETRICITY 1
+#define _NONZEROPATTERNSYMMETRY 1
+#define _SYMMETRICINFINITYNORM 1
+#define _SYMMETRICFROBENIUSNORM 1
+#define _ANTISYMMETRICINFINITYNORM 1
+#define _ANTISYMMETRICFROBENIUSNORM 1
+

@@ -15,7 +15,8 @@ class C50Interface
       std::unique_ptr<C50Predictor> predictor;
       std::map< int, std::string > solverMap; 
       std::string m_filestem;
-      
+
+      bool initialized = false;      
 
       C50Interface( std::string filestem );       
       virtual ~C50Interface();

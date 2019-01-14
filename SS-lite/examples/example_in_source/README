@@ -1,0 +1,7 @@
+This is an example using the solver selector in petsc. See header of ex01.cpp for a description
+
+In this case, the make file is setup for use in source (so installing the library is not neccesary) 
+
+See OutOfSourceExample for a example of using the library out of source. 
+
+See description at top of ex01.cpp

@@ -18,7 +18,7 @@ public:
     
     KSP _ksp; 
     std::string internal_prefix;
-  
+    bool initialized = false;  
     Solver currentSolver; 
 
     std::string filestem; // filestem for the C50 model.  

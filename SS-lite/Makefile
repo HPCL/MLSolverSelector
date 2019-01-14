@@ -3,9 +3,12 @@ include Makefile.inc
 
 .PHONY: clean
 .PHONY: install
+.PHONY: feature_set_generation 
 
 OUT=lib$(SS_LIB).a
 BASE_SRC=$(wildcard src/*.cpp)
+BASE_SRC+=$(wildcard feature_sets/src/*.cpp)
+
 BASE_OBS=$(BASE_SRC:%.cpp=%.o)
 
 SS_INCS = -I include/ -I feature_sets/include  
@@ -14,7 +17,10 @@ SS_FLAGS +=-Wno-write-strings
 
 default: $(OUT)
 
-$(OUT): $(BASE_OBS) 
+feature_set_generation: 
+	cd feature_sets && ./generateExtraction.sh 
+
+$(OUT): feature_set_generation $(BASE_OBS) 
 	ar rcs $@ $(BASE_OBS) $(IMPL_OBS) 
 
 .cpp.o:
@@ -22,6 +28,7 @@ $(OUT): $(BASE_OBS)
 
 clean:
 	rm -f $(BASE_OBS) $(OUT) 
+
 
 #Install the library, includes and a copy of the makefile.inc file.
 #Using that, you should be able to compile any Petsc application 

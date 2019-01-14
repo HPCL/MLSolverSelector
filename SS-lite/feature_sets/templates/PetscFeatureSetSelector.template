@@ -1,31 +1,31 @@
 
 #ifndef PETSCFEATURESETSELECTOR_H
 #define PETSCFEATURESETSELECTOR_H
+#include "petscdmda.h"
+#include "petscksp.h"
+#include <iostream>
 
-//#__SEARCH__INCLUDE
 
-// This is file is automatically modified whenever a new feature set it added using the generate
-// command. 
+//__SEARCH__INCLUDE
+
 
 namespace PetscFeatureSetSelector {
 
-int ExtractJacobianFeatures( std::string featureSet, Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool matvecs=true )
-{
+  int ExtractJacobianFeatures( std::string featureSet, Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool matvecs=true )
+  { 
 
-    //__SEARCH__IF ; 
+      //__SEARCH__IF ; 
     
-    std::cout << " Could not find a feature set with the name " << featureSet << ". Aborting " ;
-    std::abort();
-  
-}
+      std::cout << " Could not find a feature set with the name " << featureSet << ". Aborting " ;
+     std::abort();
+    
+  }
 
-bool featureSetExists(std::string featureSet) {
+  bool featureSetExists(std::string featureSet) {
    
-//__SEARCH__EXISTS 
-    return false;
-}
-
-
+  //__SEARCH__EXISTS 
+      return false;
+  }
 
 }
 

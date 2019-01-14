@@ -1,5 +1,6 @@
 
 #include "C50Predictor.h"
+#include <iostream>
 
 C50Predictor::C50Predictor(String filestem ) {
     cc.RULES = false ;
@@ -56,8 +57,13 @@ int C50Predictor::findAGoodSolver(std::map<std::string, double> &features) {
 
       for ( auto &it : solvers ) {
           sfeatures["solver"] = std::to_string(it);         
-          if ( Predict(sfeatures) ) 
+          if ( Predict(sfeatures) ) {
+
+            std::cout << "\t Tried Solver " << it << " and... \\(ʘ‿ʘ)/  \n " ; 
             return it ;
+          }
+          else 
+            std::cout << "\t Tried Solver " << it << " and... ¯\\_(ツ)_/¯  \n " ; 
       } 
       return -1;      
 }

@@ -10,19 +10,23 @@ PetscInterface::PetscInterface(){
 
     //Create the internal ksp used for the solves (might be redundent ? ) 
     KSPCreate(PETSC_COMM_WORLD,&_ksp);
-
+    internal_prefix = "internal_";
 };
 
 int PetscInterface::Initialize(std::string filestem_, std::string featureSet_, int edge, int interior, bool matvec) {
 
-    filestem = filestem_;
+  if ( initialized ) return 1;  
+  
+  filestem = filestem_;
     featureSet = featureSet_;
     edgeSamples = edge;
     interiorSamples = interior;
     useMatVecs = matvec;
     
     //Create the C50 Interface for the given filestem
+    
     c50Interface.reset( new C50Interface(filestem) ); 
+    
 
     if ( !PetscFeatureSetSelector::featureSetExists(featureSet) ) {
         std::cout << " A feature set with the name " << featureSet << "does not exist \n" 
@@ -34,6 +38,9 @@ int PetscInterface::Initialize(std::string filestem_, std::string featureSet_, i
                   << " in the C50 model \n";
         std::abort();
     } 
+    
+    initialized = true;
+    return 1;
 }
 
 int 
@@ -46,15 +53,36 @@ int PetscInterface::ClassifyAndSolve(KSP &ksp) {
       
     bool success;
     std::map<std::string, double> featuresMap;
+    
     ExtractFeatures(ksp, featuresMap);
+    
+    std::cout << " SolverSelector Extracted the following Features from the Matrix : \n";
+    for ( auto it : featuresMap ) {
+        std::cout << " \t " << it.first << " : " << it.second << "\n";
+    }
+
+    
     Predict(featuresMap, currentSolver);
+    
+    std::cout << " Solver Selector Selected The following Solver For this Matrix \n";
+    currentSolver.Print();
+
+    
     SolveSystem(ksp, currentSolver, success);
-    if ( !success ) {
-        printf(" The chosen solver didn't work -- Using the default solver instead \n");
+    
+    PetscInt its;
+    KSPGetIterationNumber(ksp,&its);  
+    if ( success > 0 )  { 
+      std::cout << " Success -- Solve converged reason (see petsc KSPConverged Reason : " << success << "\n" ; 
+      std::cout << " Iteration Count : " << its ;                                                                                               
+    }
+    else  {
+          std::cout << " The chosen solver didn't work: " << success << "\n";
+          std::cout << " Using the default instead \n";
           GetDefaultSolver(currentSolver);
           SolveSystem(ksp, currentSolver, success); 
           if ( !success ) {
-            printf("The default solver failed as well. Application can now decide what to do\n");
+            printf("The default solver failed as well. ¯\\_(ツ)_/¯ \n");
           }
         }
     return 1;  
@@ -69,6 +97,9 @@ int PetscInterface::Predict(std::map<std::string, double> &features_map, Solver 
 int
 PetscInterface::SolveSystem( KSP &ksp, Solver &solver, bool &success)
 {
+
+  
+
     PetscCopyFunction(_ksp, ksp );
     SetSolver(_ksp, solver );
     Mat AA,PP;
@@ -125,6 +156,9 @@ PetscInterface::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
    Mat AA,PP;                                                                                                
    KSPGetOperators(ksp, &AA, &PP );                                                                          
    PetscFeatureSetSelector::ExtractJacobianFeatures(featureSet,AA,edgeSamples,interiorSamples,fmap,useMatVecs);   
+   
+   
+   
    return 0;
 }
 

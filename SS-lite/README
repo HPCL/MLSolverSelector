@@ -1,0 +1,17 @@
+This is the solverselector lite library. This library creates a petsc ksp
+that can be used to select the best solver and runtime based on a prebuilt
+C5.0 model. 
+
+To install the library 
+
+  1) Open Makefile.inc and set the PETSC_DIR, INSTALL_DIR and the compiler flags. 
+  2) Type make
+  3) Type make install 
+
+
+To install a new feature set see the README in the feature_sets directory. 
+
+For examples of Using the library, see the examples directory. 
+
+
+ 

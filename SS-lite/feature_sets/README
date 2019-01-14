@@ -12,14 +12,16 @@ sets using MACROs. This means feature sets must be precompiled as part of the li
 
 Adding a feature set is simple. 
 
- 1) Copy the fullfeatureset.fs file from the templates directory to the impls directory 
-    and give it a unique name. Do not change the filename extension  -- i.e it must be <>.fs
+ 1) Copy the featureSet.template file from the templates directory to the impls directory 
+    and give it a unique name. 
 
- 2) Open the new <unique>.fs file. In there is a list of #defines, the names of which are features
+        cp templates/featureSet.template impls <unique-name>.fs 
+
+ 2) Open the new impls/<unique-name>.fs file. In there is a list of #defines, the names of which are features
     available in the code. Define any features you do not want to be zero (see example.fs). ( If you remove a 
     feature rather than defining its value to zero, the library will not compile )  
  
- 3) Go back to the main directory and do a,    make clean && make && make install 
+ 3) Go back to the main directory and do ---  make clean && make && make install 
 
  4) To use the feature set in petsc use the command line option  -ksp_ss_featureset <your-unique-name-from-step-1> 
 

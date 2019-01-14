@@ -268,3 +268,4 @@
 84689713 , richardson mg -pc_mg_cycle_type v 
 32197588 , pipefcg jacobi 
 36126307 , lcd mg -pc_mg_levels 1 
+1788899,  chebyshev svd

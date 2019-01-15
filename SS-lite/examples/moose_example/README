@@ -1,0 +1,31 @@
+
+From what I can tell, most MOOSE applications are run "in source", so writing an example is not really all
+that useful. 
+
+Instead, this directory provides examples of the two files you will need to edit in a MOOSE application to 
+get the ss-lite library working. 
+
+
+The first step is to get the SS-Lite library linked into the MOOSE executable. To do this, add the following 
+lines to your specific MOOSE applications Makefile. 
+
+include <ss-lite-install-dir>/Makefile.inc 
+ADDITIONAL_INCLUDES += $(SS_INCLUDE)
+ADDITIONAL_LIBS += $(SS_LIBS) 
+
+E.g., to use ss-lite in the Moose solid mechanics module, you would add this to the file at 
+   .../moose/modules/solid_mechanics/Makefile 
+
+
+The next step is to register the ss-lite solver with PETSc inside the application. Open up the 
+file in <application>/src/main.C 
+
+   a) Add the incldue file    " #include "PetscInterface.h" " at the top with the other includes. 
+   b) Add the line " PetscCoupler::CreateSolverSelectorKSP(); " under the line that says " MooseInit init(argc,argv) " 
+  
+
+That it. Now go make and rebuild the MOOSE application. After that, you can use the ss-lite solver in your
+MOOSE application just as you would any other Petsc solver. ( i.e., through the input file or through the command line ) 
+
+
+See Makefile.example and main.example for an example of the modifications required.  

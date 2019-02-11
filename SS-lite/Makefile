@@ -11,6 +11,8 @@ BASE_SRC+=$(wildcard feature_sets/src/*.cpp)
 
 BASE_OBS=$(BASE_SRC:%.cpp=%.o)
 
+BASE_OBS=$(BASE_SRC:%.cpp=%.o)
+
 SS_INCS = -I include/ -I feature_sets/include  
 
 SS_FLAGS +=-Wno-write-strings 

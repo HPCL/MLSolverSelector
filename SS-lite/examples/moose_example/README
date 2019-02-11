@@ -29,3 +29,13 @@ MOOSE application just as you would any other Petsc solver. ( i.e., through the 
 
 
 See Makefile.example and main.example for an example of the modifications required.  
+
+
+
+NOTES:
+    a) MOOSE uses the -Wall and -WError flags when compiling. This means all warnings get thrown as errors rather   
+       than as warnings and can cause problems. In the future, we will need to address those warnings, but for now,
+       if you have problems compiling the moose application after linking, try removing the -Wall and -WError flags
+       from the Makefile. 
+
+

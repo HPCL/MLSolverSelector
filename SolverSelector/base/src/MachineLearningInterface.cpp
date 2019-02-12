@@ -14,16 +14,24 @@ MachineLearningInterface::~MachineLearningInterface()
 
 
 ErrorFlag 
-MachineLearningInterface::Serialize(std::string outputfile) {
-    SerializeImpl(outputfile);
+MachineLearningInterface::Serialize(std::vector <std::string>&CNames, std::string outputfile) {
+    SerializeImpl(CNames, outputfile);
     return 0;
 }
 
 ErrorFlag 
-MachineLearningInterface::Build() {
-
+MachineLearningInterface::Build(std::vector <std::string>&CNames) {
     if ( !modelBuilt) {
-        BuildImpl();
+        BuildImpl(CNames);
+        modelBuilt = true;
+    }
+    return 0;
+}
+
+ErrorFlag 
+MachineLearningInterface::BuildFromFile(std::string &Filename) {
+    if ( !modelBuilt) {
+        BuildImplFromFile(Filename);
         modelBuilt = true;
     }
     return 0;
@@ -40,7 +48,7 @@ ErrorFlag
 MachineLearningInterface::Classify( features_map &features,
                                     Solver &solver ) 
 {
-   Build();
+  // Build(CNames);
    if ( features.size() > 0 )
       ClassifyImpl(features,solver);
    else 
@@ -48,10 +56,10 @@ MachineLearningInterface::Classify( features_map &features,
    return 0;
 }
 
-ErrorFlag MachineLearningInterface::AddToBanedListAndTryAgain( features_map &afeatures,
+ErrorFlag MachineLearningInterface::AddToBanedListAndTryAgain(features_map &afeatures,
                                                                Solver &solver ) 
 {
-  Build();
+  //Build(CNames);
   int solverHash;
   HashString(solver.solver, solverHash);
   bannedList.insert(solverHash);
@@ -67,7 +75,7 @@ bool MachineLearningInterface::isBaned(Solver &solver) {
 }
 
 ErrorFlag
-MachineLearningInterface::GetMachineLearningData(std::vector< int > &row_ids , 
+MachineLearningInterface::GetMachineLearningData(std::vector <std::string>&CNames,std::vector< int > &row_ids , 
                                                  std::vector< int > &solvers_labels, 
                                                  std::vector< std::string > &features_labels ,
                                                  std::vector< std::string > &classification_labels,
@@ -75,7 +83,7 @@ MachineLearningInterface::GetMachineLearningData(std::vector< int > &row_ids ,
                                                  std::vector< std::vector< double > > &feature_data,
                                                  std::vector< std::vector< bool > > &classification_data ) 
 {
-  database->GetMachineLearningData(row_ids,solvers_labels,features_labels, classification_labels,
+  database->GetMachineLearningData(CNames, row_ids,solvers_labels,features_labels, classification_labels,
                                    solvers_data, feature_data, classification_data );
   
   if ( features_labels.size() == 0 || row_ids.size() == 0 
@@ -89,9 +97,11 @@ MachineLearningInterface::GetMachineLearningData(std::vector< int > &row_ids ,
 }
 
 ErrorFlag
-MachineLearningInterface::CrossValidate( int folds  )
+MachineLearningInterface::CrossValidate(int folds  )
 {
-   Build(); 
+  
+   //Build(CNames); 
+   
    CrossValidateImpl( folds );
    return 0;
 }

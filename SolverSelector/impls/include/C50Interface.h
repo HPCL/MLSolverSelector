@@ -689,11 +689,12 @@ namespace SolverSelecter {
       C50Interface();       
       virtual ~C50Interface();
 
-      virtual ErrorFlag SerializeImpl(std::string output);
-      virtual ErrorFlag BuildImpl();
+      virtual ErrorFlag SerializeImpl(std::vector <std::string>&CNames,std::string output);
+      virtual ErrorFlag BuildImpl(std::vector <std::string>&CNames);
+      virtual ErrorFlag BuildImplFromFile(std::string &Filename);
       
-      virtual ErrorFlag BuildModelFromFile();
-      virtual ErrorFlag BuildModelFromDatabase(); 
+      virtual ErrorFlag BuildModelFromFile(const std::string &Filename);
+      virtual ErrorFlag BuildModelFromDatabase(std::vector <std::string>&CNames); 
             
       virtual ErrorFlag ClassifyImpl( features_map &features, Solver &solver );  
       virtual ErrorFlag CrossValidateImpl(int folds );

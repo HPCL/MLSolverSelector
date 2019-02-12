@@ -22,7 +22,7 @@ namespace SolverSelecter {
       virtual ~MachineLearningInterface();
       
       // Build the model then serialize it to file. 
-      ErrorFlag Serialize(std::string outputfile);
+      ErrorFlag Serialize(std::vector <std::string>&CNames, std::string outputfile);
 
       // Initialize the machine learning model (but don't build it)
       ErrorFlag Initialize( std::shared_ptr< DatabaseInterface > _database);
@@ -37,15 +37,20 @@ namespace SolverSelecter {
       
       // Cross validate the given machine learning model. 
       ErrorFlag CrossValidate( int folds ); 
+
+
+      // Build the machine learning model. 
+      ErrorFlag Build(std::vector <std::string>&CNames); 
       
+      ErrorFlag BuildFromFile(std::string &Filename); 
   
   private:
 
-      // Build the machine learning model. 
-      ErrorFlag Build(); 
       
       /* Build the machine learning model implementation*/
-      virtual ErrorFlag BuildImpl() = 0;
+      virtual ErrorFlag BuildImpl(std::vector <std::string>&CNames) = 0;
+
+      virtual ErrorFlag BuildImplFromFile(std::string &Filename) = 0;
       
       /* Classify the given feature set and return a good solver */
       virtual ErrorFlag ClassifyImpl( features_map &features, Solver &solver ) = 0;
@@ -54,13 +59,14 @@ namespace SolverSelecter {
       virtual ErrorFlag CrossValidateImpl( int folds ) = 0;
       
       /** Implementation for Serializing the model */
-      virtual ErrorFlag SerializeImpl(std::string outputfile) = 0;
+      virtual ErrorFlag SerializeImpl(std::vector <std::string>&CNames, std::string outputfile) = 0;
   
   protected:    
      
       /** Get the machine learning data from the database. */ 
       ErrorFlag 
-      GetMachineLearningData(std::vector< int > &row_ids , 
+      GetMachineLearningData(std::vector <std::string>&CNames,
+                             std::vector< int > &row_ids , 
                              std::vector< int > &solvers_labels, 
                              std::vector< std::string > &features_labels ,
                              std::vector< std::string > &classification_labels,

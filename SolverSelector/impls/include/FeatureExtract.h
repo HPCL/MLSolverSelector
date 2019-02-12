@@ -485,10 +485,6 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::map<  std::str
                   trace += val;
                   #endif
 
-                  #ifdef DIAGONALMEAN  
-                  diag_mean += val;
-                  #endif
-                    
                   #ifdef ABSOLUTETRACE
                   abs_trace += aval;
                   #endif
@@ -577,7 +573,7 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::map<  std::str
    #endif
  
    #ifdef DIAGONALMEAN  
-   features[c++] = diag_mean / (double) npoints ;
+   features[c++] = trace / (double) npoints ;
    #endif
    
    #ifdef DIAGONALNONZEROS 

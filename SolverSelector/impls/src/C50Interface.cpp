@@ -4537,11 +4537,8 @@ int C50Predictor::findAGoodSolver(std::map<std::string, double> &features) {
 
       for ( auto &it : solvers ) {
           sfeatures["solver"] = std::to_string(it);
-          
-          
           if ( Predict(sfeatures) ) 
-            std::cout << "Found a good Solver " << it << std::endl;  
-            return it ;
+              return it ;
       } 
 
       std::cout << " No good solvers found \n " ;
@@ -4564,22 +4561,22 @@ C50Interface::C50Interface() {
 C50Interface::~C50Interface() {};
 
 
-ErrorFlag C50Interface::SerializeImpl(std::string output) {
+ErrorFlag C50Interface::SerializeImpl(std::vector <std::string>&CNames,std::string output) {
     SetParameter("filestem", output);
-    BuildModelFromDatabase();
+    BuildModelFromDatabase(CNames);
     return 1;
 }
 
-ErrorFlag C50Interface::BuildImpl() {
+ErrorFlag C50Interface::BuildImpl(std::vector <std::string>&CNames) {
     if  ( !std::strcmp(GetParameter("database").c_str() , "true" ) ) 
-        BuildModelFromDatabase();
+        BuildModelFromDatabase(CNames);
     else 
-        BuildModelFromFile();
+        BuildModelFromFile(GetParameter("filestem").c_str());
     return 1;
   
 }
 
-ErrorFlag C50Interface::BuildModelFromDatabase() {
+ErrorFlag C50Interface::BuildModelFromDatabase(std::vector <std::string>&CNames) {
 
   // In this example, we will build a model from the database. This is a real
   // nasty approach that goes through the file system. Basically, we write all
@@ -4591,7 +4588,8 @@ ErrorFlag C50Interface::BuildModelFromDatabase() {
   std::vector< std::vector<double>> feature_data;
   std::vector< std::vector<bool>> classification_data;
   std::vector<int> solver_data, solver_labels, row_ids;
-  database->GetMachineLearningData( row_ids, solver_labels, feature_labels, classification_labels, solver_data, feature_data, classification_data );
+  //std::vector <std::string>CNames;
+  database->GetMachineLearningData( CNames, row_ids, solver_labels, feature_labels, classification_labels, solver_data, feature_data, classification_data );
 
   // 1. Write the names file.
   std::ofstream outfile;
@@ -4642,17 +4640,17 @@ ErrorFlag C50Interface::BuildModelFromDatabase() {
 
   //4. Build the c5.0 model. 
   C50Online::buildModel( GetParameter("filestem").c_str(), std::atoi(GetParameter("trials").c_str()), -1 );
-  return BuildModelFromFile();
+  return BuildModelFromFile(GetParameter("filestem").c_str());
 }
 
 
-ErrorFlag C50Interface::BuildModelFromFile() {
+ErrorFlag C50Interface::BuildModelFromFile(const std::string &filestem) {
   
-  std::cout << " Loading Model with FileStem " << GetParameter("filestem");
-  predictor.reset( new C50Predictor(GetParameter("filestem").c_str(),false,false));
+ 
+  predictor.reset( new C50Predictor(filestem.c_str(),false,false));
         
   // Step 1. Get a map of solver hashes from kanika to SS solvers 
-  std::string solversFile = GetParameter("filestem") + ".solvers";
+  std::string solversFile = filestem + ".solvers";
 
   std::ifstream file (solversFile.c_str());
   std::string value;
@@ -4671,21 +4669,20 @@ ErrorFlag C50Interface::BuildModelFromFile() {
       StringSplit(value, ",", result); 
       if ( result.size() == 2 ) {
         solverMap[std::atoi(result[0].c_str())] = result[1];
-        std::cout << result[0].c_str() << " " << result[1] << std::endl;
       }
   } 
   return 1;    
 }
 
+ErrorFlag C50Interface::BuildImplFromFile(std::string &Filename)
+{
+    return BuildModelFromFile(Filename); 
+    
+}
+
 ErrorFlag C50Interface::ClassifyImpl( features_map &features, Solver &solver ) {
     if ( predictor ) {
-      
-      std::cout << "SDFSDFSDFSDFDSFSDFSDFDSFSDFDSFDSFS"<< std::endl;
-      
       int solverChoice = predictor->findAGoodSolver(features);
-      
-      std::cout << solverChoice << std::endl;
-      std::cout << solverMap[solverChoice] << std::endl;; 
       if ( solverChoice < 0 ) 
          solver.Clear();
       else 

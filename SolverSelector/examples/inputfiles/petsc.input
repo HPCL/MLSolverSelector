@@ -1,27 +1,102 @@
-
-#Solver information for build from file or build inline. 
-@MATRIX ./matrix/spd-real-int32-float32
 @MATRIXDIR ./matrix/ .pbin  
 
-@SOLVER cg 
+@SOLVER cg
+@SOLVER dgmres 
+@SOLVER gcr
+@SOLVER fgmres
+@SOLVER pipefcg
+@SOLVER hypre
+@SOLVER tfqmr
+@SOLVER lgmres
+@SOLVER gmres
+@SOLVER pipefgmres
+@SOLVER fcg
+@SOLVER chebychev
 
-@SOLVER gmres 
-@PARAMETER ksp_gmres_restart 30 40 50 60 70
-@PARAMETER ksp_gmres_haptol 1e-30
-@PARAMETER ksp_gmres_preallocate FALSE
-@PARAMETER ksp_gmres_classicalgramschmidt TRUE
-@PARAMETER ksp_gmres_cgs_refinement_type REFINE_NEVER
-@PARAMETER ksp_gmres_krylov_monitor FALSE
+####################################
+#-ksp_type lgmres -pc_type gasm -pc_gasm_overlap 2
+@SOLVER lgmres
 
-@SOLVER minres 
-
-@PRECON hypre 
-@PARAMETER pc_hypre_type boomeramg
+@PRECON gasm 
+@PARAMETER pc_gasm_overlap 2
+@PARAMETER pc_gasm_overlap 1
+@PARAMETER pc_gasm_overlap 0
+######################################
+@SOLVER pipefgmres
 
 @PRECON bjacobi
+######################################
+@SOLVER preonly
 
-@PAIR cg bjacobi
-@PAIR gmres bjacobi
+@PRECON mg 
+@PARAMETER pc_mg_levels 1
+@PARAMETER pc_mg_levels 3
+######################################
+@SOLVER gmres 
+
+@PRECON svd
+######################################
+@SOLVER gmres 
+
+@PRECON mg
+@PARAMETER pc_mg_cycle_type v
+@PARAMETER pc_mg_cycle_type w
+######################################
+@SOLVER pipefcg
+
+@PRECON mg
+@PARAMETER pc_mg_cycle_type v
+#####################################
+@SOLVER fcg
+
+@PRECON gasm
+@PARAMETER pc_gasm_overlap 2
+@PARAMETER pc_gasm_overlap 1
+@PARAMETER pc_gasm_overlap 0
+#####################################
+@SOLVER richardson
+
+@PRECON svd
+#####################################
+@SOLVER chebychev
+
+@PRECON svd
+#####################################
+@SOLVER fgmres
+
+@PRECON mg
+@PARAMETER pc_mg_levels 3
+@PARAMETER pc_mg_levels 2
+#####################################
+@SOLVER fcg
+
+@PRECON mg
+@PARAMETER pc_mg_cycle_type v
+#####################################
+@SOLVER preonly
+
+@PRECON sor
+######################################
+@SOLVER fgmres
+
+@PRECON asm 
+@PARAMETER pc_asm_overlap 0
+@PARAMETER pc_asm_overlap 2
+@PARAMETER pc_asm_overlap 3
+######################################
+
+
+@PRECON mg
+@PARAMETER pc_mg_levels 2
+######################################
+
+#@PAIR cg
+
+
+@PAIR lgmres asm
 
 
 
+
+#@PAIR richardson svd
+#@PAIR gmres svd

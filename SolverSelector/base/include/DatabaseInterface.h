@@ -96,7 +96,7 @@ namespace SolverSelecter {
     
     /** Pack up the database for input into a machine learning model. */
     virtual ErrorFlag 
-    GetMachineLearningData(std::vector< int > &row_ids , 
+    GetMachineLearningData(std::vector <std::string>&CNames,std::vector< int > &row_ids , 
                            std::vector< int > &solvers_labels, 
                            std::vector< std::string > &features_labels ,
                            std::vector< std::string > &classification_labels,
@@ -117,12 +117,11 @@ namespace SolverSelecter {
     virtual ErrorFlag 
     AddClassification( int  &urow , 
                        std::map< std::string, double > &cvalues,
-                       UpdateStatus status ) ; 
+                       std::string CName, UpdateStatus status ) ; 
     
     /* Classify all the solvers in the database */
     virtual ErrorFlag 
-    ClassifySolvers( std::map< std::string , double > &bvalues, 
-                     int just_matrix_in_row=-1 ); 
+    ClassifySolvers(  std::string MName, double MValue, std::string CName  ); 
     
 };
 

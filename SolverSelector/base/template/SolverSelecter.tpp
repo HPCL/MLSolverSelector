@@ -39,10 +39,10 @@ SolverSelecter<Matrix,Vector>::ParseInputFile() {
 
 template<typename Matrix, typename Vector>
 ErrorFlag 
-SolverSelecter<Matrix,Vector>::SerializeMachineLearningModel(std::map<std::string,std::string> &parameters, std::string output) {
+SolverSelecter<Matrix,Vector>::SerializeMachineLearningModel(std::vector <std::string>&CNames, std::map<std::string,std::string> &parameters, std::string output) {
    
     Initialize(parameters);
-    machinemodel->Serialize(output);
+    machinemodel->Serialize(CNames, output);
     return 0;
 }
 
@@ -55,6 +55,7 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile(std::map<std::string,std::s
     
     std::unique_ptr<Matrix> A;
     std::unique_ptr<Vector> x, b;
+    
     
     for ( auto matrix_file : matrix_filenames )
     {
@@ -69,11 +70,25 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseFromFile(std::map<std::string,std::s
             row_hash = database->AddRow( next_solver, features_map, measurements_map );
         }
         FreeTestSystem( A, x, b );
-        ClassifySolvers(row_hash);
+        
+       // ClassifySolvers(row_hash);
     }
+   // ClassifySolvers("CPUTime", 0.3,"T50Time");
 
     return error_flag;
 }
+
+template<typename Matrix, typename Vector>
+ErrorFlag
+SolverSelecter<Matrix,Vector>::LoadModel(std::map<std::string,std::string> &parameters, std::string ModelFilename)
+{
+ Initialize(parameters);
+ machinemodel->BuildFromFile(ModelFilename);
+ return error_flag;
+}
+
+
+
 
 template<typename Matrix, typename Vector> 
 ErrorFlag 
@@ -161,7 +176,7 @@ SolverSelecter<Matrix,Vector>::FeatureExtractionAnalysis( std::vector<std::map<s
          sdurr = -1;
     
     if ( rank == 0 ) {  
-      if ( header ) {    
+      if ( header ) {
           outputstream << " Matrix , NNZ, Solve Time  " ;
           for ( auto it : extractionLabels ) 
               outputstream << ", " << it ;
@@ -190,9 +205,9 @@ SolverSelecter<Matrix,Vector>::FeatureExtractionAnalysis( std::vector<std::map<s
 
 template<typename Matrix, typename Vector>
 ErrorFlag
-SolverSelecter<Matrix,Vector>::CrossValidate(std::map<std::string,std::string> &parameters, int folds)
+SolverSelecter<Matrix,Vector>::CrossValidate(std::map<std::string,std::string> &parameters, std::string filename, int folds)
 {
-    Initialize(parameters);
+    LoadModel(parameters, filename);
     machinemodel->CrossValidate( folds );
     return error_flag;
 }
@@ -235,8 +250,8 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
     else
     {
 
-          std::map<std::string, double> features_map;
-        std::cout <<  "Extracting Features \n "  << machinemodel << std::endl;;
+        std::map<std::string, double> features_map;
+std::cout <<  "Extracting Features \n "  << machinemodel << std::endl;;
         interface->ExtractFeatures( A, features_map);
         std::cout <<  "Extracted Features \n "  << machinemodel << std::endl;;
         machinemodel->Classify(features_map, solver );
@@ -279,11 +294,10 @@ SolverSelecter<Matrix,Vector>::Solve( Matrix &A,
 
 template<typename Matrix, typename Vector>
 ErrorFlag
-SolverSelecter<Matrix,Vector>::ClassifySolvers(int matrix)
+SolverSelecter<Matrix,Vector>::ClassifySolvers( std::string MName, double MValue, std::string CName, std::map<std::string, std::string>&parameters)
 {
-    std::map<std::string, double > class_values;
-    interface->ClassificationMeasurements( class_values );
-    database->ClassifySolvers( class_values, matrix );
+    Initialize(parameters);
+    database->ClassifySolvers(MName, MValue, CName );
     return error_flag;
 }
 
@@ -375,7 +389,7 @@ SolverSelecter<Matrix,Vector>::BuildDataBaseInline( Matrix &A,
         row_hash = database->AddRow( next_solver, features_map, measurements_map );
     }
     FreeTestVectors(xx,bb);
-    ClassifySolvers(row_hash);
+   // ClassifySolvers(row_hash);
     return error_flag;
 }
 

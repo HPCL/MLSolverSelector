@@ -20,11 +20,12 @@ typedef SolverSelecter<KSP,Vec> PetscSS;
 class PetscUI : public UserInterface<KSP,Vec>
 {
 public:
-    PetscLogStage extractStage, solveStage;
+
     KSP _ksp; 
     std::shared_ptr< PetscTestingSpace > testing_space;
     std::string internal_prefix;
     bool use_internal_ksp = true;
+    Solver CSolver;
     
     PetscUI();
 
@@ -41,6 +42,8 @@ public:
     virtual ErrorFlag SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success) override;
     
     virtual ErrorFlag SetSolver( KSP ksp, Solver solver ); 
+
+    virtual ErrorFlag ResetInternalKsp( Solver &solver);
 
     virtual ErrorFlag ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap) override;
     

@@ -462,6 +462,7 @@ SqlDatabase::AddClassificationToDatabase( int &hash, std::map<std::string, bool 
     for ( auto &it : classification )
     {
         map[it.first] = std::make_pair( std::to_string( it.second ) , 1 ) ;
+        
     }
     SetRowInDatabase( hash, clas_table, "INTEGER", map, status ) ;
     return 0;

@@ -8,7 +8,7 @@ SS_SRC_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 SS_LIB=SolverSelecter
 
 # Directory to install the library and dependencies 
-SS_INSTALL_DIR = /usr/local/solverselecter/
+SS_INSTALL_DIR = /home/jrobinson/Document/solverselecter/
 
 # Do we want to use the SQLITE 3  
 WITH_SQLITE3=1
@@ -28,7 +28,7 @@ endif
 
 # Do we want to use Petsc 
 WITH_PETSC=1
-PETSC_DIR=/opt/moose/petsc/mpich_petsc-3.7.5/gcc-opt-superlu
+PETSC_DIR=/usr/local/petsc-3.7.5/
 ifeq ($(WITH_PETSC),1)
 include $(PETSC_DIR)/lib/petsc/conf/variables
 SS_DEP_FLAGS += -DWITH_PETSCUI=1 $(PETSC_CCPPFLAGS)  

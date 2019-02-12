@@ -19,10 +19,11 @@ int main(int argc,char **args)
   
   auto ss = std::unique_ptr<SolverSelecter::PetscSS>(new SolverSelecter::PetscSS(ss_interface));
   std::map<std::string, std::string> parameters;
-  
+  std::vector <std::string> CNames;
+  CNames.push_back("T20Time"); 
   // Set the machine learning interface -- in this case C50 (default is Waffles) 
-  parameters["mlinterface"] = "C50";
-  ss->SerializeMachineLearningModel(parameters, "serializedModel");  
+  //parameters["mlinterface"] = "C50";
+  ss->SerializeMachineLearningModel(CNames,parameters, "serializedModel_T20trial");  
   ss_interface.reset();
   ss.reset();
   

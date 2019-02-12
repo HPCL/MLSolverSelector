@@ -27,6 +27,7 @@ int main(int argc,char **args)
   
   // Build the database from file. 
   ss->BuildDataBaseFromFile(parameters);    
+  //ss->ClassifySolvers("CPUTime", 0.3,"T50Time");
   
   // Clean up some stuff to avoid MPI calls after MPI finalize. 
   ss_interface.reset();

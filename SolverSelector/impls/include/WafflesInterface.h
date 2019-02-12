@@ -34,8 +34,9 @@ public:
     ~WafflesInterface();
 private:
     /** Serialze the model */
-    ErrorFlag SerializeImpl(std::string output) override;
-    ErrorFlag BuildImpl() override;
+    ErrorFlag SerializeImpl(std::vector <std::string>&CNames,std::string output) override;
+    ErrorFlag BuildImpl(std::vector <std::string>&CNames) override;
+    ErrorFlag BuildImplFromFile(std::string &Filename) override;
     ErrorFlag ClassifyImpl( features_map &afeatures, Solver &solver) override;
     ErrorFlag CrossValidateImpl( int folds ) override;
    
@@ -43,10 +44,10 @@ private:
     ErrorFlag BuildModelFromSerial(std::string input);
 
     /** Build the model from the database at runtime */
-    ErrorFlag BuildModelAtRuntime( );
+    ErrorFlag BuildModelAtRuntime(std::vector <std::string>&CNames );
 
     /** Extra function that converts the data into a GMatrix */
-    ErrorFlag ImportData(std::vector < std::string > &feature_list,
+    ErrorFlag ImportData(std::vector <std::string>&CNames, std::vector < std::string > &feature_list,
                          std::shared_ptr<GClasses::GMatrix> &matrix,
                          int &num_labels );
 

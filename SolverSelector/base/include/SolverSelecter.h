@@ -37,15 +37,22 @@ public:
     /** Build a database based on an input file. */ 
     ErrorFlag BuildDataBaseFromFile(std::map<std::string,std::string> &parameters);
 
+    /** Load model **/
+    ErrorFlag LoadModel(std::map<std::string,std::string> &parameters, std::string ModelFilename);
+
+      /** Classify all the solvers in the database (or just one matrix if index given */
+    ErrorFlag ClassifySolvers( std::string MName, double MValue, std::string CName, std::map<std::string, std::string>&parameters);
+
+
     /** Cross validate a machine learning model for a variety of algorithms. This one
      * does cross validation on   */
-    ErrorFlag CrossValidate(std::map<std::string, std::string> &parameters, int folds);
+    ErrorFlag CrossValidate(std::map<std::string, std::string> &parameters, std::string filename, int folds);
 
     /** Print the parameter set for the chosen solver */
     ErrorFlag PrintSolver( Solver &solver);
 
     /** Build the machine learning model and serialize it */
-    ErrorFlag SerializeMachineLearningModel(std::map<std::string,std::string> &parameters, std::string output ); 
+    ErrorFlag SerializeMachineLearningModel(std::vector <std::string>&CNames, std::map<std::string,std::string> &parameters, std::string output ); 
 
     /** Solve a system using the solver selecter */
     ErrorFlag Solve(Matrix &A, Vector &x, Vector &b );
@@ -107,8 +114,7 @@ private:
     ErrorFlag
     BuildDataBaseInline(Matrix &A, Vector &x, Vector &b );
 
-    /** Classify all the solvers in the database (or just one matrix if index given */
-    ErrorFlag ClassifySolvers(int matrix = -1);
+  
 };
 
 }

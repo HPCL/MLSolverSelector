@@ -23,13 +23,22 @@ WafflesInterface::~WafflesInterface()
     if ( labels ) delete labels;
 }
 
-ErrorFlag WafflesInterface::BuildImpl()
+ErrorFlag WafflesInterface::BuildImplFromFile(std::string &Filename)
+{
+   
+    BuildModelFromSerial(Filename);
+    return error_flag;
+}
+
+
+ErrorFlag WafflesInterface::BuildImpl(std::vector <std::string>&CNames)
 {
     if (model == NULL ) {
       std::string serial = GetParameter("serialized"); 
       if ( serial.empty() ) 
       {
-        BuildModelAtRuntime( ) ;
+          printf("buildghhjs\n");
+        BuildModelAtRuntime(CNames ) ;
         database->GetUniqueSolverList(solver_hash_list);   
       }
       else
@@ -38,17 +47,19 @@ ErrorFlag WafflesInterface::BuildImpl()
     return error_flag;
 }
 
-ErrorFlag WafflesInterface::BuildModelAtRuntime()
+ErrorFlag WafflesInterface::BuildModelAtRuntime(std::vector <std::string>&CNames)
 {
     if ( model == NULL ) 
     {
       std::vector< std::string > fnames;
       database->GetFeatureLabels(fnames);
       std::string algorithm = GetParameter("algorithm");
+      
       std::shared_ptr< GClasses::GMatrix > matrix(nullptr) ;
       int labelsdim;
-      ImportData( fnames, matrix, labelsdim ) ;
-
+     
+      ImportData( CNames, fnames, matrix, labelsdim ) ;
+      
       const GClasses::GRelation &x = matrix->relation();
 
       /* Split by features and labels */
@@ -63,7 +74,7 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime()
           delete labels ;
       }
       labels   = new GClasses::GMatrix();
-
+  
       *features = splitter.features();
       *labels   = splitter.labels();
    
@@ -83,7 +94,7 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime()
           model = new GClasses::GBaselineLearner();
 
       model->train( *features , *labels );
-      
+    
       const GClasses::GRelation &xx = features->relation();
       for ( int i = 0; i < xx.size(); i++ ) features_order.push_back( xx.attrNameStr(i)) ;
       const GClasses::GRelation &xy = labels->relation();
@@ -93,9 +104,9 @@ ErrorFlag WafflesInterface::BuildModelAtRuntime()
     return error_flag;
 }
 
-ErrorFlag WafflesInterface::SerializeImpl(std::string outputfile)
+ErrorFlag WafflesInterface::SerializeImpl(std::vector <std::string>&CNames,std::string outputfile)
 {
-    BuildModelAtRuntime( ) ;
+    BuildModelAtRuntime(CNames ) ;
 
     GClasses::GDom gdom;
     GClasses::GDomNode *gnode = model->serialize(&gdom);
@@ -133,7 +144,7 @@ ErrorFlag WafflesInterface::SerializeImpl(std::string outputfile)
 
 ErrorFlag WafflesInterface::BuildModelFromSerial(std::string serialized)
 {
-    
+    printf("erros\n");
    if ( model == NULL ) { 
       GClasses::GDom gdom;
       gdom.loadJson(serialized.c_str());
@@ -184,7 +195,6 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
     bool found_one = false;
     
     std::string serial = GetParameter("serialized"); 
-    
     GClasses::GVec prediction(labels_order.size());
     GClasses::GVec pattern(features_order.size()); 
 
@@ -242,7 +252,7 @@ ErrorFlag WafflesInterface::ClassifyImpl( features_map &afeatures /**< the featu
     return error_flag;
 }
 
-ErrorFlag WafflesInterface::ImportData(
+ErrorFlag WafflesInterface::ImportData(std::vector <std::string>&CNames,
     std::vector < std::string > &feature_list,
     std::shared_ptr<GClasses::GMatrix> &matrix,
     int &num_labels )
@@ -254,7 +264,7 @@ ErrorFlag WafflesInterface::ImportData(
     std::vector<std::vector< bool >> classification_data;
     std::vector<int> solvers_labels, solvers_data;
     
-    GetMachineLearningData(row_ids,
+    GetMachineLearningData(CNames, row_ids,
                            solvers_labels,
                            feature_labels ,
                            classification_labels,
@@ -290,7 +300,7 @@ ErrorFlag WafflesInterface::ImportData(
 
     n = 0;
     std::vector< const char *> pValues = {"0","1"};
-    for ( auto it : classification_labels )
+    for ( auto it : classification_labels ) 
     {
         pRelation->addAttribute( it.c_str(), 2, &pValues);
         add_classis.push_back(n);
@@ -330,7 +340,7 @@ ErrorFlag WafflesInterface::CrossValidateImpl(int folds )
     // Parse options
     unsigned int seed = (unsigned int)time(NULL);
     int reps = 5;
-    bool succinct = true;
+    bool succinct = false;
 
     if(reps < 1)
         throw GClasses::Ex("There must be at least 1 rep.");

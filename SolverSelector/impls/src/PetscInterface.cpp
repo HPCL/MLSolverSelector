@@ -1,4 +1,3 @@
-
 #ifdef WITH_PETSCUI
 #include "PetscInterface.h"
 
@@ -11,7 +10,7 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     KSPCreate(PETSC_COMM_WORLD,&_ksp);
     internal_prefix = "internal_";
     
-    AddParameter("mlinterface", "C50", "Choose a machine learning interface" );
+    AddParameter("mlinterface", "Waffles", "Choose a machine learning interface" );
     AddParameter("waffles.algorithm" , "RandomForest", "Choose the algorithm for Waffles");
     AddParameter("waffles.serialized", "", "Set the filename for waffles to read serialized model from");
     AddParameter("sqlite3.database", "./new_test_file.db", "Set the filename for sqlite3 database");
@@ -21,16 +20,12 @@ PetscUI::PetscUI() : UserInterface<KSP,Vec>()
     AddParameter("petsc.internalSample", "10", "Number of internal samples to use" );
     AddParameter("petsc.edgeSample", "10", "Number of edgeSamples to use" );
     AddParameter("petsc.matvec", "true", "Use Matvecs to extract samples" );
-    AddParameter("power.interval","10000", "Interval in ns to sample power");
-
-    
-    PetscLogStageRegister("Actual Solve", &solveStage ) ;
-    PetscLogStageRegister("Extract", &extractStage ) ;
+    AddParameter("power.interval","100", "Interval in ns to sample power"); //get rid of
+    //AddParameter
 }
 
 ErrorFlag PetscUI::Initialize() {
   SetTestingSpace();
-  return error_flag;
 }
 
 ErrorFlag
@@ -62,7 +57,7 @@ ErrorFlag
 PetscUI::GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &machine)
 {
 
-   if ( 0 && GetParameter("mlinterface") == "Waffles") {
+   if ( GetParameter("mlinterface") == "Waffles") {
 #ifdef WITH_WAFFLES   
     machine.reset( new WafflesInterface() ) ;
     machine->SetParameter("algorithm", GetParameter("waffles.algorithm") );
@@ -75,7 +70,7 @@ PetscUI::GetMachineLearningModel(std::shared_ptr< MachineLearningInterface > &ma
 #endif    
   } else {
     machine.reset( new C50Interface() );
-    machine->SetParameter("filestem", "./model" ); //GetParameter("C50.filestem"));
+    machine->SetParameter("filestem", GetParameter("C50.filestem"));
     machine->SetParameter("trials", GetParameter("C50.trials"));
     machine->SetParameter("database", GetParameter("C50.database"));
   }
@@ -93,12 +88,35 @@ PetscUI::ChangeSolver( KSP &A, Vec &x, Vec &b , bool &change_it )
     return 0;
 }
 
+
+ErrorFlag
+PetscUI::ResetInternalKsp( Solver &solver)
+{
+    std::string news,olds;
+    solver.GetSolverString(news);
+    CSolver.GetSolverString(olds);
+    std::cout << news << olds << std::endl;
+    if(news.compare(olds)!=0)
+    {
+       // printf("Here\n");
+      // try {}
+        KSPDestroy(&_ksp);
+        KSPCreate(PETSC_COMM_WORLD,&_ksp);
+        CSolver.ParseSolverString(news);
+    }
+    
+}
+
+
+
 ErrorFlag
 PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
 {
-    PetscLogStagePush(solveStage);
+     // printf("Here\n\n\n\n\n");
+     
     if (use_internal_ksp) 
     {
+      //  ResetInternalKsp(solver); //Jamar Error
         PetscCopyFunction(_ksp, ksp );
         SetSolver(_ksp, solver );
         Mat AA,PP;
@@ -111,10 +129,10 @@ PetscUI::SolveSystem( KSP &ksp, Vec &x, Vec &b, Solver &solver, bool &success)
     }
     else
     {
+      //  ResetInternalKsp(solver);
         SetSolver(ksp, solver);
         KSPSolve(ksp,b,x);
     }    
-    PetscLogStagePop();
     success = (ksp->reason > 0 ) ;
     return 0;
 
@@ -141,13 +159,6 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
     std::set< std::string >  keys;
     solver.GetSolverInfo( solvern, precond, keys );
     if (precond == "NONE") precond = "none";
-
-    /* Set the solver and Preconditioner */
-    PC pc;
-    KSPGetPC(ksp,&pc);
-    KSPSetType(ksp, solvern.c_str() );
-    PCSetType(pc,precond.c_str());
-
     std::string pvalue;
     if ( keys.size() > 0 )
     {
@@ -158,6 +169,13 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
             PetscOptionsSetValue(NULL, pname.c_str(), pvalue.c_str());
         }
     }
+    /* Set the solver and Preconditioner */
+    PC pc;
+    KSPGetPC(ksp,&pc);
+    KSPSetType(ksp, solvern.c_str() );
+    PCSetType(pc,precond.c_str());
+
+   
 
     KSPSetOptionsPrefix(ksp, internal_prefix.c_str());
     KSPSetFromOptions(ksp);
@@ -168,9 +186,8 @@ PetscUI::SetSolver( KSP ksp, Solver solver )
 ErrorFlag
 PetscUI::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
-  PetscLogStagePush(extractStage);
+      
   testing_space->extract_features( ksp, fmap, GetParameterAsInt("petsc.edgeSample"), GetParameterAsInt("petsc.internalSample"), GetParameterAsBool("petsc.matvec") );
-   PetscLogStagePop();  
     return error_flag;
 }
 
@@ -211,14 +228,12 @@ PetscUI::InitMatrix( std::string filename, std::unique_ptr<KSP> &A )
     
     Mat mat_op;
     PetscViewer fd;
-    std::cout << " Loading Matrix " << filename << std::endl;
+
     MatCreate(PETSC_COMM_WORLD, &mat_op);
     PetscViewerBinaryOpen(PETSC_COMM_WORLD, filename.c_str(), FILE_MODE_READ, &fd);
     MatSetFromOptions(mat_op);
     MatLoad(mat_op,fd);
-    
-    MatView(mat_op,PETSC_VIEWER_STDOUT_WORLD); 
-    std::cout << " Finished Loading Matrix " << std::endl;
+   
     PetscViewerDestroy(&fd);
     KSPSetOperators(*A, mat_op, mat_op);
 
@@ -262,7 +277,7 @@ PetscUI::FreeVector( std::unique_ptr<Vec> &x)
 ErrorFlag
 PetscUI::FreeMatrix( std::unique_ptr<KSP> &A ) 
 {
-    KSPDestroy(A.get());
+    //KSPDestroy(A.get());
     return error_flag;
 }
 
@@ -289,7 +304,7 @@ PetscUI::GetDefaultSolver( Solver &solver )
 
 PetscUI::~PetscUI()
 {
-    KSPDestroy(&_ksp);
+  //  KSPDestroy(&_ksp);
 }
 
 void

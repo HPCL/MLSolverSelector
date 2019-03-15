@@ -2,9 +2,8 @@
 # Set the compiler and the flags. Note that c++11 support is required. 
 SS=mpicxx 
 SS_FLAGS = -g -fopenmp -std=c++11 
-PETSC_DIR=/opt/moose/petsc/mpich_petsc-3.7.5/gcc-opt-superlu
-SS_INSTALL_DIR = /usr/local/solverselecter-lite/
-
+PETSC_DIR?=/opt/moose/petsc/mpich_petsc-3.7.5/gcc-opt-superlu
+SS_INSTALL_DIR =/disks/large/home/oneill/MLNeams/SS-lite/build
 
 ####### You shouldn't need to modify anything below here 
 

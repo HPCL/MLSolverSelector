@@ -25,6 +25,9 @@ C50Predictor::C50Predictor(String filestem ) {
         }
 
     }
+    solversIter = solvers.begin();
+
+
 }
 
 std::vector<std::string> C50Predictor::MapToVec( std::map<std::string, std::string> &features ) {
@@ -54,18 +57,34 @@ int C50Predictor::findAGoodSolver(std::map<std::string, double> &features) {
       for ( auto &it : features ) {
         sfeatures.insert(std::make_pair( it.first, std::to_string(it.second) ));
       }
-
-      for ( auto &it : solvers ) {
-          sfeatures["solver"] = std::to_string(it);         
-          if ( Predict(sfeatures) ) {
-
-            std::cout << "\t Tried Solver " << it << " and... \\(ʘ‿ʘ)/  \n " ; 
-            return it ;
-          }
-          else 
-            std::cout << "\t Tried Solver " << it << " and... ¯\\_(ツ)_/¯  \n " ; 
-      } 
+      
+      auto startIter = solversIter; 
+      bool start = true;      
+      
+      while( start || solversIter != startIter ) {
+          start = false;
+          if (solversIter == solvers.end() ) 
+             solversIter == solvers.begin(); 
+          else if ( trySolver( *solversIter, sfeatures ) ) 
+              return *solversIter;
+          else {
+              solversIter++;
+          }      
+      }  
+      std::cout << " \t Could not find a single good solver \n " ;     
       return -1;      
+}
+
+bool C50Predictor::trySolver(int solver, std::map<std::string, std::string> &sfeatures) {
+    sfeatures["solver"] = std::to_string(solver);         
+    if ( Predict(sfeatures) ) {
+      std::cout << "\t Tried Solver " << *solversIter << " and... \\(ʘ‿ʘ)/  \n " ; 
+      return true;
+    }
+    else {
+      std::cout << "\t Tried Solver " << *solversIter << " and... ¯\\_(ツ)_/¯  \n " ; 
+      return false;
+    }
 }
 
 bool C50Predictor::Predict(DataRec Case) {

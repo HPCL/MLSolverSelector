@@ -14,6 +14,8 @@ public:
     C50Classifier cc;
     std::vector<std::string> attributes;
     std::vector<int> solvers;
+    std::vector<int>::iterator solversIter;
+    
     int classAttr = -1;
     
     C50Predictor(String filestem);     
@@ -21,7 +23,9 @@ public:
     
     bool Predict(DataRec Case);
     bool Predict(std::map<std::string, std::string> &features);
-    
+   
+    bool trySolver(int solver, std::map<std::string, std::string> &sfeatures);
+ 
     int findAGoodSolver(std::map<std::string, double> &features ); 
 
 };

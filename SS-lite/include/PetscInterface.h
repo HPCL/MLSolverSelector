@@ -27,13 +27,15 @@ public:
     int edgeSamples = 20;
     int interiorSamples = 40;
     bool useMatVecs = true;  // Should we use matvecs (true) or memory location (false) 
-      
+    bool usePercent = false;  
+
     std::unique_ptr<C50Interface> c50Interface;
 
     // to extract the sample columns from the matrix. 
     PetscInterface();
 
-    virtual int Initialize(std::string filestem_, std::string featureSet_, int edge, int interior, bool matvec);
+    virtual int Initialize(std::string filestem_, std::string featureSet_, 
+                           int edge, int interior, bool usePercent, bool matvec);
 
     virtual int ClassifyAndSolve(KSP &ksp);
 

@@ -27,8 +27,8 @@ for i in impls/*.fs; do
     sedd="/__SEARCH_FEATURE_SET__/r $i" 
     cat templates/FeatureExtractionHead.template | sed -e 's/__NAME__/'"$fname"'/g' > src/${fname}_featureExtraction.cpp 
     sed -i -e "$sedd" src/${fname}_featureExtraction.cpp
-    sed -i -e 's@__SEARCH__IF@Feature Set \n    if ( featureSet == \"'"$fname"'\" ) return FeatureExtraction_'"$fname"'::ExtractJacobianFeatures(J,edge,interior,fnames,matvecs); \n\n    \/\/__SEARCH__IF@g' include/PetscFeatureSetSelector.h 
-    sed -i -e 's@__SEARCH__INCLUDE@ Feature Set Include \n namespace FeatureExtraction_'"$fname"' { int ExtractJacobianFeatures(Mat J, int edge, int interior, std::map<std::string, double> \&fnames, bool matvecs); }  \n\n\/\/__SEARCH__INCLUDE@g' include/PetscFeatureSetSelector.h 
+    sed -i -e 's@__SEARCH__IF@Feature Set \n    if ( featureSet == \"'"$fname"'\" ) return FeatureExtraction_'"$fname"'::ExtractJacobianFeatures(J,edge,interior,fnames,usePercent, matvecs); \n\n    \/\/__SEARCH__IF@g' include/PetscFeatureSetSelector.h 
+    sed -i -e 's@__SEARCH__INCLUDE@ Feature Set Include \n namespace FeatureExtraction_'"$fname"' { int ExtractJacobianFeatures(Mat J, int edge, int interior, std::map<std::string, double> \&fnames, bool usePercent, bool matvecs); }  \n\n\/\/__SEARCH__INCLUDE@g' include/PetscFeatureSetSelector.h 
     sed -i -e 's@__SEARCH__EXISTS@   Feature Set Exists \n   if( featureSet == \"'"$fname"'\") return true; \n\n\/\/__SEARCH__EXISTS@g' include/PetscFeatureSetSelector.h 
 done
 

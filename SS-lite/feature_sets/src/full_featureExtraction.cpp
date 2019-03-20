@@ -224,34 +224,41 @@ int GetJacobianColumn( Mat J, std::pair< int, int > &point, Vec *s, bool mat_vec
 }
 
 
-int GetJacobianSamplePointsPercentage( int n , double percentage , int edge_rows, std::vector<std::pair<int,int>> &points ) {
+int GetJacobianSamplePointsPercentage( int n , int percentage , int edge_rows, std::vector<std::pair<int,int>> &points ) {
 
   // Gets a fixed percentage of the interior rows  ( total - edge_rows ) with a minimum of 1 
 
 
-  if ( percentage < 1.0 && percentage > 0.0 ) {
+  if ( percentage < 101 && percentage > -1 ) {
       
-      int int_rows = ( ( n - edge_rows ) * percentage ) ;
+      double pfrac = ((double) percentage) / 100.0  ;
+
+      int int_rows = ( ( n - edge_rows ) * pfrac ) ;
 
       GetSamplePoints( n, edge_rows, ( int_rows < 1 ) ? 1 : int_rows , points );
 
   } else {
-    std::cout << " \t Percentage must be a fraction between 0 and 1 \n " ;
+    std::cout << " \t Percentage must be a int between 0 and 100 \n " ;
   }
   return 0;
 
 }
 
-int GetJacobianSamplePoints( Mat J , int edge, int interior, std::vector< std::pair< int, int > >&points )
+int GetJacobianSamplePoints( Mat J , int edge, int interior, std::vector< std::pair< int, int > >&points, bool usePercent )
 {
     PetscInt n,m;
     MatGetSize(J, &m, &n ) ;
-    if ( edge < 0 && interior < 0 )
+    
+    if ( usePercent ) {
+      GetJacobianSamplePointsPercentage(n,interior, edge, points);
+    } else if ( edge < 0 && interior < 0 )
       GetSamplePoints( n , edge, interior, points );
     else if ( edge < 0 || interior < 0 )
       GetSamplePoints( n, n, n, points ) ; 
     else  
       GetSamplePoints( n, edge, interior,points ) ; 
+
+    printf("Sample Points: Extracting %d columns from [%d x %d] matrix with edge_samples = %d columns and interior samples = %d %s \n " , points.size(), n, m, edge, interior, (usePercent)? "%" : "columns" );
 }
 
 void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *datatype)
@@ -276,7 +283,7 @@ void MPI_FeatureReduce( void *invec, void *inoutvec, int *len, MPI_Datatype *dat
     for ( int i = shift ; i < *len; i++)   inout[i] += in[i] ; 
 }
 
-int ExtractJacobianFeatures( Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool matvecs=true )
+int ExtractJacobianFeatures( Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool usePercent=false, bool matvecs=true )
 {
   std::vector< std::pair< int, int >  >points ; 
   std::map< std::string, double > feature_set; 
@@ -295,7 +302,7 @@ int ExtractJacobianFeatures( Mat J , int edge, int interior, std::map<  std::str
   int type, k;
    
   std::vector< std::pair< int, int > > sample_points;
-  GetJacobianSamplePoints( J, edge, interior, points ); 
+  GetJacobianSamplePoints( J, edge, interior, points, usePercent ); 
   int npoints = points.size();
 
 

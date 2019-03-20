@@ -13,7 +13,8 @@ PetscInterface::PetscInterface(){
     internal_prefix = "internal_";
 };
 
-int PetscInterface::Initialize(std::string filestem_, std::string featureSet_, int edge, int interior, bool matvec) {
+int PetscInterface::Initialize(std::string filestem_, std::string featureSet_, 
+                               int edge, int interior, bool usePercent_, bool matvec) {
 
   if ( initialized ) return 1;  
   
@@ -22,7 +23,8 @@ int PetscInterface::Initialize(std::string filestem_, std::string featureSet_, i
     edgeSamples = edge;
     interiorSamples = interior;
     useMatVecs = matvec;
-    
+    usePercent = usePercent_;
+ 
     //Create the C50 Interface for the given filestem
     
     c50Interface.reset( new C50Interface(filestem) ); 
@@ -154,11 +156,9 @@ int
 PetscInterface::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
    Mat AA,PP;                                                                                                
-   KSPGetOperators(ksp, &AA, &PP );                                                                          
-   PetscFeatureSetSelector::ExtractJacobianFeatures(featureSet,AA,edgeSamples,interiorSamples,fmap,useMatVecs);   
-   
-   
-   
+   KSPGetOperators(ksp, &AA, &PP );                                                                         
+
+   PetscFeatureSetSelector::ExtractJacobianFeatures(featureSet,AA,edgeSamples,interiorSamples,fmap,usePercent,useMatVecs);     
    return 0;
 }
 
@@ -278,12 +278,15 @@ PetscCoupler::KSPSetFromOptions_SS(PetscOptionItems *PetscOptionsObject,KSP ksp)
     PetscOptionsInt("-ksp_ss_edge", "Number of edge points to sample", NULL, edge, &edge, &flg);
     PetscInt inter = 10;
     PetscOptionsInt("-ksp_ss_interior", "Number of interior points to sample", NULL, inter, &inter, &flg);
+    PetscBool usePercent = PETSC_FALSE;
+    PetscOptionsBool("-ksp_ss_percent", "Switch to using percentage of columns to sample instead of number of cols", NULL,usePercent, &usePercent, &flg);
+
     char filestem[256] = ""; 
     PetscOptionsString("-ksp_ss_filestem", "C5.0 file stem", NULL, filestem, filestem,256,&flg);
     char fset[256] = ""; 
     PetscOptionsString("-ksp_ss_featureset", "Name of feature set", NULL, fset, fset,256,&flg);
     
-    ss->Initialize( std::string(filestem), std::string(fset), edge, inter, matvecs);
+    ss->Initialize( std::string(filestem), std::string(fset), edge, inter, usePercent, matvecs);
     PetscOptionsTail();
     PetscFunctionReturn(0);
 }

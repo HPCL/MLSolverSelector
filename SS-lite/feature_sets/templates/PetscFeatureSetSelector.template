@@ -11,7 +11,7 @@
 
 namespace PetscFeatureSetSelector {
 
-  int ExtractJacobianFeatures( std::string featureSet, Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool matvecs=true )
+  int ExtractJacobianFeatures( std::string featureSet, Mat J , int edge, int interior, std::map<  std::string, double > &fnames , bool usePercent = false, bool matvecs=true )
   { 
 
       //__SEARCH__IF ; 

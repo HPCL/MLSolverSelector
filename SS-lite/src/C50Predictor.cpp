@@ -2,19 +2,26 @@
 #include "C50Predictor.h"
 #include <iostream>
 
-C50Predictor::C50Predictor(String filestem ) {
-    cc.RULES = false ;
-    cc.RULESUSED = false;
-    cc.FileStem = filestem;
-    cc.loadModel();
+// Only inlcude the core here, so we can encapsulate all the garbage, and not 
+// have it pulled into the executable when compiling. 
+#include "C50Core.h"
 
-    for ( int i = 0; i < cc.MaxAtt+1; i++ ) {
-        if (cc.AttName[i] && strcmp(cc.AttName[i], "N/A") ) {
-            attributes.push_back(cc.AttName[i]);
+C50Predictor::C50Predictor(std::string filestem ) {
+    
+    cc = new C50Classifier();
+  
+    cc->RULES = false ;
+    cc->RULESUSED = false;
+    cc->FileStem = filestem.c_str();
+    cc->loadModel();
+
+    for ( int i = 0; i < cc->MaxAtt+1; i++ ) {
+        if (cc->AttName[i] && strcmp(cc->AttName[i], "N/A") ) {
+            attributes.push_back(cc->AttName[i]);
             if ( attributes.back() == "solver" ) {
-                for ( int j = 0; j < cc.MaxAttVal[i]; j++ ) {
-                    if ( cc.AttValName[i][j] && strcmp(cc.AttValName[i][j] , "N/A")  ) {
-                        solvers.push_back( std::stoi(cc.AttValName[i][j]) );
+                for ( int j = 0; j < cc->MaxAttVal[i]; j++ ) {
+                    if ( cc->AttValName[i][j] && strcmp(cc->AttValName[i][j] , "N/A")  ) {
+                        solvers.push_back( std::stoi(cc->AttValName[i][j]) );
                     }
                 }
 
@@ -30,6 +37,10 @@ C50Predictor::C50Predictor(String filestem ) {
 
 }
 
+C50Predictor::~C50Predictor() {
+  delete cc;
+}
+
 std::vector<std::string> C50Predictor::MapToVec( std::map<std::string, std::string> &features ) {
     std::vector< std::string > vfeatures;
     for ( auto &it : attributes ) {
@@ -43,8 +54,8 @@ std::vector<std::string> C50Predictor::MapToVec( std::map<std::string, std::stri
 
 bool C50Predictor::Predict(std::map<std::string, std::string> &features) {
     std::vector<std::string> vfeatures = MapToVec(features);
-    DataRec predict1 = cc.GetDataRecFromVec(vfeatures, false);
-    return Predict(predict1);
+    DataRec predict1 = cc->GetDataRecFromVec(vfeatures, false);
+    return std::strcmp( cc->ClassName[cc->Classify(predict1,cc->GCEnv)] , "bad" );  
     
 }
 
@@ -87,6 +98,3 @@ bool C50Predictor::trySolver(int solver, std::map<std::string, std::string> &sfe
     }
 }
 
-bool C50Predictor::Predict(DataRec Case) {
-    return std::strcmp( cc.ClassName[cc.Classify(Case,cc.GCEnv)] , "bad" );  
-}

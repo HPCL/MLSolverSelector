@@ -1,3 +1,12 @@
+
+#### THERE ARE SOME MAJOR LICVENCE ISSUES WITH C5.0 IN HERE. DO NOT DISTRIBUTE
+#### CODE --- The C5.0 code is copied and pasted -- almost verbatim -- into 
+#### the C50 core function. To release this, we probably will need to make 
+### the " C50 c++ " interface openly available (which is a problem, cause it 
+### a mess, and I have NO idea what it actualy does ) . 
+
+
+
 This is the solverselector lite library. This library creates a petsc ksp
 that can be used to select the best solver and runtime based on a prebuilt
 C5.0 model. 

@@ -3608,6 +3608,8 @@ ClassNo C50Classifier::Classify(DataRec Case, CEnv E)
 /*      --------  */
 {
     E->NRulesUsed = 0;
+ 
+    printf("Classifing using %d Trials. -- If trials > 1 then boost classify is used  \n" , TRIALS );
 
     return ( TRIALS > 1 ? BoostClassify(Case, TRIALS-1, E) :
              RULES ?	  RuleClassify(Case, RuleSet[0], E) :

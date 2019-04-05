@@ -320,6 +320,22 @@ PetscCoupler::KSPCreate_SS(KSP ksp)
     PC pc;
     KSPGetPC(ksp, &pc);
     PCSetType(pc, PCNONE); 
+
+    
+    KSPSetSupportedNorm(ksp,KSP_NORM_PRECONDITIONED,PC_LEFT,4);
+    KSPSetSupportedNorm(ksp,KSP_NORM_PRECONDITIONED,PC_RIGHT,3);
+    KSPSetSupportedNorm(ksp,KSP_NORM_PRECONDITIONED,PC_SYMMETRIC,2);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_RIGHT,5);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_LEFT,6);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NONE,PC_SYMMETRIC,7);
+    KSPSetSupportedNorm(ksp,KSP_NORM_UNPRECONDITIONED,PC_SYMMETRIC,8);
+    KSPSetSupportedNorm(ksp,KSP_NORM_UNPRECONDITIONED,PC_LEFT,9);
+    KSPSetSupportedNorm(ksp,KSP_NORM_UNPRECONDITIONED,PC_RIGHT,10);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NATURAL,PC_SYMMETRIC,11);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NATURAL,PC_LEFT,12);
+    KSPSetSupportedNorm(ksp,KSP_NORM_NATURAL,PC_RIGHT,13);
+
+
     PetscFunctionReturn(0);
 }
 

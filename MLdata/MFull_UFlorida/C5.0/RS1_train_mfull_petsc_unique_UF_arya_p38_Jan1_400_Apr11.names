@@ -1,0 +1,11 @@
+class.                                          | the target attribute
+
+NumRows:							continuous.
+Nonzeros:					continuous.
+FrobeniusNorm:						continuous.
+Trace:								continuous.
+AbsTrace:						continuous.
+ColDiagDominancy:				continuous.
+DiagAverage:						continuous.
+solver: 							continuous.
+class:								good, bad.

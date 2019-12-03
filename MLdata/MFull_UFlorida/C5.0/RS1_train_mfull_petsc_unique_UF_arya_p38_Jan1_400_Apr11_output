@@ -1,0 +1,2639 @@
+
+C5.0 [Release 2.07 GPL Edition]  	Fri Aug 16 10:32:53 2019
+-------------------------------
+
+    Options:
+	Application `data/matrix_full/RS1_train_mfull_petsc_unique_UF_arya_p38_Jan1_400_Apr11'
+
+Class specified by attribute `class'
+
+Read 86426 cases (9 attributes) from data/matrix_full/RS1_train_mfull_petsc_unique_UF_arya_p38_Jan1_400_Apr11.data
+
+Decision tree:
+
+ColDiagDominancy > 1:
+:...DiagAverage > 6.273:
+:   :...DiagAverage > 5.97e+11: good (136/40)
+:   :   DiagAverage <= 5.97e+11:
+:   :   :...NumRows <= 167: good (128/49)
+:   :       NumRows > 167:
+:   :       :...Nonzeros > 8784:
+:   :           :...NumRows <= 29610: bad (642/22)
+:   :           :   NumRows > 29610:
+:   :           :   :...solver <= 2.293802e+07:
+:   :           :       :...solver <= 2.032174e+07: bad (25/2)
+:   :           :       :   solver > 2.032174e+07: good (8)
+:   :           :       solver > 2.293802e+07:
+:   :           :       :...solver <= 5.651317e+07: bad (54)
+:   :           :           solver > 5.651317e+07:
+:   :           :           :...solver <= 5.874346e+07: good (4)
+:   :           :               solver > 5.874346e+07: bad (39/4)
+:   :           Nonzeros <= 8784:
+:   :           :...FrobeniusNorm <= 4048.49: bad (384/34)
+:   :               FrobeniusNorm > 4048.49:
+:   :               :...solver <= 3.062184e+07: bad (184/15)
+:   :                   solver > 3.062184e+07:
+:   :                   :...solver <= 4.585073e+07:
+:   :                       :...FrobeniusNorm > 6.46e+07: bad (20/3)
+:   :                       :   FrobeniusNorm <= 6.46e+07:
+:   :                       :   :...FrobeniusNorm <= 1.64e+07: bad (16/4)
+:   :                       :       FrobeniusNorm > 1.64e+07: good (42/17)
+:   :                       solver > 4.585073e+07:
+:   :                       :...solver <= 8.19867e+07: bad (213/25)
+:   :                           solver > 8.19867e+07:
+:   :                           :...solver > 9.459914e+07: bad (36/3)
+:   :                               solver <= 9.459914e+07:
+:   :                               :...solver <= 9.233122e+07: bad (82/25)
+:   :                                   solver > 9.233122e+07: good (22/3)
+:   DiagAverage <= 6.273:
+:   :...NumRows <= 903:
+:       :...solver > 9.348562e+07: good (106/3)
+:       :   solver <= 9.348562e+07:
+:       :   :...solver <= 4.748321e+07:
+:       :       :...solver > 1.87073e+07: good (385/27)
+:       :       :   solver <= 1.87073e+07:
+:       :       :   :...solver <= 1.630627e+07:
+:       :       :       :...solver <= 1788899: bad (10/1)
+:       :       :       :   solver > 1788899: good (137/14)
+:       :       :       solver > 1.630627e+07:
+:       :       :       :...solver > 1.773482e+07: bad (9)
+:       :       :           solver <= 1.773482e+07:
+:       :       :           :...DiagAverage > 3.91138: bad (3)
+:       :       :               DiagAverage <= 3.91138:
+:       :       :               :...solver <= 1.64659e+07:
+:       :       :                   :...FrobeniusNorm <= 7.97635: bad (3)
+:       :       :                   :   FrobeniusNorm > 7.97635: good (3)
+:       :       :                   solver > 1.64659e+07:
+:       :       :                   :...NumRows <= 100: bad (2)
+:       :       :                       NumRows > 100: good (7/1)
+:       :       solver > 4.748321e+07:
+:       :       :...solver > 5.206815e+07:
+:       :           :...solver <= 8.747958e+07: good (284/30)
+:       :           :   solver > 8.747958e+07:
+:       :           :   :...solver <= 8.898792e+07:
+:       :           :       :...solver <= 8.8437e+07: good (25/9)
+:       :           :       :   solver > 8.8437e+07: bad (12/3)
+:       :           :       solver > 8.898792e+07:
+:       :           :       :...solver <= 9.233122e+07: good (50/3)
+:       :           :           solver > 9.233122e+07:
+:       :           :           :...FrobeniusNorm <= 8.55842: bad (6)
+:       :           :               FrobeniusNorm > 8.55842: good (4)
+:       :           solver <= 5.206815e+07:
+:       :           :...Nonzeros <= 153: good (23)
+:       :               Nonzeros > 153:
+:       :               :...NumRows > 512:
+:       :                   :...NumRows <= 655: good (7)
+:       :                   :   NumRows > 655:
+:       :                   :   :...solver <= 5.206814e+07: good (5/2)
+:       :                   :       solver > 5.206814e+07: bad (2)
+:       :                   NumRows <= 512:
+:       :                   :...solver <= 4.794286e+07: bad (15)
+:       :                       solver > 4.794286e+07:
+:       :                       :...solver > 5.024925e+07: bad (23/1)
+:       :                           solver <= 5.024925e+07:
+:       :                           :...DiagAverage <= 1.34491: good (4)
+:       :                               DiagAverage > 1.34491:
+:       :                               :...solver <= 4.794287e+07: bad (4)
+:       :                                   solver > 4.794287e+07: good (4/1)
+:       NumRows > 903:
+:       :...DiagAverage > 3.12943: good (273/59)
+:           DiagAverage <= 3.12943:
+:           :...AbsTrace > 16021.8: bad (136/1)
+:               AbsTrace <= 16021.8:
+:               :...Nonzeros > 20516: good (344/99)
+:                   Nonzeros <= 20516:
+:                   :...solver > 6.890871e+07: bad (117/25)
+:                       solver <= 6.890871e+07:
+:                       :...solver <= 4.748321e+07:
+:                           :...NumRows > 4134:
+:                           :   :...solver > 1.773482e+07: bad (26)
+:                           :   :   solver <= 1.773482e+07:
+:                           :   :   :...solver <= 8173694: bad (9)
+:                           :   :       solver > 8173694:
+:                           :   :       :...solver > 1.747959e+07: good (4)
+:                           :   :           solver <= 1.747959e+07:
+:                           :   :           :...solver <= 1.292648e+07: good (3)
+:                           :   :               solver > 1.292648e+07: bad (3)
+:                           :   NumRows <= 4134:
+:                           :   :...solver <= 7668975: bad (11/2)
+:                           :       solver > 7668975:
+:                           :       :...solver <= 1.292648e+07: good (8)
+:                           :           solver > 1.292648e+07:
+:                           :           :...solver <= 2.293802e+07:
+:                           :               :...solver <= 1.773482e+07: good (8/3)
+:                           :               :   solver > 1.773482e+07: bad (7)
+:                           :               solver > 2.293802e+07:
+:                           :               :...FrobeniusNorm <= 0.010539: good (6)
+:                           :                   FrobeniusNorm > 0.010539: [S1]
+:                           solver > 4.748321e+07:
+:                           :...FrobeniusNorm > 156.167: bad (7/1)
+:                               FrobeniusNorm <= 156.167:
+:                               :...NumRows <= 1357:
+:                                   :...NumRows <= 1048: good (9/1)
+:                                   :   NumRows > 1048: bad (6)
+:                                   NumRows > 1357:
+:                                   :...NumRows <= 6774: good (45/2)
+:                                       NumRows > 6774:
+:                                       :...solver <= 4.794287e+07: good (8)
+:                                           solver > 4.794287e+07:
+:                                           :...solver <= 5.024925e+07: bad (3)
+:                                               solver > 5.024925e+07:
+:                                               :...solver <= 5.651317e+07: good (12/1)
+:                                                   solver > 5.651317e+07: bad (4/1)
+ColDiagDominancy <= 1:
+:...solver <= 2.825754e+07:
+    :...FrobeniusNorm <= 3.87513:
+    :   :...Trace <= 7.2e-05: bad (314/6)
+    :   :   Trace > 7.2e-05:
+    :   :   :...Trace <= 0.188005:
+    :   :       :...solver > 7668972: good (226/31)
+    :   :       :   solver <= 7668972:
+    :   :       :   :...solver <= 7481378: bad (8/1)
+    :   :       :       solver > 7481378: good (6/1)
+    :   :       Trace > 0.188005:
+    :   :       :...FrobeniusNorm <= 0.822049: bad (121)
+    :   :           FrobeniusNorm > 0.822049:
+    :   :           :...Nonzeros <= 314: good (75/20)
+    :   :               Nonzeros > 314:
+    :   :               :...NumRows <= 2398: bad (71/14)
+    :   :                   NumRows > 2398: good (36/11)
+    :   FrobeniusNorm > 3.87513:
+    :   :...AbsTrace <= 30.685: bad (4797)
+    :       AbsTrace > 30.685:
+    :       :...AbsTrace <= 31.81: good (35/8)
+    :           AbsTrace > 31.81:
+    :           :...NumRows <= 1015:
+    :               :...NumRows > 1000:
+    :               :   :...solver > 1.292648e+07: good (22/1)
+    :               :   :   solver <= 1.292648e+07:
+    :               :   :   :...solver > 1.125694e+07: bad (6/1)
+    :               :   :       solver <= 1.125694e+07:
+    :               :   :       :...solver <= 7481378: bad (2)
+    :               :   :           solver > 7481378: good (10)
+    :               :   NumRows <= 1000:
+    :               :   :...NumRows <= 19:
+    :               :       :...Nonzeros > 66: good (37/3)
+    :               :       :   Nonzeros <= 66:
+    :               :       :   :...solver <= 2.159161e+07: bad (103/19)
+    :               :       :       solver > 2.159161e+07:
+    :               :       :       :...solver <= 2.293802e+07: good (8)
+    :               :       :           solver > 2.293802e+07:
+    :               :       :           :...solver > 2.818736e+07: bad (15)
+    :               :       :               solver <= 2.818736e+07:
+    :               :       :               :...solver <= 2.474848e+07: bad (13/3)
+    :               :       :                   solver > 2.474848e+07: good (3)
+    :               :       NumRows > 19:
+    :               :       :...solver <= 1.87073e+07:
+    :               :           :...solver <= 7668972: bad (316/9)
+    :               :           :   solver > 7668972:
+    :               :           :   :...Trace > 7600000:
+    :               :           :       :...NumRows <= 541: bad (343/6)
+    :               :           :       :   NumRows > 541:
+    :               :           :       :   :...NumRows > 700: bad (98/6)
+    :               :           :       :       NumRows <= 700:
+    :               :           :       :       :...solver <= 1.172898e+07: good (9/1)
+    :               :           :       :           solver > 1.172898e+07: bad (8/2)
+    :               :           :       Trace <= 7600000:
+    :               :           :       :...Trace <= 37552.2: bad (1240/113)
+    :               :           :           Trace > 37552.2:
+    :               :           :           :...Nonzeros <= 1083: bad (30)
+    :               :           :               Nonzeros > 1083:
+    :               :           :               :...DiagAverage <= 342.281: bad (57/2)
+    :               :           :                   DiagAverage > 342.281:
+    :               :           :                   :...solver > 1.64659e+07: bad (18)
+    :               :           :                       solver <= 1.64659e+07:
+    :               :           :                       :...Trace > 128750: [S2]
+    :               :           :                           Trace <= 128750: [S3]
+    :               :           solver > 1.87073e+07:
+    :               :           :...solver > 2.293802e+07:
+    :               :               :...FrobeniusNorm <= 13.1217:
+    :               :               :   :...NumRows <= 93: good (6)
+    :               :               :   :   NumRows > 93:
+    :               :               :   :   :...FrobeniusNorm <= 11.4674: bad (36/5)
+    :               :               :   :       FrobeniusNorm > 11.4674: good (5/1)
+    :               :               :   FrobeniusNorm > 13.1217:
+    :               :               :   :...Trace <= 457.138: bad (230/8)
+    :               :               :       Trace > 457.138:
+    :               :               :       :...FrobeniusNorm > 84282.9: bad (180/8)
+    :               :               :           FrobeniusNorm <= 84282.9:
+    :               :               :           :...DiagAverage <= 497.367:
+    :               :               :               :...Trace <= 573.011: good (5)
+    :               :               :               :   Trace > 573.011: bad (132/6)
+    :               :               :               DiagAverage > 497.367:
+    :               :               :               :...NumRows <= 167: bad (11/1)
+    :               :               :                   NumRows > 167:
+    :               :               :                   :...solver > 2.825754e+07: [S4]
+    :               :               :                       solver <= 2.825754e+07: [S5]
+    :               :               solver <= 2.293802e+07:
+    :               :               :...solver <= 2.032174e+07:
+    :               :                   :...Nonzeros > 6858: bad (50)
+    :               :                   :   Nonzeros <= 6858:
+    :               :                   :   :...Trace <= 97.0434:
+    :               :                   :       :...NumRows <= 93: [S6]
+    :               :                   :       :   NumRows > 93:
+    :               :                   :       :   :...Nonzeros > 5970: [S7]
+    :               :                   :       :       Nonzeros <= 5970: [S8]
+    :               :                   :       Trace > 97.0434:
+    :               :                   :       :...Trace <= 213: [S9]
+    :               :                   :           Trace > 213: [S10]
+    :               :                   solver > 2.032174e+07:
+    :               :                   :...FrobeniusNorm > 21700.5:
+    :               :                       :...Trace <= -3.87e+08:
+    :               :                       :   :...NumRows <= 130: good (6)
+    :               :                       :   :   NumRows > 130: [S11]
+    :               :                       :   Trace > -3.87e+08:
+    :               :                       :   :...Nonzeros <= 4172:
+    :               :                       :       :...Trace <= 4.8e+10: [S12]
+    :               :                       :       :   Trace > 4.8e+10: [S13]
+    :               :                       :       Nonzeros > 4172: [S14]
+    :               :                       FrobeniusNorm <= 21700.5:
+    :               :                       :...DiagAverage > 8: [S15]
+    :               :                           DiagAverage <= 8: [S16]
+    :               NumRows > 1015:
+    :               :...FrobeniusNorm <= 173.398:
+    :                   :...Nonzeros <= 11405: bad (933)
+    :                   :   Nonzeros > 11405:
+    :                   :   :...FrobeniusNorm <= 12.141: bad (249/4)
+    :                   :       FrobeniusNorm > 12.141:
+    :                   :       :...FrobeniusNorm <= 13.4827: good (36/3)
+    :                   :           FrobeniusNorm > 13.4827:
+    :                   :           :...AbsTrace > 3873.31:
+    :                   :               :...Trace <= 4584.47: good (81/15)
+    :                   :               :   Trace > 4584.47: bad (211/49)
+    :                   :               AbsTrace <= 3873.31:
+    :                   :               :...NumRows > 27449:
+    :                   :                   :...FrobeniusNorm <= 133.459: bad (34/10)
+    :                   :                   :   FrobeniusNorm > 133.459: good (31/13)
+    :                   :                   NumRows <= 27449:
+    :                   :                   :...AbsTrace <= 82.176: bad (114)
+    :                   :                       AbsTrace > 82.176:
+    :                   :                       :...Trace > 2840.25: bad (158/8)
+    :                   :                           Trace <= 2840.25: [S17]
+    :                   FrobeniusNorm > 173.398:
+    :                   :...Trace > 1.24e+16:
+    :                       :...solver <= 2.032174e+07:
+    :                       :   :...solver > 9786219: bad (61)
+    :                       :   :   solver <= 9786219:
+    :                       :   :   :...solver <= 8788782: bad (20)
+    :                       :   :       solver > 8788782: good (3)
+    :                       :   solver > 2.032174e+07:
+    :                       :   :...solver > 2.293802e+07: bad (16)
+    :                       :       solver <= 2.293802e+07:
+    :                       :       :...solver > 2.23552e+07: good (9)
+    :                       :           solver <= 2.23552e+07:
+    :                       :           :...solver <= 2.159162e+07: good (9/1)
+    :                       :               solver > 2.159162e+07: bad (3)
+    :                       Trace <= 1.24e+16:
+    :                       :...solver <= 7668973: bad (1170/4)
+    :                           solver > 7668973:
+    :                           :...Nonzeros > 63406:
+    :                               :...Trace <= -4.19e+09:
+    :                               :   :...solver > 2.23552e+07:
+    :                               :   :   :...solver <= 2.293802e+07:
+    :                               :   :   :   :...Nonzeros <= 412148: good (11)
+    :                               :   :   :   :   Nonzeros > 412148: bad (7)
+    :                               :   :   :   solver > 2.293802e+07:
+    :                               :   :   :   :...NumRows <= 15343: good (3/1)
+    :                               :   :   :       NumRows > 15343: bad (19)
+    :                               :   :   solver <= 2.23552e+07:
+    :                               :   :   :...solver > 1.227164e+07: bad (77)
+    :                               :   :       solver <= 1.227164e+07:
+    :                               :   :       :...solver <= 1.172898e+07: bad (26/1)
+    :                               :   :           solver > 1.172898e+07: [S18]
+    :                               :   Trace > -4.19e+09:
+    :                               :   :...Nonzeros <= 87025: bad (2292/12)
+    :                               :       Nonzeros > 87025:
+    :                               :       :...Trace <= 37552.2: bad (1681/38)
+    :                               :           Trace > 37552.2:
+    :                               :           :...solver > 1.64659e+07: bad (1211/23)
+    :                               :               solver <= 1.64659e+07:
+    :                               :               :...solver > 1.630627e+07: [S19]
+    :                               :                   solver <= 1.630627e+07: [S20]
+    :                               Nonzeros <= 63406:
+    :                               :...DiagAverage <= 0.035221: bad (943)
+    :                                   DiagAverage > 0.035221:
+    :                                   :...DiagAverage > 0.091635:
+    :                                       :...AbsTrace <= 14883.8: bad (804/10)
+    :                                       :   AbsTrace > 14883.8:
+    :                                       :   :...Nonzeros <= 7242: bad (166/1)
+    :                                       :       Nonzeros > 7242:
+    :                                       :       :...solver <= 2.032174e+07:
+    :                                       :           :...solver > 1.64659e+07: [S21]
+    :                                       :           :   solver <= 1.64659e+07:
+    :                                       :           :   :...solver > 1.630627e+07: [S22]
+    :                                       :           :       solver <= 1.630627e+07: [S23]
+    :                                       :           solver > 2.032174e+07:
+    :                                       :           :...solver > 2.293802e+07: [S24]
+    :                                       :               solver <= 2.293802e+07:
+    :                                       :               :...Nonzeros > 30082: [S25]
+    :                                       :                   Nonzeros <= 30082: [S26]
+    :                                       DiagAverage <= 0.091635:
+    :                                       :...solver > 2.293802e+07: bad (44/1)
+    :                                           solver <= 2.293802e+07:
+    :                                           :...solver > 2.23552e+07: good (11/1)
+    :                                               solver <= 2.23552e+07:
+    :                                               :...solver > 1.773482e+07: [S27]
+    :                                                   solver <= 1.773482e+07:
+    :                                                   :...solver > 1.630627e+07: [S28]
+    :                                                       solver <= 1.630627e+07: [S29]
+    solver > 2.825754e+07:
+    :...solver <= 3.052363e+07:
+        :...DiagAverage <= 0.035221:
+        :   :...NumRows > 15343:
+        :   :   :...solver > 3.052363e+07:
+        :   :   :   :...AbsTrace <= 86.7753: good (42/12)
+        :   :   :   :   AbsTrace > 86.7753: bad (14)
+        :   :   :   solver <= 3.052363e+07:
+        :   :   :   :...Nonzeros > 82682: bad (44/1)
+        :   :   :       Nonzeros <= 82682:
+        :   :   :       :...Trace <= 0.086783: bad (4)
+        :   :   :           Trace > 0.086783: good (3)
+        :   :   NumRows <= 15343:
+        :   :   :...FrobeniusNorm <= 0.002175:
+        :   :       :...Trace <= 0: bad (13)
+        :   :       :   Trace > 0: good (16)
+        :   :       FrobeniusNorm > 0.002175:
+        :   :       :...Nonzeros <= 23754: good (720/29)
+        :   :           Nonzeros > 23754:
+        :   :           :...solver > 3.052363e+07: good (46/7)
+        :   :               solver <= 3.052363e+07:
+        :   :               :...solver > 3.052362e+07:
+        :   :                   :...FrobeniusNorm <= 111.357: good (5/1)
+        :   :                   :   FrobeniusNorm > 111.357: bad (17/1)
+        :   :                   solver <= 3.052362e+07:
+        :   :                   :...AbsTrace <= 8.27959: bad (11/4)
+        :   :                       AbsTrace > 8.27959:
+        :   :                       :...Nonzeros <= 229385: good (6)
+        :   :                           Nonzeros > 229385: bad (5/2)
+        :   DiagAverage > 0.035221:
+        :   :...Nonzeros > 11405:
+        :       :...DiagAverage > 1580000: bad (87)
+        :       :   DiagAverage <= 1580000:
+        :       :   :...NumRows > 16428:
+        :       :       :...solver > 3.052363e+07:
+        :       :       :   :...Trace > 148104:
+        :       :       :   :   :...DiagAverage <= 132.556: bad (23/1)
+        :       :       :   :   :   DiagAverage > 132.556: good (28/3)
+        :       :       :   :   Trace <= 148104:
+        :       :       :   :   :...AbsTrace > 85804.3: good (36/6)
+        :       :       :   :       AbsTrace <= 85804.3:
+        :       :       :   :       :...NumRows <= 20944: good (13/3)
+        :       :       :   :           NumRows > 20944: bad (19/5)
+        :       :       :   solver <= 3.052363e+07:
+        :       :       :   :...Trace > 4.71e+07:
+        :       :       :       :...Nonzeros <= 1248213: good (18/5)
+        :       :       :       :   Nonzeros > 1248213: bad (4)
+        :       :       :       Trace <= 4.71e+07:
+        :       :       :       :...Trace > 10472.5: bad (61/6)
+        :       :       :           Trace <= 10472.5:
+        :       :       :           :...Nonzeros > 171105: bad (28/6)
+        :       :       :               Nonzeros <= 171105:
+        :       :       :               :...Nonzeros > 89086: good (9)
+        :       :       :                   Nonzeros <= 89086:
+        :       :       :                   :...solver <= 3.052362e+07: bad (2)
+        :       :       :                       solver > 3.052362e+07: good (2)
+        :       :       NumRows <= 16428:
+        :       :       :...Trace > 45579.1:
+        :       :           :...Nonzeros > 208890: bad (20/7)
+        :       :           :   Nonzeros <= 208890:
+        :       :           :   :...Nonzeros > 75729: bad (183)
+        :       :           :       Nonzeros <= 75729:
+        :       :           :       :...DiagAverage <= 1833.96:
+        :       :           :           :...FrobeniusNorm > 3716.92: bad (86/1)
+        :       :           :           :   FrobeniusNorm <= 3716.92:
+        :       :           :           :   :...NumRows <= 7598: good (3)
+        :       :           :           :       NumRows > 7598: bad (4)
+        :       :           :           DiagAverage > 1833.96:
+        :       :           :           :...FrobeniusNorm > 1.35e+07: bad (13)
+        :       :           :               FrobeniusNorm <= 1.35e+07:
+        :       :           :               :...solver > 3.052363e+07: good (6/1)
+        :       :           :                   solver <= 3.052363e+07:
+        :       :           :                   :...Trace <= 2.58e+07: bad (4)
+        :       :           :                       Trace > 2.58e+07: good (2)
+        :       :           Trace <= 45579.1:
+        :       :           :...FrobeniusNorm > 4.62e+07:
+        :       :               :...solver <= 3.052362e+07: bad (5)
+        :       :               :   solver > 3.052362e+07: good (24/8)
+        :       :               FrobeniusNorm <= 4.62e+07:
+        :       :               :...DiagAverage > 2.40235: bad (146/30)
+        :       :                   DiagAverage <= 2.40235:
+        :       :                   :...DiagAverage > 2.14433: good (13/2)
+        :       :                       DiagAverage <= 2.14433:
+        :       :                       :...AbsTrace > 7227.54: bad (42/5)
+        :       :                           AbsTrace <= 7227.54:
+        :       :                           :...DiagAverage <= 0.075077: bad (31/1)
+        :       :                               DiagAverage > 0.075077:
+        :       :                               :...AbsTrace <= 275.811: good (7)
+        :       :                                   AbsTrace > 275.811: [S30]
+        :       Nonzeros <= 11405:
+        :       :...NumRows > 2398: good (48/1)
+        :           NumRows <= 2398:
+        :           :...AbsTrace <= 57: good (39/2)
+        :               AbsTrace > 57:
+        :               :...Trace > 6.16e+07:
+        :                   :...NumRows <= 541: bad (42)
+        :                   :   NumRows > 541:
+        :                   :   :...NumRows <= 700: good (4)
+        :                   :       NumRows > 700: bad (14/2)
+        :                   Trace <= 6.16e+07:
+        :                   :...Trace > 7600000:
+        :                       :...NumRows > 225: good (34/1)
+        :                       :   NumRows <= 225:
+        :                       :   :...NumRows <= 19: good (3)
+        :                       :       NumRows > 19: bad (3)
+        :                       Trace <= 7600000:
+        :                       :...Trace <= -80838.7:
+        :                           :...FrobeniusNorm <= 4.24e+07: bad (44)
+        :                           :   FrobeniusNorm > 4.24e+07:
+        :                           :   :...DiagAverage <= 1.01e+15: good (26/11)
+        :                           :       DiagAverage > 1.01e+15: bad (4)
+        :                           Trace > -80838.7:
+        :                           :...FrobeniusNorm > 5383.5:
+        :                               :...Trace > 133074: bad (50/16)
+        :                               :   Trace <= 133074:
+        :                               :   :...DiagAverage > 281.043: good (11)
+        :                               :       DiagAverage <= 281.043: [S31]
+        :                               FrobeniusNorm <= 5383.5:
+        :                               :...Trace <= -6869.05: bad (15)
+        :                                   Trace > -6869.05:
+        :                                   :...AbsTrace > 948.788:
+        :                                       :...AbsTrace > 23369.7: good (4)
+        :                                       :   AbsTrace <= 23369.7: [S32]
+        :                                       AbsTrace <= 948.788:
+        :                                       :...Trace > 566.928: good (23/1)
+        :                                           Trace <= 566.928:
+        :                                           :...NumRows <= 124: bad (13)
+        :                                               NumRows > 124:
+        :                                               :...solver > 3.052362e+07: [S33]
+        :                                                   solver <= 3.052362e+07: [S34]
+        solver > 3.052363e+07:
+        :...solver > 8.721753e+07:
+            :...solver <= 8.747958e+07:
+            :   :...AbsTrace <= 235.77:
+            :   :   :...Nonzeros > 23754:
+            :   :   :   :...Trace > 51: bad (41)
+            :   :   :   :   Trace <= 51:
+            :   :   :   :   :...solver <= 8.747958e+07:
+            :   :   :   :       :...AbsTrace <= 0.000664: bad (54/24)
+            :   :   :   :       :   AbsTrace > 0.000664: good (79/21)
+            :   :   :   :       solver > 8.747958e+07:
+            :   :   :   :       :...FrobeniusNorm > 111.357: bad (28/1)
+            :   :   :   :           FrobeniusNorm <= 111.357:
+            :   :   :   :           :...DiagAverage <= 0: bad (4)
+            :   :   :   :               DiagAverage > 0: good (10/2)
+            :   :   :   Nonzeros <= 23754:
+            :   :   :   :...DiagAverage <= 0.035221:
+            :   :   :       :...FrobeniusNorm <= 0.822049:
+            :   :   :       :   :...Trace <= -0.02804: bad (10)
+            :   :   :       :   :   Trace > -0.02804:
+            :   :   :       :   :   :...DiagAverage <= 0.01486: good (17)
+            :   :   :       :   :       DiagAverage > 0.01486: bad (3/1)
+            :   :   :       :   FrobeniusNorm > 0.822049:
+            :   :   :       :   :...solver <= 8.747958e+07: good (518/7)
+            :   :   :       :       solver > 8.747958e+07:
+            :   :   :       :       :...Nonzeros <= 19909: good (155/7)
+            :   :   :       :           Nonzeros > 19909:
+            :   :   :       :           :...NumRows <= 4257: bad (5)
+            :   :   :       :               NumRows > 4257: good (27/3)
+            :   :   :       DiagAverage > 0.035221:
+            :   :   :       :...AbsTrace <= 57:
+            :   :   :           :...Nonzeros <= 9831: good (41/2)
+            :   :   :           :   Nonzeros > 9831: bad (4/1)
+            :   :   :           AbsTrace > 57:
+            :   :   :           :...FrobeniusNorm > 31.7808: good (47/8)
+            :   :   :               FrobeniusNorm <= 31.7808:
+            :   :   :               :...Trace > 158.168: good (11/1)
+            :   :   :                   Trace <= 158.168:
+            :   :   :                   :...AbsTrace > 71.4701: bad (19/2)
+            :   :   :                       AbsTrace <= 71.4701:
+            :   :   :                       :...Nonzeros > 2184: bad (3)
+            :   :   :                           Nonzeros <= 2184:
+            :   :   :                           :...solver <= 8.747958e+07: good (11/2)
+            :   :   :                               solver > 8.747958e+07: bad (4/1)
+            :   :   AbsTrace > 235.77:
+            :   :   :...FrobeniusNorm <= 18.3753: bad (28)
+            :   :       FrobeniusNorm > 18.3753:
+            :   :       :...Nonzeros <= 11405:
+            :   :           :...Nonzeros > 9831: good (47/1)
+            :   :           :   Nonzeros <= 9831:
+            :   :           :   :...NumRows > 1434:
+            :   :           :       :...AbsTrace <= 492391: good (25)
+            :   :           :       :   AbsTrace > 492391:
+            :   :           :       :   :...FrobeniusNorm <= 2.33e+15: bad (9/1)
+            :   :           :       :       FrobeniusNorm > 2.33e+15: good (3)
+            :   :           :       NumRows <= 1434:
+            :   :           :       :...Trace <= -8287.2: bad (83/14)
+            :   :           :           Trace > -8287.2:
+            :   :           :           :...Trace > 6.16e+07:
+            :   :           :               :...NumRows <= 541: bad (40/2)
+            :   :           :               :   NumRows > 541:
+            :   :           :               :   :...NumRows <= 700: good (4)
+            :   :           :               :       NumRows > 700: bad (15/2)
+            :   :           :               Trace <= 6.16e+07:
+            :   :           :               :...AbsTrace > 9390000: good (42/10)
+            :   :           :                   AbsTrace <= 9390000:
+            :   :           :                   :...solver <= 8.747958e+07: [S35]
+            :   :           :                       solver > 8.747958e+07: [S36]
+            :   :           Nonzeros > 11405:
+            :   :           :...DiagAverage > 184568: bad (102/1)
+            :   :               DiagAverage <= 184568:
+            :   :               :...FrobeniusNorm > 6620000:
+            :   :                   :...NumRows > 5563: good (131/46)
+            :   :                   :   NumRows <= 5563:
+            :   :                   :   :...NumRows > 2880: bad (16)
+            :   :                   :       NumRows <= 2880:
+            :   :                   :       :...NumRows <= 1879: bad (3)
+            :   :                   :           NumRows > 1879: good (4)
+            :   :                   FrobeniusNorm <= 6620000:
+            :   :                   :...Trace > 146410: bad (283/14)
+            :   :                       Trace <= 146410:
+            :   :                       :...solver > 8.747958e+07:
+            :   :                           :...DiagAverage <= 0.657463:
+            :   :                           :   :...Nonzeros > 265113: bad (4)
+            :   :                           :   :   Nonzeros <= 265113: [S37]
+            :   :                           :   DiagAverage > 0.657463:
+            :   :                           :   :...NumRows <= 4598: bad (39)
+            :   :                           :       NumRows > 4598: [S38]
+            :   :                           solver <= 8.747958e+07:
+            :   :                           :...NumRows > 11738:
+            :   :                               :...Nonzeros <= 610299: good (89/39)
+            :   :                               :   Nonzeros > 610299: bad (29/6)
+            :   :                               NumRows <= 11738:
+            :   :                               :...AbsTrace > 38883.8: [S39]
+            :   :                                   AbsTrace <= 38883.8: [S40]
+            :   solver > 8.747958e+07:
+            :   :...solver <= 9.330618e+07:
+            :       :...NumRows > 1030:
+            :       :   :...FrobeniusNorm > 173.398:
+            :       :   :   :...solver > 8.830493e+07: bad (2473/16)
+            :       :   :   :   solver <= 8.830493e+07:
+            :       :   :   :   :...Trace <= -122863:
+            :       :   :   :       :...FrobeniusNorm > 3.01e+07: bad (19/1)
+            :       :   :   :       :   FrobeniusNorm <= 3.01e+07:
+            :       :   :   :       :   :...NumRows <= 14270: good (7)
+            :       :   :   :       :       NumRows > 14270: bad (4)
+            :       :   :   :       Trace > -122863:
+            :       :   :   :       :...NumRows > 4326: bad (247/2)
+            :       :   :   :           NumRows <= 4326:
+            :       :   :   :           :...NumRows <= 4182: bad (86/2)
+            :       :   :   :               NumRows > 4182: good (7/1)
+            :       :   :   FrobeniusNorm <= 173.398:
+            :       :   :   :...AbsTrace > 4073.6:
+            :       :   :       :...ColDiagDominancy > 0: bad (5)
+            :       :   :       :   ColDiagDominancy <= 0:
+            :       :   :       :   :...DiagAverage <= 0.584965:
+            :       :   :       :       :...NumRows <= 11305: good (18/8)
+            :       :   :       :       :   NumRows > 11305: bad (16)
+            :       :   :       :       DiagAverage > 0.584965:
+            :       :   :       :       :...solver <= 9.233122e+07: good (25/5)
+            :       :   :       :           solver > 9.233122e+07: bad (2)
+            :       :   :       AbsTrace <= 4073.6:
+            :       :   :       :...FrobeniusNorm <= 2.21101:
+            :       :   :           :...Trace <= 0.00499: bad (70/6)
+            :       :   :           :   Trace > 0.00499:
+            :       :   :           :   :...solver <= 8.898792e+07: bad (23/1)
+            :       :   :           :       solver > 8.898792e+07:
+            :       :   :           :       :...solver > 9.184516e+07: bad (15/1)
+            :       :   :           :           solver <= 9.184516e+07:
+            :       :   :           :           :...Nonzeros > 94408: bad (2)
+            :       :   :           :               Nonzeros <= 94408: [S41]
+            :       :   :           FrobeniusNorm > 2.21101:
+            :       :   :           :...Nonzeros <= 20516: bad (511)
+            :       :   :               Nonzeros > 20516:
+            :       :   :               :...solver > 8.830493e+07:
+            :       :   :                   :...Nonzeros > 41594: bad (139/2)
+            :       :   :                   :   Nonzeros <= 41594:
+            :       :   :                   :   :...Trace <= 97.0434: bad (18)
+            :       :   :                   :       Trace > 97.0434: [S42]
+            :       :   :                   solver <= 8.830493e+07:
+            :       :   :                   :...Trace <= -186.964: good (5)
+            :       :   :                       Trace > -186.964:
+            :       :   :                       :...NumRows > 29610: good (2)
+            :       :   :                           NumRows <= 29610: [S43]
+            :       :   NumRows <= 1030:
+            :       :   :...FrobeniusNorm <= 12.141:
+            :       :       :...NumRows <= 102:
+            :       :       :   :...DiagAverage > 0.451503: good (18)
+            :       :       :   :   DiagAverage <= 0.451503:
+            :       :       :   :   :...DiagAverage <= 0.189996:
+            :       :       :   :       :...solver <= 8.830493e+07: bad (2)
+            :       :       :   :       :   solver > 8.830493e+07: good (22)
+            :       :       :   :       DiagAverage > 0.189996:
+            :       :       :   :       :...solver <= 8.898792e+07: bad (2)
+            :       :       :   :           solver > 8.898792e+07:
+            :       :       :   :           :...solver <= 9.078392e+07: good (4)
+            :       :       :   :               solver > 9.078392e+07: bad (2)
+            :       :       :   NumRows > 102:
+            :       :       :   :...Trace > 190.187: good (8)
+            :       :       :       Trace <= 190.187:
+            :       :       :       :...solver <= 8.898792e+07: bad (34)
+            :       :       :           solver > 8.898792e+07:
+            :       :       :           :...Nonzeros <= 421: good (6)
+            :       :       :               Nonzeros > 421:
+            :       :       :               :...NumRows <= 364: bad (24/1)
+            :       :       :                   NumRows > 364:
+            :       :       :                   :...Nonzeros <= 10685: good (13/2)
+            :       :       :                       Nonzeros > 10685: bad (4)
+            :       :       FrobeniusNorm > 12.141:
+            :       :       :...NumRows <= 19:
+            :       :           :...solver <= 8.898792e+07: bad (14/1)
+            :       :           :   solver > 8.898792e+07:
+            :       :           :   :...NumRows <= 14: good (13/2)
+            :       :           :       NumRows > 14:
+            :       :           :       :...NumRows <= 18: bad (10/1)
+            :       :           :           NumRows > 18: good (6/1)
+            :       :           NumRows > 19:
+            :       :           :...DiagAverage <= 0.529408: bad (230)
+            :       :               DiagAverage > 0.529408:
+            :       :               :...NumRows > 989:
+            :       :                   :...NumRows <= 991: good (8)
+            :       :                   :   NumRows > 991:
+            :       :                   :   :...Nonzeros > 8784: good (5)
+            :       :                   :       Nonzeros <= 8784:
+            :       :                   :       :...solver <= 8.830493e+07: good (4/1)
+            :       :                   :           solver > 8.830493e+07: bad (24)
+            :       :                   NumRows <= 989:
+            :       :                   :...solver > 9.184516e+07: bad (92/1)
+            :       :                       solver <= 9.184516e+07:
+            :       :                       :...NumRows <= 72: bad (34)
+            :       :                           NumRows > 72:
+            :       :                           :...solver <= 8.898792e+07:
+            :       :                               :...solver > 8.830493e+07: bad (166/4)
+            :       :                               :   solver <= 8.830493e+07:
+            :       :                               :   :...Trace <= -186.964: [S44]
+            :       :                               :       Trace > -186.964: [S45]
+            :       :                               solver > 8.898792e+07:
+            :       :                               :...DiagAverage <= 469.636: [S46]
+            :       :                                   DiagAverage > 469.636: [S47]
+            :       solver > 9.330618e+07:
+            :       :...solver > 9.576235e+07:
+            :           :...solver > 9.692977e+07:
+            :           :   :...NumRows <= 10000:
+            :           :   :   :...Nonzeros <= 63406: good (143/57)
+            :           :   :   :   Nonzeros > 63406:
+            :           :   :   :   :...NumRows > 8081: bad (38)
+            :           :   :   :       NumRows <= 8081:
+            :           :   :   :       :...NumRows <= 5773: bad (14/1)
+            :           :   :   :           NumRows > 5773: good (3)
+            :           :   :   NumRows > 10000:
+            :           :   :   :...Nonzeros > 610299: bad (5/1)
+            :           :   :       Nonzeros <= 610299:
+            :           :   :       :...FrobeniusNorm > 2290000: good (15)
+            :           :   :           FrobeniusNorm <= 2290000:
+            :           :   :           :...AbsTrace <= 1400000: good (30/6)
+            :           :   :               AbsTrace > 1400000: bad (3)
+            :           :   solver <= 9.692977e+07:
+            :           :   :...Nonzeros <= 83:
+            :           :       :...ColDiagDominancy > 0: bad (2)
+            :           :       :   ColDiagDominancy <= 0:
+            :           :       :   :...FrobeniusNorm <= 2762.92: good (13)
+            :           :       :       FrobeniusNorm > 2762.92: bad (15/5)
+            :           :       Nonzeros > 83:
+            :           :       :...solver > 9.668909e+07: bad (368)
+            :           :           solver <= 9.668909e+07:
+            :           :           :...solver <= 9.659006e+07:
+            :           :               :...FrobeniusNorm > 76.1317: bad (925/29)
+            :           :               :   FrobeniusNorm <= 76.1317:
+            :           :               :   :...AbsTrace > 3634.62: good (9)
+            :           :               :       AbsTrace <= 3634.62:
+            :           :               :       :...NumRows <= 102: good (11/1)
+            :           :               :           NumRows > 102:
+            :           :               :           :...Trace <= 0.00499: bad (44)
+            :           :               :               Trace > 0.00499: [S48]
+            :           :               solver > 9.659006e+07:
+            :           :               :...AbsTrace <= 82.0954: bad (207/1)
+            :           :                   AbsTrace > 82.0954:
+            :           :                   :...FrobeniusNorm > 710459:
+            :           :                       :...NumRows > 769: bad (133/15)
+            :           :                       :   NumRows <= 769:
+            :           :                       :   :...NumRows <= 512: [S49]
+            :           :                       :       NumRows > 512: [S50]
+            :           :                       FrobeniusNorm <= 710459:
+            :           :                       :...FrobeniusNorm > 208415: [S51]
+            :           :                           FrobeniusNorm <= 208415:
+            :           :                           :...DiagAverage <= 0.075077: [S52]
+            :           :                               DiagAverage > 0.075077: [S53]
+            :           solver <= 9.576235e+07:
+            :           :...AbsTrace <= 235.77:
+            :               :...solver <= 9.447954e+07:
+            :               :   :...DiagAverage <= 0.038929: bad (461/5)
+            :               :   :   DiagAverage > 0.038929:
+            :               :   :   :...Nonzeros > 42211:
+            :               :   :       :...solver <= 9.348562e+07: good (5)
+            :               :   :       :   solver > 9.348562e+07: bad (4)
+            :               :   :       Nonzeros <= 42211:
+            :               :   :       :...solver <= 9.348562e+07: bad (33/5)
+            :               :   :           solver > 9.348562e+07:
+            :               :   :           :...FrobeniusNorm <= 12.9615: good (10/3)
+            :               :   :               FrobeniusNorm > 12.9615: bad (16)
+            :               :   solver > 9.447954e+07:
+            :               :   :...Nonzeros > 23754:
+            :               :       :...FrobeniusNorm <= 2e-06: bad (20)
+            :               :       :   FrobeniusNorm > 2e-06:
+            :               :       :   :...Trace > 51: bad (87/21)
+            :               :       :       Trace <= 51:
+            :               :       :       :...FrobeniusNorm <= 0.002175: good (17/1)
+            :               :       :           FrobeniusNorm > 0.002175: [S54]
+            :               :       Nonzeros <= 23754:
+            :               :       :...DiagAverage <= 0.035221:
+            :               :           :...FrobeniusNorm > 0.002175: good (749/27)
+            :               :           :   FrobeniusNorm <= 0.002175:
+            :               :           :   :...FrobeniusNorm <= 0.000515: good (19)
+            :               :           :       FrobeniusNorm > 0.000515: bad (24)
+            :               :           DiagAverage > 0.035221:
+            :               :           :...FrobeniusNorm > 31.7808:
+            :               :               :...FrobeniusNorm <= 7.54e+09: good (53/1)
+            :               :               :   FrobeniusNorm > 7.54e+09:
+            :               :               :   :...solver <= 9.459914e+07: good (6/2)
+            :               :               :       solver > 9.459914e+07: bad (2)
+            :               :               FrobeniusNorm <= 31.7808:
+            :               :               :...AbsTrace <= 63.3492:
+            :               :                   :...Nonzeros <= 9831: good (52/8)
+            :               :                   :   Nonzeros > 9831: bad (7/1)
+            :               :                   AbsTrace > 63.3492:
+            :               :                   :...Trace > 158.168: [S55]
+            :               :                       Trace <= 158.168:
+            :               :                       :...solver <= 9.527926e+07: bad (36/4)
+            :               :                           solver > 9.527926e+07: [S56]
+            :               AbsTrace > 235.77:
+            :               :...solver <= 9.348562e+07:
+            :                   :...Trace <= 45579.1:
+            :                   :   :...NumRows > 1138: bad (145/32)
+            :                   :   :   NumRows <= 1138:
+            :                   :   :   :...Trace > 1096.47: good (14)
+            :                   :   :       Trace <= 1096.47:
+            :                   :   :       :...DiagAverage > 64.671: good (11)
+            :                   :   :           DiagAverage <= 64.671: [S57]
+            :                   :   Trace > 45579.1:
+            :                   :   :...NumRows <= 13436:
+            :                   :       :...Nonzeros > 1712: good (114/5)
+            :                   :       :   Nonzeros <= 1712:
+            :                   :       :   :...NumRows <= 332: good (18/2)
+            :                   :       :       NumRows > 332:
+            :                   :       :       :...NumRows <= 452: bad (8)
+            :                   :       :           NumRows > 452: good (2)
+            :                   :       NumRows > 13436:
+            :                   :       :...FrobeniusNorm > 4.6e+11: good (7)
+            :                   :           FrobeniusNorm <= 4.6e+11:
+            :                   :           :...FrobeniusNorm > 996045: bad (17/2)
+            :                   :               FrobeniusNorm <= 996045: [S58]
+            :                   solver > 9.348562e+07:
+            :                   :...solver <= 9.447954e+07: bad (350/34)
+            :                       solver > 9.447954e+07:
+            :                       :...Trace <= 4423.96:
+            :                           :...FrobeniusNorm <= 18.227: bad (64/7)
+            :                           :   FrobeniusNorm > 18.227:
+            :                           :   :...NumRows <= 1434:
+            :                           :       :...solver <= 9.527926e+07:
+            :                           :       :   :...AbsTrace <= 948.788: [S59]
+            :                           :       :   :   AbsTrace > 948.788: [S60]
+            :                           :       :   solver > 9.527926e+07: [S61]
+            :                           :       NumRows > 1434:
+            :                           :       :...Nonzeros <= 11683: good (70/4)
+            :                           :           Nonzeros > 11683:
+            :                           :           :...Trace > 3244.81: good (22)
+            :                           :               Trace <= 3244.81: [S62]
+            :                           Trace > 4423.96:
+            :                           :...NumRows <= 991:
+            :                               :...Trace > 6.16e+07:
+            :                               :   :...DiagAverage <= 1140000: bad (39)
+            :                               :   :   DiagAverage > 1140000: [S63]
+            :                               :   Trace <= 6.16e+07:
+            :                               :   :...FrobeniusNorm <= 1580000:
+            :                               :       :...NumRows <= 452: [S64]
+            :                               :       :   NumRows > 452: [S65]
+            :                               :       FrobeniusNorm > 1580000: [S66]
+            :                               NumRows > 991:
+            :                               :...NumRows <= 11125:
+            :                                   :...NumRows > 9769: bad (365/3)
+            :                                   :   NumRows <= 9769:
+            :                                   :   :...Trace > 3.77e+07: bad (142/8)
+            :                                   :       Trace <= 3.77e+07:
+            :                                   :       :...AbsTrace > 9940000: [S67]
+            :                                   :           AbsTrace <= 9940000: [S68]
+            :                                   NumRows > 11125:
+            :                                   :...Nonzeros > 1488768: bad (42/3)
+            :                                       Nonzeros <= 1488768:
+            :                                       :...solver > 9.459914e+07: [S69]
+            :                                           solver <= 9.459914e+07: [S70]
+            solver <= 8.721753e+07:
+            :...FrobeniusNorm <= 79.5362:
+                :...AbsTrace > 4073.6: good (200/56)
+                :   AbsTrace <= 4073.6:
+                :   :...NumRows <= 102:
+                :       :...FrobeniusNorm <= 8.73651:
+                :       :   :...Trace > 25.2752:
+                :       :   :   :...NumRows <= 93: good (62/16)
+                :       :   :   :   NumRows > 93: bad (63/27)
+                :       :   :   Trace <= 25.2752:
+                :       :   :   :...Nonzeros <= 138: good (117/6)
+                :       :   :       Nonzeros > 138:
+                :       :   :       :...solver <= 5.917142e+07: good (94/11)
+                :       :   :           solver > 5.917142e+07:
+                :       :   :           :...solver <= 6.039286e+07: bad (8)
+                :       :   :               solver > 6.039286e+07: good (27/4)
+                :       :   FrobeniusNorm > 8.73651:
+                :       :   :...solver > 5.206815e+07: bad (78)
+                :       :       solver <= 5.206815e+07:
+                :       :       :...solver > 5.024925e+07: good (16)
+                :       :           solver <= 5.024925e+07:
+                :       :           :...solver > 3.994244e+07: bad (37)
+                :       :               solver <= 3.994244e+07:
+                :       :               :...solver <= 3.617134e+07: bad (11)
+                :       :                   solver > 3.617134e+07: good (15/1)
+                :       NumRows > 102:
+                :       :...Nonzeros > 97353: bad (757/31)
+                :           Nonzeros <= 97353:
+                :           :...Trace > 607.022:
+                :               :...FrobeniusNorm <= 56.4135: good (141/38)
+                :               :   FrobeniusNorm > 56.4135: bad (174/36)
+                :               Trace <= 607.022:
+                :               :...solver > 5.206815e+07:
+                :                   :...Nonzeros > 19468:
+                :                   :   :...DiagAverage <= 9e-06: good (66/10)
+                :                   :   :   DiagAverage > 9e-06:
+                :                   :   :   :...Nonzeros <= 29675:
+                :                   :   :       :...Trace <= 0.029271: bad (59/6)
+                :                   :   :       :   Trace > 0.029271:
+                :                   :   :       :   :...solver <= 5.651317e+07: good (25)
+                :                   :   :       :       solver > 5.651317e+07: [S71]
+                :                   :   :       Nonzeros > 29675: [S72]
+                :                   :   Nonzeros <= 19468:
+                :                   :   :...DiagAverage > 0.337976:
+                :                   :       :...FrobeniusNorm <= 13.4827:
+                :                   :       :   :...Nonzeros > 2742: good (24/3)
+                :                   :       :   :   Nonzeros <= 2742:
+                :                   :       :   :   :...solver <= 6.932395e+07: bad (77/19)
+                :                   :       :   :       solver > 6.932395e+07: [S73]
+                :                   :       :   FrobeniusNorm > 13.4827: [S74]
+                :                   :       DiagAverage <= 0.337976:
+                :                   :       :...FrobeniusNorm <= 0.160651:
+                :                   :           :...Trace <= 0.086783: bad (92/6)
+                :                   :           :   Trace > 0.086783: good (31/5)
+                :                   :           FrobeniusNorm > 0.160651:
+                :                   :           :...Nonzeros <= 1475: [S75]
+                :                   :               Nonzeros > 1475: [S76]
+                :                   solver <= 5.206815e+07:
+                :                   :...solver > 5.024925e+07:
+                :                       :...AbsTrace <= 62.5671:
+                :                       :   :...Trace <= -0.02804: [S77]
+                :                       :   :   Trace > -0.02804:
+                :                       :   :   :...Nonzeros <= 16331: good (249/11)
+                :                       :   :       Nonzeros > 16331: [S78]
+                :                       :   AbsTrace > 62.5671:
+                :                       :   :...NumRows > 1434: bad (45/5)
+                :                       :       NumRows <= 1434:
+                :                       :       :...NumRows > 822: [S79]
+                :                       :           NumRows <= 822:
+                :                       :           :...NumRows > 343: bad (24)
+                :                       :               NumRows <= 343: [S80]
+                :                       solver <= 5.024925e+07:
+                :                       :...solver > 3.994244e+07:
+                :                           :...Nonzeros <= 19468:
+                :                           :   :...DiagAverage <= 0.464695:
+                :                           :   :   :...NumRows <= 430: [S81]
+                :                           :   :   :   NumRows > 430: [S82]
+                :                           :   :   DiagAverage > 0.464695:
+                :                           :   :   :...Nonzeros > 4032: [S83]
+                :                           :   :       Nonzeros <= 4032: [S84]
+                :                           :   Nonzeros > 19468:
+                :                           :   :...Trace <= -0.056683: bad (90/3)
+                :                           :       Trace > -0.056683:
+                :                           :       :...NumRows <= 2624: bad (16)
+                :                           :           NumRows > 2624:
+                :                           :           :...Nonzeros > 36710: [S85]
+                :                           :               Nonzeros <= 36710:
+                :                           :               :...solver > 4.735526e+07: [S86]
+                :                           :                   solver <= 4.735526e+07: [S87]
+                :                           solver <= 3.994244e+07:
+                :                           :...solver > 3.617134e+07:
+                :                               :...DiagAverage <= 0.026363:
+                :                               :   :...Trace > -0.02804: good (274/3)
+                :                               :   :   Trace <= -0.02804: [S88]
+                :                               :   DiagAverage > 0.026363:
+                :                               :   :...NumRows > 2880: bad (18)
+                :                               :       NumRows <= 2880:
+                :                               :       :...solver <= 3.994244e+07: [S89]
+                :                               :           solver > 3.994244e+07: [S90]
+                :                               solver <= 3.617134e+07:
+                :                               :...FrobeniusNorm > 13.4827: [S91]
+                :                                   FrobeniusNorm <= 13.4827:
+                :                                   :...FrobeniusNorm > 11.4674: [S92]
+                :                                       FrobeniusNorm <= 11.4674:
+                :                                       :...Nonzeros > 79721: [S93]
+                :                                           Nonzeros <= 79721: [S94]
+                FrobeniusNorm > 79.5362:
+                :...Nonzeros > 23754:
+                    :...solver <= 3.211053e+07: bad (1320/18)
+                    :   solver > 3.211053e+07:
+                    :   :...solver <= 3.994244e+07:
+                    :       :...solver <= 3.617134e+07: bad (1170/42)
+                    :       :   solver > 3.617134e+07:
+                    :       :   :...Trace <= 93.9019:
+                    :       :       :...solver > 3.994244e+07:
+                    :       :       :   :...FrobeniusNorm <= 1.06e+11: good (61/22)
+                    :       :       :   :   FrobeniusNorm > 1.06e+11: bad (10)
+                    :       :       :   solver <= 3.994244e+07:
+                    :       :       :   :...Trace <= -3.87e+08: bad (24/3)
+                    :       :       :       Trace > -3.87e+08:
+                    :       :       :       :...AbsTrace <= 10957.9:
+                    :       :       :           :...AbsTrace > 6293.51: bad (6)
+                    :       :       :           :   AbsTrace <= 6293.51:
+                    :       :       :           :   :...Trace <= -1420.56: good (5/1)
+                    :       :       :           :       Trace > -1420.56: bad (109/40)
+                    :       :       :           AbsTrace > 10957.9: [S95]
+                    :       :       Trace > 93.9019:
+                    :       :       :...NumRows > 20082:
+                    :       :           :...DiagAverage <= 132.556:
+                    :       :           :   :...DiagAverage > 4: bad (37/1)
+                    :       :           :   :   DiagAverage <= 4:
+                    :       :           :   :   :...DiagAverage <= 2.26237: bad (43/7)
+                    :       :           :   :       DiagAverage > 2.26237:
+                    :       :           :   :       :...solver <= 3.994244e+07: bad (26/12)
+                    :       :           :   :           solver > 3.994244e+07: good (7)
+                    :       :           :   DiagAverage > 132.556:
+                    :       :           :   :...Nonzeros > 1793881: bad (4)
+                    :       :           :       Nonzeros <= 1793881:
+                    :       :           :       :...Nonzeros > 208890: good (25/1)
+                    :       :           :           Nonzeros <= 208890: [S96]
+                    :       :           NumRows <= 20082:
+                    :       :           :...AbsTrace <= 48463.6:
+                    :       :               :...solver <= 3.994244e+07: bad (127/37)
+                    :       :               :   solver > 3.994244e+07:
+                    :       :               :   :...AbsTrace <= 29403: bad (42/4)
+                    :       :               :       AbsTrace > 29403: good (3)
+                    :       :               AbsTrace > 48463.6:
+                    :       :               :...NumRows <= 13436: bad (314/10)
+                    :       :                   NumRows > 13436:
+                    :       :                   :...Trace > 7.31e+07: bad (25)
+                    :       :                       Trace <= 7.31e+07: [S97]
+                    :       solver > 3.994244e+07:
+                    :       :...solver <= 5.024925e+07:
+                    :           :...solver <= 4.46735e+07: bad (1203/10)
+                    :           :   solver > 4.46735e+07:
+                    :           :   :...solver > 4.479117e+07: bad (2979/32)
+                    :           :       solver <= 4.479117e+07:
+                    :           :       :...AbsTrace > 1620000: bad (47)
+                    :           :           AbsTrace <= 1620000:
+                    :           :           :...Nonzeros <= 56834: [S98]
+                    :           :               Nonzeros > 56834:
+                    :           :               :...NumRows > 12328: good (22/10)
+                    :           :                   NumRows <= 12328: [S99]
+                    :           solver > 5.024925e+07:
+                    :           :...solver <= 5.206815e+07:
+                    :               :...DiagAverage > 1580000: bad (78)
+                    :               :   DiagAverage <= 1580000:
+                    :               :   :...FrobeniusNorm <= 6620000:
+                    :               :       :...solver <= 5.206814e+07:
+                    :               :       :   :...DiagAverage > 4.60634: [S100]
+                    :               :       :   :   DiagAverage <= 4.60634:
+                    :               :       :   :   :...Trace <= 5.41597: [S101]
+                    :               :       :   :       Trace > 5.41597: [S102]
+                    :               :       :   solver > 5.206814e+07:
+                    :               :       :   :...Nonzeros <= 138040: bad (236/14)
+                    :               :       :       Nonzeros > 138040:
+                    :               :       :       :...NumRows <= 10605: [S103]
+                    :               :       :           NumRows > 10605: [S104]
+                    :               :       FrobeniusNorm > 6620000:
+                    :               :       :...solver <= 5.206814e+07: [S105]
+                    :               :           solver > 5.206814e+07:
+                    :               :           :...Trace <= -3.87e+08: bad (15)
+                    :               :               Trace > -3.87e+08:
+                    :               :               :...NumRows <= 5563: bad (8)
+                    :               :                   NumRows > 5563: [S106]
+                    :               solver > 5.206815e+07:
+                    :               :...solver <= 5.468515e+07: bad (2507/17)
+                    :                   solver > 5.468515e+07:
+                    :                   :...solver > 5.874345e+07:
+                    :                       :...solver <= 7.146662e+07:
+                    :                       :   :...solver > 5.874346e+07: bad (2009/30)
+                    :                       :   :   solver <= 5.874346e+07:
+                    :                       :   :   :...Trace <= 1.3e+10: [S107]
+                    :                       :   :       Trace > 1.3e+10: [S108]
+                    :                       :   solver > 7.146662e+07:
+                    :                       :   :...solver > 8.19867e+07: bad (1084/13)
+                    :                       :       solver <= 8.19867e+07:
+                    :                       :       :...solver <= 7.19297e+07:
+                    :                       :           :...Nonzeros <= 62929: [S109]
+                    :                       :           :   Nonzeros > 62929: [S110]
+                    :                       :           solver > 7.19297e+07: [S111]
+                    :                       solver <= 5.874345e+07:
+                    :                       :...Nonzeros <= 62929:
+                    :                           :...solver <= 5.651317e+07: bad (56/12)
+                    :                           :   solver > 5.651317e+07: [S112]
+                    :                           Nonzeros > 62929:
+                    :                           :...NumRows <= 10000: bad (199/7)
+                    :                               NumRows > 10000: [S113]
+                    Nonzeros <= 23754:
+                    :...NumRows <= 19:
+                        :...Nonzeros > 66:
+                        :   :...solver <= 4.748321e+07: good (21)
+                        :   :   solver > 4.748321e+07:
+                        :   :   :...solver <= 5.206815e+07: bad (8/1)
+                        :   :       solver > 5.206815e+07: good (31/3)
+                        :   Nonzeros <= 66:
+                        :   :...NumRows > 14: bad (119/11)
+                        :       NumRows <= 14:
+                        :       :...solver <= 4.46735e+07: good (31/6)
+                        :           solver > 4.46735e+07:
+                        :           :...solver <= 5.219866e+07: bad (37/6)
+                        :               solver > 5.219866e+07: good (57/27)
+                        NumRows > 19:
+                        :...solver > 5.206815e+07:
+                            :...DiagAverage <= 0.584965: bad (2638)
+                            :   DiagAverage > 0.584965:
+                            :   :...Trace <= 37552.2:
+                            :       :...AbsTrace <= 139.318:
+                            :       :   :...NumRows <= 105: bad (20)
+                            :       :   :   NumRows > 105:
+                            :       :   :   :...solver > 7.338813e+07: good (8)
+                            :       :   :       solver <= 7.338813e+07:
+                            :       :   :       :...solver <= 5.917142e+07: good (16/4)
+                            :       :   :           solver > 5.917142e+07: bad (11/2)
+                            :       :   AbsTrace > 139.318:
+                            :       :   :...solver <= 6.660432e+07:
+                            :       :       :...DiagAverage > 2030000: [S114]
+                            :       :       :   DiagAverage <= 2030000: [S115]
+                            :       :       solver > 6.660432e+07:
+                            :       :       :...solver > 8.19867e+07: bad (337/9)
+                            :       :           solver <= 8.19867e+07:
+                            :       :           :...solver > 7.525991e+07:
+                            :       :               :...DiagAverage <= 15.784: [S116]
+                            :       :               :   DiagAverage > 15.784: [S117]
+                            :       :               solver <= 7.525991e+07:
+                            :       :               :...FrobeniusNorm <= 247.026: [S118]
+                            :       :                   FrobeniusNorm > 247.026: [S119]
+                            :       Trace > 37552.2:
+                            :       :...FrobeniusNorm <= 21700.5:
+                            :           :...NumRows > 343: bad (137/12)
+                            :           :   NumRows <= 343:
+                            :           :   :...solver <= 6.660432e+07: good (69/9)
+                            :           :       solver > 6.660432e+07:
+                            :           :       :...solver <= 6.932395e+07: bad (8)
+                            :           :           solver > 6.932395e+07:
+                            :           :           :...solver > 8.614251e+07: bad (4)
+                            :           :               solver <= 8.614251e+07: [S120]
+                            :           FrobeniusNorm > 21700.5:
+                            :           :...Nonzeros <= 2028:
+                            :               :...DiagAverage <= 953875: bad (335/3)
+                            :               :   DiagAverage > 953875:
+                            :               :   :...solver <= 5.651317e+07: bad (110/1)
+                            :               :       solver > 5.651317e+07:
+                            :               :       :...solver <= 6.932395e+07: [S121]
+                            :               :           solver > 6.932395e+07: [S122]
+                            :               Nonzeros > 2028:
+                            :               :...Nonzeros <= 2350:
+                            :                   :...solver <= 5.468515e+07: good (10)
+                            :                   :   solver > 5.468515e+07:
+                            :                   :   :...solver > 8.245658e+07: good (4)
+                            :                   :       solver <= 8.245658e+07: [S123]
+                            :                   Nonzeros > 2350:
+                            :                   :...Nonzeros <= 4172: bad (140/3)
+                            :                       Nonzeros > 4172:
+                            :                       :...NumRows <= 700: [S124]
+                            :                           NumRows > 700: [S125]
+                            solver <= 5.206815e+07:
+                            :...solver > 5.024925e+07:
+                                :...DiagAverage > 3.12943:
+                                :   :...FrobeniusNorm <= 747139:
+                                :   :   :...NumRows <= 120:
+                                :   :   :   :...FrobeniusNorm > 63132.8: good (3)
+                                :   :   :   :   FrobeniusNorm <= 63132.8:
+                                :   :   :   :   :...NumRows <= 105: bad (11/1)
+                                :   :   :   :       NumRows > 105: good (6/2)
+                                :   :   :   NumRows > 120:
+                                :   :   :   :...Trace <= 27838.4: bad (116)
+                                :   :   :       Trace > 27838.4: [S126]
+                                :   :   FrobeniusNorm > 747139:
+                                :   :   :...DiagAverage > 94279.1:
+                                :   :       :...FrobeniusNorm <= 5.74e+13: bad (92)
+                                :   :       :   FrobeniusNorm > 5.74e+13:
+                                :   :       :   :...AbsTrace <= 2.2e+15: good (4)
+                                :   :       :       AbsTrace > 2.2e+15: bad (8)
+                                :   :       DiagAverage <= 94279.1:
+                                :   :       :...DiagAverage > 30362: good (43/4)
+                                :   :           DiagAverage <= 30362:
+                                :   :           :...DiagAverage > 132.556: bad (36/5)
+                                :   :               DiagAverage <= 132.556: [S127]
+                                :   DiagAverage <= 3.12943:
+                                :   :...Trace > 360.978:
+                                :       :...Nonzeros <= 10685: good (17/2)
+                                :       :   Nonzeros > 10685:
+                                :       :   :...DiagAverage <= 1.50749: bad (9)
+                                :       :       DiagAverage > 1.50749:
+                                :       :       :...NumRows <= 2339: bad (4/1)
+                                :       :           NumRows > 2339: good (3)
+                                :       Trace <= 360.978:
+                                :       :...NumRows <= 131:
+                                :           :...NumRows <= 105: good (16)
+                                :           :   NumRows > 105: bad (11/4)
+                                :           NumRows > 131:
+                                :           :...solver <= 5.206814e+07: good (271/5)
+                                :               solver > 5.206814e+07:
+                                :               :...Nonzeros <= 19503: good (206/9)
+                                :                   Nonzeros > 19503: [S128]
+                                solver <= 5.024925e+07:
+                                :...solver > 3.994244e+07:
+                                    :...DiagAverage <= 3.72151: bad (1797/5)
+                                    :   DiagAverage > 3.72151:
+                                    :   :...Nonzeros > 21199:
+                                    :       :...NumRows <= 1505: bad (13)
+                                    :       :   NumRows > 1505:
+                                    :       :   :...solver <= 4.748321e+07: good (10/1)
+                                    :       :       solver > 4.748321e+07: bad (4/1)
+                                    :       Nonzeros <= 21199:
+                                    :       :...Nonzeros > 7514:
+                                    :           :...solver > 4.479117e+07: bad (316/1)
+                                    :           :   solver <= 4.479117e+07:
+                                    :           :   :...solver <= 4.46735e+07: bad (113)
+                                    :           :       solver > 4.46735e+07: [S129]
+                                    :           Nonzeros <= 7514:
+                                    :           :...AbsTrace <= 3102.85: bad (99)
+                                    :               AbsTrace > 3102.85:
+                                    :               :...Trace <= -6869.05: [S130]
+                                    :                   Trace > -6869.05: [S131]
+                                    solver <= 3.994244e+07:
+                                    :...solver <= 3.617134e+07:
+                                        :...Trace <= 53297.5:
+                                        :   :...Trace <= -5.23e+08: [S132]
+                                        :   :   Trace > -5.23e+08:
+                                        :   :   :...FrobeniusNorm > 201.298:
+                                        :   :       :...NumRows > 130: bad (949/2)
+                                        :   :       :   NumRows <= 130: [S133]
+                                        :   :       FrobeniusNorm <= 201.298: [S134]
+                                        :   Trace > 53297.5:
+                                        :   :...FrobeniusNorm <= 21700.5: [S135]
+                                        :       FrobeniusNorm > 21700.5:
+                                        :       :...Nonzeros <= 2028: bad (168/2)
+                                        :           Nonzeros > 2028:
+                                        :           :...NumRows <= 700: [S136]
+                                        :               NumRows > 700: [S137]
+                                        solver > 3.617134e+07:
+                                        :...DiagAverage <= 3.12943:
+                                            :...Trace <= 360.978: good (568/29)
+                                            :   Trace > 360.978:
+                                            :   :...NumRows > 3600: bad (5)
+                                            :       NumRows <= 3600: [S138]
+                                            DiagAverage > 3.12943:
+                                            :...Trace > 1.65e+07: [S139]
+                                                Trace <= 1.65e+07:
+                                                :...Trace > 7600000: good (39/5)
+                                                    Trace <= 7600000:
+                                                    :...FrobeniusNorm > 747139: [S140]
+                                                        FrobeniusNorm <= 747139: [S141]
+
+SubTree [S1]
+
+FrobeniusNorm <= 156.167: bad (5)
+FrobeniusNorm > 156.167: good (2)
+
+SubTree [S2]
+
+Nonzeros <= 1967: bad (31/1)
+Nonzeros > 1967:
+:...Nonzeros <= 3157: good (16/3)
+    Nonzeros > 3157: bad (100/35)
+
+SubTree [S3]
+
+solver > 1.630627e+07: bad (3)
+solver <= 1.630627e+07:
+:...solver > 8788782: good (32/3)
+    solver <= 8788782:
+    :...solver <= 8173694: good (8/2)
+        solver > 8173694: bad (3)
+
+SubTree [S4]
+
+NumRows <= 199: good (2)
+NumRows > 199: bad (6)
+
+SubTree [S5]
+
+solver <= 2.474848e+07: good (9)
+solver > 2.474848e+07:
+:...solver <= 2.818736e+07: bad (3)
+    solver > 2.818736e+07: good (9)
+
+SubTree [S6]
+
+FrobeniusNorm <= 2017.15: good (4)
+FrobeniusNorm > 2017.15: bad (13/2)
+
+SubTree [S7]
+
+NumRows <= 800: bad (7)
+NumRows > 800: good (6/1)
+
+SubTree [S8]
+
+Trace > -3.87e+08: bad (160)
+Trace <= -3.87e+08:
+:...NumRows <= 238: bad (14)
+    NumRows > 238:
+    :...solver <= 1.955204e+07: good (3)
+        solver > 1.955204e+07: bad (3/1)
+
+SubTree [S9]
+
+Nonzeros > 2742: good (8)
+Nonzeros <= 2742:
+:...solver <= 1.955203e+07: good (4)
+    solver > 1.955203e+07: bad (10/3)
+
+SubTree [S10]
+
+Nonzeros <= 998: bad (33)
+Nonzeros > 998:
+:...NumRows > 782: bad (56/3)
+    NumRows <= 782:
+    :...Trace <= 457.138: bad (20)
+        Trace > 457.138:
+        :...FrobeniusNorm <= 21700.5:
+            :...NumRows <= 308: good (32/8)
+            :   NumRows > 308:
+            :   :...Trace <= 801.001: good (5)
+            :       Trace > 801.001:
+            :       :...DiagAverage <= 281.043: bad (27)
+            :           DiagAverage > 281.043:
+            :           :...solver <= 1.955204e+07: good (3)
+            :               solver > 1.955204e+07: bad (4)
+            FrobeniusNorm > 21700.5:
+            :...NumRows <= 497:
+                :...solver > 1.955203e+07: bad (67)
+                :   solver <= 1.955203e+07:
+                :   :...Nonzeros <= 1028: good (2)
+                :       Nonzeros > 1028: bad (15/1)
+                NumRows > 497:
+                :...Trace > 8.84e+08: good (14)
+                    Trace <= 8.84e+08:
+                    :...NumRows <= 512: good (6/1)
+                        NumRows > 512:
+                        :...Nonzeros <= 6209: bad (42/5)
+                            Nonzeros > 6209:
+                            :...solver <= 1.955204e+07: good (2)
+                                solver > 1.955204e+07:
+                                :...solver <= 2.032173e+07: bad (2)
+                                    solver > 2.032173e+07: good (2)
+
+SubTree [S11]
+
+FrobeniusNorm <= 4.57e+08: good (6)
+FrobeniusNorm > 4.57e+08: bad (21/6)
+
+SubTree [S12]
+
+Nonzeros > 1037: bad (212/9)
+Nonzeros <= 1037:
+:...Nonzeros > 1012: good (4)
+    Nonzeros <= 1012:
+    :...NumRows <= 27: good (7/1)
+        NumRows > 27: bad (55/6)
+
+SubTree [S13]
+
+NumRows > 886: good (6)
+NumRows <= 886:
+:...solver > 2.159162e+07: bad (21/4)
+    solver <= 2.159162e+07:
+    :...Nonzeros <= 2993: good (11/1)
+        Nonzeros > 2993: bad (8/1)
+
+SubTree [S14]
+
+NumRows > 886: good (7)
+NumRows <= 886:
+:...NumRows > 769: bad (15)
+    NumRows <= 769:
+    :...AbsTrace > 9.98e+10: bad (7)
+        AbsTrace <= 9.98e+10:
+        :...Trace > 8.84e+08: good (6)
+            Trace <= 8.84e+08:
+            :...DiagAverage <= 1534.7: good (6)
+                DiagAverage > 1534.7:
+                :...solver <= 2.159162e+07: bad (24/7)
+                    solver > 2.159162e+07:
+                    :...solver <= 2.293802e+07: good (9/3)
+                        solver > 2.293802e+07: bad (23/7)
+
+SubTree [S15]
+
+ColDiagDominancy > 0: bad (7)
+ColDiagDominancy <= 0:
+:...AbsTrace > 225600: good (7)
+    AbsTrace <= 225600:
+    :...solver > 2.159162e+07: good (49/10)
+        solver <= 2.159162e+07:
+        :...DiagAverage > 744.523: bad (4)
+            DiagAverage <= 744.523:
+            :...DiagAverage > 497.367: good (5)
+                DiagAverage <= 497.367:
+                :...FrobeniusNorm > 6404.21: bad (14/1)
+                    FrobeniusNorm <= 6404.21:
+                    :...Nonzeros <= 6346: good (23/4)
+                        Nonzeros > 6346: bad (2)
+
+SubTree [S16]
+
+FrobeniusNorm > 247.026: bad (40/1)
+FrobeniusNorm <= 247.026:
+:...FrobeniusNorm <= 7.24677: good (18/4)
+    FrobeniusNorm > 7.24677:
+    :...DiagAverage <= 0.337976: bad (30)
+        DiagAverage > 0.337976:
+        :...Nonzeros > 5184:
+            :...Trace <= 1626.09: bad (25)
+            :   Trace > 1626.09:
+            :   :...solver <= 2.159162e+07: bad (3)
+            :       solver > 2.159162e+07: good (2)
+            Nonzeros <= 5184:
+            :...Nonzeros <= 796: bad (13)
+                Nonzeros > 796:
+                :...solver > 2.293802e+07:
+                    :...DiagAverage <= 4.05241: good (35/13)
+                    :   DiagAverage > 4.05241: bad (7/1)
+                    solver <= 2.293802e+07:
+                    :...DiagAverage > 4.60634:
+                        :...solver <= 2.159162e+07: good (6)
+                        :   solver > 2.159162e+07: bad (2)
+                        DiagAverage <= 4.60634:
+                        :...solver > 2.159162e+07: bad (32/13)
+                            solver <= 2.159162e+07:
+                            :...NumRows <= 343:
+                                :...Nonzeros > 2134: good (7)
+                                :   Nonzeros <= 2134:
+                                :   :...Trace <= 70: bad (7)
+                                :       Trace > 70: good (11/4)
+                                NumRows > 343:
+                                :...FrobeniusNorm <= 151.501: bad (43/3)
+                                    FrobeniusNorm > 151.501:
+                                    :...solver <= 2.159161e+07: bad (3/1)
+                                        solver > 2.159161e+07: good (4)
+
+SubTree [S17]
+
+DiagAverage > 0.626471: good (42/14)
+DiagAverage <= 0.626471:
+:...solver > 2.032174e+07:
+    :...solver > 2.293802e+07: bad (58/1)
+    :   solver <= 2.293802e+07:
+    :   :...Nonzeros <= 17827: good (13/2)
+    :       Nonzeros > 17827: bad (63/15)
+    solver <= 2.032174e+07:
+    :...solver > 1.773482e+07: bad (82)
+        solver <= 1.773482e+07:
+        :...solver <= 1.495399e+07: bad (181/11)
+            solver > 1.495399e+07:
+            :...solver > 1.64659e+07:
+                :...AbsTrace <= 2278.2: bad (10)
+                :   AbsTrace > 2278.2: good (3/1)
+                solver <= 1.64659e+07:
+                :...solver > 1.630627e+07: good (11/3)
+                    solver <= 1.630627e+07:
+                    :...DiagAverage <= 0.400657: bad (7)
+                        DiagAverage > 0.400657: good (3/1)
+
+SubTree [S18]
+
+Nonzeros <= 412148: good (3)
+Nonzeros > 412148: bad (2)
+
+SubTree [S19]
+
+FrobeniusNorm <= 7384.11: bad (9)
+FrobeniusNorm > 7384.11: good (50/21)
+
+SubTree [S20]
+
+solver > 9786219: bad (645/5)
+solver <= 9786219:
+:...solver <= 8788782: bad (205)
+    solver > 8788782:
+    :...NumRows <= 14270:
+        :...FrobeniusNorm <= 1.59e+08: bad (9)
+        :   FrobeniusNorm > 1.59e+08:
+        :   :...Trace <= 2.51e+13: good (2)
+        :       Trace > 2.51e+13: bad (2)
+        NumRows > 14270:
+        :...Nonzeros <= 237130: good (12)
+            Nonzeros > 237130:
+            :...FrobeniusNorm <= 48484.3: bad (2)
+                FrobeniusNorm > 48484.3: good (4/1)
+
+SubTree [S21]
+
+Trace <= 9750000: bad (422)
+Trace > 9750000:
+:...Trace > 1.65e+07: bad (101/1)
+    Trace <= 1.65e+07:
+    :...solver <= 1.87073e+07: bad (2)
+        solver > 1.87073e+07: good (7/1)
+
+SubTree [S22]
+
+Trace > -20866.9: good (41/9)
+Trace <= -20866.9:
+:...DiagAverage <= 184568: bad (18/2)
+    DiagAverage > 184568: good (2)
+
+SubTree [S23]
+
+solver <= 9786219:
+:...solver <= 8788782: bad (214/17)
+:   solver > 8788782:
+:   :...NumRows <= 2146: bad (13/3)
+:       NumRows > 2146:
+:       :...ColDiagDominancy <= 0: good (31/7)
+:           ColDiagDominancy > 0: bad (2)
+solver > 9786219:
+:...NumRows > 2000: bad (537/4)
+    NumRows <= 2000:
+    :...NumRows <= 1922: bad (144/9)
+        NumRows > 1922:
+        :...Nonzeros <= 14579: bad (12)
+            Nonzeros > 14579: good (12/3)
+
+SubTree [S24]
+
+solver <= 2.825754e+07: bad (222/4)
+solver > 2.825754e+07:
+:...solver > 2.825754e+07: bad (90/1)
+    solver <= 2.825754e+07:
+    :...FrobeniusNorm > 1.15e+07: bad (13)
+        FrobeniusNorm <= 1.15e+07:
+        :...NumRows <= 1824: bad (4)
+            NumRows > 1824:
+            :...NumRows <= 8205: good (22/7)
+                NumRows > 8205: bad (3)
+
+SubTree [S25]
+
+solver <= 2.159161e+07: bad (54/14)
+solver > 2.159161e+07:
+:...solver <= 2.23552e+07: bad (82/2)
+    solver > 2.23552e+07:
+    :...solver > 2.293802e+07:
+        :...AbsTrace <= 3.21e+08: bad (65)
+        :   AbsTrace > 3.21e+08:
+        :   :...NumRows <= 4720: bad (15/2)
+        :       NumRows > 4720: good (4)
+        solver <= 2.293802e+07:
+        :...FrobeniusNorm > 297000: bad (18/1)
+            FrobeniusNorm <= 297000:
+            :...Trace > 167045: good (7)
+                Trace <= 167045:
+                :...NumRows <= 8205: good (3/1)
+                    NumRows > 8205: bad (4)
+
+SubTree [S26]
+
+FrobeniusNorm > 1.15e+07:
+:...ColDiagDominancy <= 0: bad (61/5)
+:   ColDiagDominancy > 0:
+:   :...solver <= 2.159162e+07: good (3)
+:       solver > 2.159162e+07: bad (4/1)
+FrobeniusNorm <= 1.15e+07:
+:...solver <= 2.23552e+07:
+    :...solver > 2.159161e+07:
+    :   :...AbsTrace <= 34402: good (3)
+    :   :   AbsTrace > 34402: bad (47/3)
+    :   solver <= 2.159161e+07:
+    :   :...Trace <= -26161.9: bad (12/1)
+    :       Trace > -26161.9:
+    :       :...NumRows <= 3600: good (11/1)
+    :           NumRows > 3600: bad (18/8)
+    solver > 2.23552e+07:
+    :...Trace <= -60563.5: good (22)
+        Trace > -60563.5:
+        :...NumRows > 5975: good (6)
+            NumRows <= 5975:
+            :...solver > 2.293802e+07:
+                :...DiagAverage <= 3951.81: bad (45/5)
+                :   DiagAverage > 3951.81: good (3/1)
+                solver <= 2.293802e+07:
+                :...Nonzeros > 10261: good (8)
+                    Nonzeros <= 10261:
+                    :...DiagAverage <= 14.1211: bad (2)
+                        DiagAverage > 14.1211: good (3/1)
+
+SubTree [S27]
+
+solver <= 2.032174e+07: bad (41)
+solver > 2.032174e+07:
+:...solver <= 2.159161e+07: good (7/2)
+    solver > 2.159161e+07: bad (16/1)
+
+SubTree [S28]
+
+solver <= 1.64659e+07: good (6)
+solver > 1.64659e+07:
+:...solver <= 1.747959e+07: bad (5)
+    solver > 1.747959e+07: good (3/1)
+
+SubTree [S29]
+
+solver > 1.292648e+07: bad (12)
+solver <= 1.292648e+07:
+:...solver > 1.292648e+07: good (6/1)
+    solver <= 1.292648e+07:
+    :...solver > 1.227164e+07: bad (12)
+        solver <= 1.227164e+07:
+        :...solver > 1.172898e+07: good (6/1)
+            solver <= 1.172898e+07:
+            :...solver > 9786219: bad (24)
+                solver <= 9786219:
+                :...solver > 8788782: good (4)
+                    solver <= 8788782:
+                    :...FrobeniusNorm > 29135.3: bad (9)
+                        FrobeniusNorm <= 29135.3:
+                        :...solver > 8173694: good (3)
+                            solver <= 8173694:
+                            :...solver <= 7668974: good (2)
+                                solver > 7668974: bad (6)
+
+SubTree [S30]
+
+Nonzeros <= 38530: bad (33/2)
+Nonzeros > 38530:
+:...Nonzeros > 237130: bad (7)
+    Nonzeros <= 237130:
+    :...DiagAverage > 0.626471: good (14)
+        DiagAverage <= 0.626471:
+        :...DiagAverage <= 0.400657: good (9/1)
+            DiagAverage > 0.400657: bad (9)
+
+SubTree [S31]
+
+FrobeniusNorm > 33941: good (50/7)
+FrobeniusNorm <= 33941:
+:...ColDiagDominancy <= 0: bad (13/3)
+    ColDiagDominancy > 0: good (3/1)
+
+SubTree [S32]
+
+Nonzeros <= 4489: bad (30)
+Nonzeros > 4489:
+:...Trace <= -2278.2: good (3)
+    Trace > -2278.2: bad (38/6)
+
+SubTree [S33]
+
+solver > 3.052363e+07: bad (84/38)
+solver <= 3.052363e+07:
+:...NumRows <= 666:
+    :...DiagAverage <= 0.623281: bad (7)
+    :   DiagAverage > 0.623281: good (3/1)
+    NumRows > 666:
+    :...Nonzeros <= 6346: good (21)
+        Nonzeros > 6346: bad (3)
+
+SubTree [S34]
+
+Trace > 261.372: bad (26/1)
+Trace <= 261.372:
+:...Nonzeros <= 1255: bad (5/1)
+    Nonzeros > 1255:
+    :...FrobeniusNorm > 26.605: good (5)
+        FrobeniusNorm <= 26.605:
+        :...NumRows <= 381: good (3)
+            NumRows > 381: bad (3)
+
+SubTree [S35]
+
+Nonzeros > 935: bad (190/58)
+Nonzeros <= 935:
+:...AbsTrace <= 798.03: good (8)
+    AbsTrace > 798.03:
+    :...ColDiagDominancy <= 0: bad (15/6)
+        ColDiagDominancy > 0: good (3)
+
+SubTree [S36]
+
+NumRows > 1104: good (19/1)
+NumRows <= 1104:
+:...FrobeniusNorm <= 151.501: bad (12)
+    FrobeniusNorm > 151.501:
+    :...Nonzeros <= 6027: good (22/9)
+        Nonzeros > 6027: bad (5)
+
+SubTree [S37]
+
+FrobeniusNorm <= 89.3924: bad (4/1)
+FrobeniusNorm > 89.3924: good (5)
+
+SubTree [S38]
+
+NumRows <= 6774: good (5/1)
+NumRows > 6774: bad (52/4)
+
+SubTree [S39]
+
+Nonzeros > 22680: bad (48)
+Nonzeros <= 22680:
+:...NumRows <= 4598: bad (14)
+    NumRows > 4598: good (3)
+
+SubTree [S40]
+
+FrobeniusNorm <= 1771.85: bad (122/35)
+FrobeniusNorm > 1771.85:
+:...DiagAverage > 1.00104: good (13)
+    DiagAverage <= 1.00104:
+    :...Nonzeros <= 55702: bad (6)
+        Nonzeros > 55702: good (2)
+
+SubTree [S41]
+
+NumRows <= 15575: good (21)
+NumRows > 15575:
+:...NumRows <= 20082: bad (2)
+    NumRows > 20082: good (5)
+
+SubTree [S42]
+
+FrobeniusNorm <= 59.0424: good (14/3)
+FrobeniusNorm > 59.0424: bad (9/2)
+
+SubTree [S43]
+
+Nonzeros > 71701: bad (8)
+Nonzeros <= 71701:
+:...NumRows <= 3242: bad (3)
+    NumRows > 3242: good (3)
+
+SubTree [S44]
+
+FrobeniusNorm > 725858: bad (10/2)
+FrobeniusNorm <= 725858:
+:...NumRows <= 124: bad (3/1)
+    NumRows > 124: good (16/1)
+
+SubTree [S45]
+
+NumRows <= 957: bad (61)
+NumRows > 957:
+:...FrobeniusNorm <= 141.421: bad (3)
+    FrobeniusNorm > 141.421: good (2)
+
+SubTree [S46]
+
+Trace <= 82.176: bad (76)
+Trace > 82.176:
+:...NumRows <= 240:
+    :...Trace > 37552.2: good (3)
+    :   Trace <= 37552.2:
+    :   :...solver <= 8.926981e+07: good (7/2)
+    :       solver > 8.926981e+07: bad (8/1)
+    NumRows > 240:
+    :...Nonzeros <= 3895: bad (36)
+        Nonzeros > 3895:
+        :...DiagAverage <= 2.18525: good (3)
+            DiagAverage > 2.18525: bad (70/4)
+
+SubTree [S47]
+
+FrobeniusNorm <= 10187.2: good (10)
+FrobeniusNorm > 10187.2:
+:...Nonzeros <= 2028:
+    :...NumRows <= 90: good (5/2)
+    :   NumRows > 90: bad (77/2)
+    Nonzeros > 2028:
+    :...Nonzeros <= 2500: good (16)
+        Nonzeros > 2500:
+        :...DiagAverage <= 2730.77: good (26/11)
+            DiagAverage > 2730.77: bad (70/7)
+
+SubTree [S48]
+
+DiagAverage <= 0.017869: good (16)
+DiagAverage > 0.017869:
+:...DiagAverage > 0.584965:
+    :...Nonzeros > 167178: bad (4)
+    :   Nonzeros <= 167178:
+    :   :...Nonzeros <= 2883: bad (8/2)
+    :       Nonzeros > 2883: good (13)
+    DiagAverage <= 0.584965:
+    :...FrobeniusNorm > 13.4827: bad (35)
+        FrobeniusNorm <= 13.4827:
+        :...FrobeniusNorm > 12.141: good (3)
+            FrobeniusNorm <= 12.141:
+            :...Nonzeros > 1888: bad (22)
+                Nonzeros <= 1888:
+                :...NumRows <= 289: bad (6/1)
+                    NumRows > 289: good (2)
+
+SubTree [S49]
+
+NumRows > 207: bad (14)
+NumRows <= 207:
+:...NumRows <= 163: bad (6)
+    NumRows > 163: good (5)
+
+SubTree [S50]
+
+FrobeniusNorm <= 9.479999e+09: good (4)
+FrobeniusNorm > 9.479999e+09:
+:...FrobeniusNorm <= 5.74e+13: bad (2)
+    FrobeniusNorm > 5.74e+13: good (2)
+
+SubTree [S51]
+
+AbsTrace > 9390000: bad (3)
+AbsTrace <= 9390000:
+:...Nonzeros <= 430909: good (14)
+    Nonzeros > 430909: bad (3)
+
+SubTree [S52]
+
+Trace <= -101.195: bad (3)
+Trace > -101.195: good (15/2)
+
+SubTree [S53]
+
+DiagAverage <= 6.15512: bad (166/32)
+DiagAverage > 6.15512:
+:...AbsTrace > 1190000: bad (14)
+    AbsTrace <= 1190000:
+    :...NumRows > 16428: good (5)
+        NumRows <= 16428:
+        :...Nonzeros > 63406:
+            :...AbsTrace <= 155534: good (5/1)
+            :   AbsTrace > 155534: bad (17)
+            Nonzeros <= 63406:
+            :...DiagAverage <= 238.082: good (38/9)
+                DiagAverage > 238.082:
+                :...Trace <= -19998.8: good (3)
+                    Trace > -19998.8: bad (12)
+
+SubTree [S54]
+
+DiagAverage > 0.007541: good (11/1)
+DiagAverage <= 0.007541:
+:...Trace <= 0.113972: bad (128/55)
+    Trace > 0.113972: good (23/5)
+
+SubTree [S55]
+
+FrobeniusNorm <= 13.4827: good (22/3)
+FrobeniusNorm > 13.4827: bad (6)
+
+SubTree [S56]
+
+Nonzeros <= 11405: bad (18/5)
+Nonzeros > 11405: good (3)
+
+SubTree [S57]
+
+FrobeniusNorm > 744.45: bad (7)
+FrobeniusNorm <= 744.45:
+:...Trace <= 457.138: good (8)
+    Trace > 457.138: bad (7/1)
+
+SubTree [S58]
+
+FrobeniusNorm <= 6710.69: bad (5)
+FrobeniusNorm > 6710.69:
+:...Nonzeros <= 345098: good (9)
+    Nonzeros > 345098:
+    :...Nonzeros <= 559722: bad (3)
+        Nonzeros > 559722: good (3)
+
+SubTree [S59]
+
+Nonzeros <= 935: good (12)
+Nonzeros > 935: bad (119/51)
+
+SubTree [S60]
+
+FrobeniusNorm > 725858:
+:...DiagAverage <= 26.2904: good (5)
+:   DiagAverage > 26.2904: bad (69/17)
+FrobeniusNorm <= 725858:
+:...Trace <= -6869.05: bad (58)
+    Trace > -6869.05:
+    :...AbsTrace <= 4470.83: bad (80/10)
+        AbsTrace > 4470.83: good (5/1)
+
+SubTree [S61]
+
+Nonzeros <= 5184: good (119/45)
+Nonzeros > 5184:
+:...NumRows <= 496: bad (14)
+    NumRows > 496:
+    :...Trace > 466.944: good (7)
+        Trace <= 466.944:
+        :...Trace > -19998.8: bad (13)
+            Trace <= -19998.8:
+            :...FrobeniusNorm <= 886490: good (12/1)
+                FrobeniusNorm > 886490: bad (18/5)
+
+SubTree [S62]
+
+Trace > 2304.67: bad (42/6)
+Trace <= 2304.67:
+:...solver > 9.527926e+07:
+    :...Trace <= -6.08e+07: good (22)
+    :   Trace > -6.08e+07:
+    :   :...Trace <= -653599: bad (18/2)
+    :       Trace > -653599: good (35/11)
+    solver <= 9.527926e+07:
+    :...solver > 9.459914e+07: bad (18)
+        solver <= 9.459914e+07:
+        :...NumRows <= 2182: bad (12)
+            NumRows > 2182:
+            :...Trace > -3510.28: good (24/5)
+                Trace <= -3510.28:
+                :...FrobeniusNorm > 4.62e+07:
+                    :...FrobeniusNorm <= 1.37e+08: good (26/1)
+                    :   FrobeniusNorm > 1.37e+08: bad (57/26)
+                    FrobeniusNorm <= 4.62e+07:
+                    :...NumRows <= 16428: bad (44/3)
+                        NumRows > 16428:
+                        :...Nonzeros <= 259688: good (6)
+                            Nonzeros > 259688:
+                            :...FrobeniusNorm <= 424690: good (6/2)
+                                FrobeniusNorm > 424690: bad (10/1)
+
+SubTree [S63]
+
+FrobeniusNorm > 7.05e+08: bad (96/15)
+FrobeniusNorm <= 7.05e+08:
+:...solver <= 9.459914e+07: good (4)
+    solver > 9.459914e+07: bad (3/1)
+
+SubTree [S64]
+
+DiagAverage <= 636.234: good (36/6)
+DiagAverage > 636.234: bad (54/26)
+
+SubTree [S65]
+
+Nonzeros <= 3084: bad (22)
+Nonzeros > 3084:
+:...solver <= 9.459914e+07: bad (13/2)
+    solver > 9.459914e+07: good (15/6)
+
+SubTree [S66]
+
+NumRows > 225: good (60/11)
+NumRows <= 225:
+:...NumRows <= 19:
+    :...solver <= 9.527926e+07: good (5)
+    :   solver > 9.527926e+07: bad (3/1)
+    NumRows > 19:
+    :...solver <= 9.527926e+07: bad (5)
+        solver > 9.527926e+07: good (3/1)
+
+SubTree [S67]
+
+FrobeniusNorm > 1.15e+07: bad (8/1)
+FrobeniusNorm <= 1.15e+07:
+:...Nonzeros <= 365313: good (16/4)
+    Nonzeros > 365313: bad (13/5)
+
+SubTree [S68]
+
+solver > 9.527926e+07: bad (182/43)
+solver <= 9.527926e+07:
+:...Trace > 37552.2: bad (137/4)
+    Trace <= 37552.2:
+    :...AbsTrace <= 19998.8: bad (108/22)
+        AbsTrace > 19998.8: good (16/4)
+
+SubTree [S69]
+
+NumRows <= 11790: good (7/1)
+NumRows > 11790:
+:...FrobeniusNorm <= 1.53e+13: bad (126/19)
+    FrobeniusNorm > 1.53e+13:
+    :...Trace > 1.47e+17: good (4)
+        Trace <= 1.47e+17:
+        :...FrobeniusNorm <= 1.21e+14: good (4/1)
+            FrobeniusNorm > 1.21e+14: bad (11/2)
+
+SubTree [S70]
+
+Trace > 7.19e+11: bad (29)
+Trace <= 7.19e+11:
+:...FrobeniusNorm > 5000000:
+    :...Trace > 4.49e+08: good (17)
+    :   Trace <= 4.49e+08:
+    :   :...FrobeniusNorm <= 1.01e+08: good (29/5)
+    :       FrobeniusNorm > 1.01e+08: bad (6)
+    FrobeniusNorm <= 5000000:
+    :...AbsTrace > 350807: bad (47/5)
+        AbsTrace <= 350807:
+        :...DiagAverage <= 1.99507: bad (54/13)
+            DiagAverage > 1.99507:
+            :...Nonzeros > 222596: good (23/5)
+                Nonzeros <= 222596:
+                :...AbsTrace > 118418: bad (15)
+                    AbsTrace <= 118418:
+                    :...DiagAverage <= 3: good (9/3)
+                        DiagAverage > 3:
+                        :...FrobeniusNorm > 8460.08: bad (3)
+                            FrobeniusNorm <= 8460.08:
+                            :...FrobeniusNorm <= 2353.59: bad (3/1)
+                                FrobeniusNorm > 2353.59: good (7/2)
+
+SubTree [S71]
+
+solver <= 8.61425e+07: good (56/17)
+solver > 8.61425e+07: bad (3)
+
+SubTree [S72]
+
+FrobeniusNorm <= 55.3173: bad (146/4)
+FrobeniusNorm > 55.3173:
+:...solver <= 5.468515e+07: bad (18)
+    solver > 5.468515e+07:
+    :...solver <= 5.917142e+07: good (8)
+        solver > 5.917142e+07: bad (38/6)
+
+SubTree [S73]
+
+FrobeniusNorm <= 9.69536: good (19/5)
+FrobeniusNorm > 9.69536:
+:...solver <= 7.499566e+07: good (6/2)
+    solver > 7.499566e+07: bad (9)
+
+SubTree [S74]
+
+FrobeniusNorm <= 59.0424: bad (218/20)
+FrobeniusNorm > 59.0424:
+:...solver <= 5.917142e+07: good (9)
+    solver > 5.917142e+07:
+    :...solver <= 6.039286e+07: bad (4)
+        solver > 6.039286e+07:
+        :...solver <= 8.245658e+07: good (5/1)
+            solver > 8.245658e+07: bad (3)
+
+SubTree [S75]
+
+Nonzeros <= 1310: bad (188)
+Nonzeros > 1310: good (30/5)
+
+SubTree [S76]
+
+Nonzeros <= 11405: bad (1708/5)
+Nonzeros > 11405:
+:...NumRows <= 1824: bad (63)
+    NumRows > 1824:
+    :...solver <= 5.651317e+07: bad (47)
+        solver > 5.651317e+07:
+        :...solver > 5.874346e+07: bad (89/9)
+            solver <= 5.874346e+07:
+            :...NumRows <= 2146: good (7)
+                NumRows > 2146: bad (11)
+
+SubTree [S77]
+
+FrobeniusNorm <= 30.0141: bad (13)
+FrobeniusNorm > 30.0141: good (4)
+
+SubTree [S78]
+
+Nonzeros <= 42568: bad (11/2)
+Nonzeros > 42568: good (19/3)
+
+SubTree [S79]
+
+NumRows <= 1104: good (6/1)
+NumRows > 1104: bad (102/46)
+
+SubTree [S80]
+
+DiagAverage <= 0.479883: good (7/1)
+DiagAverage > 0.479883:
+:...solver > 5.206814e+07: bad (10)
+    solver <= 5.206814e+07:
+    :...AbsTrace <= 97.0434: bad (3/1)
+        AbsTrace > 97.0434: good (3)
+
+SubTree [S81]
+
+NumRows <= 400: bad (132/1)
+NumRows > 400: good (16/3)
+
+SubTree [S82]
+
+FrobeniusNorm > 0.822049: bad (930/1)
+FrobeniusNorm <= 0.822049:
+:...Trace <= 0.086783: bad (49)
+    Trace > 0.086783:
+    :...solver <= 4.586964e+07: good (9/1)
+        solver > 4.586964e+07: bad (4/1)
+
+SubTree [S83]
+
+solver <= 4.748321e+07: good (11)
+solver > 4.748321e+07: bad (3)
+
+SubTree [S84]
+
+FrobeniusNorm > 13.4827: bad (106)
+FrobeniusNorm <= 13.4827:
+:...DiagAverage > 0.64335: bad (16)
+    DiagAverage <= 0.64335:
+    :...DiagAverage <= 0.584965: bad (34/14)
+        DiagAverage > 0.584965:
+        :...solver <= 4.748321e+07: good (12)
+            solver > 4.748321e+07:
+            :...solver <= 4.794286e+07: bad (3)
+                solver > 4.794286e+07: good (2)
+
+SubTree [S85]
+
+FrobeniusNorm <= 0.002175: good (44/17)
+FrobeniusNorm > 0.002175: bad (49/2)
+
+SubTree [S86]
+
+solver <= 4.95133e+07: bad (15/4)
+solver > 4.95133e+07: good (3)
+
+SubTree [S87]
+
+solver > 4.46735e+07: good (25/1)
+solver <= 4.46735e+07:
+:...solver <= 4.285184e+07: good (6)
+    solver > 4.285184e+07:
+    :...solver <= 4.370738e+07: bad (3)
+        solver > 4.370738e+07:
+        :...solver <= 4.452627e+07: good (3)
+            solver > 4.452627e+07: bad (3/1)
+
+SubTree [S88]
+
+FrobeniusNorm <= 30.0141: bad (13)
+FrobeniusNorm > 30.0141: good (3)
+
+SubTree [S89]
+
+Trace <= 11.4706: bad (13/1)
+Trace > 11.4706:
+:...NumRows <= 200:
+    :...Nonzeros <= 796: good (5/2)
+    :   Nonzeros > 796: bad (7)
+    NumRows > 200:
+    :...Nonzeros <= 6346: good (92/31)
+        Nonzeros > 6346: bad (17/5)
+
+SubTree [S90]
+
+DiagAverage <= 0.236111: good (10/3)
+DiagAverage > 0.236111:
+:...DiagAverage > 0.754159: good (2)
+    DiagAverage <= 0.754159:
+    :...FrobeniusNorm <= 10.7749: good (3/1)
+        FrobeniusNorm > 10.7749: bad (33/1)
+
+SubTree [S91]
+
+DiagAverage <= 0.612903: bad (383/1)
+DiagAverage > 0.612903:
+:...Trace <= 190.187: bad (23)
+    Trace > 190.187: good (7/1)
+
+SubTree [S92]
+
+Trace <= 97.0434: bad (2)
+Trace > 97.0434: good (22/4)
+
+SubTree [S93]
+
+FrobeniusNorm <= 0.051765: good (24/3)
+FrobeniusNorm > 0.051765: bad (9)
+
+SubTree [S94]
+
+solver > 3.211053e+07: bad (185/10)
+solver <= 3.211053e+07:
+:...solver <= 3.062184e+07: bad (27)
+    solver > 3.062184e+07:
+    :...Trace <= 0.069741: bad (24)
+        Trace > 0.069741:
+        :...FrobeniusNorm <= 1.56794: good (20)
+            FrobeniusNorm > 1.56794:
+            :...Trace <= 63.6986:
+                :...Nonzeros <= 9831: good (14/1)
+                :   Nonzeros > 9831: bad (3)
+                Trace > 63.6986:
+                :...Trace <= 97.0434: bad (17)
+                    Trace > 97.0434:
+                    :...DiagAverage <= 0.328885: bad (10/1)
+                        DiagAverage > 0.328885: good (6/1)
+
+SubTree [S95]
+
+DiagAverage <= 25.6419: good (21/3)
+DiagAverage > 25.6419:
+:...FrobeniusNorm <= 112253: bad (5)
+    FrobeniusNorm > 112253: good (42/20)
+
+SubTree [S96]
+
+FrobeniusNorm <= 1.01e+08: good (21/5)
+FrobeniusNorm > 1.01e+08: bad (8)
+
+SubTree [S97]
+
+DiagAverage > 1173.7: good (7/1)
+DiagAverage <= 1173.7:
+:...NumRows <= 14270: good (8/3)
+    NumRows > 14270: bad (17)
+
+SubTree [S98]
+
+ColDiagDominancy <= 0: good (15/4)
+ColDiagDominancy > 0: bad (2)
+
+SubTree [S99]
+
+Nonzeros > 61896: bad (32)
+Nonzeros <= 61896:
+:...FrobeniusNorm <= 3266.32: good (3)
+    FrobeniusNorm > 3266.32: bad (5)
+
+SubTree [S100]
+
+Nonzeros <= 138040: bad (149/8)
+Nonzeros > 138040:
+:...Trace <= 388515: good (17/5)
+    Trace > 388515: bad (27/5)
+
+SubTree [S101]
+
+AbsTrace <= 6293.51: good (49/7)
+AbsTrace > 6293.51:
+:...NumRows <= 14913: bad (4)
+    NumRows > 14913: good (3/1)
+
+SubTree [S102]
+
+DiagAverage <= 2.18525: bad (62/15)
+DiagAverage > 2.18525:
+:...FrobeniusNorm <= 993.485: bad (39/18)
+    FrobeniusNorm > 993.485: good (25/3)
+
+SubTree [S103]
+
+Trace <= 45579.1: good (9/2)
+Trace > 45579.1: bad (9/2)
+
+SubTree [S104]
+
+Trace > -30.2853: bad (78/6)
+Trace <= -30.2853:
+:...Nonzeros <= 222596: good (4)
+    Nonzeros > 222596: bad (21/5)
+
+SubTree [S105]
+
+FrobeniusNorm > 1.44e+12: bad (16/6)
+FrobeniusNorm <= 1.44e+12:
+:...NumRows > 17077: good (52/6)
+    NumRows <= 17077:
+    :...AbsTrace <= 2.44e+08: good (21/5)
+        AbsTrace > 2.44e+08: bad (13)
+
+SubTree [S106]
+
+AbsTrace <= 47035.8: bad (21/1)
+AbsTrace > 47035.8:
+:...DiagAverage <= 25.6419: good (9)
+    DiagAverage > 25.6419:
+    :...AbsTrace > 1.24e+09: good (6/1)
+        AbsTrace <= 1.24e+09:
+        :...FrobeniusNorm <= 9830000: good (5)
+            FrobeniusNorm > 9830000:
+            :...Trace <= -1.29e+08: good (2)
+                Trace > -1.29e+08: bad (37/14)
+
+SubTree [S107]
+
+DiagAverage > 0.956919: bad (242/3)
+DiagAverage <= 0.956919:
+:...Trace <= -1718.4: good (4)
+    Trace > -1718.4: bad (25/2)
+
+SubTree [S108]
+
+Nonzeros > 92217: bad (15)
+Nonzeros <= 92217:
+:...FrobeniusNorm <= 2.63e+14: good (10/2)
+    FrobeniusNorm > 2.63e+14: bad (5)
+
+SubTree [S109]
+
+FrobeniusNorm <= 1574.96: bad (12)
+FrobeniusNorm > 1574.96:
+:...NumRows <= 15343: good (35/9)
+    NumRows > 15343: bad (3)
+
+SubTree [S110]
+
+NumRows <= 10000: bad (71/2)
+NumRows > 10000:
+:...AbsTrace <= 128: bad (24/1)
+    AbsTrace > 128:
+    :...Nonzeros <= 92217: good (7)
+        Nonzeros > 92217: bad (66/25)
+
+SubTree [S111]
+
+solver <= 7.525991e+07: bad (856/39)
+solver > 7.525991e+07:
+:...Nonzeros > 73249: bad (180/25)
+    Nonzeros <= 73249:
+    :...FrobeniusNorm > 9440000: bad (19/2)
+        FrobeniusNorm <= 9440000:
+        :...NumRows > 3600: good (42/14)
+            NumRows <= 3600:
+            :...DiagAverage <= 398.913: bad (11)
+                DiagAverage > 398.913: good (2)
+
+SubTree [S112]
+
+Nonzeros <= 60882: bad (62/27)
+Nonzeros > 60882: good (13)
+
+SubTree [S113]
+
+AbsTrace <= 128: bad (20/2)
+AbsTrace > 128:
+:...NumRows > 32769: bad (40/9)
+    NumRows <= 32769:
+    :...solver > 5.651317e+07:
+        :...NumRows <= 11730: good (7/1)
+        :   NumRows > 11730: bad (54/18)
+        solver <= 5.651317e+07:
+        :...NumRows > 30412: good (4)
+            NumRows <= 30412:
+            :...Nonzeros > 131735: bad (30/3)
+                Nonzeros <= 131735:
+                :...NumRows > 20640: good (4)
+                    NumRows <= 20640:
+                    :...NumRows <= 10964: good (2)
+                        NumRows > 10964: bad (12/3)
+
+SubTree [S114]
+
+FrobeniusNorm > 4.57e+08: bad (86/8)
+FrobeniusNorm <= 4.57e+08:
+:...solver <= 5.874346e+07: good (11/3)
+    solver > 5.874346e+07: bad (8/1)
+
+SubTree [S115]
+
+FrobeniusNorm > 906.939: bad (811/11)
+FrobeniusNorm <= 906.939:
+:...Trace > -224.575: bad (365/10)
+    Trace <= -224.575:
+    :...solver > 5.874346e+07: bad (47/1)
+        solver <= 5.874346e+07:
+        :...solver <= 5.651317e+07:
+            :...FrobeniusNorm > 203.824: bad (58)
+            :   FrobeniusNorm <= 203.824:
+            :   :...NumRows <= 541: bad (11)
+            :       NumRows > 541: good (10/4)
+            solver > 5.651317e+07:
+            :...DiagAverage > 5.74371: good (18/2)
+                DiagAverage <= 5.74371:
+                :...Trace <= -2425.36: bad (7/1)
+                    Trace > -2425.36: good (3)
+
+SubTree [S116]
+
+FrobeniusNorm <= 139.52: good (6/2)
+FrobeniusNorm > 139.52: bad (38/5)
+
+SubTree [S117]
+
+Nonzeros > 7242: good (8)
+Nonzeros <= 7242:
+:...NumRows <= 500: good (12/3)
+    NumRows > 500: bad (10/2)
+
+SubTree [S118]
+
+Trace > -1420.56: bad (101/23)
+Trace <= -1420.56:
+:...solver <= 7.499566e+07: good (14/3)
+    solver > 7.499566e+07: bad (3)
+
+SubTree [S119]
+
+solver > 7.249086e+07: bad (161/8)
+solver <= 7.249086e+07:
+:...solver <= 7.146662e+07: bad (125/7)
+    solver > 7.146662e+07:
+    :...solver > 7.19297e+07: bad (40/6)
+        solver <= 7.19297e+07:
+        :...DiagAverage <= 15.5423: bad (22/1)
+            DiagAverage > 15.5423:
+            :...FrobeniusNorm <= 5.45e+10: good (20/3)
+                FrobeniusNorm > 5.45e+10: bad (5/1)
+
+SubTree [S120]
+
+solver > 7.525991e+07: good (19/1)
+solver <= 7.525991e+07:
+:...solver <= 7.499566e+07: good (10/2)
+    solver > 7.499566e+07: bad (3)
+
+SubTree [S121]
+
+solver > 5.874346e+07: bad (84/2)
+solver <= 5.874346e+07:
+:...Nonzeros <= 1545: bad (30/6)
+    Nonzeros > 1545: good (3)
+
+SubTree [S122]
+
+solver > 8.19867e+07: bad (50/3)
+solver <= 8.19867e+07:
+:...FrobeniusNorm > 1.25e+09:
+    :...DiagAverage <= 4.92e+08: bad (10)
+    :   DiagAverage > 4.92e+08:
+    :   :...solver <= 7.338813e+07: bad (5)
+    :       solver > 7.338813e+07:
+    :       :...solver <= 7.525991e+07: good (3)
+    :           solver > 7.525991e+07: bad (3)
+    FrobeniusNorm <= 1.25e+09:
+    :...solver <= 7.249086e+07: good (9/1)
+        solver > 7.249086e+07:
+        :...solver <= 7.338813e+07: bad (4)
+            solver > 7.338813e+07:
+            :...solver <= 7.499566e+07: good (5)
+                solver > 7.499566e+07:
+                :...solver <= 7.525991e+07: bad (5)
+                    solver > 7.525991e+07: good (5/1)
+
+SubTree [S123]
+
+solver <= 7.249086e+07: good (14/6)
+solver > 7.249086e+07: bad (4)
+
+SubTree [S124]
+
+FrobeniusNorm > 76694.8: bad (126/35)
+FrobeniusNorm <= 76694.8:
+:...solver > 5.874345e+07: bad (37/16)
+    solver <= 5.874345e+07:
+    :...solver <= 5.219866e+07: bad (3)
+        solver > 5.219866e+07: good (23/1)
+
+SubTree [S125]
+
+Nonzeros > 21199: good (30/14)
+Nonzeros <= 21199:
+:...Nonzeros <= 5739:
+    :...Trace <= 8.84e+08: bad (32/2)
+    :   Trace > 8.84e+08:
+    :   :...solver <= 5.917142e+07: good (13/1)
+    :       solver > 5.917142e+07:
+    :       :...solver > 8.19867e+07: good (4)
+    :           solver <= 8.19867e+07:
+    :           :...solver > 6.660432e+07: bad (8)
+    :               solver <= 6.660432e+07:
+    :               :...solver <= 6.039286e+07: bad (3)
+    :                   solver > 6.039286e+07: good (2)
+    Nonzeros > 5739:
+    :...solver <= 5.468515e+07: bad (152)
+        solver > 5.468515e+07:
+        :...solver <= 5.874345e+07:
+            :...NumRows <= 2028: bad (18/4)
+            :   NumRows > 2028: good (20/3)
+            solver > 5.874345e+07:
+            :...solver > 8.19867e+07: bad (70)
+                solver <= 8.19867e+07:
+                :...solver > 7.525991e+07:
+                    :...Trace > 9.43e+08: bad (4)
+                    :   Trace <= 9.43e+08:
+                    :   :...Trace <= 107213: bad (2)
+                    :       Trace > 107213: good (10/1)
+                    solver <= 7.525991e+07:
+                    :...solver > 7.19297e+07: bad (58)
+                        solver <= 7.19297e+07:
+                        :...solver <= 7.146662e+07: bad (150/6)
+                            solver > 7.146662e+07:
+                            :...Trace > 9.43e+08: bad (4)
+                                Trace <= 9.43e+08:
+                                :...Trace <= 107213: bad (2)
+                                    Trace > 107213: good (10/1)
+
+SubTree [S126]
+
+FrobeniusNorm <= 3964.38: good (5)
+FrobeniusNorm > 3964.38: bad (69/1)
+
+SubTree [S127]
+
+FrobeniusNorm <= 4.37e+10: good (27/3)
+FrobeniusNorm > 4.37e+10: bad (3/1)
+
+SubTree [S128]
+
+NumRows > 4720: good (63/8)
+NumRows <= 4720:
+:...FrobeniusNorm <= 1.03e+12: bad (6)
+    FrobeniusNorm > 1.03e+12: good (3/1)
+
+SubTree [S129]
+
+NumRows <= 2182: bad (11)
+NumRows > 2182: good (10/2)
+
+SubTree [S130]
+
+Trace > -3.87e+08: bad (342)
+Trace <= -3.87e+08:
+:...FrobeniusNorm <= 4.57e+08:
+    :...solver <= 4.748321e+07: good (10/1)
+    :   solver > 4.748321e+07: bad (4/1)
+    FrobeniusNorm > 4.57e+08:
+    :...NumRows > 130: bad (49)
+        NumRows <= 130:
+        :...solver <= 4.479117e+07: bad (3)
+            solver > 4.479117e+07:
+            :...solver <= 4.748321e+07: good (6/1)
+                solver > 4.748321e+07: bad (5/1)
+
+SubTree [S131]
+
+FrobeniusNorm > 76694.8:
+:...NumRows <= 600: bad (381/17)
+:   NumRows > 600:
+:   :...NumRows <= 700: good (16/5)
+:       NumRows > 700:
+:       :...Nonzeros <= 4726: bad (41)
+:           Nonzeros > 4726:
+:           :...Trace <= 8.84e+08: bad (32)
+:               Trace > 8.84e+08:
+:               :...solver <= 4.748321e+07: good (7/1)
+:                   solver > 4.748321e+07: bad (4/1)
+FrobeniusNorm <= 76694.8:
+:...solver > 4.735526e+07: bad (84/7)
+    solver <= 4.735526e+07:
+    :...NumRows <= 148: bad (19)
+        NumRows > 148:
+        :...DiagAverage <= 452.935:
+            :...Trace <= -797.97: good (13/2)
+            :   Trace > -797.97: bad (147/16)
+            DiagAverage > 452.935:
+            :...solver <= 4.452627e+07: good (11)
+                solver > 4.452627e+07:
+                :...solver <= 4.46735e+07: bad (6)
+                    solver > 4.46735e+07:
+                    :...Trace <= 1190000: good (36/7)
+                        Trace > 1190000:
+                        :...solver <= 4.586964e+07: bad (5/1)
+                            solver > 4.586964e+07: good (3/1)
+
+SubTree [S132]
+
+FrobeniusNorm > 4.57e+08: bad (47/4)
+FrobeniusNorm <= 4.57e+08:
+:...solver <= 3.211053e+07: good (4)
+    solver > 3.211053e+07: bad (4/1)
+
+SubTree [S133]
+
+NumRows <= 124: bad (51)
+NumRows > 124: good (7/1)
+
+SubTree [S134]
+
+FrobeniusNorm <= 151.501: bad (207/2)
+FrobeniusNorm > 151.501:
+:...Trace > 3768.92:
+    :...solver <= 3.087072e+07: good (2)
+    :   solver > 3.087072e+07: bad (8)
+    Trace <= 3768.92:
+    :...solver <= 3.211053e+07: good (11)
+        solver > 3.211053e+07:
+        :...solver <= 3.317373e+07: bad (3)
+            solver > 3.317373e+07: good (2)
+
+SubTree [S135]
+
+DiagAverage <= 238.082: bad (27/1)
+DiagAverage > 238.082: good (45/7)
+
+SubTree [S136]
+
+NumRows > 600: good (21/3)
+NumRows <= 600:
+:...Trace <= 1190000: good (30/12)
+    Trace > 1190000: bad (38/3)
+
+SubTree [S137]
+
+Trace > 9.43e+08: bad (61)
+Trace <= 9.43e+08:
+:...Trace > 8.84e+08:
+    :...solver <= 3.211053e+07: good (5)
+    :   solver > 3.211053e+07:
+    :   :...solver <= 3.317373e+07: bad (2)
+    :       solver > 3.317373e+07: good (2)
+    Trace <= 8.84e+08:
+    :...Nonzeros > 20861: good (8/2)
+        Nonzeros <= 20861:
+        :...solver <= 3.211053e+07: bad (89)
+            solver > 3.211053e+07:
+            :...solver > 3.219759e+07: bad (47/1)
+                solver <= 3.219759e+07:
+                :...NumRows <= 2182: bad (7)
+                    NumRows > 2182: good (7/1)
+
+SubTree [S138]
+
+Nonzeros <= 18246: good (23/3)
+Nonzeros > 18246: bad (2)
+
+SubTree [S139]
+
+FrobeniusNorm <= 5.74e+13: bad (70/3)
+FrobeniusNorm > 5.74e+13:
+:...FrobeniusNorm <= 2.63e+14: good (4)
+    FrobeniusNorm > 2.63e+14: bad (5)
+
+SubTree [S140]
+
+AbsTrace <= 26177.8: good (18)
+AbsTrace > 26177.8: bad (89/34)
+
+SubTree [S141]
+
+Trace <= -6869.05: bad (45)
+Trace > -6869.05:
+:...FrobeniusNorm <= 145.861: bad (32/2)
+    FrobeniusNorm > 145.861:
+    :...FrobeniusNorm > 91659.2: bad (15)
+        FrobeniusNorm <= 91659.2:
+        :...DiagAverage > 497.367:
+            :...DiagAverage <= 1229.92: good (12)
+            :   DiagAverage > 1229.92:
+            :   :...Nonzeros <= 2883: bad (3)
+            :       Nonzeros > 2883: good (9/2)
+            DiagAverage <= 497.367:
+            :...Trace > 107213: bad (19/1)
+                Trace <= 107213:
+                :...NumRows > 4326: good (4)
+                    NumRows <= 4326:
+                    :...NumRows > 2568: bad (6)
+                        NumRows <= 2568:
+                        :...NumRows > 1182: good (6)
+                            NumRows <= 1182:
+                            :...Trace <= -4073.6: good (4)
+                                Trace > -4073.6:
+                                :...solver > 3.994244e+07: bad (16/1)
+                                    solver <= 3.994244e+07:
+                                    :...NumRows <= 200: good (13/4)
+                                        NumRows > 200: bad (25/6)
+
+
+Evaluation on training data (86426 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	  1080 4634( 5.4%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	 11436  2848    (a): class good
+	  1786 70356    (b): class bad
+
+
+	Attribute usage:
+
+	    100%  ColDiagDominancy
+	     98%  solver
+	     92%  FrobeniusNorm
+	     79%  Nonzeros
+	     70%  NumRows
+	     56%  AbsTrace
+	     50%  Trace
+	     44%  DiagAverage
+
+
+Evaluation on test data (21607 cases):
+
+	    Decision Tree   
+	  ----------------  
+	  Size      Errors  
+
+	  1080 1527( 7.1%)   <<
+
+
+	   (a)   (b)    <-classified as
+	  ----  ----
+	  2631   890    (a): class good
+	   637 17449    (b): class bad
+
+
+Time: 1.0 secs

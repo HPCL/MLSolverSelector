@@ -5,6 +5,7 @@
 #include "PetscInterface.h"
 #include "PetscFeatureSetSelector.h"
 
+PetscLogStage stage;
 
 PetscInterface::PetscInterface(){
 
@@ -52,7 +53,6 @@ PetscInterface::PrintSolver() {
 }
 
 int PetscInterface::ClassifyAndSolve(KSP &ksp) {
-      
     bool success;
     std::map<std::string, double> featuresMap;
     
@@ -156,9 +156,13 @@ int
 PetscInterface::ExtractFeatures( KSP &ksp, std::map<std::string, double> &fmap)
 {
    Mat AA,PP;                                                                                                
-   KSPGetOperators(ksp, &AA, &PP );                                                                         
-
-   PetscFeatureSetSelector::ExtractJacobianFeatures(featureSet,AA,edgeSamples,interiorSamples,fmap,usePercent,useMatVecs);     
+   KSPGetOperators(ksp, &AA, &PP );
+   
+   std::cerr << "registering log in PetscInterface::ExtractFeatures" << std::endl;
+   PetscLogStageRegister("Extracting features", &stage);
+   PetscLogStagePush(stage);
+   PetscFeatureSetSelector::ExtractJacobianFeatures(featureSet,AA,edgeSamples,interiorSamples,fmap,usePercent,useMatVecs);
+   PetscLogStagePop();
    return 0;
 }
 
